@@ -196,12 +196,12 @@ export default function AboutSection() {
           {/* ================================================================= */}
           <div className="lg:col-span-7">
             <Reveal delay={0.12}>
-              <div className="relative mx-auto w-full select-none transform-gpu lg:scale-[1.05] lg:origin-left">
+              <div className="relative mx-auto w-full select-none">
                 
                 {/* ------------------------------------------------------------- */}
                 {/* DESKTOP / TABLET: 5-Stage Isometric Lifecycle Diagram         */}
                 {/* ------------------------------------------------------------- */}
-                <div className="hidden sm:block relative w-full aspect-[720/550] min-h-[400px] sm:min-h-[440px] max-h-[510px]">
+                <div className="hidden sm:block relative w-full aspect-[720/550] min-h-[380px] sm:min-h-[420px] max-h-[490px]">
                   <svg
                     viewBox="0 0 720 550"
                     preserveAspectRatio="xMidYMid meet"
