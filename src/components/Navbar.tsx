@@ -35,10 +35,10 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 bg-white transition-all duration-300 ${
         scrolled
-          ? "border-b border-[#BFE3FF]/70 bg-[#F1F8FF]/85 shadow-[0_4px_24px_-8px_rgba(20,125,255,0.08)] backdrop-blur-lg"
-          : "border-b border-transparent bg-[#EFF8FF]/40 backdrop-blur-xs"
+          ? "border-b border-slate-200/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.06)]"
+          : "border-b border-slate-200/60 shadow-[0_1px_3px_rgba(0,0,0,0.03)]"
       }`}
     >
       <nav className="w-full flex h-16 sm:h-[4.25rem] lg:h-[4.75rem] items-center justify-between page-container">
@@ -114,7 +114,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.22, ease: "easeInOut" }}
-            className="overflow-hidden border-t border-[#BFE3FF] bg-[#EFF8FF]/98 backdrop-blur-md lg:hidden"
+            className="overflow-hidden border-t border-slate-200/80 bg-white shadow-lg lg:hidden"
           >
             <div className="flex flex-col gap-1 px-6 py-4">
               {NAV_LINKS.map((link) => (
