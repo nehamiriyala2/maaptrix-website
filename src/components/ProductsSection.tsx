@@ -130,16 +130,7 @@ export default function ProductsSection() {
   };
 
   return (
-    <section id="products" className="relative overflow-hidden bg-gradient-to-b from-[#DDF1FF] via-[#E8F5FF] to-[#F1F8FF] py-7 sm:py-8 lg:py-10">
-      {/* Seamless Top Boundary Line */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#BFE3FF] to-transparent" />
-
-      {/* Layered Atmospheric Background (Sky-Blue Glows + Low Opacity Network) */}
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute left-[15%] top-1/4 h-[550px] w-[550px] rounded-full bg-[#CFEAFF]/80 blur-[130px]" />
-        <div className="absolute right-[10%] bottom-1/4 h-[500px] w-[500px] rounded-full bg-[#BFE3FF]/70 blur-[120px]" />
-        <div className="absolute inset-0 bg-subtle-network opacity-40" />
-      </div>
+    <section id="products" className="relative overflow-hidden bg-white border-b border-slate-100 py-7 sm:py-8 lg:py-10">
 
       <div className="page-container">
         <Reveal className="max-w-3xl">

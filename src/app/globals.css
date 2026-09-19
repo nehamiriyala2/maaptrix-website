@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f1f8ff;
+  --background: #ffffff;
   --foreground: #0b1f41;
 
   --brand-blue: #147dff;
@@ -79,6 +79,14 @@ body {
 }
 
 /* Atmospheric Background Gradients & Utilities */
+.bg-blue-white {
+  background-color: #ffffff;
+  background-image:
+    radial-gradient(ellipse 70% 55% at 90% 15%, rgba(20, 125, 255, 0.26) 0%, rgba(20, 125, 255, 0.08) 50%, transparent 75%),
+    radial-gradient(ellipse 65% 50% at 10% 85%, rgba(20, 125, 255, 0.18) 0%, rgba(20, 125, 255, 0.05) 50%, transparent 70%),
+    linear-gradient(135deg, #cde8ff 0%, #e2f1ff 32%, #f5faff 60%, #ffffff 85%, #ffffff 100%);
+}
+
 .bg-sky-hero {
   background: radial-gradient(circle at 85% 15%, rgba(191, 227, 255, 0.75) 0%, rgba(221, 241, 255, 0.55) 35%, rgba(241, 248, 255, 0.85) 65%, #eff8ff 100%),
               linear-gradient(180deg, #eff8ff 0%, #dbefff 40%, #e4f4ff 100%);

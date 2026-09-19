@@ -106,13 +106,7 @@ export default function AboutSection() {
   }, [reducedMotion]);
 
   return (
-    <section id="about" className="relative overflow-hidden bg-gradient-to-b from-[#EFF8FF] via-[#E8F5FF] to-[#DDF1FF] border-b border-[#BFE3FF]/50 py-7 sm:py-8 lg:py-10">
-      {/* Ambient background glow & atmospheric shapes */}
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute right-[5%] top-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-[#CFEAFF]/70 blur-[100px]" />
-        <div className="absolute left-[5%] top-1/4 h-[350px] w-[350px] rounded-full bg-[#BFE3FF]/60 blur-[90px]" />
-        <div className="absolute inset-0 bg-circuit-grid opacity-25" />
-      </div>
+    <section id="about" className="relative overflow-hidden bg-white border-b border-slate-100 py-7 sm:py-8 lg:py-10">
 
       <div className="page-container">
         <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-8 xl:gap-10">

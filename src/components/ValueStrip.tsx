@@ -30,11 +30,7 @@ const PRINCIPLES = [
 
 export default function ValueStrip() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#EFF8FF] via-[#E4F4FF] to-[#EFF8FF] border-t border-[#BFE3FF]/60 py-5 sm:py-6 lg:py-7">
-      {/* Soft atmospheric background glow */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-1/2 -top-24 h-48 w-3/4 -translate-x-1/2 rounded-full bg-[#CFEAFF]/50 blur-3xl" />
-      </div>
+    <section className="relative overflow-hidden bg-white border-t border-slate-100 py-5 sm:py-6 lg:py-7">
 
       <div className="page-container">
         <Reveal>

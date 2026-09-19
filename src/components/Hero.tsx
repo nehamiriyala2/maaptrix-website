@@ -8,67 +8,8 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative w-full overflow-hidden bg-gradient-to-r from-[#EFF8FF] via-[#DBEFFF] via-45% to-[#E4F4FF] pt-20 sm:pt-22 lg:pt-24 pb-7 sm:pb-8 lg:pb-10 flex items-center select-none"
+      className="relative w-full overflow-hidden bg-blue-white pt-20 sm:pt-22 lg:pt-24 pb-7 sm:pb-8 lg:pb-10 flex items-center select-none"
     >
-      {/* 
-        =======================================================================
-        1. FULL-WIDTH ATMOSPHERIC SKY-BLUE BACKGROUND LAYERS (NO WHITE DEAD ZONE)
-        =======================================================================
-      */}
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        {/* Continuous Full-Width Sky-Blue Atmospheric Blends */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_15%_25%,rgba(239,248,255,0.7)_0%,rgba(215,238,255,0.4)_50%,transparent_80%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_48%_45%,rgba(175,225,255,0.55)_0%,rgba(215,238,255,0.4)_40%,transparent_75%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_45%,rgba(160,220,255,0.45)_0%,rgba(215,238,255,0.65)_45%,rgba(240,248,255,0.2)_80%)]" />
-
-        {/* Center atmospheric bridge glow — completely eliminates any white patch between text and image */}
-        <div className="absolute left-[30%] sm:left-[35%] top-[15%] h-[600px] w-[600px] rounded-full bg-[#C7E8FF]/85 blur-[120px]" />
-        <div className="absolute left-[45%] top-[30%] h-[450px] w-[450px] rounded-full bg-[#A9DCFF]/60 blur-[100px]" />
-
-        {/* Left atmospheric ambient glow */}
-        <div className="absolute -left-20 top-10 h-[500px] w-[500px] rounded-full bg-[#D7EEFF]/80 blur-[120px]" />
-
-        {/* Right school visual halo glow */}
-        <div className="absolute -right-20 top-1/4 h-[650px] w-[650px] rounded-full bg-[#BDE3FF]/70 blur-[130px]" />
-
-        {/* Bottom flowing sky-blue wave glow */}
-        <div className="absolute inset-x-0 -bottom-20 h-56 bg-gradient-to-t from-[#D7EEFF] via-[#C7E8FF]/50 to-transparent blur-2xl" />
-
-        {/* Subtle enterprise tech grid pattern */}
-        <div className="absolute inset-0 bg-circuit-grid opacity-30" />
-
-        {/* Flowing atmospheric vector wave ribbons */}
-        <svg
-          className="absolute inset-0 h-full w-full opacity-45"
-          viewBox="0 0 1440 900"
-          fill="none"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M -100,120 C 300,180 500,40 900,100 C 1300,160 1400,60 1600,80"
-            stroke="url(#hero-line-grad1)"
-            strokeWidth="1.6"
-            strokeDasharray="4 6"
-          />
-          <path
-            d="M -100,680 C 400,620 700,750 1100,640 C 1350,570 1500,620 1600,600"
-            stroke="url(#hero-line-grad2)"
-            strokeWidth="2"
-          />
-          <defs>
-            <linearGradient id="hero-line-grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#1677FF" stopOpacity="0.08" />
-              <stop offset="50%" stopColor="#1677FF" stopOpacity="0.4" />
-              <stop offset="100%" stopColor="#1677FF" stopOpacity="0.08" />
-            </linearGradient>
-            <linearGradient id="hero-line-grad2" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#38BDF8" stopOpacity="0.15" />
-              <stop offset="50%" stopColor="#1677FF" stopOpacity="0.35" />
-              <stop offset="100%" stopColor="#38BDF8" stopOpacity="0.08" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
 
       {/* 
         =======================================================================
@@ -194,12 +135,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* 
-        =======================================================================
-        3. BOTTOM SEAMLESS TRANSITION GRADIENT INTO NEXT SECTION
-        =======================================================================
-      */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-b from-transparent via-[#E4F4FF]/60 to-[#EFF8FF] -z-10" />
     </section>
   );
 }

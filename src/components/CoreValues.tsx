@@ -1,50 +1,249 @@
 "use client";
 
-import {
-  Lightbulb,
-  Feather,
-  ShieldCheck,
-  HeartHandshake,
-  Repeat,
-  Gauge,
-  ArrowUpRight,
-} from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Reveal from "./Reveal";
+
+// 01 Practical Innovation → Lightbulb with star sparkle & circuit dots
+function InnovationIcon({ className = "h-8 w-8" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 48 48" fill="none" className={className}>
+      {/* Top ray */}
+      <line x1="24" y1="4" x2="24" y2="7.5" stroke="#0B1F41" strokeWidth="2.4" strokeLinecap="round" />
+      
+      {/* Left Circuit 1 (Top-Left L-bracket with filled dot) */}
+      <path d="M 12 18 H 8 V 14" stroke="#0084FF" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="8" cy="11.5" r="2.2" fill="#0084FF" />
+      
+      {/* Left Circuit 2 (Bottom-Left horizontal line with ring dot) */}
+      <line x1="13" y1="26" x2="8" y2="26" stroke="#0084FF" strokeWidth="2.2" strokeLinecap="round" />
+      <circle cx="5.5" cy="26" r="2" stroke="#0084FF" strokeWidth="2" fill="none" />
+
+      {/* Right Circuit 1 (Top-Right L-bracket with filled dot) */}
+      <path d="M 36 18 H 40 V 14" stroke="#0084FF" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="40" cy="11.5" r="2.2" fill="#0084FF" />
+      
+      {/* Right Circuit 2 (Bottom-Right horizontal line with ring dot) */}
+      <line x1="35" y1="26" x2="40" y2="26" stroke="#0084FF" strokeWidth="2.2" strokeLinecap="round" />
+      <circle cx="42.5" cy="26" r="2" stroke="#0084FF" strokeWidth="2" fill="none" />
+
+      {/* Bulb Glass Body */}
+      <path
+        d="M 17 28 C 15 25 13.5 21.5 13.5 18 C 13.5 12.2 18.2 7.5 24 7.5 C 29.8 7.5 34.5 12.2 34.5 18 C 34.5 21.5 33 25 31 28 Z"
+        stroke="#0B1F41"
+        strokeWidth="2.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      {/* Star / Sparkle inside */}
+      <path
+        d="M 24 13 C 24 15.5 25.5 17 28 17 C 25.5 17 24 18.5 24 21 C 24 18.5 22.5 17 20 17 C 22.5 17 24 15.5 24 13 Z"
+        fill="#0084FF"
+      />
+
+      {/* Bulb Base Rungs */}
+      <line x1="18.5" y1="32" x2="29.5" y2="32" stroke="#0B1F41" strokeWidth="2.4" strokeLinecap="round" />
+      <line x1="20" y1="36" x2="28" y2="36" stroke="#0B1F41" strokeWidth="2.4" strokeLinecap="round" />
+      <line x1="22" y1="40" x2="26" y2="40" stroke="#0B1F41" strokeWidth="2.2" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+// 02 Simplicity → Stacked isometric layers with bright blue filled middle layer
+function SimplicityIcon({ className = "h-8 w-8" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 48 48" fill="none" className={className}>
+      {/* Top Layer (Navy Outline) */}
+      <path
+        d="M 24 8 L 38 15 L 24 22 L 10 15 Z"
+        stroke="#0B1F41"
+        strokeWidth="2.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      {/* Middle Layer (Solid Sky Blue Fill) */}
+      <path
+        d="M 24 17 L 38 24 L 24 31 L 10 24 Z"
+        fill="#56B8FF"
+      />
+
+      {/* Bottom Layer (Navy Outline) */}
+      <path
+        d="M 10 32.5 L 24 39.5 L 38 32.5"
+        stroke="#0B1F41"
+        strokeWidth="2.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+// 03 Reliability → Shield with bright blue circle and checkmark
+function ReliabilityIcon({ className = "h-8 w-8" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 48 48" fill="none" className={className}>
+      {/* Shield Outline */}
+      <path
+        d="M 24 6 C 30 9 37 8 38 13 C 39 25.5 32 37 24 41.5 C 16 37 9 25.5 10 13 C 11 8 18 9 24 6 Z"
+        stroke="#0B1F41"
+        strokeWidth="2.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      {/* Inner Blue Ring */}
+      <circle cx="24" cy="23.5" r="8.5" stroke="#0084FF" strokeWidth="2.4" fill="none" />
+
+      {/* Checkmark */}
+      <path
+        d="M 19.5 23.5 L 22.5 26.5 L 28.5 20"
+        stroke="#0B1F41"
+        strokeWidth="2.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+// 04 Safety & Responsibility → Shield enclosing person cradled by blue hands
+function SafetyProtectionIcon({ className = "h-8 w-8" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 48 48" fill="none" className={className}>
+      {/* Shield Outline */}
+      <path
+        d="M 24 6 C 30 9 37 8 38 13 C 39 25.5 32 37 24 41.5 C 16 37 9 25.5 10 13 C 11 8 18 9 24 6 Z"
+        stroke="#0B1F41"
+        strokeWidth="2.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      {/* Person Head */}
+      <circle cx="24" cy="17" r="3" fill="#0B1F41" />
+
+      {/* Person Torso */}
+      <path
+        d="M 19 26 C 19 23.5 21.2 21.8 24 21.8 C 26.8 21.8 29 23.5 29 26"
+        stroke="#0B1F41"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+      />
+
+      {/* Left Cupping Hand */}
+      <path
+        d="M 15 29.5 C 15 33.5 18 36 22 36 C 23.2 36 24 34.8 24 33.8 C 24 33 22.2 31.8 20 30.5 C 17.8 29.2 16.8 27.2 16.8 26"
+        fill="#0084FF"
+      />
+
+      {/* Right Cupping Hand */}
+      <path
+        d="M 33 29.5 C 33 33.5 30 36 26 36 C 24.8 36 24 34.8 24 33.8 C 24 33 25.8 31.8 28 30.5 C 30.2 29.2 31.2 27.2 31.2 26"
+        fill="#0084FF"
+      />
+    </svg>
+  );
+}
+
+// 05 Customer Focus → Two-person intertwining heart
+function CustomerFocusIcon({ className = "h-8 w-8" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 48 48" fill="none" className={className}>
+      {/* Left Person Head (Navy) */}
+      <circle cx="17.5" cy="12" r="3" fill="#0B1F41" />
+
+      {/* Right Person Head (Bright Blue) */}
+      <circle cx="30.5" cy="12" r="3" fill="#0084FF" />
+
+      {/* Left Person Heart Loop (Navy) */}
+      <path
+        d="M 17.5 18 C 12 18 8.5 23 9.5 28.5 C 11 34.5 20 40 24 42.5 C 21.5 38 18.5 32 23.5 26.5 C 25.5 24 28 22 30.5 18"
+        stroke="#0B1F41"
+        strokeWidth="2.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      {/* Right Person Heart Loop (Bright Blue) */}
+      <path
+        d="M 30.5 18 C 36 18 39.5 23 38.5 28.5 C 37 34.5 28 40 24 42.5 C 21 37.5 17.5 30.5 22.5 25"
+        stroke="#0084FF"
+        strokeWidth="2.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+// 06 Continuous Improvement → Circular refresh arrows + growth chart bars
+function ContinuousImprovementIcon({ className = "h-8 w-8" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 48 48" fill="none" className={className}>
+      {/* Top Arc (Navy) */}
+      <path
+        d="M 10 24 C 10 16.5 16.2 10.5 24 10.5 C 30.5 10.5 36 15 37.5 21"
+        stroke="#0B1F41"
+        strokeWidth="2.6"
+        strokeLinecap="round"
+      />
+      {/* Top Arrowhead (Bright Blue) */}
+      <path d="M 34 14 L 41 18 L 41 10 Z" fill="#0084FF" />
+
+      {/* Bottom Arc (Navy) */}
+      <path
+        d="M 38 24 C 38 31.5 31.8 37.5 24 37.5 C 17.5 37.5 12 33 10.5 27"
+        stroke="#0B1F41"
+        strokeWidth="2.6"
+        strokeLinecap="round"
+      />
+      {/* Bottom Arrowhead (Bright Blue) */}
+      <path d="M 14 34 L 7 30 L 7 38 Z" fill="#0084FF" />
+
+      {/* 3 Growth Bars */}
+      <rect x="18" y="27" width="3.2" height="6" rx="1" fill="#0084FF" />
+      <rect x="23" y="22" width="3.2" height="11" rx="1" fill="#0084FF" />
+      <rect x="28" y="16" width="3.2" height="17" rx="1" fill="#0B1F41" />
+    </svg>
+  );
+}
 
 const VALUES = [
   {
     number: "01",
-    icon: Lightbulb,
+    icon: InnovationIcon,
     title: "Practical Innovation",
     description: "Applying technology in ways that solve real problems.",
   },
   {
     number: "02",
-    icon: Feather,
+    icon: SimplicityIcon,
     title: "Simplicity",
     description: "Keeping products and workflows easy to understand and use.",
   },
   {
     number: "03",
-    icon: Gauge,
+    icon: ReliabilityIcon,
     title: "Reliability",
     description: "Building software that works consistently, every day.",
   },
   {
     number: "04",
-    icon: ShieldCheck,
+    icon: SafetyProtectionIcon,
     title: "Safety & Responsibility",
     description: "Designing with care for the people who depend on us.",
   },
   {
     number: "05",
-    icon: HeartHandshake,
+    icon: CustomerFocusIcon,
     title: "Customer Focus",
     description: "Listening closely to the people who use our products daily.",
   },
   {
     number: "06",
-    icon: Repeat,
+    icon: ContinuousImprovementIcon,
     title: "Continuous Improvement",
     description: "Refining every product long after it first launches.",
   },
@@ -52,13 +251,7 @@ const VALUES = [
 
 export default function CoreValues() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#DDF1FF] via-[#E8F5FF] to-[#E8F5FF] border-t border-[#BFE3FF]/50 py-7 sm:py-8 lg:py-10">
-      {/* Soft ambient background glow */}
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute right-1/4 top-1/2 -translate-y-1/2 h-72 w-3/4 rounded-full bg-[#CFEAFF]/60 blur-[110px]" />
-        <div className="absolute inset-0 bg-atmospheric-dots opacity-35" />
-      </div>
-
+    <section className="relative overflow-hidden bg-blue-white border-y border-slate-200/60 py-7 sm:py-8 lg:py-10">
       <div className="page-container">
         <Reveal className="max-w-3xl">
           <div className="inline-flex items-center gap-2">
@@ -84,9 +277,9 @@ export default function CoreValues() {
                   </span>
                   <ArrowUpRight className="h-4 w-4 -translate-x-1 translate-y-1 text-brand-blue opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100" />
                 </div>
-                <span className="mt-3.5 inline-flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-lg bg-brand-blue-light text-brand-blue transition-colors group-hover:bg-brand-blue group-hover:text-white">
-                  <value.icon className="h-5 w-5 sm:h-5.5 sm:w-5.5" strokeWidth={1.8} />
-                </span>
+                <div className="mt-3 flex items-center">
+                  <value.icon className="h-[68px] w-[68px] sm:h-[72px] sm:w-[72px] transition-transform duration-300 group-hover:scale-105" />
+                </div>
                 <h3 className="mt-3.5 text-base sm:text-lg font-bold text-brand-navy">
                   {value.title}
                 </h3>

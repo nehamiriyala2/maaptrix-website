@@ -18,8 +18,8 @@ export default function Home() {
         <Hero />
         <ValueStrip />
         <AboutSection />
-        <ProductsSection />
         <WhyMaaptrix />
+        <ProductsSection />
         <ProcessSection />
         <MissionVision />
         <CoreValues />

@@ -29,17 +29,7 @@ export default function MissionVision() {
   const [hoveredValue, setHoveredValue] = useState<number | null>(null);
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#F1F8FF] via-[#E8F5FF] to-[#DDF1FF] py-7 sm:py-8 lg:py-10 select-none">
-      {/* Top seamless divider */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#BFE3FF] to-transparent" />
-
-      {/* Atmospheric ambient background glows */}
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute left-[10%] top-1/4 h-[500px] w-[500px] rounded-full bg-[#CFEAFF]/70 blur-[120px]" />
-        <div className="absolute right-[5%] top-1/2 h-[450px] w-[450px] rounded-full bg-[#BFE3FF]/60 blur-[110px]" />
-        <div className="absolute inset-0 bg-circuit-grid opacity-25" />
-      </div>
-
+    <section className="relative overflow-hidden bg-white py-7 sm:py-8 lg:py-10 select-none">
       <div className="page-container">
         
         {/* ========================================================================= */}

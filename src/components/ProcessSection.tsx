@@ -44,13 +44,7 @@ export default function ProcessSection() {
   const lineScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section id="process" className="relative overflow-hidden bg-gradient-to-b from-[#DDF1FF] via-[#E8F5FF] to-[#F1F8FF] border-y border-[#BFE3FF]/50 py-7 sm:py-8 lg:py-10">
-      {/* Soft atmospheric background glow */}
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute left-1/2 top-1/2 -translate-y-1/2 h-72 w-3/4 rounded-full bg-[#CFEAFF]/60 blur-[100px]" />
-        <div className="absolute inset-0 bg-atmospheric-dots opacity-35" />
-      </div>
-
+    <section id="process" className="relative overflow-hidden bg-blue-white border-y border-slate-200/60 py-7 sm:py-8 lg:py-10">
       <div className="page-container">
         <Reveal className="max-w-3xl">
           <div className="inline-flex items-center gap-2">

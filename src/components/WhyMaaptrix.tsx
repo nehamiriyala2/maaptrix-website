@@ -56,17 +56,7 @@ export default function WhyMaaptrix() {
   const [activeCard, setActiveCard] = useState<number>(0);
 
   return (
-    <section id="why-maaptrix" className="relative overflow-hidden bg-gradient-to-b from-[#F1F8FF] via-[#E8F5FF] to-[#DDF1FF] py-7 sm:py-8 lg:py-10 select-none">
-      {/* Top seamless divider */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#BFE3FF] to-transparent" />
-
-      {/* Atmospheric ambient glows */}
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute -right-24 -top-24 h-[520px] w-[520px] rounded-full bg-[#CFEAFF]/70 blur-3xl" />
-        <div className="absolute -left-20 bottom-10 h-[420px] w-[420px] rounded-full bg-[#BFE3FF]/60 blur-3xl" />
-        <div className="absolute inset-0 bg-circuit-grid opacity-25" />
-      </div>
-
+    <section id="why-maaptrix" className="relative overflow-hidden bg-blue-white border-y border-slate-200/60 py-7 sm:py-8 lg:py-10 select-none">
       <div className="page-container relative">
         
         {/* ========================================================================= */}
@@ -301,11 +291,8 @@ export default function WhyMaaptrix() {
         {/* ========================================================================= */}
         <Reveal delay={0.2}>
           <div className="relative mt-7 sm:mt-8 pt-4 flex flex-col items-center justify-center">
-            {/* Soft Ambient Wave Background */}
-            <div className="pointer-events-none absolute inset-x-0 -bottom-6 h-16 bg-gradient-to-t from-brand-blue-light/40 to-transparent -z-10 rounded-full blur-xl" />
-            
             {/* Subtle bottom curve separator line */}
-            <div className="w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-brand-blue/30 to-transparent" />
+            <div className="w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
             
             <div className="mt-4 flex items-center justify-center gap-6 sm:gap-10 text-[0.72rem] sm:text-xs font-bold uppercase tracking-[0.25em] text-brand-blue">
               <span>Good Operations</span>
