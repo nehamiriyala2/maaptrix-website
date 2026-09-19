@@ -64,36 +64,36 @@ function ProductShowcase({
   return (
     <Reveal>
       <div
-        className={`grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14 ${
+        className={`rounded-3xl border border-[#DCEBFF] bg-white/95 backdrop-blur-xs p-5 sm:p-7 lg:p-8 shadow-[0_10px_36px_-10px_rgba(20,125,255,0.12)] grid grid-cols-1 items-center gap-6 lg:grid-cols-12 lg:gap-8 xl:gap-10 transition-shadow duration-300 hover:shadow-[0_16px_44px_-10px_rgba(20,125,255,0.18)] ${
           reverse ? "lg:[&>*:first-child]:order-2" : ""
         }`}
       >
-        {/* Product Visual (6 cols) */}
-        <div className="lg:col-span-6">{dashboard}</div>
+        {/* Product Visual (7 of 12 cols, ~58%) */}
+        <div className="lg:col-span-7">{dashboard}</div>
 
-        {/* Details Column (6 cols) */}
-        <div className="lg:col-span-6">
+        {/* Details Column (5 of 12 cols, ~42%) */}
+        <div className="lg:col-span-5">
           <span className="inline-flex rounded-full bg-brand-blue-light px-3 py-1 text-[0.72rem] font-bold uppercase tracking-wider text-brand-blue">
             {badge}
           </span>
-          <h3 className="mt-3 font-display text-2xl font-bold tracking-tight text-brand-navy sm:text-[1.9rem]">
+          <h3 className="mt-3 font-display text-2xl sm:text-3xl font-bold tracking-tight text-brand-navy lg:text-[2.1rem]">
             {title}
           </h3>
-          <p className="mt-3 text-sm leading-relaxed text-brand-navy/70 sm:text-base">
+          <p className="mt-3 text-[0.92rem] leading-relaxed text-brand-navy/70 sm:text-base">
             {tagline}
           </p>
 
-          <div className="mt-7 grid grid-cols-1 gap-5 border-t border-brand-line pt-7 sm:grid-cols-2">
+          <div className="mt-6 grid grid-cols-1 gap-5 border-t border-brand-line pt-5 sm:grid-cols-2">
             {groups.map((group) => (
               <div key={group.label}>
-                <p className="text-[0.68rem] font-bold uppercase tracking-[0.14em] text-brand-navy/45">
+                <p className="text-xs font-bold uppercase tracking-[0.14em] text-brand-navy/45">
                   {group.label}
                 </p>
                 <ul className="mt-2.5 flex flex-col gap-1.5">
                   {group.items.map((item) => (
                     <li
                       key={item}
-                      className="text-sm text-brand-navy/80"
+                      className="text-[0.9rem] text-brand-navy/80"
                     >
                       {item}
                     </li>
@@ -103,10 +103,10 @@ function ProductShowcase({
             ))}
           </div>
 
-          <div className="mt-8">
+          <div className="mt-6 sm:mt-7">
             <a
               href="#contact"
-              className="group inline-flex items-center gap-2 text-sm font-semibold text-brand-blue transition-all duration-300 hover:text-brand-blue-dark"
+              className="group inline-flex items-center gap-2 text-[0.95rem] font-semibold text-brand-blue transition-all duration-300 hover:text-brand-blue-dark"
             >
               {cta}
               <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -130,36 +130,44 @@ export default function ProductsSection() {
   };
 
   return (
-    <section id="products" className="relative bg-[#f5f9fd] py-20 lg:py-28">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-brand-line" />
+    <section id="products" className="relative overflow-hidden bg-gradient-to-b from-[#DDF1FF] via-[#E8F5FF] to-[#F1F8FF] py-7 sm:py-8 lg:py-10">
+      {/* Seamless Top Boundary Line */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#BFE3FF] to-transparent" />
 
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <Reveal className="max-w-2xl">
+      {/* Layered Atmospheric Background (Sky-Blue Glows + Low Opacity Network) */}
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute left-[15%] top-1/4 h-[550px] w-[550px] rounded-full bg-[#CFEAFF]/80 blur-[130px]" />
+        <div className="absolute right-[10%] bottom-1/4 h-[500px] w-[500px] rounded-full bg-[#BFE3FF]/70 blur-[120px]" />
+        <div className="absolute inset-0 bg-subtle-network opacity-40" />
+      </div>
+
+      <div className="page-container">
+        <Reveal className="max-w-3xl">
           <div className="inline-flex items-center gap-2">
             <span className="h-1.5 w-1.5 rounded-full bg-brand-blue" />
             <p className="text-[0.72rem] font-bold uppercase tracking-[0.2em] text-brand-blue sm:text-xs">
               Purpose-Built Products
             </p>
           </div>
-          <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-brand-navy sm:text-4xl">
+          <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-brand-navy sm:text-4xl lg:text-[3rem]">
             Purpose-Built for School Operations
           </h2>
-          <p className="mt-3 text-base text-brand-navy/70">
+          <p className="mt-3 text-base text-brand-navy/70 sm:text-lg">
             Focused digital products designed around real operational needs.
           </p>
         </Reveal>
 
         {/* Product Ecosystem Switcher */}
         <Reveal delay={0.08}>
-          <div className="mt-10 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-5">
-            <span className="text-[0.68rem] font-bold uppercase tracking-[0.16em] text-brand-navy/40">
+          <div className="mt-5 sm:mt-6 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-5">
+            <span className="text-xs font-bold uppercase tracking-[0.16em] text-brand-navy/40">
               Our Product Ecosystem
             </span>
             <div className="inline-flex items-center gap-1 rounded-[11px] border border-brand-line bg-white p-1 shadow-2xs">
               <button
                 type="button"
                 onClick={() => goTo("transport")}
-                className={`flex items-center gap-1.5 rounded-[8px] px-3.5 py-1.5 text-xs font-semibold transition-all duration-300 ${
+                className={`flex items-center gap-1.5 rounded-[8px] px-4 py-2 text-sm font-semibold transition-all duration-300 ${
                   active === "transport"
                     ? "bg-brand-navy text-white shadow-[0_2px_8px_-2px_rgba(11,31,65,0.3)]"
                     : "text-brand-navy/55 hover:text-brand-navy"
@@ -171,7 +179,7 @@ export default function ProductsSection() {
               <button
                 type="button"
                 onClick={() => goTo("school")}
-                className={`flex items-center gap-1.5 rounded-[8px] px-3.5 py-1.5 text-xs font-semibold transition-all duration-300 ${
+                className={`flex items-center gap-1.5 rounded-[8px] px-4 py-2 text-sm font-semibold transition-all duration-300 ${
                   active === "school"
                     ? "bg-brand-navy text-white shadow-[0_2px_8px_-2px_rgba(11,31,65,0.3)]"
                     : "text-brand-navy/55 hover:text-brand-navy"
@@ -184,7 +192,7 @@ export default function ProductsSection() {
           </div>
         </Reveal>
 
-        <div className="mt-14 flex flex-col gap-20">
+        <div className="mt-7 sm:mt-8 flex flex-col gap-7 sm:gap-8 lg:gap-9">
           <div ref={transportRef}>
             <ProductShowcase
               badge="Flagship Product"
@@ -200,7 +208,7 @@ export default function ProductsSection() {
           <Reveal>
             <div className="flex items-center justify-center gap-4">
               <span className="h-px w-16 bg-brand-line sm:w-24" />
-              <p className="text-center text-sm font-medium text-brand-navy/50">
+              <p className="text-center text-xs sm:text-sm font-medium text-brand-navy/50">
                 One product philosophy. Purpose-built experiences.
               </p>
               <span className="h-px w-16 bg-brand-line sm:w-24" />

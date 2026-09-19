@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #f1f8ff;
   --foreground: #0b1f41;
 
   --brand-blue: #147dff;
@@ -12,8 +12,20 @@
   --brand-navy-secondary: #123a70;
   --brand-navy-light: #16305c;
   --brand-ink: #0b1f41;
-  --brand-line: #e1e9f5;
-  --brand-line-light: #eef3fb;
+  --brand-line: #bfe3ff;
+  --brand-line-light: #ddf1ff;
+  --brand-mist: #e8f5ff;
+  --brand-mist-strong: #cfeaff;
+
+  /* Global Sky-Blue + Soft White Atmospheric System Tokens */
+  --page-white: #ffffff;
+  --page-blue-1: #f8fcff;
+  --page-blue-2: #f1f8ff;
+  --page-blue-3: #e8f5ff;
+  --page-blue-4: #ddf1ff;
+  --page-blue-5: #cfeaff;
+  --page-blue-6: #bfe3ff;
+  --accent-blue: #1677ff;
 }
 
 @theme inline {
@@ -29,6 +41,18 @@
   --color-brand-ink: var(--brand-ink);
   --color-brand-line: var(--brand-line);
   --color-brand-line-light: var(--brand-line-light);
+  --color-brand-mist: var(--brand-mist);
+  --color-brand-mist-strong: var(--brand-mist-strong);
+
+  --color-page-white: var(--page-white);
+  --color-page-blue-1: var(--page-blue-1);
+  --color-page-blue-2: var(--page-blue-2);
+  --color-page-blue-3: var(--page-blue-3);
+  --color-page-blue-4: var(--page-blue-4);
+  --color-page-blue-5: var(--page-blue-5);
+  --color-page-blue-6: var(--page-blue-6);
+  --color-accent-blue: var(--accent-blue);
+
   --font-sans: var(--font-inter);
   --font-display: var(--font-manrope);
 }
@@ -54,17 +78,46 @@ body {
   color: #ffffff;
 }
 
+/* Atmospheric Background Gradients & Utilities */
+.bg-sky-hero {
+  background: radial-gradient(circle at 85% 15%, rgba(191, 227, 255, 0.75) 0%, rgba(221, 241, 255, 0.55) 35%, rgba(241, 248, 255, 0.85) 65%, #eff8ff 100%),
+              linear-gradient(180deg, #eff8ff 0%, #dbefff 40%, #e4f4ff 100%);
+}
+
+.bg-sky-soft {
+  background: linear-gradient(180deg, #eff8ff 0%, #e8f5ff 30%, #ddf1ff 70%, #cfeaff 100%);
+}
+
+.bg-sky-pale {
+  background: linear-gradient(180deg, #f1f8ff 0%, #e8f5ff 40%, #ddf1ff 80%, #eff8ff 100%);
+}
+
+.bg-sky-white-blend {
+  background: linear-gradient(180deg, #ddf1ff 0%, #e8f5ff 35%, #f1f8ff 70%, #e8f5ff 100%);
+}
+
+.bg-sky-mission {
+  background: radial-gradient(circle at 15% 30%, rgba(207, 234, 255, 0.7) 0%, transparent 50%),
+              radial-gradient(circle at 85% 70%, rgba(191, 227, 255, 0.6) 0%, transparent 45%),
+              linear-gradient(180deg, #f1f8ff 0%, #e8f5ff 50%, #ddf1ff 100%);
+}
+
 .bg-circuit-grid {
   background-image: 
-    linear-gradient(to right, rgba(227, 236, 248, 0.65) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(227, 236, 248, 0.65) 1px, transparent 1px);
+    linear-gradient(to right, rgba(20, 125, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(20, 125, 255, 0.04) 1px, transparent 1px);
   background-size: 36px 36px;
 }
 
 .bg-subtle-network {
   background-image:
-    radial-gradient(rgba(20, 125, 255, 0.12) 1px, transparent 1px);
+    radial-gradient(rgba(20, 125, 255, 0.08) 1px, transparent 1px);
   background-size: 28px 28px;
+}
+
+.bg-atmospheric-dots {
+  background-image: radial-gradient(rgba(20, 125, 255, 0.06) 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
 }
 
 .card-shadow-sm {
@@ -119,6 +172,24 @@ body {
   animation: ping-soft 2s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
+.animate-orbit-dash {
+  animation: dash-flow 16s linear infinite;
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 4.5s ease-in-out infinite;
+}
+
 .bg-mesh-glow {
   background-image:
     radial-gradient(circle at 82% 8%, rgba(20, 125, 255, 0.10), transparent 45%),
@@ -127,13 +198,22 @@ body {
 
 .bg-route-lines {
   background-image:
-    linear-gradient(115deg, transparent 48%, rgba(20, 125, 255, 0.05) 49%, rgba(20, 125, 255, 0.05) 50%, transparent 51%),
-    linear-gradient(65deg, transparent 48%, rgba(20, 125, 255, 0.04) 49%, rgba(20, 125, 255, 0.04) 50%, transparent 51%);
+    linear-gradient(115deg, transparent 48%, rgba(20, 125, 255, 0.03) 49%, rgba(20, 125, 255, 0.03) 50%, transparent 51%),
+    linear-gradient(65deg, transparent 48%, rgba(20, 125, 255, 0.025) 49%, rgba(20, 125, 255, 0.025) 50%, transparent 51%);
   background-size: 140px 140px;
 }
 
 .text-balance {
   text-wrap: balance;
+}
+
+/* Global wide-viewport layout system — used by every section so the whole
+   site shares one consistent left/right edge instead of each section
+   re-centering inside its own max-width box. */
+.page-container {
+  width: 100%;
+  padding-left: clamp(24px, 5vw, 96px);
+  padding-right: clamp(24px, 5vw, 96px);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -146,5 +226,6 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
 
 

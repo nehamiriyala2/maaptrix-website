@@ -37,11 +37,11 @@ export default function Navbar() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "border-b border-brand-line/70 bg-white/85 shadow-[0_4px_24px_-8px_rgba(11,31,65,0.08)] backdrop-blur-lg"
-          : "border-b border-transparent bg-white/60 backdrop-blur-md"
+          ? "border-b border-[#BFE3FF]/70 bg-[#F1F8FF]/85 shadow-[0_4px_24px_-8px_rgba(20,125,255,0.08)] backdrop-blur-lg"
+          : "border-b border-transparent bg-[#EFF8FF]/40 backdrop-blur-xs"
       }`}
     >
-      <nav className="w-full flex h-16 sm:h-[4.25rem] lg:h-[4.5rem] items-center justify-between px-8 sm:px-12 lg:px-16 xl:px-20 2xl:px-24">
+      <nav className="w-full flex h-16 sm:h-[4.25rem] lg:h-[4.75rem] items-center justify-between page-container">
         {/* Left: Exact Logo Asset & Brand Wordmark */}
         <Link
           href="#home"
@@ -59,7 +59,7 @@ export default function Navbar() {
             <a
               key={link.label}
               href={link.href}
-              className={`group relative py-1.5 text-[0.92rem] font-medium tracking-[-0.005em] transition-colors ${
+              className={`group relative py-1.5 text-[0.98rem] font-medium tracking-[-0.005em] transition-colors ${
                 link.active
                   ? "text-brand-navy font-semibold"
                   : "text-brand-navy/70 hover:text-brand-navy"
@@ -88,7 +88,7 @@ export default function Navbar() {
           </button>
           <a
             href="#contact"
-            className="group inline-flex items-center gap-2 rounded-[11px] bg-brand-navy px-5 py-2.5 text-[0.86rem] font-semibold text-white shadow-[0_4px_14px_-4px_rgba(11,31,65,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-blue hover:shadow-[0_8px_22px_-6px_rgba(20,125,255,0.5)]"
+            className="group inline-flex items-center gap-2 rounded-[11px] bg-brand-navy px-5 py-3 text-[0.9rem] font-semibold text-white shadow-[0_4px_14px_-4px_rgba(11,31,65,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-blue hover:shadow-[0_8px_22px_-6px_rgba(20,125,255,0.5)]"
           >
             Request a Demo
             <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -114,7 +114,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.22, ease: "easeInOut" }}
-            className="overflow-hidden border-t border-brand-line bg-white/98 backdrop-blur-md lg:hidden"
+            className="overflow-hidden border-t border-[#BFE3FF] bg-[#EFF8FF]/98 backdrop-blur-md lg:hidden"
           >
             <div className="flex flex-col gap-1 px-6 py-4">
               {NAV_LINKS.map((link) => (

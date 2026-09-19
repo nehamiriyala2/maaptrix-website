@@ -7,7 +7,7 @@ export default function FinalCTA() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-brand-navy px-6 py-20 text-white lg:px-8 lg:py-28"
+      className="relative overflow-hidden bg-brand-navy page-container py-9 sm:py-10 lg:py-12 text-white"
     >
       {/* Subtle Restrained Ambient Lighting */}
       <div className="pointer-events-none absolute -left-20 top-0 h-64 w-64 rounded-full bg-brand-blue/15 blur-3xl" />
@@ -43,15 +43,15 @@ export default function FinalCTA() {
             </p>
           </div>
 
-          <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+          <h2 className="mt-3.5 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-[3.25rem]">
             Let&apos;s build simpler operations together.
           </h2>
 
-          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
+          <p className="mx-auto mt-3.5 sm:mt-4 max-w-xl text-base sm:text-lg leading-relaxed text-white/70">
             Interested in a Maaptrix product or looking to understand how it can fit your organization?
           </p>
 
-          <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
+          <div className="mt-6 sm:mt-7 flex flex-wrap items-center justify-center gap-3.5 sm:gap-4">
             <a
               href="#contact"
               className="group inline-flex items-center gap-2 rounded-[11px] bg-brand-blue px-7 py-3.5 text-sm font-semibold text-white shadow-[0_8px_24px_-6px_rgba(20,125,255,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-blue-dark"
@@ -68,7 +68,7 @@ export default function FinalCTA() {
             </a>
           </div>
 
-          <div className="mt-8 border-t border-white/10 pt-6">
+          <div className="mt-6 border-t border-white/10 pt-4 sm:pt-5">
             <p className="text-xs text-white/50">
               Subscription-based software products · Dedicated onboarding &amp; continuous support
             </p>
