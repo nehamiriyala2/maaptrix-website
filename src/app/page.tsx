@@ -1,18 +1,18 @@
 import Hero from "@/components/Hero";
-import ValueStrip from "@/components/ValueStrip";
-import ProblemToProductSection from "@/components/ProblemToProductSection";
-import HomeProductPreview from "@/components/HomeProductPreview";
-import TestimonialSection from "@/components/TestimonialSection";
+import HomeIntro from "@/components/home/HomeIntro";
+import HomeProducts from "@/components/home/HomeProducts";
+import HomeWhyPreview from "@/components/home/HomeWhyPreview";
+import HomeProcessPreview from "@/components/home/HomeProcessPreview";
 import FinalCTA from "@/components/FinalCTA";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <ValueStrip />
-      <ProblemToProductSection />
-      <HomeProductPreview />
-      <TestimonialSection />
+      <HomeIntro />
+      <HomeProducts />
+      <HomeWhyPreview />
+      <HomeProcessPreview />
       <FinalCTA />
     </>
   );

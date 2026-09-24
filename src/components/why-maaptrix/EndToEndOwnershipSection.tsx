@@ -66,7 +66,7 @@ function useFitScale(designWidth: number) {
 
 function StageCard({ title, desc }: { title: string; desc: string }) {
   return (
-    <div className="rounded-[20px] border border-[#E2EEFF] bg-white p-5 shadow-[0_12px_30px_rgba(11,31,65,0.06)] transition-all duration-300 hover:-translate-y-[3px] hover:shadow-[0_18px_38px_rgba(11,31,65,0.1)]">
+    <div className="rounded-[20px] border border-[#E2EEFF] bg-white p-5 shadow-[0_12px_30px_rgba(24,24,24,0.06)] transition-all duration-300 hover:-translate-y-[3px] hover:shadow-[0_18px_38px_rgba(24,24,24,0.1)]">
       <p className="font-display text-[18px] font-bold text-brand-navy">{title}</p>
       <p className="mt-2 text-[14.5px] leading-[1.4] text-[#526987]">{desc}</p>
       <span className="mt-4 block h-[3px] w-10 rounded-full bg-brand-blue" />
@@ -191,7 +191,7 @@ export default function EndToEndOwnershipSection() {
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
                 href="/how-we-work"
-                className="group inline-flex h-[54px] items-center justify-center gap-3 rounded-[13px] bg-brand-navy px-7 text-[16px] font-semibold text-white shadow-[0_14px_28px_-14px_rgba(11,31,65,0.75)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-blue"
+                className="group inline-flex h-[54px] items-center justify-center gap-3 rounded-[13px] bg-brand-navy px-7 text-[16px] font-semibold text-white shadow-[0_14px_28px_-14px_rgba(24,24,24,0.75)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-blue"
               >
                 See Our Approach
                 <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />

@@ -70,11 +70,11 @@ export default function ProductComparison() {
             <div className="h-full rounded-2xl sm:rounded-3xl border border-[#CCE5FF] bg-gradient-to-b from-white to-[#F8FCFF] p-6 sm:p-8 shadow-xs flex flex-col justify-between">
               <div>
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-50 text-cyan-600 border border-cyan-200">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-sky-50 text-sky-600 border border-sky-200">
                     <GraduationCap className="h-5 w-5" />
                   </div>
                   <div>
-                    <span className="text-xs font-mono font-bold text-cyan-700 uppercase">Product 02</span>
+                    <span className="text-xs font-mono font-bold text-sky-700 uppercase">Product 02</span>
                     <h3 className="font-display text-lg sm:text-xl font-bold text-brand-navy">
                       School Management
                     </h3>
@@ -90,7 +90,7 @@ export default function ProductComparison() {
                     "School event calendar & moment sharing",
                   ].map((item) => (
                     <li key={item} className="flex items-center gap-2.5 text-xs sm:text-sm text-brand-navy font-medium">
-                      <CheckCircle2 className="h-4 w-4 text-cyan-600 shrink-0" />
+                      <CheckCircle2 className="h-4 w-4 text-sky-600 shrink-0" />
                       <span>{item}</span>
                     </li>
                   ))}

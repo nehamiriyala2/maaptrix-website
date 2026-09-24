@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Menu, Search, X } from "lucide-react";
+import { ArrowRight, Bus, ChevronDown, GraduationCap, Menu, Search, X } from "lucide-react";
 import Logo from "./Logo";
 
 const NAV_LINKS = [
@@ -16,11 +16,28 @@ const NAV_LINKS = [
   { label: "Contact", href: "/contact" },
 ];
 
+const PRODUCT_LINKS = [
+  {
+    label: "School Transport",
+    desc: "Live tracking, routes, attendance and safety.",
+    href: "/products/school-transport",
+    icon: Bus,
+  },
+  {
+    label: "School Management",
+    desc: "Lightweight administration for smaller schools.",
+    href: "/products/school-management",
+    icon: GraduationCap,
+  },
+];
+
 export default function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 15);
@@ -36,11 +53,14 @@ export default function Navbar() {
     };
   }, [open]);
 
-  // Close mobile drawer on route change
-  useEffect(() => {
+  // Close menus on route change (adjusting state during render, not in an effect)
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
     setOpen(false);
     setSearchOpen(false);
-  }, [pathname]);
+    setProductsOpen(false);
+  }
 
   const isLinkActive = (href: string) => {
     if (href === "/") {
@@ -55,8 +75,8 @@ export default function Navbar() {
         <nav
           className={`pointer-events-auto w-full rounded-2xl sm:rounded-full px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between transition-all duration-300 ${
             scrolled
-              ? "bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-[0_12px_36px_-8px_rgba(11,31,65,0.12)]"
-              : "bg-white/90 backdrop-blur-md border border-white/80 shadow-[0_8px_30px_-6px_rgba(11,31,65,0.06)]"
+              ? "bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-[0_12px_36px_-8px_rgba(24,24,24,0.12)]"
+              : "bg-white/90 backdrop-blur-md border border-white/80 shadow-[0_8px_30px_-6px_rgba(24,24,24,0.06)]"
           }`}
         >
           {/* Left: Brand Logo & Wordmark */}
@@ -75,25 +95,91 @@ export default function Navbar() {
           <div className="hidden items-center gap-6 xl:gap-8 lg:flex">
             {NAV_LINKS.map((link) => {
               const active = isLinkActive(link.href);
-              return (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className={`group relative py-1 text-[0.9rem] xl:text-[0.94rem] font-medium tracking-[-0.01em] transition-colors ${
-                    active
-                      ? "text-brand-navy font-semibold"
-                      : "text-brand-navy/70 hover:text-brand-navy"
+              const underline = (
+                <span
+                  className={`absolute inset-x-0 -bottom-1 h-[2px] rounded-full bg-brand-blue transition-transform duration-300 ease-out ${
+                    active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
                   }`}
+                />
+              );
+              const linkClass = `group relative py-1 text-[0.9rem] xl:text-[0.94rem] font-medium tracking-[-0.01em] transition-colors ${
+                active ? "text-brand-navy font-semibold" : "text-brand-navy/70 hover:text-brand-navy"
+              }`;
+
+              if (link.href !== "/products") {
+                return (
+                  <Link key={link.label} href={link.href} className={linkClass}>
+                    {link.label}
+                    {underline}
+                  </Link>
+                );
+              }
+
+              return (
+                <div
+                  key={link.label}
+                  className="relative"
+                  onMouseEnter={() => setProductsOpen(true)}
+                  onMouseLeave={() => setProductsOpen(false)}
+                  onFocus={() => setProductsOpen(true)}
+                  onBlur={(e) => {
+                    if (!e.currentTarget.contains(e.relatedTarget)) setProductsOpen(false);
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Escape") setProductsOpen(false);
+                  }}
                 >
-                  {link.label}
-                  <span
-                    className={`absolute inset-x-0 -bottom-1 h-[2px] rounded-full bg-brand-blue transition-transform duration-300 ease-out ${
-                      active
-                        ? "scale-x-100"
-                        : "scale-x-0 group-hover:scale-x-100"
-                    }`}
-                  />
-                </Link>
+                  <Link
+                    href={link.href}
+                    className={`${linkClass} inline-flex items-center gap-1`}
+                    aria-haspopup="true"
+                    aria-expanded={productsOpen}
+                  >
+                    {link.label}
+                    <ChevronDown
+                      className={`h-3.5 w-3.5 transition-transform duration-200 ${productsOpen ? "rotate-180" : ""}`}
+                    />
+                    {underline}
+                  </Link>
+                  <AnimatePresence>
+                    {productsOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 6 }}
+                        transition={{ duration: 0.16 }}
+                        className="absolute left-1/2 top-full z-50 w-[340px] -translate-x-1/2 pt-4"
+                      >
+                        <div className="rounded-2xl border border-slate-200 bg-white p-2 shadow-[0_20px_50px_-20px_rgba(10,10,10,0.3)]">
+                          {PRODUCT_LINKS.map(({ label, desc, href, icon: Icon }) => (
+                            <Link
+                              key={href}
+                              href={href}
+                              className={`flex items-start gap-3 rounded-xl p-3 transition-colors hover:bg-brand-blue-light focus-visible:bg-brand-blue-light focus-visible:outline-none ${
+                                pathname === href ? "bg-brand-blue-light" : ""
+                              }`}
+                            >
+                              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-blue-light text-brand-blue">
+                                <Icon className="h-[18px] w-[18px]" />
+                              </span>
+                              <span>
+                                <span className="block text-sm font-semibold text-brand-navy">{label}</span>
+                                <span className="mt-0.5 block text-xs leading-snug text-slate-500">{desc}</span>
+                              </span>
+                            </Link>
+                          ))}
+                          <Link
+                            href="/products"
+                            className="mt-1 flex items-center justify-between rounded-xl border-t border-slate-100 px-3 py-2.5 text-xs font-semibold text-brand-blue hover:bg-brand-blue-light"
+                          >
+                            View all products
+                            <ArrowRight className="h-3.5 w-3.5" />
+                          </Link>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               );
             })}
           </div>
@@ -110,7 +196,7 @@ export default function Navbar() {
             </button>
             <Link
               href="/contact"
-              className="group inline-flex items-center gap-1.5 rounded-full bg-brand-navy px-5 py-2.5 text-[0.85rem] xl:text-[0.88rem] font-semibold text-white shadow-[0_4px_14px_-3px_rgba(11,31,65,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-blue hover:shadow-[0_8px_20px_-4px_rgba(20,125,255,0.45)]"
+              className="group inline-flex items-center gap-1.5 rounded-full bg-brand-navy px-5 py-2.5 text-[0.85rem] xl:text-[0.88rem] font-semibold text-white shadow-[0_4px_14px_-3px_rgba(24,24,24,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-blue hover:shadow-[0_8px_20px_-4px_rgba(20,125,255,0.45)]"
             >
               <span>Request a Demo</span>
               <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -175,19 +261,55 @@ export default function Navbar() {
               <div className="flex flex-col gap-1">
                 {NAV_LINKS.map((link) => {
                   const active = isLinkActive(link.href);
+                  const cls = `rounded-xl px-3.5 py-2.5 text-sm font-medium transition-colors ${
+                    active
+                      ? "bg-brand-blue-light text-brand-blue font-semibold"
+                      : "text-brand-navy/85 hover:bg-brand-blue-light/50 hover:text-brand-navy"
+                  }`;
+                  if (link.href !== "/products") {
+                    return (
+                      <Link key={link.label} href={link.href} onClick={() => setOpen(false)} className={cls}>
+                        {link.label}
+                      </Link>
+                    );
+                  }
                   return (
-                    <Link
-                      key={link.label}
-                      href={link.href}
-                      onClick={() => setOpen(false)}
-                      className={`rounded-xl px-3.5 py-2.5 text-sm font-medium transition-colors ${
-                        active
-                          ? "bg-brand-blue-light text-brand-blue font-semibold"
-                          : "text-brand-navy/85 hover:bg-brand-blue-light/50 hover:text-brand-navy"
-                      }`}
-                    >
-                      {link.label}
-                    </Link>
+                    <div key={link.label}>
+                      <button
+                        type="button"
+                        onClick={() => setMobileProductsOpen((v) => !v)}
+                        aria-expanded={mobileProductsOpen}
+                        className={`${cls} flex w-full items-center justify-between text-left`}
+                      >
+                        {link.label}
+                        <ChevronDown
+                          className={`h-4 w-4 transition-transform duration-200 ${mobileProductsOpen ? "rotate-180" : ""}`}
+                        />
+                      </button>
+                      {mobileProductsOpen && (
+                        <div className="ml-3 mt-1 flex flex-col gap-1 border-l border-slate-200 pl-3">
+                          <Link
+                            href="/products"
+                            onClick={() => setOpen(false)}
+                            className="rounded-lg px-3 py-2 text-sm text-brand-navy/80 hover:bg-brand-blue-light/50"
+                          >
+                            All products
+                          </Link>
+                          {PRODUCT_LINKS.map(({ label, href }) => (
+                            <Link
+                              key={href}
+                              href={href}
+                              onClick={() => setOpen(false)}
+                              className={`rounded-lg px-3 py-2 text-sm hover:bg-brand-blue-light/50 ${
+                                pathname === href ? "font-semibold text-brand-blue" : "text-brand-navy/80"
+                              }`}
+                            >
+                              {label}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   );
                 })}
                 <div className="mt-3 pt-3 border-t border-slate-100 flex flex-col gap-2">

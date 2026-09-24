@@ -24,27 +24,27 @@ const EVOLUTION_STAGES: { step: string; title: string; desc: string; icon: Icon;
     title: "Product Learning",
     desc: "Direct operational feedback and deep user behavior understanding.",
     icon: BookOpen,
-    chip: "bg-[#E4F6EC]",
-    ink: "text-emerald-600",
-    bar: "bg-emerald-500",
+    chip: "bg-[#E3EDF7]",
+    ink: "text-sky-600",
+    bar: "bg-sky-500",
   },
   {
     step: "03",
     title: "Continuous Improvement",
     desc: "Refining workflows, reliability and feature depth with every release.",
     icon: RefreshCw,
-    chip: "bg-[#EFE8FD]",
-    ink: "text-violet-600",
-    bar: "bg-violet-500",
+    chip: "bg-[#E8F2FD]",
+    ink: "text-sky-600",
+    bar: "bg-sky-500",
   },
   {
     step: "04",
     title: "Future Product Opportunities",
     desc: "Expanding to broader operational domains as requirements mature.",
     icon: ChartNoAxesColumnIncreasing,
-    chip: "bg-[#FFEEDD]",
-    ink: "text-orange-500",
-    bar: "bg-orange-400",
+    chip: "bg-[#DEEDFE]",
+    ink: "text-sky-500",
+    bar: "bg-sky-400",
   },
 ];
 
@@ -99,7 +99,7 @@ export default function ProductEcosystemDirection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px 0px" }}
                 transition={{ duration: 0.6, delay: i * 0.1, ease: EASE }}
-                className="group relative flex min-w-0 flex-1 flex-col rounded-[22px] border border-[#DCEAFF] bg-white px-7 pb-7 pt-8 text-left shadow-[0_10px_30px_rgba(11,31,65,0.05)] transition-all duration-[250ms] ease-out hover:-translate-y-[5px] hover:border-[#A9CCF8] hover:shadow-[0_18px_40px_rgba(11,31,65,0.09)] lg:min-h-[320px]"
+                className="group relative flex min-w-0 flex-1 flex-col rounded-[22px] border border-[#DCEAFF] bg-white px-7 pb-7 pt-8 text-left shadow-[0_10px_30px_rgba(24,24,24,0.05)] transition-all duration-[250ms] ease-out hover:-translate-y-[5px] hover:border-[#A9CCF8] hover:shadow-[0_18px_40px_rgba(24,24,24,0.09)] lg:min-h-[320px]"
               >
                 <span className="absolute -left-3 -top-4 flex h-[52px] w-[52px] items-center justify-center rounded-full border border-[#DCEAFF] bg-[#F3F8FF] font-display text-[18px] font-bold text-brand-blue shadow-[0_6px_14px_-8px_rgba(20,125,255,0.5)]">
                   {step}

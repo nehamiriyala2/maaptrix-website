@@ -8,9 +8,9 @@ import WhatWeDoProcessVisual from "@/components/about/WhatWeDoProcessVisual";
 
 const TONES = {
   blue: { accent: "#147DFF", ink: "#1270E6", soft: "#EAF3FF", chip: "#E1EDFF", icon: "#D5E7FF", border: "#D7E8FF" },
-  green: { accent: "#10B981", ink: "#0C9A6C", soft: "#E7F8F1", chip: "#D8F3E8", icon: "#C9EFDF", border: "#CFEFE2" },
-  purple: { accent: "#8B5CF6", ink: "#7442E6", soft: "#F2ECFE", chip: "#E9E0FD", icon: "#DDD0FC", border: "#E4D9FC" },
-  orange: { accent: "#F97316", ink: "#E8680C", soft: "#FFF1E5", chip: "#FFE6D2", icon: "#FFD9BC", border: "#FDE2CC" },
+  green: { accent: "#1062B9", ink: "#535353", soft: "#E7EFF8", chip: "#D7E5F4", icon: "#C9DBEF", border: "#CDDEF1" },
+  purple: { accent: "#5CA6F6", ink: "#4291E6", soft: "#ECF5FE", chip: "#E0EEFD", icon: "#D0E5FC", border: "#D9EAFC" },
+  orange: { accent: "#1684F9", ink: "#0C76E8", soft: "#E6F2FE", chip: "#D3E8FE", icon: "#BEDCFD", border: "#CCE4FD" },
 } as const;
 
 const CAPABILITIES = [
@@ -66,12 +66,12 @@ function Foliage() {
     >
       <defs>
         <linearGradient id="wwd-leaf-a" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#7CC47F" />
-          <stop offset="100%" stopColor="#2E7D46" />
+          <stop offset="0%" stopColor="#6C9ED4" />
+          <stop offset="100%" stopColor="#565656" />
         </linearGradient>
         <linearGradient id="wwd-leaf-b" x1="1" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#9ED69A" />
-          <stop offset="100%" stopColor="#3F9155" />
+          <stop offset="0%" stopColor="#91B7DF" />
+          <stop offset="100%" stopColor="#2F66A1" />
         </linearGradient>
       </defs>
       <path d="M40 300 C30 220 60 150 150 110 C120 170 100 240 70 300Z" fill="url(#wwd-leaf-a)" />
@@ -166,7 +166,7 @@ export default function WhatWeDo() {
                   </motion.div>
 
                   <Reveal delay={idx * 0.08} className="min-w-0 flex-1">
-                    <div className="group relative flex h-full items-start gap-3 overflow-hidden rounded-[26px] border border-[var(--tone-border)] bg-[linear-gradient(100deg,var(--tone-soft)_0%,rgba(255,255,255,0.88)_55%,rgba(255,255,255,0.78)_100%)] p-4 shadow-[0_14px_34px_-18px_rgba(20,70,150,0.35),inset_0_1px_0_rgba(255,255,255,0.9)] backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_22px_44px_-18px_rgba(20,70,150,0.42)] sm:items-center sm:gap-4 sm:py-4 sm:pl-5 sm:pr-4 lg:min-h-[122px]">
+                    <div className="group relative flex h-full items-start gap-3 overflow-hidden rounded-[26px] border border-[var(--tone-border)] bg-[linear-gradient(100deg,var(--tone-soft)_0%,rgba(255,255,255,0.88)_55%,rgba(255,255,255,0.78)_100%)] p-4 shadow-[0_14px_34px_-18px_rgba(85,85,85,0.35),inset_0_1px_0_rgba(255,255,255,0.9)] backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_22px_44px_-18px_rgba(85,85,85,0.42)] sm:items-center sm:gap-4 sm:py-4 sm:pl-5 sm:pr-4 lg:min-h-[122px]">
                       {/* Decorative wave */}
                       <svg viewBox="0 0 200 80" preserveAspectRatio="none" className="pointer-events-none absolute bottom-0 right-0 h-[72px] w-[260px]" aria-hidden>
                         <path d="M0 80 C60 76 110 40 200 6 L200 80Z" fill="var(--tone)" fillOpacity=".09" />

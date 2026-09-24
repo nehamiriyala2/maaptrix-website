@@ -13,7 +13,7 @@ export default function Hero() {
     >
       {/* Layered Atmospheric Glows & Horizon Perspective Curves */}
       <div className="pointer-events-none absolute -left-24 top-10 h-96 w-96 rounded-full bg-brand-blue/15 blur-3xl -z-10" />
-      <div className="pointer-events-none absolute -right-20 top-20 h-[450px] w-[450px] rounded-full bg-cyan-400/15 blur-3xl -z-10" />
+      <div className="pointer-events-none absolute -right-20 top-20 h-[450px] w-[450px] rounded-full bg-sky-400/15 blur-3xl -z-10" />
       <div className="pointer-events-none absolute left-1/3 bottom-0 h-64 w-96 rounded-full bg-[#CCE5FF]/50 blur-3xl -z-10" />
 
       {/* Subtle perspective horizon line */}
@@ -72,7 +72,7 @@ export default function Hero() {
             >
               <Link
                 href="/products"
-                className="group inline-flex items-center justify-center gap-2 rounded-[12px] bg-brand-navy px-6 sm:px-7 py-3.5 sm:py-4 text-[0.9rem] sm:text-[0.94rem] font-semibold text-white shadow-[0_8px_24px_-6px_rgba(11,31,65,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-blue hover:shadow-[0_12px_28px_-6px_rgba(20,125,255,0.45)]"
+                className="group inline-flex items-center justify-center gap-2 rounded-[12px] bg-brand-navy px-6 sm:px-7 py-3.5 sm:py-4 text-[0.9rem] sm:text-[0.94rem] font-semibold text-white shadow-[0_8px_24px_-6px_rgba(24,24,24,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-blue hover:shadow-[0_12px_28px_-6px_rgba(20,125,255,0.45)]"
               >
                 <span>Explore Our Products</span>
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />

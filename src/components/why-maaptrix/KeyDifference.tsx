@@ -93,10 +93,10 @@ function Dashboard() {
   return (
     <div className="relative">
       {/* back panel for depth */}
-      <div className="absolute -top-9 left-[150px] right-6 h-16 rounded-t-[22px] border border-[#DCEEFF] bg-white/80 px-5 pt-3 shadow-[0_10px_24px_-18px_rgba(20,70,150,0.4)]">
+      <div className="absolute -top-9 left-[150px] right-6 h-16 rounded-t-[22px] border border-[#DCEEFF] bg-white/80 px-5 pt-3 shadow-[0_10px_24px_-18px_rgba(85,85,85,0.4)]">
         <div className="flex items-center gap-3">
           <span className="flex gap-1">
-            {["#FDA4AF", "#FCD34D", "#93C5FD"].map((c) => (
+            {["#A4CFFD", "#4FA2FA", "#93C5FD"].map((c) => (
               <span key={c} className="h-2 w-2 rounded-full" style={{ background: c }} />
             ))}
           </span>
@@ -106,7 +106,7 @@ function Dashboard() {
         </div>
       </div>
 
-      <div className="relative flex h-[420px] w-[620px] overflow-hidden rounded-[26px] border border-[#DCEEFF] bg-white shadow-[0_50px_90px_-40px_rgba(20,70,150,0.5),0_2px_8px_rgba(20,70,150,0.06)]">
+      <div className="relative flex h-[420px] w-[620px] overflow-hidden rounded-[26px] border border-[#DCEEFF] bg-white shadow-[0_50px_90px_-40px_rgba(85,85,85,0.5),0_2px_8px_rgba(85,85,85,0.06)]">
         <div className="flex w-[140px] shrink-0 flex-col bg-[#FAFCFF] px-3.5 py-6">
           <Logo imageClassName="h-7 w-7" wordmarkClassName="text-[18px]" className="!gap-2 px-1" />
           <div className="mt-7 space-y-1.5">
@@ -133,7 +133,7 @@ function Dashboard() {
             <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-blue text-[10px] font-bold text-white">M</span>
           </div>
 
-          <div className="rounded-2xl border border-[#EEF3FA] bg-white p-4 shadow-[0_8px_20px_-16px_rgba(20,70,150,0.35)]">
+          <div className="rounded-2xl border border-[#EEF3FA] bg-white p-4 shadow-[0_8px_20px_-16px_rgba(85,85,85,0.35)]">
             <div className="flex items-center justify-between">
               <p className="text-[15px] font-bold text-brand-navy">Product Growth</p>
               <span className="flex items-center gap-0.5 rounded-lg border border-[#DCE7F5] bg-white px-2.5 py-1 text-[10px] text-[#6A7A95]">
@@ -141,7 +141,7 @@ function Dashboard() {
               </span>
             </div>
             <div className="relative mt-1 h-[140px]">
-              <span className="absolute left-[38%] top-2 flex items-center gap-1 rounded-lg bg-emerald-50 px-2 py-1 text-[12px] font-bold text-emerald-600">
+              <span className="absolute left-[38%] top-2 flex items-center gap-1 rounded-lg bg-sky-50 px-2 py-1 text-[12px] font-bold text-sky-600">
                 <TrendingUp className="h-3.5 w-3.5" /> +48%
               </span>
               <svg viewBox="0 0 400 130" preserveAspectRatio="none" className="h-[118px] w-full">
@@ -186,7 +186,7 @@ function Dashboard() {
 
           <div className="grid flex-1 grid-cols-3 gap-3">
             {TILES.map(({ label, value, delta, icon: I }) => (
-              <div key={label} className="relative rounded-2xl border border-[#EEF3FA] bg-white p-3.5 shadow-[0_8px_18px_-12px_rgba(20,70,150,0.35)]">
+              <div key={label} className="relative rounded-2xl border border-[#EEF3FA] bg-white p-3.5 shadow-[0_8px_18px_-12px_rgba(85,85,85,0.35)]">
                 <p className="pr-8 text-[11.5px] font-medium leading-tight text-[#4A5B78]">{label}</p>
                 <p className="mt-2 font-display text-[22px] font-bold text-brand-navy">{value}</p>
                 <p className="mt-0.5 flex items-center gap-1 text-[10.5px] font-semibold text-brand-blue">
@@ -211,7 +211,7 @@ function FloatCard({ icon: I, children, className, delay }: { icon: Icon; childr
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px 0px" }}
       transition={{ duration: 0.6, delay, ease: EASE }}
-      className={`absolute z-20 flex h-[96px] w-[186px] items-center gap-3.5 rounded-[20px] border border-white bg-white/95 px-5 shadow-[0_24px_46px_-22px_rgba(20,70,150,0.55)] ring-1 ring-[#DCEEFF] ${className}`}
+      className={`absolute z-20 flex h-[96px] w-[186px] items-center gap-3.5 rounded-[20px] border border-white bg-white/95 px-5 shadow-[0_24px_46px_-22px_rgba(85,85,85,0.55)] ring-1 ring-[#DCEEFF] ${className}`}
     >
       <I className="h-8 w-8 shrink-0 text-brand-blue" fill="#147DFF" fillOpacity={0.2} strokeWidth={2.3} />
       <p className="font-display text-[15.5px] font-semibold leading-[1.25] text-brand-navy">{children}</p>
@@ -322,14 +322,14 @@ export default function KeyDifference() {
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link
                   href="/products"
-                  className="group inline-flex h-[58px] items-center justify-center gap-3 rounded-xl bg-brand-navy px-7 text-[17px] font-semibold text-white shadow-[0_14px_28px_-14px_rgba(11,31,65,0.75)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-blue"
+                  className="group inline-flex h-[58px] items-center justify-center gap-3 rounded-xl bg-brand-navy px-7 text-[17px] font-semibold text-white shadow-[0_14px_28px_-14px_rgba(24,24,24,0.75)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-blue"
                 >
                   Explore Our Products
                   <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
                 <Link
                   href="/how-we-work"
-                  className="inline-flex h-[58px] items-center justify-center rounded-xl border border-[#DCE7F5] bg-white px-7 text-[17px] font-semibold text-brand-navy shadow-[0_8px_20px_-14px_rgba(20,70,150,0.4)] transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-blue hover:text-brand-blue"
+                  className="inline-flex h-[58px] items-center justify-center rounded-xl border border-[#DCE7F5] bg-white px-7 text-[17px] font-semibold text-brand-navy shadow-[0_8px_20px_-14px_rgba(85,85,85,0.4)] transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-blue hover:text-brand-blue"
                 >
                   Learn Our Approach
                 </Link>
@@ -339,7 +339,7 @@ export default function KeyDifference() {
 
           {/* ---------- Bottom: 7-step flow ---------- */}
           <Reveal delay={0.1} className="mt-12 xl:mt-10">
-            <div className="rounded-[26px] border border-[#DCE7F5] bg-white/85 p-5 shadow-[0_28px_60px_-34px_rgba(20,70,150,0.4)] backdrop-blur-xl sm:p-6">
+            <div className="rounded-[26px] border border-[#DCE7F5] bg-white/85 p-5 shadow-[0_28px_60px_-34px_rgba(85,85,85,0.4)] backdrop-blur-xl sm:p-6">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <span className="flex items-center gap-3">
                   <span className="h-[2px] w-7 rounded-full bg-brand-blue" />
@@ -358,7 +358,7 @@ export default function KeyDifference() {
                         <ArrowRight className="h-5 w-5" strokeWidth={2} />
                       </span>
                     )}
-                    <div className="flex min-w-0 flex-1 items-start gap-3 rounded-[18px] border border-[#E3ECF7] bg-white p-4 2xl:gap-2.5 2xl:p-3.5 shadow-[0_12px_26px_-20px_rgba(20,70,150,0.4)] transition-transform duration-300 hover:-translate-y-1">
+                    <div className="flex min-w-0 flex-1 items-start gap-3 rounded-[18px] border border-[#E3ECF7] bg-white p-4 2xl:gap-2.5 2xl:p-3.5 shadow-[0_12px_26px_-20px_rgba(85,85,85,0.4)] transition-transform duration-300 hover:-translate-y-1">
                       <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#EAF3FF] 2xl:h-[38px] 2xl:w-[38px]">
                         <I className="h-[22px] w-[22px] text-brand-blue" strokeWidth={2.2} />
                       </span>

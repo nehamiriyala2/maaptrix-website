@@ -9,7 +9,7 @@ import CustomerProcessValue from "@/components/how-we-work/CustomerProcessValue"
 import HowWeWorkCTA from "@/components/how-we-work/HowWeWorkCTA";
 
 export const metadata: Metadata = {
-  title: "How We Work | Maaptrix Product Lifecycle & Development",
+  title: "How We Work",
   description:
     "Discover how Maaptrix transforms real-world operational problems into focused, reliable software products through our continuous product lifecycle.",
 };

@@ -1,26 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import {
-  Activity,
-  ArrowRight,
-  Bell,
-  Bus,
   CheckCircle2,
-  Clock,
-  Compass,
-  FileText,
-  KeyRound,
   LifeBuoy,
-  MapPin,
   Radio,
-  RefreshCw,
-  ShieldAlert,
   ShieldCheck,
-  Smartphone,
-  Sparkles,
-  Users,
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import TransportDashboard from "@/components/TransportDashboard";
@@ -29,57 +14,18 @@ export default function SchoolTransportProduct() {
   const [activeRole, setActiveRole] = useState<"admin" | "driver" | "parent">("admin");
 
   return (
-    <section id="transport" className="relative overflow-hidden bg-white py-12 sm:py-16 lg:py-20 border-b border-slate-100 select-none">
+    <section id="transport" className="scroll-mt-24 relative overflow-hidden bg-white py-12 sm:py-16 lg:py-20 border-b border-slate-100 select-none">
       <div className="page-container">
         
         {/* ========================================================================= */}
-        {/* 1. PRODUCT HEADER */}
-        {/* ========================================================================= */}
-        <Reveal className="max-w-4xl">
-          <div className="inline-flex items-center gap-2">
-            <span className="flex h-6 w-8 items-center justify-center rounded-md bg-brand-blue font-mono text-xs font-bold text-white">
-              01
-            </span>
-            <p className="text-[0.72rem] font-bold uppercase tracking-[0.2em] text-brand-blue sm:text-xs">
-              FLAGSHIP PRODUCT
-            </p>
-          </div>
-
-          <h2 className="mt-3 font-display text-3xl sm:text-4xl lg:text-[2.85rem] font-bold tracking-tight text-brand-navy leading-[1.12]">
-            School Transport Management System
-          </h2>
-
-          <p className="mt-4 text-base sm:text-lg leading-[1.7] text-slate-700 font-normal">
-            A subscription-based school transport platform designed to help
-            schools manage transportation, improve visibility and strengthen
-            communication between school administrators, drivers and parents.
-          </p>
-
-          <div className="mt-5 flex flex-wrap items-center gap-2.5">
-            <span className="rounded-full bg-brand-blue-light px-3 py-1 text-xs font-semibold text-brand-blue border border-brand-blue/20">
-              Fleet Tracking
-            </span>
-            <span className="rounded-full bg-brand-blue-light px-3 py-1 text-xs font-semibold text-brand-blue border border-brand-blue/20">
-              Safety Protocols
-            </span>
-            <span className="rounded-full bg-brand-blue-light px-3 py-1 text-xs font-semibold text-brand-blue border border-brand-blue/20">
-              Parent Visibility
-            </span>
-            <span className="rounded-full bg-brand-blue-light px-3 py-1 text-xs font-semibold text-brand-blue border border-brand-blue/20">
-              Subscription Model
-            </span>
-          </div>
-        </Reveal>
-
-        {/* ========================================================================= */}
         {/* 2. LARGE AUTHENTIC PRODUCT DASHBOARD VISUAL */}
         {/* ========================================================================= */}
-        <div className="mt-8 sm:mt-12">
+        <div>
           <Reveal>
             <div className="flex flex-col gap-3">
               <div className="flex items-center justify-between px-1">
                 <span className="text-xs font-bold uppercase tracking-wider text-brand-blue flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="h-2 w-2 rounded-full bg-sky-500 animate-pulse" />
                   Live Operational Console Preview
                 </span>
                 <span className="text-xs text-slate-400 font-medium hidden sm:inline">
@@ -188,7 +134,7 @@ export default function SchoolTransportProduct() {
                   <div className="space-y-2 text-xs">
                     <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between">
                       <span className="font-semibold text-slate-700">Fleet Multi-Bus Overview</span>
-                      <span className="text-[0.68rem] text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded">Active</span>
+                      <span className="text-[0.68rem] text-sky-600 font-bold bg-sky-50 px-2 py-0.5 rounded">Active</span>
                     </div>
                     <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between">
                       <span className="font-semibold text-slate-700">Route Replay &amp; Logs</span>
@@ -196,7 +142,7 @@ export default function SchoolTransportProduct() {
                     </div>
                     <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between">
                       <span className="font-semibold text-slate-700">Speed &amp; Safety Thresholds</span>
-                      <span className="text-[0.68rem] text-amber-600 font-bold bg-amber-50 px-2 py-0.5 rounded">Monitored</span>
+                      <span className="text-[0.68rem] text-sky-600 font-bold bg-sky-50 px-2 py-0.5 rounded">Monitored</span>
                     </div>
                   </div>
                 </div>
@@ -239,7 +185,7 @@ export default function SchoolTransportProduct() {
                   <div className="space-y-2 text-xs">
                     <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between">
                       <span className="font-semibold text-slate-700">Turn-by-Turn Route Flow</span>
-                      <span className="text-[0.68rem] text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded">GPS Sync</span>
+                      <span className="text-[0.68rem] text-sky-600 font-bold bg-sky-50 px-2 py-0.5 rounded">GPS Sync</span>
                     </div>
                     <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between">
                       <span className="font-semibold text-slate-700">Student Boarding Check-In</span>
@@ -247,7 +193,7 @@ export default function SchoolTransportProduct() {
                     </div>
                     <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between">
                       <span className="font-semibold text-slate-700">Drop-off Confirmation</span>
-                      <span className="text-[0.68rem] text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded">Validated</span>
+                      <span className="text-[0.68rem] text-sky-600 font-bold bg-sky-50 px-2 py-0.5 rounded">Validated</span>
                     </div>
                   </div>
                 </div>
@@ -286,7 +232,7 @@ export default function SchoolTransportProduct() {
                   <div className="space-y-2 text-xs">
                     <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between">
                       <span className="font-semibold text-slate-700">Live Vehicle Location</span>
-                      <span className="text-[0.68rem] text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded">Live ETA</span>
+                      <span className="text-[0.68rem] text-sky-600 font-bold bg-sky-50 px-2 py-0.5 rounded">Live ETA</span>
                     </div>
                     <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between">
                       <span className="font-semibold text-slate-700">Boarding &amp; Drop Alerts</span>
@@ -294,7 +240,7 @@ export default function SchoolTransportProduct() {
                     </div>
                     <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between">
                       <span className="font-semibold text-slate-700">Guardian OTP Validation</span>
-                      <span className="text-[0.68rem] text-indigo-600 font-bold bg-indigo-50 px-2 py-0.5 rounded">Secure</span>
+                      <span className="text-[0.68rem] text-sky-600 font-bold bg-sky-50 px-2 py-0.5 rounded">Secure</span>
                     </div>
                   </div>
                 </div>

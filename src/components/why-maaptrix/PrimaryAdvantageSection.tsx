@@ -105,7 +105,7 @@ function DashboardMock() {
       <div className="absolute -right-5 -top-5 h-full w-full rounded-[22px] border border-[#DCEEFF] bg-white/50" />
       <div className="absolute -right-2.5 -top-2.5 h-full w-full rounded-[22px] border border-[#DCEEFF] bg-white/70" />
 
-      <div className="relative flex h-[370px] w-[500px] overflow-hidden rounded-[22px] border border-[#DCEEFF] bg-white shadow-[0_40px_70px_-34px_rgba(20,70,150,0.45)]">
+      <div className="relative flex h-[370px] w-[500px] overflow-hidden rounded-[22px] border border-[#DCEEFF] bg-white shadow-[0_40px_70px_-34px_rgba(85,85,85,0.45)]">
         <div className="flex w-[130px] shrink-0 flex-col border-r border-[#EEF3FA] px-3 py-5">
           <Logo imageClassName="h-6 w-6" wordmarkClassName="text-[16px]" className="!gap-1.5 px-1" />
           <div className="mt-5 space-y-1">
@@ -126,7 +126,7 @@ function DashboardMock() {
         <div className="flex min-w-0 flex-1 flex-col gap-3 p-4">
           <div className="relative flex-1 rounded-2xl border border-[#EEF3FA] bg-[linear-gradient(180deg,#F7FAFF,#FFFFFF)] p-3">
             <div className="flex items-center justify-between">
-              <span className="flex items-center gap-1.5 rounded-xl border border-[#DCEEFF] bg-white px-2.5 py-1 text-[11px] font-semibold text-brand-navy shadow-[0_6px_14px_-8px_rgba(20,70,150,0.4)]">
+              <span className="flex items-center gap-1.5 rounded-xl border border-[#DCEEFF] bg-white px-2.5 py-1 text-[11px] font-semibold text-brand-navy shadow-[0_6px_14px_-8px_rgba(85,85,85,0.4)]">
                 <TrendingUp className="h-3.5 w-3.5 text-brand-blue" /> Continuous Growth
               </span>
               <span className="text-[9px] font-semibold uppercase tracking-wider text-[#A0AEC5]">Sample data</span>
@@ -161,7 +161,7 @@ function DashboardMock() {
               { icon: ShieldCheck, v: "99.9%", l: "Uptime" },
               { icon: BarChart3, v: "3x", l: "Efficiency" },
             ].map(({ icon: I, v, l }) => (
-              <div key={l} className="rounded-xl border border-[#EEF3FA] bg-white p-3 shadow-[0_6px_14px_-10px_rgba(20,70,150,0.35)]">
+              <div key={l} className="rounded-xl border border-[#EEF3FA] bg-white p-3 shadow-[0_6px_14px_-10px_rgba(85,85,85,0.35)]">
                 <I className="h-4 w-4 text-brand-blue" strokeWidth={2.2} />
                 <p className="mt-1.5 font-display text-[19px] font-bold leading-none text-brand-navy">{v}</p>
                 <p className="mt-1 text-[10px] text-[#6A7A95]">{l}</p>
@@ -179,7 +179,7 @@ function OwnershipVisual() {
   return (
     <div ref={ref} className="relative w-full" style={{ height: CANVAS_H * scale }}>
       <div
-        className="absolute left-0 top-0 origin-top-left overflow-hidden rounded-[32px] border border-[#DCEEFF] bg-[linear-gradient(160deg,#F4F9FF_0%,#EAF3FF_55%,#F7FAFF_100%)] shadow-[0_40px_80px_-50px_rgba(20,70,150,0.45)]"
+        className="absolute left-0 top-0 origin-top-left overflow-hidden rounded-[32px] border border-[#DCEEFF] bg-[linear-gradient(160deg,#F4F9FF_0%,#EAF3FF_55%,#F7FAFF_100%)] shadow-[0_40px_80px_-50px_rgba(85,85,85,0.45)]"
         style={{ width: CANVAS_W, height: CANVAS_H, transform: `scale(${scale})` }}
       >
         {/* Atmosphere */}
@@ -215,7 +215,7 @@ function OwnershipVisual() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-60px 0px" }}
           transition={{ duration: 0.7, delay: 0.15, ease: EASE }}
-          className="absolute left-[38px] top-[88px] z-20 w-[300px] rounded-[24px] border border-[#DCEEFF] bg-white/92 p-7 shadow-[0_30px_60px_-30px_rgba(20,70,150,0.45)] backdrop-blur-md"
+          className="absolute left-[38px] top-[88px] z-20 w-[300px] rounded-[24px] border border-[#DCEEFF] bg-white/92 p-7 shadow-[0_30px_60px_-30px_rgba(85,85,85,0.45)] backdrop-blur-md"
         >
           <p className="text-[15px] font-medium text-brand-blue">From Idea to Impact</p>
           <p className="mt-3 font-display text-[30px] font-bold leading-[1.12] text-brand-navy">
@@ -242,7 +242,7 @@ function OwnershipVisual() {
         <FloatIcon icon={Target} className="left-[312px] top-[430px]" delay={0.5} />
 
         {/* Lifecycle strip */}
-        <div className="absolute inset-x-[14px] bottom-[14px] z-30 h-[108px] rounded-[20px] border border-[#DCEEFF] bg-white/92 px-10 shadow-[0_18px_40px_-26px_rgba(20,70,150,0.45)] backdrop-blur-md">
+        <div className="absolute inset-x-[14px] bottom-[14px] z-30 h-[108px] rounded-[20px] border border-[#DCEEFF] bg-white/92 px-10 shadow-[0_18px_40px_-26px_rgba(85,85,85,0.45)] backdrop-blur-md">
           <div className="absolute left-[64px] right-[64px] top-[38px] h-[2px] bg-[#DCEEFF]" aria-hidden />
           <div className="absolute left-[64px] top-[38px] h-[2px] w-[70px] bg-brand-blue" aria-hidden />
           <ol className="relative flex h-full items-start justify-between pt-[16px]">
@@ -313,7 +313,7 @@ export default function PrimaryAdvantageSection() {
               {METRICS.map(({ icon: I, value, label }) => (
                 <div
                   key={label}
-                  className="flex items-center gap-3.5 rounded-2xl border border-[#DCEEFF] bg-white px-4 py-4 shadow-[0_12px_28px_-20px_rgba(20,70,150,0.4)]"
+                  className="flex items-center gap-3.5 rounded-2xl border border-[#DCEEFF] bg-white px-4 py-4 shadow-[0_12px_28px_-20px_rgba(85,85,85,0.4)]"
                 >
                   <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#EAF3FF]">
                     <I className="h-6 w-6 text-brand-blue" strokeWidth={2.2} />

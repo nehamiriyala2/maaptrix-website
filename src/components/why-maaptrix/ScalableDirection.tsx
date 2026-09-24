@@ -16,9 +16,9 @@ const PRINCIPLES: { icon: Icon; title: string; desc: string }[] = [
 
 const ROADMAP: { num: string; icon: Icon; title: string; desc: string; chip: string; ink: string; badge: string }[] = [
   { num: "01", icon: Box, title: "One Core Product", desc: "Solid operational foundation.", chip: "bg-[#E1EDFF]", ink: "text-brand-blue", badge: "bg-[#EAF3FF] text-brand-blue" },
-  { num: "02", icon: Users, title: "More Users", desc: "Role-tailored interfaces & flows.", chip: "bg-[#E3F5EC]", ink: "text-emerald-600", badge: "bg-[#EEF9F3] text-emerald-600" },
-  { num: "03", icon: MapPin, title: "More Locations", desc: "Multi-branch operational support.", chip: "bg-[#EEE8FD]", ink: "text-violet-600", badge: "bg-[#F5F1FE] text-violet-600" },
-  { num: "04", icon: BarChart3, title: "Long-Term Roadmap", desc: "Continuous software evolution.", chip: "bg-[#FFEBDA]", ink: "text-orange-500", badge: "bg-[#FFF4EA] text-orange-500" },
+  { num: "02", icon: Users, title: "More Users", desc: "Role-tailored interfaces & flows.", chip: "bg-[#E2ECF6]", ink: "text-sky-600", badge: "bg-[#EDF3FA] text-sky-600" },
+  { num: "03", icon: MapPin, title: "More Locations", desc: "Multi-branch operational support.", chip: "bg-[#E8F2FD]", ink: "text-sky-600", badge: "bg-[#F1F7FE] text-sky-600" },
+  { num: "04", icon: BarChart3, title: "Long-Term Roadmap", desc: "Continuous software evolution.", chip: "bg-[#DBECFE]", ink: "text-sky-500", badge: "bg-[#EBF4FE] text-sky-500" },
 ];
 
 export default function ScalableDirection() {
@@ -85,7 +85,7 @@ export default function ScalableDirection() {
             </div>
 
             <Reveal delay={0.1} y={20}>
-              <div className="relative rounded-[26px] border border-[#DCEEFF] bg-white/[0.96] p-5 shadow-[0_24px_60px_-34px_rgba(11,31,65,0.28)] sm:p-8">
+              <div className="relative rounded-[26px] border border-[#DCEEFF] bg-white/[0.96] p-5 shadow-[0_24px_60px_-34px_rgba(24,24,24,0.28)] sm:p-8">
                 <div className="flex items-center gap-4">
                   <span className="h-[2.5px] w-11 rounded-full bg-brand-blue" />
                   <span className="text-[13px] font-bold uppercase tracking-[0.12em] text-brand-blue sm:text-[14px]">

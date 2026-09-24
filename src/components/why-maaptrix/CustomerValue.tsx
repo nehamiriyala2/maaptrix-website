@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle2, Compass, Layers, RefreshCw, Sparkles, TrendingUp } from "lucide-react";
+import { Compass, Layers, RefreshCw, TrendingUp } from "lucide-react";
 import Reveal from "@/components/Reveal";
 
 const VALUES = [

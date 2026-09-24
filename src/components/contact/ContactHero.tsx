@@ -1,14 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MessageSquare, Sparkles, Workflow, ArrowRight } from "lucide-react";
+import { MessageSquare } from "lucide-react";
 
 export default function ContactHero() {
   return (
     <section className="relative overflow-hidden bg-blue-white py-12 sm:py-16 lg:py-20 border-b border-slate-100 select-none">
       {/* Soft atmospheric background glow */}
       <div className="pointer-events-none absolute -left-20 top-0 h-96 w-96 rounded-full bg-brand-blue/10 blur-3xl -z-10" />
-      <div className="pointer-events-none absolute -right-20 bottom-0 h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl -z-10" />
+      <div className="pointer-events-none absolute -right-20 bottom-0 h-96 w-96 rounded-full bg-sky-500/10 blur-3xl -z-10" />
 
       <div className="page-container">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">
@@ -108,7 +108,7 @@ export default function ContactHero() {
                     </span>
                     <span className="font-bold">Conversation &amp; Demo</span>
                   </div>
-                  <span className="text-[0.68rem] font-medium text-cyan-200">Tailored walkthrough</span>
+                  <span className="text-[0.68rem] font-medium text-sky-200">Tailored walkthrough</span>
                 </div>
               </div>
 

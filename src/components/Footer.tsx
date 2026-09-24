@@ -11,14 +11,8 @@ const NAV_LINKS = [
 ];
 
 const PRODUCT_LINKS = [
-  { label: "School Transport Management", href: "/products#transport" },
-  { label: "Small School Management Module", href: "/products#school" },
-];
-
-const LEGAL_LINKS = [
-  { label: "Privacy Policy", href: "#" },
-  { label: "Terms of Service", href: "#" },
-  { label: "Responsible Disclosure", href: "#" },
+  { label: "School Transport Management", href: "/products/school-transport" },
+  { label: "Small School Management Module", href: "/products/school-management" },
 ];
 
 export default function Footer() {
@@ -102,22 +96,12 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Legal (2 cols) */}
+          {/* Get in touch (2 cols) */}
           <div className="lg:col-span-2">
             <p className="text-[0.72rem] font-bold uppercase tracking-[0.18em] text-brand-navy/45">
-              Information
+              Get in Touch
             </p>
             <ul className="mt-4 flex flex-col gap-2.5">
-              {LEGAL_LINKS.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="text-sm text-brand-navy/75 transition-colors hover:text-brand-blue"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
               <li>
                 <Link
                   href="/contact"

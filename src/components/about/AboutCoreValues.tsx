@@ -7,7 +7,7 @@ import Reveal from "@/components/Reveal";
 function InnovationIcon({ className = "h-8 w-8" }: { className?: string }) {
   return (
     <svg viewBox="0 0 48 48" fill="none" className={className}>
-      <line x1="24" y1="4" x2="24" y2="7.5" stroke="#0B1F41" strokeWidth="2.4" strokeLinecap="round" />
+      <line x1="24" y1="4" x2="24" y2="7.5" stroke="#181818" strokeWidth="2.4" strokeLinecap="round" />
       <path d="M 12 18 H 8 V 14" stroke="#0084FF" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
       <circle cx="8" cy="11.5" r="2.2" fill="#0084FF" />
       <line x1="13" y1="26" x2="8" y2="26" stroke="#0084FF" strokeWidth="2.2" strokeLinecap="round" />
@@ -18,7 +18,7 @@ function InnovationIcon({ className = "h-8 w-8" }: { className?: string }) {
       <circle cx="42.5" cy="26" r="2" stroke="#0084FF" strokeWidth="2" fill="none" />
       <path
         d="M 17 28 C 15 25 13.5 21.5 13.5 18 C 13.5 12.2 18.2 7.5 24 7.5 C 29.8 7.5 34.5 12.2 34.5 18 C 34.5 21.5 33 25 31 28 Z"
-        stroke="#0B1F41"
+        stroke="#181818"
         strokeWidth="2.6"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -27,9 +27,9 @@ function InnovationIcon({ className = "h-8 w-8" }: { className?: string }) {
         d="M 24 13 C 24 15.5 25.5 17 28 17 C 25.5 17 24 18.5 24 21 C 24 18.5 22.5 17 20 17 C 22.5 17 24 15.5 24 13 Z"
         fill="#0084FF"
       />
-      <line x1="18.5" y1="32" x2="29.5" y2="32" stroke="#0B1F41" strokeWidth="2.4" strokeLinecap="round" />
-      <line x1="20" y1="36" x2="28" y2="36" stroke="#0B1F41" strokeWidth="2.4" strokeLinecap="round" />
-      <line x1="22" y1="40" x2="26" y2="40" stroke="#0B1F41" strokeWidth="2.2" strokeLinecap="round" />
+      <line x1="18.5" y1="32" x2="29.5" y2="32" stroke="#181818" strokeWidth="2.4" strokeLinecap="round" />
+      <line x1="20" y1="36" x2="28" y2="36" stroke="#181818" strokeWidth="2.4" strokeLinecap="round" />
+      <line x1="22" y1="40" x2="26" y2="40" stroke="#181818" strokeWidth="2.2" strokeLinecap="round" />
     </svg>
   );
 }
@@ -40,7 +40,7 @@ function SimplicityIcon({ className = "h-8 w-8" }: { className?: string }) {
     <svg viewBox="0 0 48 48" fill="none" className={className}>
       <path
         d="M 24 8 L 38 15 L 24 22 L 10 15 Z"
-        stroke="#0B1F41"
+        stroke="#181818"
         strokeWidth="2.6"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -48,7 +48,7 @@ function SimplicityIcon({ className = "h-8 w-8" }: { className?: string }) {
       <path d="M 24 17 L 38 24 L 24 31 L 10 24 Z" fill="#56B8FF" />
       <path
         d="M 10 32.5 L 24 39.5 L 38 32.5"
-        stroke="#0B1F41"
+        stroke="#181818"
         strokeWidth="2.6"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -63,7 +63,7 @@ function ReliabilityIcon({ className = "h-8 w-8" }: { className?: string }) {
     <svg viewBox="0 0 48 48" fill="none" className={className}>
       <path
         d="M 24 6 C 30 9 37 8 38 13 C 39 25.5 32 37 24 41.5 C 16 37 9 25.5 10 13 C 11 8 18 9 24 6 Z"
-        stroke="#0B1F41"
+        stroke="#181818"
         strokeWidth="2.6"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -71,7 +71,7 @@ function ReliabilityIcon({ className = "h-8 w-8" }: { className?: string }) {
       <circle cx="24" cy="23.5" r="8.5" stroke="#0084FF" strokeWidth="2.4" fill="none" />
       <path
         d="M 19.5 23.5 L 22.5 26.5 L 28.5 20"
-        stroke="#0B1F41"
+        stroke="#181818"
         strokeWidth="2.6"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -86,15 +86,15 @@ function SafetyProtectionIcon({ className = "h-8 w-8" }: { className?: string })
     <svg viewBox="0 0 48 48" fill="none" className={className}>
       <path
         d="M 24 6 C 30 9 37 8 38 13 C 39 25.5 32 37 24 41.5 C 16 37 9 25.5 10 13 C 11 8 18 9 24 6 Z"
-        stroke="#0B1F41"
+        stroke="#181818"
         strokeWidth="2.6"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <circle cx="24" cy="17" r="3" fill="#0B1F41" />
+      <circle cx="24" cy="17" r="3" fill="#181818" />
       <path
         d="M 19 26 C 19 23.5 21.2 21.8 24 21.8 C 26.8 21.8 29 23.5 29 26"
-        stroke="#0B1F41"
+        stroke="#181818"
         strokeWidth="2.2"
         strokeLinecap="round"
       />
@@ -114,11 +114,11 @@ function SafetyProtectionIcon({ className = "h-8 w-8" }: { className?: string })
 function CustomerFocusIcon({ className = "h-8 w-8" }: { className?: string }) {
   return (
     <svg viewBox="0 0 48 48" fill="none" className={className}>
-      <circle cx="17.5" cy="12" r="3" fill="#0B1F41" />
+      <circle cx="17.5" cy="12" r="3" fill="#181818" />
       <circle cx="30.5" cy="12" r="3" fill="#0084FF" />
       <path
         d="M 17.5 18 C 12 18 8.5 23 9.5 28.5 C 11 34.5 20 40 24 42.5 C 21.5 38 18.5 32 23.5 26.5 C 25.5 24 28 22 30.5 18"
-        stroke="#0B1F41"
+        stroke="#181818"
         strokeWidth="2.6"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -140,21 +140,21 @@ function ContinuousImprovementIcon({ className = "h-8 w-8" }: { className?: stri
     <svg viewBox="0 0 48 48" fill="none" className={className}>
       <path
         d="M 10 24 C 10 16.5 16.2 10.5 24 10.5 C 30.5 10.5 36 15 37.5 21"
-        stroke="#0B1F41"
+        stroke="#181818"
         strokeWidth="2.6"
         strokeLinecap="round"
       />
       <path d="M 34 14 L 41 18 L 41 10 Z" fill="#0084FF" />
       <path
         d="M 38 24 C 38 31.5 31.8 37.5 24 37.5 C 17.5 37.5 12 33 10.5 27"
-        stroke="#0B1F41"
+        stroke="#181818"
         strokeWidth="2.6"
         strokeLinecap="round"
       />
       <path d="M 14 34 L 7 30 L 7 38 Z" fill="#0084FF" />
       <rect x="18" y="27" width="3.2" height="6" rx="1" fill="#0084FF" />
       <rect x="23" y="22" width="3.2" height="11" rx="1" fill="#0084FF" />
-      <rect x="28" y="16" width="3.2" height="17" rx="1" fill="#0B1F41" />
+      <rect x="28" y="16" width="3.2" height="17" rx="1" fill="#181818" />
     </svg>
   );
 }

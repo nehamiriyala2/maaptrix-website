@@ -7,7 +7,7 @@ import CustomerValue from "@/components/why-maaptrix/CustomerValue";
 import WhyCTA from "@/components/why-maaptrix/WhyCTA";
 
 export const metadata: Metadata = {
-  title: "Why Maaptrix | Product-First Software Solutions",
+  title: { absolute: "Why Maaptrix | Product-First Software Solutions" },
   description:
     "Discover how Maaptrix builds focused software products through a product-first approach, end-to-end ownership, usability and continuous improvement.",
 };

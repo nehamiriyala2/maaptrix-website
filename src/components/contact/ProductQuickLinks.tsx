@@ -50,7 +50,7 @@ export default function ProductQuickLinks() {
 
               <div className="mt-5 pt-3 border-t border-slate-100">
                 <Link
-                  href="/products#transport"
+                  href="/products/school-transport"
                   className="group inline-flex items-center gap-1.5 text-xs font-semibold text-brand-blue hover:text-brand-blue-dark transition-colors"
                 >
                   <span>View Product</span>
@@ -65,10 +65,10 @@ export default function ProductQuickLinks() {
             <div className="h-full rounded-2xl border border-[#CCE5FF] bg-white p-6 shadow-2xs flex flex-col justify-between hover:border-brand-blue transition-colors">
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-mono font-bold text-cyan-700 uppercase">
+                  <span className="text-xs font-mono font-bold text-sky-700 uppercase">
                     Product 02
                   </span>
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-cyan-50 text-cyan-600">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sky-50 text-sky-600">
                     <GraduationCap className="h-4 w-4" />
                   </div>
                 </div>
@@ -84,8 +84,8 @@ export default function ProductQuickLinks() {
 
               <div className="mt-5 pt-3 border-t border-slate-100">
                 <Link
-                  href="/products#school"
-                  className="group inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-700 hover:text-cyan-800 transition-colors"
+                  href="/products/school-management"
+                  className="group inline-flex items-center gap-1.5 text-xs font-semibold text-sky-700 hover:text-sky-800 transition-colors"
                 >
                   <span>View Product</span>
                   <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />

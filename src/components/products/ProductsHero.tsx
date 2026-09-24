@@ -56,22 +56,22 @@ const NAV: { icon: Icon; label: string; active?: boolean }[] = [
 
 const CAPABILITIES: { icon: Icon; title: string; desc: string; tint: string }[] = [
   { icon: Bus, title: "Live Tracking", desc: "Vehicle visibility", tint: "bg-[#E8F2FF] text-brand-blue" },
-  { icon: Route, title: "Routes", desc: "Route operations", tint: "bg-[#E6F6EE] text-emerald-600" },
-  { icon: UserCheck, title: "Attendance", desc: "Pickup & drop tracking", tint: "bg-[#EEF0FF] text-indigo-500" },
-  { icon: ShieldCheck, title: "Safety", desc: "Operational alerts", tint: "bg-[#E6F6EE] text-emerald-600" },
+  { icon: Route, title: "Routes", desc: "Route operations", tint: "bg-[#E5EEF7] text-sky-600" },
+  { icon: UserCheck, title: "Attendance", desc: "Pickup & drop tracking", tint: "bg-[#EEF0FF] text-sky-500" },
+  { icon: ShieldCheck, title: "Safety", desc: "Operational alerts", tint: "bg-[#E5EEF7] text-sky-600" },
 ];
 
 const UPDATES = [
   { time: "08:10", label: "Route started", dot: "bg-brand-blue" },
-  { time: "08:25", label: "Student pickup", dot: "bg-emerald-500" },
-  { time: "08:40", label: "Route checkpoint", dot: "bg-orange-400" },
+  { time: "08:25", label: "Student pickup", dot: "bg-sky-500" },
+  { time: "08:40", label: "Route checkpoint", dot: "bg-sky-400" },
   { time: "09:05", label: "School arrival", dot: "bg-brand-blue" },
 ];
 
 function TransportDashboard() {
   return (
     <div
-      className="flex overflow-hidden rounded-[26px] border border-[#DCEAFF] bg-white/95 shadow-[0_25px_70px_rgba(11,31,65,0.12)]"
+      className="flex overflow-hidden rounded-[26px] border border-[#DCEAFF] bg-white/95 shadow-[0_25px_70px_rgba(24,24,24,0.12)]"
       style={{ width: DASH_W, height: DASH_H }}
     >
       {/* Sidebar */}
@@ -129,11 +129,11 @@ function TransportDashboard() {
               <path d="M200 -10 L170 210" stroke="#FFFFFF" strokeWidth="8" fill="none" />
               <path d="M-10 60 L310 40" stroke="#FFFFFF" strokeWidth="6" fill="none" />
               <path d="M240 200 C250 150 270 120 310 100" stroke="#FFFFFF" strokeWidth="6" fill="none" />
-              <rect x="10" y="165" width="40" height="28" rx="6" fill="#D9F2E3" />
+              <rect x="10" y="165" width="40" height="28" rx="6" fill="#D7E5F4" />
               <rect x="215" y="60" width="60" height="30" rx="6" fill="#E2EAF4" />
               <path d="M100 150 L150 105 L195 118 L240 92" stroke="#147DFF" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
               <circle cx="240" cy="92" r="6" fill="#fff" stroke="#147DFF" strokeWidth="3" />
-              <path d="M78 70 c0 -9 14 -9 14 0 c0 7 -7 13 -7 13 c0 0 -7 -6 -7 -13z" fill="#0B1F41" />
+              <path d="M78 70 c0 -9 14 -9 14 0 c0 7 -7 13 -7 13 c0 0 -7 -6 -7 -13z" fill="#181818" />
               <circle cx="85" cy="70" r="2.4" fill="#fff" />
             </svg>
             <span className="absolute left-[29%] top-[66%] flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-brand-blue text-white shadow-[0_0_0_5px_rgba(20,125,255,0.2)]">
@@ -150,7 +150,7 @@ function TransportDashboard() {
                 <li key={time} className="relative flex items-center gap-3 text-[10.5px]">
                   <span className="w-[34px] text-[#8A99B2]">{time}</span>
                   <span className={`relative z-10 h-2 w-2 rounded-full ${dot}`} />
-                  <span className="text-[#3D4F6B]">{label}</span>
+                  <span className="text-[#545454]">{label}</span>
                 </li>
               ))}
             </ol>
@@ -178,7 +178,7 @@ function DashboardVisual() {
 
 export default function ProductsHero() {
   const scrollToProducts = () => {
-    const el = document.getElementById("transport");
+    const el = document.getElementById("overview");
     if (!el) return;
     window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 90, behavior: "smooth" });
   };
@@ -247,7 +247,7 @@ export default function ProductsHero() {
             >
               <Link
                 href="/contact"
-                className="group inline-flex h-[54px] whitespace-nowrap items-center justify-center gap-2.5 rounded-[11px] bg-brand-navy px-7 text-[16px] font-bold text-white shadow-[0_12px_26px_-12px_rgba(11,31,65,0.7)] transition-colors duration-300 hover:bg-brand-blue sm:min-w-[196px]"
+                className="group inline-flex h-[54px] whitespace-nowrap items-center justify-center gap-2.5 rounded-[11px] bg-brand-navy px-7 text-[16px] font-bold text-white shadow-[0_12px_26px_-12px_rgba(24,24,24,0.7)] transition-colors duration-300 hover:bg-brand-blue sm:min-w-[196px]"
               >
                 Request a Demo
                 <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />

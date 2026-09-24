@@ -70,7 +70,7 @@ function ProcessCard({
       transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
       className={`absolute z-20 w-max ${className}`}
     >
-      <div className="relative flex items-center gap-3.5 rounded-[20px] border border-white/90 bg-white/85 py-3.5 pl-4 pr-7 shadow-[0_18px_40px_-14px_rgba(20,70,150,0.28),0_2px_6px_rgba(20,70,150,0.06)] backdrop-blur-md transition-transform duration-300 hover:-translate-y-1">
+      <div className="relative flex items-center gap-3.5 rounded-[20px] border border-white/90 bg-white/85 py-3.5 pl-4 pr-7 shadow-[0_18px_40px_-14px_rgba(85,85,85,0.28),0_2px_6px_rgba(85,85,85,0.06)] backdrop-blur-md transition-transform duration-300 hover:-translate-y-1">
         <div className="flex h-[46px] w-[46px] shrink-0 items-center justify-center">{icon}</div>
         <div className="leading-tight">
           <p className="font-display text-[18px] font-bold text-brand-navy">{title}</p>
@@ -140,9 +140,9 @@ function Laptop() {
   return (
     <div className="relative w-[540px]">
       {/* Screen lid: silver frame → black bezel → display */}
-      <div className="relative rounded-[22px] bg-gradient-to-br from-[#F4F6FA] via-[#D5DBE4] to-[#B9C2CF] p-[5px] shadow-[0_30px_60px_-20px_rgba(11,31,65,0.45),inset_0_1px_0_rgba(255,255,255,0.9)]">
-        <div className="relative rounded-[17px] bg-[#0D1726] p-[9px]">
-          <span className="absolute left-1/2 top-[3px] h-[4px] w-[4px] -translate-x-1/2 rounded-full bg-[#2B3A4F]" />
+      <div className="relative rounded-[22px] bg-gradient-to-br from-[#F4F6FA] via-[#D5DBE4] to-[#B9C2CF] p-[5px] shadow-[0_30px_60px_-20px_rgba(24,24,24,0.45),inset_0_1px_0_rgba(255,255,255,0.9)]">
+        <div className="relative rounded-[17px] bg-[#101010] p-[9px]">
+          <span className="absolute left-1/2 top-[3px] h-[4px] w-[4px] -translate-x-1/2 rounded-full bg-[#3D3D3D]" />
 
           <div className="relative flex h-[318px] flex-col overflow-hidden rounded-[9px] bg-[#F4F8FD] text-brand-navy">
             {/* Top bar */}
@@ -169,7 +169,7 @@ function Laptop() {
 
             <div className="flex min-h-0 flex-1">
               {/* Sidebar */}
-              <div className="flex w-[86px] shrink-0 flex-col justify-between bg-[#0B1F41] px-1.5 py-2">
+              <div className="flex w-[86px] shrink-0 flex-col justify-between bg-[#181818] px-1.5 py-2">
                 <div className="space-y-[3px]">
                   {SIDEBAR.map(({ icon: Icon, label, active }) => (
                     <div
@@ -205,10 +205,10 @@ function Laptop() {
                 <div className="grid grid-cols-3 gap-[6px]">
                   {[
                     { label: "Active Routes", value: "128", tone: "bg-brand-blue" },
-                    { label: "Attendance", value: "2,450", tone: "bg-emerald-500" },
-                    { label: "Open Tickets", value: "14", tone: "bg-violet-500" },
+                    { label: "Attendance", value: "2,450", tone: "bg-sky-500" },
+                    { label: "Open Tickets", value: "14", tone: "bg-sky-500" },
                   ].map((s) => (
-                    <div key={s.label} className="rounded-lg border border-slate-200/70 bg-white px-2 py-1.5 shadow-[0_1px_2px_rgba(15,40,80,0.04)]">
+                    <div key={s.label} className="rounded-lg border border-slate-200/70 bg-white px-2 py-1.5 shadow-[0_1px_2px_rgba(29,29,29,0.04)]">
                       <div className="flex items-center gap-1 text-[6.5px] text-slate-500">
                         <span className={`h-[5px] w-[5px] rounded-full ${s.tone}`} />
                         {s.label}
@@ -289,7 +289,7 @@ function Laptop() {
                 {/* Activity rows */}
                 <div className="rounded-lg border border-slate-200/70 bg-white px-2 py-1.5">
                   {[
-                    ["Route sync completed", "bg-emerald-500", "Done"],
+                    ["Route sync completed", "bg-sky-500", "Done"],
                     ["New module release", "bg-brand-blue", "Live"],
                   ].map(([t, c, s]) => (
                     <div key={t} className="flex items-center justify-between py-[2px] text-[6.5px]">
@@ -313,11 +313,11 @@ function Laptop() {
       {/* Hinge + aluminium deck */}
       <div className="relative -mt-px ml-[-5%] w-[110%]">
         <div className="h-[6px] w-full rounded-t-[3px] bg-gradient-to-b from-[#AEB7C4] to-[#E3E8EF]" />
-        <div className="relative h-[13px] w-full rounded-b-[26px] bg-gradient-to-b from-[#EEF1F6] via-[#D2D9E3] to-[#A9B3C1] shadow-[0_14px_24px_-10px_rgba(11,31,65,0.5)]">
+        <div className="relative h-[13px] w-full rounded-b-[26px] bg-gradient-to-b from-[#EEF1F6] via-[#D2D9E3] to-[#A9B3C1] shadow-[0_14px_24px_-10px_rgba(24,24,24,0.5)]">
           <span className="absolute left-1/2 top-0 h-[5px] w-[78px] -translate-x-1/2 rounded-b-[8px] bg-[#B9C2CE]" />
         </div>
       </div>
-      <div className="mx-auto mt-2 h-[18px] w-[88%] rounded-[50%] bg-[#0B1F41]/25 blur-[12px]" />
+      <div className="mx-auto mt-2 h-[18px] w-[88%] rounded-[50%] bg-[#181818]/25 blur-[12px]" />
     </div>
   );
 }
@@ -399,8 +399,8 @@ export default function WhatWeDoProcessVisual() {
           className="left-[236px] top-[4px]"
           delay={0.3}
           icon={
-            <span className="flex h-[46px] w-[46px] items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-50 to-sky-50">
-              <CodeXml className="h-[30px] w-[30px] text-emerald-500" strokeWidth={2.4} />
+            <span className="flex h-[46px] w-[46px] items-center justify-center rounded-2xl bg-gradient-to-br from-sky-50 to-sky-50">
+              <CodeXml className="h-[30px] w-[30px] text-sky-500" strokeWidth={2.4} />
             </span>
           }
           title="Develop"
@@ -411,8 +411,8 @@ export default function WhatWeDoProcessVisual() {
           delay={0.45}
           icon={
             <Rocket
-              className="h-[36px] w-[36px] -rotate-6 text-violet-500 drop-shadow-[0_6px_8px_rgba(124,58,237,0.35)]"
-              fill="#C4B5FD"
+              className="h-[36px] w-[36px] -rotate-6 text-sky-500 drop-shadow-[0_6px_8px_rgba(58,145,237,0.35)]"
+              fill="#B5D8FD"
               strokeWidth={2}
             />
           }
@@ -426,7 +426,7 @@ export default function WhatWeDoProcessVisual() {
           title="Operate"
           subtitle="Improve"
           extra={
-            <TrendingUp className="absolute right-2.5 top-2 h-[16px] w-[16px] text-emerald-500" strokeWidth={2.6} />
+            <TrendingUp className="absolute right-2.5 top-2 h-[16px] w-[16px] text-sky-500" strokeWidth={2.6} />
           }
         />
       </div>

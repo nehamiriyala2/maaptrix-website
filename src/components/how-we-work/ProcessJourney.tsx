@@ -1,10 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import {
   ArrowRight,
-  Check,
   CheckCircle2,
   Code2,
   Cpu,
@@ -15,10 +13,8 @@ import {
   Rocket,
   Search,
   Server,
-  ShieldCheck,
   Smartphone,
   Sparkles,
-  UserCheck,
   Users,
   Workflow,
 } from "lucide-react";
@@ -108,7 +104,7 @@ export default function ProcessJourney() {
 
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-center">
                     <div className="p-3 rounded-xl bg-white border border-slate-200 shadow-xs flex flex-col items-center justify-center">
-                      <span className="h-7 w-7 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center mb-1.5">
+                      <span className="h-7 w-7 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center mb-1.5">
                         <Search className="h-3.5 w-3.5" />
                       </span>
                       <span className="text-xs font-bold text-brand-navy">Problem</span>
@@ -124,7 +120,7 @@ export default function ProcessJourney() {
                     </div>
 
                     <div className="p-3 rounded-xl bg-white border border-slate-200 shadow-xs flex flex-col items-center justify-center">
-                      <span className="h-7 w-7 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center mb-1.5">
+                      <span className="h-7 w-7 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center mb-1.5">
                         <Workflow className="h-3.5 w-3.5" />
                       </span>
                       <span className="text-xs font-bold text-brand-navy">Workflow</span>
@@ -273,13 +269,13 @@ export default function ProcessJourney() {
                 </div>
 
                 {/* Right: Visual (PRODUCT -> APPLICATION -> SERVICES -> DATA -> INFRASTRUCTURE) */}
-                <div className="lg:col-span-6 rounded-2xl border border-slate-200 bg-gradient-to-br from-[#0B1F41] to-[#040D1A] p-5 sm:p-6 text-white shadow-2xs">
+                <div className="lg:col-span-6 rounded-2xl border border-slate-200 bg-gradient-to-br from-[#181818] to-[#090909] p-5 sm:p-6 text-white shadow-2xs">
                   <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-3">
                     <span className="text-xs font-bold text-white flex items-center gap-1.5">
                       <Code2 className="h-4 w-4 text-brand-blue" />
                       Engineering Architecture Stack
                     </span>
-                    <span className="text-[0.68rem] font-mono text-cyan-300 font-bold uppercase">
+                    <span className="text-[0.68rem] font-mono text-sky-300 font-bold uppercase">
                       Stage 03 Structure
                     </span>
                   </div>
@@ -294,7 +290,7 @@ export default function ProcessJourney() {
 
                     <div className="p-2.5 rounded-lg bg-white/8 border border-white/10 flex items-center justify-between">
                       <span className="font-bold text-slate-200 flex items-center gap-2">
-                        <Smartphone className="h-3.5 w-3.5 text-cyan-400" /> Application Logic
+                        <Smartphone className="h-3.5 w-3.5 text-sky-400" /> Application Logic
                       </span>
                       <span className="text-[0.65rem] text-slate-400 font-mono">Workflows</span>
                     </div>
@@ -308,7 +304,7 @@ export default function ProcessJourney() {
 
                     <div className="p-2.5 rounded-lg bg-white/4 border border-white/5 flex items-center justify-between">
                       <span className="font-bold text-slate-400 flex items-center gap-2">
-                        <Database className="h-3.5 w-3.5 text-emerald-400" /> Data Storage &amp; Cache
+                        <Database className="h-3.5 w-3.5 text-sky-400" /> Data Storage &amp; Cache
                       </span>
                       <span className="text-[0.65rem] text-slate-500 font-mono">Encrypted</span>
                     </div>
@@ -352,7 +348,7 @@ export default function ProcessJourney() {
                     <div className="p-3.5 rounded-xl bg-white border border-slate-200 shadow-xs">
                       <div className="flex items-center justify-between mb-1.5">
                         <span className="font-bold text-brand-navy">Check</span>
-                        <span className="h-5 w-5 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center text-xs font-bold">✓</span>
+                        <span className="h-5 w-5 rounded-full bg-sky-50 text-sky-600 flex items-center justify-center text-xs font-bold">✓</span>
                       </div>
                       <p className="text-[0.7rem] text-slate-600">Operational integrity &amp; functional accuracy</p>
                     </div>
@@ -360,7 +356,7 @@ export default function ProcessJourney() {
                     <div className="p-3.5 rounded-xl bg-white border border-slate-200 shadow-xs">
                       <div className="flex items-center justify-between mb-1.5">
                         <span className="font-bold text-brand-navy">Test</span>
-                        <span className="h-5 w-5 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center text-xs font-bold">✓</span>
+                        <span className="h-5 w-5 rounded-full bg-sky-50 text-sky-600 flex items-center justify-center text-xs font-bold">✓</span>
                       </div>
                       <p className="text-[0.7rem] text-slate-600">Field conditions &amp; edge connectivity cases</p>
                     </div>
@@ -368,7 +364,7 @@ export default function ProcessJourney() {
                     <div className="p-3.5 rounded-xl bg-white border border-slate-200 shadow-xs">
                       <div className="flex items-center justify-between mb-1.5">
                         <span className="font-bold text-brand-navy">Review</span>
-                        <span className="h-5 w-5 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center text-xs font-bold">✓</span>
+                        <span className="h-5 w-5 rounded-full bg-sky-50 text-sky-600 flex items-center justify-center text-xs font-bold">✓</span>
                       </div>
                       <p className="text-[0.7rem] text-slate-600">Clarity of workflows for operators &amp; users</p>
                     </div>
@@ -466,13 +462,13 @@ export default function ProcessJourney() {
                   <div className="space-y-3 text-xs">
                     <div className="flex items-center justify-between p-3 rounded-xl bg-white border border-slate-200 shadow-xs">
                       <div className="flex items-center gap-2.5">
-                        <span className="h-6 w-6 rounded-md bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-[0.7rem]">1</span>
+                        <span className="h-6 w-6 rounded-md bg-sky-50 text-sky-600 flex items-center justify-center font-bold text-[0.7rem]">1</span>
                         <div>
                           <span className="font-bold text-brand-navy block">Ready</span>
                           <span className="text-[0.7rem] text-slate-500">System configuration &amp; security baselines</span>
                         </div>
                       </div>
-                      <span className="text-[0.68rem] bg-emerald-100/70 text-emerald-700 px-2 py-0.5 rounded font-semibold">Configured</span>
+                      <span className="text-[0.68rem] bg-sky-100/70 text-sky-700 px-2 py-0.5 rounded font-semibold">Configured</span>
                     </div>
 
                     <div className="flex items-center justify-between p-3 rounded-xl bg-white border border-slate-200 shadow-xs">
@@ -550,7 +546,7 @@ export default function ProcessJourney() {
                       <RefreshCw className="h-4 w-4 text-brand-blue" />
                       Continuous Feedback Loop
                     </span>
-                    <span className="text-[0.68rem] font-mono text-cyan-600 font-bold uppercase">
+                    <span className="text-[0.68rem] font-mono text-sky-600 font-bold uppercase">
                       Living Product Model
                     </span>
                   </div>
@@ -583,12 +579,12 @@ export default function ProcessJourney() {
                   </div>
 
                   {/* Loop Return Bar */}
-                  <div className="mt-3.5 p-2.5 rounded-xl bg-gradient-to-r from-brand-navy to-[#061427] text-white flex items-center justify-between text-xs">
+                  <div className="mt-3.5 p-2.5 rounded-xl bg-gradient-to-r from-brand-navy to-[#0E0E0E] text-white flex items-center justify-between text-xs">
                     <div className="flex items-center gap-2">
-                      <RefreshCw className="h-3.5 w-3.5 text-cyan-300 animate-spin" style={{ animationDuration: "10s" }} />
+                      <RefreshCw className="h-3.5 w-3.5 text-sky-300 animate-spin" style={{ animationDuration: "10s" }} />
                       <span className="font-semibold text-[0.72rem]">Refinements cycle back into the core product</span>
                     </div>
-                    <span className="text-[0.65rem] font-mono text-cyan-300 font-bold">↺ Loop Continues</span>
+                    <span className="text-[0.65rem] font-mono text-sky-300 font-bold">↺ Loop Continues</span>
                   </div>
 
                 </div>

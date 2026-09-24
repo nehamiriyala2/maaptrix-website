@@ -1,8 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
 import {
-  ArrowDown,
   ArrowRight,
   CheckCircle2,
   Code2,
@@ -10,7 +8,6 @@ import {
   RefreshCw,
   Rocket,
   Search,
-  Sparkles,
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
 
@@ -51,23 +48,23 @@ export default function LifecycleLoop() {
         {/* Large Visual Continuous Lifecycle Diagram */}
         <div className="mt-12 sm:mt-16">
           <Reveal delay={0.1}>
-            <div className="relative overflow-hidden rounded-3xl border border-[#BDE3FF] bg-gradient-to-br from-[#061427] via-[#0B1F41] to-[#040D1A] p-6 sm:p-10 lg:p-14 text-white shadow-[0_24px_50px_-12px_rgba(11,31,65,0.35)]">
+            <div className="relative overflow-hidden rounded-3xl border border-[#BDE3FF] bg-gradient-to-br from-[#0E0E0E] via-[#181818] to-[#090909] p-6 sm:p-10 lg:p-14 text-white shadow-[0_24px_50px_-12px_rgba(24,24,24,0.35)]">
               
               {/* Atmospheric background glows */}
               <div className="pointer-events-none absolute -left-20 top-1/2 -translate-y-1/2 h-80 w-80 rounded-full bg-brand-blue/15 blur-3xl" />
-              <div className="pointer-events-none absolute -right-20 top-1/2 -translate-y-1/2 h-80 w-80 rounded-full bg-cyan-400/15 blur-3xl" />
+              <div className="pointer-events-none absolute -right-20 top-1/2 -translate-y-1/2 h-80 w-80 rounded-full bg-sky-400/15 blur-3xl" />
 
               {/* Title inside card */}
               <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-white/10 pb-6">
                 <div>
-                  <span className="text-xs font-mono font-bold text-cyan-300 uppercase tracking-wider block">
+                  <span className="text-xs font-mono font-bold text-sky-300 uppercase tracking-wider block">
                     Product Lifecycle Diagram
                   </span>
                   <h3 className="text-xl sm:text-2xl font-display font-bold text-white mt-1">
                     Continuous Closed-Loop Innovation
                   </h3>
                 </div>
-                <div className="rounded-full bg-brand-blue/20 border border-brand-blue/30 px-3.5 py-1 text-xs font-semibold text-cyan-300 flex items-center gap-2">
+                <div className="rounded-full bg-brand-blue/20 border border-brand-blue/30 px-3.5 py-1 text-xs font-semibold text-sky-300 flex items-center gap-2">
                   <RefreshCw className="h-3 w-3 animate-spin" style={{ animationDuration: "10s" }} />
                   <span>Iterative Lifecycle Model</span>
                 </div>
@@ -82,16 +79,16 @@ export default function LifecycleLoop() {
                       key={node.id}
                       className={`relative rounded-2xl border p-4 sm:p-5 flex flex-col justify-between transition-all duration-300 ${
                         node.highlight
-                          ? "border-cyan-400/60 bg-gradient-to-b from-cyan-950/40 to-cyan-900/20 shadow-[0_0_24px_rgba(6,182,212,0.15)]"
+                          ? "border-sky-400/60 bg-gradient-to-b from-sky-950/40 to-sky-900/20 shadow-[0_0_24px_rgba(6,106,212,0.15)]"
                           : "border-white/10 bg-white/[0.04] hover:border-brand-blue/50 hover:bg-white/[0.08]"
                       }`}
                     >
                       {/* Node Top: Number & Icon */}
                       <div className="flex items-center justify-between">
-                        <span className={`text-[0.68rem] font-mono font-bold ${node.highlight ? "text-cyan-300" : "text-brand-blue"}`}>
+                        <span className={`text-[0.68rem] font-mono font-bold ${node.highlight ? "text-sky-300" : "text-brand-blue"}`}>
                           {node.id}
                         </span>
-                        <div className={`flex h-7 w-7 items-center justify-center rounded-lg ${node.highlight ? "bg-cyan-400/20 text-cyan-300" : "bg-white/10 text-slate-300"}`}>
+                        <div className={`flex h-7 w-7 items-center justify-center rounded-lg ${node.highlight ? "bg-sky-400/20 text-sky-300" : "bg-white/10 text-slate-300"}`}>
                           <Icon className="h-3.5 w-3.5" />
                         </div>
                       </div>
@@ -110,7 +107,7 @@ export default function LifecycleLoop() {
                       <div className="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-[0.65rem] text-slate-400">
                         <span>{i === 5 ? "Loops Back" : "Advances"}</span>
                         {i === 5 ? (
-                          <RefreshCw className="h-3 w-3 text-cyan-300 animate-spin" style={{ animationDuration: "8s" }} />
+                          <RefreshCw className="h-3 w-3 text-sky-300 animate-spin" style={{ animationDuration: "8s" }} />
                         ) : (
                           <ArrowRight className="h-3 w-3 text-brand-blue" />
                         )}
@@ -136,8 +133,8 @@ export default function LifecycleLoop() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 text-xs font-mono text-cyan-300 shrink-0">
-                  <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
+                <div className="flex items-center gap-2 text-xs font-mono text-sky-300 shrink-0">
+                  <span className="h-2 w-2 rounded-full bg-sky-400 animate-pulse" />
                   <span>Closed-Loop Product Lifecycle</span>
                 </div>
               </div>

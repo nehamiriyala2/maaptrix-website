@@ -1,83 +1,41 @@
-"use client";
-
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Reveal from "./Reveal";
 
 export default function FinalCTA() {
   return (
-    <section
-      id="contact"
-      className="relative overflow-hidden bg-white page-container py-8 sm:py-10 lg:py-12"
-    >
-      <div className="relative overflow-hidden rounded-[26px] sm:rounded-[30px] border border-slate-800/80 bg-gradient-to-br from-[#061427] via-[#0B1F41] to-[#040D1A] p-7 sm:p-10 lg:p-14 text-white shadow-[0_24px_50px_-12px_rgba(11,31,65,0.35)]">
-        {/* Subtle Restrained Ambient Lighting */}
-        <div className="pointer-events-none absolute -left-20 top-0 h-64 w-64 rounded-full bg-brand-blue/15 blur-3xl" />
-        <div className="pointer-events-none absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-brand-blue/10 blur-3xl" />
-        <div className="pointer-events-none absolute inset-0 bg-circuit-grid opacity-5" />
-
-        {/* Faint operational route pattern */}
-        <svg
-          className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.07]"
-          viewBox="0 0 1200 400"
-          fill="none"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M -50,340 C 200,300 300,180 550,170 C 800,160 900,60 1250,40"
-            stroke="#147dff"
-            strokeWidth="1.5"
-          />
-          <circle cx="550" cy="170" r="4" fill="#147dff" />
-          <circle cx="900" cy="60" r="4" fill="#147dff" />
-        </svg>
-
-        {/* Small floating interface badges */}
-        <div className="pointer-events-none absolute left-[8%] top-[18%] hidden rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-[0.6rem] font-semibold uppercase tracking-wider text-white/40 backdrop-blur-sm sm:block">
-          Subscription Products · Continuous Improvement
-        </div>
-        <div className="pointer-events-none absolute right-[9%] bottom-[20%] hidden rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-[0.6rem] font-semibold uppercase tracking-wider text-white/40 backdrop-blur-sm sm:block">
-          Best Operations · Everyday Usability
-        </div>
-
+    <section className="bg-white py-16 sm:py-20" aria-labelledby="final-cta-heading">
+      <div className="page-container">
         <Reveal>
-          <div className="relative mx-auto max-w-3xl text-center">
-            <div className="inline-flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-brand-blue" />
-              <p className="text-[0.72rem] font-bold uppercase tracking-[0.2em] text-brand-blue sm:text-xs">
-                Get Started with Maaptrix
-              </p>
-            </div>
+          <div className="relative mx-auto max-w-[1320px] overflow-hidden rounded-[28px] bg-[linear-gradient(135deg,#147DFF_0%,#3B97FF_55%,#6DB4FF_100%)] px-6 py-14 text-center text-white shadow-[0_30px_70px_-34px_rgba(20,125,255,0.7)] sm:px-12 sm:py-16">
+            <div className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-white/15 blur-2xl" aria-hidden />
+            <div className="pointer-events-none absolute -bottom-28 -right-20 h-80 w-80 rounded-full bg-white/10 blur-2xl" aria-hidden />
 
-            <h2 className="mt-3.5 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-[3.15rem] leading-[1.12]">
+            <p className="relative text-[13px] font-bold uppercase tracking-[0.16em] text-white/85">Get Started with Maaptrix</p>
+            <h2
+              id="final-cta-heading"
+              className="relative mx-auto mt-4 max-w-3xl font-display text-[30px] font-bold leading-[1.12] tracking-tight sm:text-[42px]"
+            >
               Have an operational problem worth solving?
             </h2>
-
-            <p className="mx-auto mt-3.5 sm:mt-4 max-w-xl text-base sm:text-lg leading-relaxed text-white/70">
-              Explore our products or talk to the Maaptrix team about how our
-              software can fit your organization.
+            <p className="relative mx-auto mt-4 max-w-xl text-[16px] leading-relaxed text-white/90 sm:text-[18px]">
+              Explore our products or talk to the Maaptrix team about how our software can fit your organization.
             </p>
 
-            <div className="mt-7 sm:mt-8 flex flex-wrap items-center justify-center gap-3.5 sm:gap-4">
-              <Link
-                href="/products"
-                className="group inline-flex items-center gap-2 rounded-[12px] bg-brand-blue px-7 py-3.5 sm:py-4 text-sm font-semibold text-white shadow-[0_8px_24px_-6px_rgba(20,125,255,0.6)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-blue-dark"
-              >
-                Explore Products
-                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
+            <div className="relative mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-2 rounded-[12px] border border-white/20 bg-white/5 px-7 py-3.5 sm:py-4 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/10"
+                className="group inline-flex h-[52px] items-center gap-2 rounded-[11px] bg-white px-7 text-[15px] font-bold text-brand-blue shadow-[0_12px_26px_-14px_rgba(10,10,10,0.5)] transition-colors hover:bg-brand-blue-light"
               >
                 Request a Demo
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
-            </div>
-
-            <div className="mt-8 border-t border-white/10 pt-4 sm:pt-5">
-              <p className="text-xs text-white/50">
-                Subscription-based software products · Dedicated onboarding &amp; continuous support
-              </p>
+              <Link
+                href="/products"
+                className="inline-flex h-[52px] items-center rounded-[11px] border border-white/60 px-7 text-[15px] font-bold text-white transition-colors hover:bg-white/10"
+              >
+                Explore Products
+              </Link>
             </div>
           </div>
         </Reveal>

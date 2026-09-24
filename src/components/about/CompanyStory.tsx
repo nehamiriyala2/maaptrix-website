@@ -77,7 +77,7 @@ export default function CompanyStory() {
               <div className="mt-8 flex flex-wrap gap-3.5">
                 <Link
                   href="/products"
-                  className="group inline-flex h-[56px] min-w-[190px] items-center justify-center gap-2.5 rounded-xl bg-brand-navy px-7 text-[16px] font-semibold text-white shadow-[0_12px_26px_-12px_rgba(11,31,65,0.7)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-blue"
+                  className="group inline-flex h-[56px] min-w-[190px] items-center justify-center gap-2.5 rounded-xl bg-brand-navy px-7 text-[16px] font-semibold text-white shadow-[0_12px_26px_-12px_rgba(24,24,24,0.7)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-blue"
                 >
                   Our Products
                   <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -114,7 +114,7 @@ export default function CompanyStory() {
                   <circle cx="103" cy="180" r="10" fill="#147DFF" />
                   <circle cx="68" cy="240" r="4" fill="#147DFF" opacity=".75" />
                 </svg>
-                <div className="absolute inset-y-0 left-0 w-full overflow-hidden rounded-[32px] border-[5px] border-white/90 shadow-[0_34px_80px_-34px_rgba(20,70,150,0.5)] sm:rounded-[40px] xl:w-[118%] xl:rounded-[50%]">
+                <div className="absolute inset-y-0 left-0 w-full overflow-hidden rounded-[32px] border-[5px] border-white/90 shadow-[0_34px_80px_-34px_rgba(85,85,85,0.5)] sm:rounded-[40px] xl:w-[118%] xl:rounded-[50%]">
                   <Image
                     src={BUILDING}
                     alt="Maaptrix headquarters building with landscaped grounds"
@@ -127,8 +127,8 @@ export default function CompanyStory() {
                 </div>
 
                 {/* Handwritten glass card */}
-                <div className="absolute left-[4%] top-[34%] z-20 -rotate-[6deg] rounded-[24px] border border-white/90 bg-white/60 px-6 py-5 shadow-[0_24px_44px_-20px_rgba(20,70,150,0.5),inset_0_1px_0_#fff] ring-1 ring-[#D6E7FB] backdrop-blur-xl sm:px-7 xl:left-[7%] xl:top-[36%]">
-                  <p className={`${script.className} text-[28px] leading-[1.02] text-[#1B2F55] sm:text-[36px]`}>
+                <div className="absolute left-[4%] top-[34%] z-20 -rotate-[6deg] rounded-[24px] border border-white/90 bg-white/60 px-6 py-5 shadow-[0_24px_44px_-20px_rgba(85,85,85,0.5),inset_0_1px_0_#fff] ring-1 ring-[#D6E7FB] backdrop-blur-xl sm:px-7 xl:left-[7%] xl:top-[36%]">
+                  <p className={`${script.className} text-[28px] leading-[1.02] text-[#383838] sm:text-[36px]`}>
                     <span className="block">Simple</span>
                     <span className="block">Products</span>
                     <span className="block font-semibold text-[#1462E0]">Real Impact</span>
@@ -147,7 +147,7 @@ export default function CompanyStory() {
               const Icon = item.icon;
               return (
                 <Reveal key={item.title} delay={0.1 + i * 0.07}>
-                  <div className="group h-full rounded-[22px] border border-[#DCE8F7] bg-white/85 p-7 shadow-[0_18px_40px_-26px_rgba(20,70,150,0.35)] backdrop-blur-md transition-transform duration-300 hover:-translate-y-1 xl:p-8">
+                  <div className="group h-full rounded-[22px] border border-[#DCE8F7] bg-white/85 p-7 shadow-[0_18px_40px_-26px_rgba(85,85,85,0.35)] backdrop-blur-md transition-transform duration-300 hover:-translate-y-1 xl:p-8">
                     <span className="flex h-[60px] w-[60px] items-center justify-center rounded-2xl bg-[linear-gradient(145deg,#EEF5FF,#D9E9FF)] shadow-[inset_0_1px_0_#fff]">
                       <Icon className="h-[30px] w-[30px] text-brand-blue" fill="#147DFF" fillOpacity={0.18} strokeWidth={2.3} />
                     </span>

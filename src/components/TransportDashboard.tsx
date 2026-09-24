@@ -3,19 +3,15 @@
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import {
-  Bus,
   Check,
   ChevronRight,
-  Compass,
   Crosshair,
   GraduationCap,
   MapPin,
   Maximize2,
   Minus,
-  Navigation,
   Plus,
   Radio,
-  User,
 } from "lucide-react";
 
 type FilterType = "all" | "transit" | "stop" | "idle";
@@ -118,7 +114,7 @@ export default function TransportDashboard() {
   const etaMinutes = Math.ceil(etaSeconds / 60);
 
   return (
-    <div className="relative w-full overflow-hidden rounded-[20px] lg:rounded-[24px] border border-slate-200/90 bg-[#f3f7fb] shadow-[0_16px_40px_-12px_rgba(11,31,65,0.14)] select-none transition-all duration-300">
+    <div className="relative w-full overflow-hidden rounded-[20px] lg:rounded-[24px] border border-slate-200/90 bg-[#f3f7fb] shadow-[0_16px_40px_-12px_rgba(24,24,24,0.14)] select-none transition-all duration-300">
       
       {/* ========================================================================= */}
       {/* 1. TOP HEADER OVERLAY (Filter Status Pills + Mode Controls) */}
@@ -155,11 +151,11 @@ export default function TransportDashboard() {
             onClick={() => setFilter("transit")}
             className={`inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-bold transition-all duration-200 shadow-xs ${
               filter === "transit"
-                ? "bg-emerald-600 text-white shadow-[0_4px_14px_-2px_rgba(16,185,129,0.45)]"
+                ? "bg-sky-600 text-white shadow-[0_4px_14px_-2px_rgba(16,98,185,0.45)]"
                 : "bg-white/95 text-brand-navy/80 hover:bg-white hover:text-brand-navy border border-slate-200/80"
             }`}
           >
-            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="h-2 w-2 rounded-full bg-sky-500 animate-pulse" />
             <span>In Transit</span>
             <span className="text-[0.68rem] font-semibold text-slate-500">9</span>
           </button>
@@ -170,11 +166,11 @@ export default function TransportDashboard() {
             onClick={() => setFilter("stop")}
             className={`inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-bold transition-all duration-200 shadow-xs ${
               filter === "stop"
-                ? "bg-amber-500 text-white shadow-[0_4px_14px_-2px_rgba(245,158,11,0.45)]"
+                ? "bg-sky-500 text-white shadow-[0_4px_14px_-2px_rgba(11,124,245,0.45)]"
                 : "bg-white/95 text-brand-navy/80 hover:bg-white hover:text-brand-navy border border-slate-200/80"
             }`}
           >
-            <span className="h-2 w-2 rounded-full bg-amber-500" />
+            <span className="h-2 w-2 rounded-full bg-sky-500" />
             <span>At Stop</span>
             <span className="text-[0.68rem] font-semibold text-slate-500">2</span>
           </button>
@@ -277,14 +273,14 @@ export default function TransportDashboard() {
                 dx="0"
                 dy="3"
                 stdDeviation="4"
-                floodColor="#0b1f41"
+                floodColor="#181818"
                 floodOpacity="0.14"
               />
             </filter>
           </defs>
 
           {/* Base Map Land Fill */}
-          <rect width="680" height="500" fill={mapMode === "live" ? "#f4f8fb" : "#233348"} />
+          <rect width="680" height="500" fill={mapMode === "live" ? "#f4f8fb" : "#363636"} />
           <rect width="680" height="500" fill="url(#urban-grid)" />
 
           {/* ------------------------------------------------------------- */}
@@ -294,8 +290,8 @@ export default function TransportDashboard() {
           {/* Durgam Cheruvu Lake */}
           <path
             d="M 220,380 C 240,350 270,360 295,395 C 315,425 340,435 345,470 C 330,490 280,480 250,470 C 220,460 205,420 220,380 Z"
-            fill={mapMode === "live" ? "#d0e7f9" : "#1a466a"}
-            stroke={mapMode === "live" ? "#b7daf5" : "#143753"}
+            fill={mapMode === "live" ? "#d0e7f9" : "#424242"}
+            stroke={mapMode === "live" ? "#b7daf5" : "#343434"}
             strokeWidth="1.5"
             opacity="0.9"
           />
@@ -315,8 +311,8 @@ export default function TransportDashboard() {
           {/* KBR National Park (Green Reserve Area) */}
           <path
             d="M 520,230 C 545,210 590,215 620,240 C 650,265 660,310 635,340 C 605,370 560,360 535,330 C 510,300 500,250 520,230 Z"
-            fill={mapMode === "live" ? "#dcedd9" : "#1f4433"}
-            stroke={mapMode === "live" ? "#c8e4c3" : "#193729"}
+            fill={mapMode === "live" ? "#D4E2F2" : "#1F1F1F"}
+            stroke={mapMode === "live" ? "#BCD3EB" : "#191919"}
             strokeWidth="1.5"
             opacity="0.95"
           />
@@ -324,7 +320,7 @@ export default function TransportDashboard() {
             x="580"
             y="285"
             textAnchor="middle"
-            fill={mapMode === "live" ? "#4f8252" : "#8cdba1"}
+            fill={mapMode === "live" ? "#2F67A2" : "#8AB2DD"}
             fontSize="9.5"
             fontWeight="700"
             fontFamily="sans-serif"
@@ -335,7 +331,7 @@ export default function TransportDashboard() {
             x="580"
             y="298"
             textAnchor="middle"
-            fill={mapMode === "live" ? "#4f8252" : "#8cdba1"}
+            fill={mapMode === "live" ? "#2F67A2" : "#8AB2DD"}
             fontSize="8.5"
             fontWeight="600"
             fontFamily="sans-serif"
@@ -346,12 +342,12 @@ export default function TransportDashboard() {
           {/* Secondary Green Urban Patches */}
           <path
             d="M 80,180 C 100,165 125,170 135,190 C 145,210 130,230 110,235 C 90,240 75,220 70,200 Z"
-            fill={mapMode === "live" ? "#e4f3e1" : "#1b3b2c"}
+            fill={mapMode === "live" ? "#DEEAF6" : "#1B1B1B"}
             opacity="0.8"
           />
           <path
             d="M 370,110 C 390,95 420,100 435,120 C 445,140 430,160 405,165 C 380,170 360,145 370,110 Z"
-            fill={mapMode === "live" ? "#e4f3e1" : "#1b3b2c"}
+            fill={mapMode === "live" ? "#DEEAF6" : "#1B1B1B"}
             opacity="0.75"
           />
 
@@ -360,7 +356,7 @@ export default function TransportDashboard() {
           {/* ------------------------------------------------------------- */}
           
           {/* Tertiary Local Street Grids */}
-          <g fill="none" stroke={mapMode === "live" ? "#ffffff" : "#2d415a"} strokeWidth="2.5" strokeLinecap="round" opacity="0.95">
+          <g fill="none" stroke={mapMode === "live" ? "#ffffff" : "#444444"} strokeWidth="2.5" strokeLinecap="round" opacity="0.95">
             {/* North-South local streets */}
             <path d="M 60,30 L 60,470" />
             <path d="M 120,30 L 120,470" />
@@ -383,7 +379,7 @@ export default function TransportDashboard() {
           </g>
 
           {/* Secondary Arterial Connectors */}
-          <g fill="none" stroke={mapMode === "live" ? "#e4edf7" : "#2a3d54"} strokeWidth="5" strokeLinecap="round" strokeLinejoin="round">
+          <g fill="none" stroke={mapMode === "live" ? "#e4edf7" : "#3F3F3F"} strokeWidth="5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M 30,120 C 140,110 240,160 350,150 C 460,140 560,180 660,170" />
             <path d="M 40,320 C 150,330 260,290 380,310 C 490,330 580,300 660,310" />
             <path d="M 150,30 C 160,140 210,250 220,380 C 230,430 240,460 250,490" />
@@ -391,7 +387,7 @@ export default function TransportDashboard() {
           </g>
 
           {/* Major Arterial Expressways (Base Casing Outline for depth) */}
-          <g fill="none" stroke={mapMode === "live" ? "#d8e4f0" : "#1c2b3c"} strokeLinecap="round" strokeLinejoin="round">
+          <g fill="none" stroke={mapMode === "live" ? "#d8e4f0" : "#1B1B1B"} strokeLinecap="round" strokeLinejoin="round">
             <path
               d="M 10,290 C 80,285 140,250 200,220 C 270,185 360,165 460,150 C 540,140 600,120 670,110"
               strokeWidth="9"
@@ -537,7 +533,7 @@ export default function TransportDashboard() {
 
           {/* Secondary Route Completed Stop with Checkmark (Gafoor Towers) */}
           <g transform="translate(545, 300)">
-            <circle cx="0" cy="0" r="6" fill="#10b981" />
+            <circle cx="0" cy="0" r="6" fill="#1062B9" />
             <path
               d="M -2.5,0 L -0.8,2 L 2.8,-1.8"
               fill="none"
@@ -590,7 +586,7 @@ export default function TransportDashboard() {
                 <text
                   x="10"
                   y="14"
-                  fill="#0b1f41"
+                  fill="#181818"
                   fontSize="10"
                   fontWeight="700"
                   fontFamily="sans-serif"
@@ -631,10 +627,10 @@ export default function TransportDashboard() {
               <polygon points="18,46 24,52 28,46" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1" />
 
               {/* Icon */}
-              <circle cx="17" cy="23" r="9.5" fill="#ecfdf5" stroke="#a7f3d0" strokeWidth="1" />
+              <circle cx="17" cy="23" r="9.5" fill="#ECF4FD" stroke="#A7CCF3" strokeWidth="1" />
               <g transform="translate(17, 23)">
-                <circle cx="0" cy="-3" r="2" fill="#10b981" />
-                <path d="M -2.8,3.8 C -2.8,0.8 2.8,0.8 2.8,3.8" stroke="#10b981" strokeWidth="1.3" fill="none" />
+                <circle cx="0" cy="-3" r="2" fill="#1062B9" />
+                <path d="M -2.8,3.8 C -2.8,0.8 2.8,0.8 2.8,3.8" stroke="#1062B9" strokeWidth="1.3" fill="none" />
               </g>
 
               {/* Text */}
@@ -652,7 +648,7 @@ export default function TransportDashboard() {
               <text
                 x="34"
                 y="27"
-                fill="#0b1f41"
+                fill="#181818"
                 fontSize="11"
                 fontWeight="700"
                 fontFamily="sans-serif"
@@ -685,10 +681,10 @@ export default function TransportDashboard() {
               filter="url(#badge-shadow)"
             >
               {/* Pulsing ring */}
-              <circle cx="0" cy="0" r="11" fill="#f59e0b" opacity="0.25" className="animate-ping-soft" />
+              <circle cx="0" cy="0" r="11" fill="#0B7CF5" opacity="0.25" className="animate-ping-soft" />
 
               {/* Bus Pin Marker */}
-              <circle cx="0" cy="0" r="10" fill="#f59e0b" stroke="#ffffff" strokeWidth="2" />
+              <circle cx="0" cy="0" r="10" fill="#0B7CF5" stroke="#ffffff" strokeWidth="2" />
               <g transform="translate(-4, -4) scale(0.35)">
                 <path
                   d="M4 16c0 .88.39 1.67 1 2.22V20a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1h8v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4s-8 .5-8 4v10zm3.5 1c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6H6V6h12v5z"
@@ -711,18 +707,18 @@ export default function TransportDashboard() {
                 <text
                   x="8"
                   y="13"
-                  fill="#0b1f41"
+                  fill="#181818"
                   fontSize="9.5"
                   fontWeight="700"
                   fontFamily="sans-serif"
                 >
                   Bus MPX-03
                 </text>
-                <circle cx="11" cy="22" r="2.2" fill="#f59e0b" />
+                <circle cx="11" cy="22" r="2.2" fill="#0B7CF5" />
                 <text
                   x="17"
                   y="24"
-                  fill="#b45309"
+                  fill="#095CB4"
                   fontSize="8"
                   fontWeight="600"
                   fontFamily="sans-serif"
@@ -768,18 +764,18 @@ export default function TransportDashboard() {
                 <text
                   x="8"
                   y="13"
-                  fill="#0b1f41"
+                  fill="#181818"
                   fontSize="9.5"
                   fontWeight="700"
                   fontFamily="sans-serif"
                 >
                   Bus MPX-11
                 </text>
-                <circle cx="11" cy="22" r="2.2" fill="#10b981" />
+                <circle cx="11" cy="22" r="2.2" fill="#1062B9" />
                 <text
                   x="17"
                   y="24"
-                  fill="#047857"
+                  fill="#3E3E3E"
                   fontSize="8"
                   fontWeight="600"
                   fontFamily="sans-serif"
@@ -825,18 +821,18 @@ export default function TransportDashboard() {
                 <text
                   x="8"
                   y="14"
-                  fill="#0b1f41"
+                  fill="#181818"
                   fontSize="10"
                   fontWeight="700"
                   fontFamily="sans-serif"
                 >
                   Bus MPX-07
                 </text>
-                <circle cx="12" cy="23" r="2.2" fill="#10b981" />
+                <circle cx="12" cy="23" r="2.2" fill="#1062B9" />
                 <text
                   x="18"
                   y="25"
-                  fill="#047857"
+                  fill="#3E3E3E"
                   fontSize="8.2"
                   fontWeight="600"
                   fontFamily="sans-serif"
@@ -853,7 +849,7 @@ export default function TransportDashboard() {
       {/* 5. FLOATING BUS DETAILS CARD (Bottom-Left) */}
       {/* ========================================================================= */}
       <div className="absolute bottom-3 left-3 z-30 w-[240px] sm:w-[270px] pointer-events-auto">
-        <div className="rounded-[16px] border border-slate-200/90 bg-white/98 p-3 shadow-[0_14px_34px_-8px_rgba(11,31,65,0.2)] backdrop-blur-md transition-all duration-300">
+        <div className="rounded-[16px] border border-slate-200/90 bg-white/98 p-3 shadow-[0_14px_34px_-8px_rgba(24,24,24,0.2)] backdrop-blur-md transition-all duration-300">
           
           {/* Top Row: Thumbnail + Bus ID + On Route Status */}
           <div className="flex items-center gap-2.5">
@@ -871,8 +867,8 @@ export default function TransportDashboard() {
                 <span className="font-display text-sm font-bold text-brand-navy">
                   {selectedBus}
                 </span>
-                <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[0.62rem] font-bold text-emerald-700">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="inline-flex items-center gap-1 rounded-full bg-sky-50 px-2 py-0.5 text-[0.62rem] font-bold text-sky-700">
+                  <span className="h-1.5 w-1.5 rounded-full bg-sky-500 animate-pulse" />
                   {selectedBus === "MPX-03" ? "At Stop" : "On Route"}
                 </span>
               </div>
@@ -939,7 +935,7 @@ export default function TransportDashboard() {
         </div>
         <span className="text-slate-300">|</span>
         <div className="flex items-center gap-1.5">
-          <Check className="h-3 w-3 text-emerald-600" strokeWidth={3} />
+          <Check className="h-3 w-3 text-sky-600" strokeWidth={3} />
           <span>Completed Stop</span>
         </div>
         <span className="text-slate-300">|</span>

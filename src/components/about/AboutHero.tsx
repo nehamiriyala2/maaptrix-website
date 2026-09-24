@@ -37,9 +37,9 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 function LifecyclePanel() {
   return (
-    <div className="relative w-full overflow-hidden rounded-[26px] border border-[#3B8BFF]/45 bg-[linear-gradient(160deg,rgba(14,38,78,0.94)_0%,rgba(9,27,58,0.95)_45%,rgba(6,20,44,0.97)_100%)] p-5 text-white shadow-[0_40px_80px_-24px_rgba(6,20,44,0.7),0_0_0_1px_rgba(255,255,255,0.04),0_0_42px_rgba(20,125,255,0.28)] backdrop-blur-xl sm:p-6 xl:px-7 xl:pb-6 xl:pt-7">
+    <div className="relative w-full overflow-hidden rounded-[26px] border border-[#3B8BFF]/45 bg-[linear-gradient(160deg,rgba(29,29,29,0.94)_0%,rgba(21,21,21,0.95)_45%,rgba(16,16,16,0.97)_100%)] p-5 text-white shadow-[0_40px_80px_-24px_rgba(16,16,16,0.7),0_0_0_1px_rgba(255,255,255,0.04),0_0_42px_rgba(20,125,255,0.28)] backdrop-blur-xl sm:p-6 xl:px-7 xl:pb-6 xl:pt-7">
       <div className="pointer-events-none absolute -right-16 -top-20 h-64 w-64 rounded-full bg-[#147DFF]/25 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-24 -left-10 h-64 w-64 rounded-full bg-cyan-400/10 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-24 -left-10 h-64 w-64 rounded-full bg-sky-400/10 blur-3xl" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
 
       {/* Header */}
@@ -75,16 +75,16 @@ function LifecyclePanel() {
             >
               <span
                 aria-hidden
-                className="absolute -left-8 top-1/2 flex h-4 w-4 -translate-y-1/2 items-center justify-center rounded-full bg-[#0B1F41] ring-2 ring-[#5EC8FF]/80 shadow-[0_0_10px_rgba(94,200,255,0.8)] sm:-left-9 sm:h-5 sm:w-5"
+                className="absolute -left-8 top-1/2 flex h-4 w-4 -translate-y-1/2 items-center justify-center rounded-full bg-[#181818] ring-2 ring-[#5EC8FF]/80 shadow-[0_0_10px_rgba(94,200,255,0.8)] sm:-left-9 sm:h-5 sm:w-5"
               >
                 <span className="h-1.5 w-1.5 rounded-full bg-[#8ED8FF] sm:h-2 sm:w-2" />
               </span>
 
               <div className="flex items-center gap-3 rounded-[14px] border border-white/[0.09] bg-white/[0.055] px-3 py-2.5 transition-colors duration-300 group-hover:border-[#3B8BFF]/60 group-hover:bg-white/[0.09] sm:gap-4 sm:px-4 xl:min-h-[68px]">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#1B3B6E] text-[13px] font-semibold text-white ring-1 ring-white/10 sm:h-[42px] sm:w-[42px] sm:text-[15px]">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#444444] text-[13px] font-semibold text-white ring-1 ring-white/10 sm:h-[42px] sm:w-[42px] sm:text-[15px]">
                   {node.step}
                 </span>
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[linear-gradient(145deg,#2466C8,#17478F)] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] sm:h-[42px] sm:w-[42px]">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[linear-gradient(145deg,#2466C8,#535353)] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] sm:h-[42px] sm:w-[42px]">
                   <Icon className="h-[18px] w-[18px] sm:h-5 sm:w-5" strokeWidth={2.2} />
                 </span>
                 <span className="min-w-0 flex-1">
@@ -156,7 +156,7 @@ export default function AboutHero() {
                 </span>
               </h1>
 
-              <p className="mt-6 max-w-[640px] text-[17px] leading-[1.55] text-[#3D4F6B] sm:text-[19px] xl:text-[20px]">
+              <p className="mt-6 max-w-[640px] text-[17px] leading-[1.55] text-[#545454] sm:text-[19px] xl:text-[20px]">
                 Maaptrix Private Limited is a technology company focused on building and managing its own
                 software products. We identify real-world challenges, create purpose-built digital solutions
                 and deliver them to customers through subscription plans.
@@ -172,7 +172,7 @@ export default function AboutHero() {
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.2 + i * 0.08, ease: EASE }}
-                    className="flex items-start gap-3.5 rounded-[20px] sm:flex-col sm:gap-3 2xl:flex-row 2xl:gap-3.5 border border-white bg-white/90 p-4 shadow-[0_18px_40px_-20px_rgba(20,70,150,0.35),0_2px_6px_rgba(20,70,150,0.05)] backdrop-blur-md transition-transform duration-300 hover:-translate-y-0.5 sm:p-[18px]"
+                    className="flex items-start gap-3.5 rounded-[20px] sm:flex-col sm:gap-3 2xl:flex-row 2xl:gap-3.5 border border-white bg-white/90 p-4 shadow-[0_18px_40px_-20px_rgba(85,85,85,0.35),0_2px_6px_rgba(85,85,85,0.05)] backdrop-blur-md transition-transform duration-300 hover:-translate-y-0.5 sm:p-[18px]"
                   >
                     <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[14px] bg-[linear-gradient(145deg,#EEF5FF,#DCEBFF)]">
                       <Icon className="h-[26px] w-[26px] text-brand-blue" fill="#147DFF" fillOpacity={0.2} strokeWidth={2.2} />
@@ -210,7 +210,7 @@ export default function AboutHero() {
             </div>
 
             {/* Mobile / tablet scene */}
-            <div className="relative -mx-2 h-[340px] overflow-hidden rounded-[28px] shadow-[0_24px_50px_-28px_rgba(11,31,65,0.45)] sm:mx-0 sm:h-[440px] xl:hidden">
+            <div className="relative -mx-2 h-[340px] overflow-hidden rounded-[28px] shadow-[0_24px_50px_-28px_rgba(24,24,24,0.45)] sm:mx-0 sm:h-[440px] xl:hidden">
               <Image src={CAMPUS} alt="Maaptrix headquarters campus" fill sizes="100vw" className="object-cover object-[82%_40%]" />
             </div>
 

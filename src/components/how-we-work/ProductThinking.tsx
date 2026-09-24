@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle2, Code2, HeartHandshake, Layers, PenTool, RefreshCw, Search, ShieldCheck, Sparkles } from "lucide-react";
+import { CheckCircle2, PenTool, RefreshCw, Search, ShieldCheck } from "lucide-react";
 import Reveal from "@/components/Reveal";
 
 const PRINCIPLES = [
@@ -20,7 +20,7 @@ const PRINCIPLES = [
     description:
       "Interfaces must serve daily frontline staff, drivers, and parents without friction, lengthy manuals, or steep learning curves.",
     icon: PenTool,
-    accent: "indigo-600",
+    accent: "sky-600",
   },
   {
     num: "03",
@@ -29,7 +29,7 @@ const PRINCIPLES = [
     description:
       "We engineer modular, reliable cloud backends and responsive applications built to withstand everyday operational use with high dependability.",
     icon: ShieldCheck,
-    accent: "cyan-600",
+    accent: "sky-600",
   },
   {
     num: "04",
@@ -103,10 +103,10 @@ export default function ProductThinking() {
               <div className="h-full rounded-2xl sm:rounded-3xl border border-[#CCE5FF] bg-gradient-to-br from-[#F8FCFF] to-white p-6 sm:p-8 shadow-xs flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-mono font-bold text-indigo-600 uppercase bg-indigo-50 px-2.5 py-1 rounded-md">
+                    <span className="text-xs font-mono font-bold text-sky-600 uppercase bg-sky-50 px-2.5 py-1 rounded-md">
                       Principle 02
                     </span>
-                    <PenTool className="h-5 w-5 text-indigo-600" />
+                    <PenTool className="h-5 w-5 text-sky-600" />
                   </div>
                   <h3 className="mt-4 font-display text-xl sm:text-2xl font-bold text-brand-navy">
                     Design for the User
@@ -117,7 +117,7 @@ export default function ProductThinking() {
                   </p>
                 </div>
                 <div className="mt-6 pt-4 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-brand-navy">
-                  <CheckCircle2 className="h-4 w-4 text-indigo-600" />
+                  <CheckCircle2 className="h-4 w-4 text-sky-600" />
                   <span>Intuitive role-based user experiences</span>
                 </div>
               </div>
@@ -130,10 +130,10 @@ export default function ProductThinking() {
               <div className="h-full rounded-2xl sm:rounded-3xl border border-[#CCE5FF] bg-gradient-to-br from-[#F8FCFF] to-white p-6 sm:p-8 shadow-xs flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-mono font-bold text-cyan-700 uppercase bg-cyan-50 px-2.5 py-1 rounded-md">
+                    <span className="text-xs font-mono font-bold text-sky-700 uppercase bg-sky-50 px-2.5 py-1 rounded-md">
                       Principle 03
                     </span>
-                    <ShieldCheck className="h-5 w-5 text-cyan-600" />
+                    <ShieldCheck className="h-5 w-5 text-sky-600" />
                   </div>
                   <h3 className="mt-4 font-display text-xl sm:text-2xl font-bold text-brand-navy">
                     Build Responsibly
@@ -144,7 +144,7 @@ export default function ProductThinking() {
                   </p>
                 </div>
                 <div className="mt-6 pt-4 border-t border-slate-100 flex items-center gap-2 text-xs font-semibold text-brand-navy">
-                  <CheckCircle2 className="h-4 w-4 text-cyan-600" />
+                  <CheckCircle2 className="h-4 w-4 text-sky-600" />
                   <span>Clean architecture &amp; data privacy standards</span>
                 </div>
               </div>

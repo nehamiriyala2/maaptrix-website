@@ -75,7 +75,7 @@ const CTA_STYLES = {
 
 function Dashboard() {
   return (
-    <div className="relative flex h-[470px] w-[640px] overflow-hidden rounded-[28px] border border-[#DCEEFF] bg-white shadow-[0_25px_60px_rgba(11,31,65,0.10),0_50px_90px_-40px_rgba(11,31,65,0.35)]">
+    <div className="relative flex h-[470px] w-[640px] overflow-hidden rounded-[28px] border border-[#DCEEFF] bg-white shadow-[0_25px_60px_rgba(24,24,24,0.10),0_50px_90px_-40px_rgba(24,24,24,0.35)]">
       {/* Dark sidebar */}
       <div className="flex w-[160px] shrink-0 flex-col rounded-l-[24px] bg-brand-navy px-3.5 py-6">
         <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-white p-1.5">
@@ -129,7 +129,7 @@ function Dashboard() {
             <p className="text-[14px] font-bold text-brand-navy">What&apos;s Included</p>
             <ul className="mt-3 space-y-2.5">
               {["Ongoing product updates", "Dedicated support", "Continuous improvements"].map((t) => (
-                <li key={t} className="flex items-center gap-2 text-[12.5px] text-[#3D4F6B]">
+                <li key={t} className="flex items-center gap-2 text-[12.5px] text-[#545454]">
                   <CheckCircle2 className="h-4 w-4 shrink-0 text-white" fill="#147DFF" strokeWidth={2.4} />
                   {t}
                 </li>
@@ -137,7 +137,7 @@ function Dashboard() {
             </ul>
           </div>
           <div className="relative rounded-2xl border border-[#EEF3FA] p-3">
-            <span className="absolute left-1/2 top-2.5 -translate-x-1/2 whitespace-nowrap rounded-lg border border-[#DCEEFF] bg-white px-2.5 py-1 text-[11px] font-semibold text-brand-blue shadow-[0_6px_14px_-8px_rgba(20,70,150,0.4)]">
+            <span className="absolute left-1/2 top-2.5 -translate-x-1/2 whitespace-nowrap rounded-lg border border-[#DCEEFF] bg-white px-2.5 py-1 text-[11px] font-semibold text-brand-blue shadow-[0_6px_14px_-8px_rgba(85,85,85,0.4)]">
               Product Improvement
             </span>
             <svg viewBox="0 0 220 110" className="absolute inset-x-3 bottom-3 h-[92px] w-[calc(100%-24px)]" preserveAspectRatio="none" aria-hidden>
@@ -173,7 +173,7 @@ function FloatBenefit({ icon: I, children, className, delay }: { icon: Icon; chi
       <motion.div
         animate={{ y: [0, -4, 0] }}
         transition={{ duration: 5 + delay * 2, repeat: Infinity, ease: "easeInOut" }}
-        className="flex items-center gap-3 rounded-full border border-[#DCEEFF] bg-white py-2 pl-2 pr-5 shadow-[0_18px_40px_-20px_rgba(11,31,65,0.35)]"
+        className="flex items-center gap-3 rounded-full border border-[#DCEEFF] bg-white py-2 pl-2 pr-5 shadow-[0_18px_40px_-20px_rgba(24,24,24,0.35)]"
       >
         <span className="flex h-[54px] w-[54px] items-center justify-center rounded-full bg-[#EAF3FF]">
           <I className="h-7 w-7 text-brand-blue" strokeWidth={2.3} />

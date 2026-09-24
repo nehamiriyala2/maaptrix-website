@@ -147,7 +147,7 @@ export default function AboutMissionVision() {
                 const Art = pillar.art;
                 return (
                   <Reveal key={pillar.title} delay={idx * 0.08} className="h-full">
-                    <div className="group flex h-full flex-col rounded-[28px] border border-[#DCE8F7] bg-white/90 p-7 shadow-[0_18px_44px_-24px_rgba(20,70,150,0.3)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_26px_54px_-24px_rgba(20,70,150,0.4)] sm:p-8 2xl:p-10">
+                    <div className="group flex h-full flex-col rounded-[28px] border border-[#DCE8F7] bg-white/90 p-7 shadow-[0_18px_44px_-24px_rgba(85,85,85,0.3)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_26px_54px_-24px_rgba(85,85,85,0.4)] sm:p-8 2xl:p-10">
                       <span className="flex h-[88px] w-[88px] items-center justify-center rounded-[22px] bg-[linear-gradient(145deg,#F4F9FF_0%,#DDEBFF_100%)] shadow-[0_14px_28px_-14px_rgba(20,125,255,0.55),inset_0_1px_0_#fff] transition-shadow duration-300 group-hover:shadow-[0_16px_34px_-12px_rgba(20,125,255,0.7),inset_0_1px_0_#fff]">
                         <Art />
                       </span>
@@ -162,7 +162,7 @@ export default function AboutMissionVision() {
 
                       <ul className="space-y-3.5">
                         {pillar.points.map((point) => (
-                          <li key={point} className="flex items-center gap-3 text-[16px] text-[#3D4F6B] xl:text-[17px]">
+                          <li key={point} className="flex items-center gap-3 text-[16px] text-[#545454] xl:text-[17px]">
                             <CheckDot />
                             {point}
                           </li>
@@ -191,11 +191,11 @@ export default function AboutMissionVision() {
       <section className="relative overflow-hidden bg-white py-12 sm:py-16 lg:py-20 border-b border-slate-100">
         <div className="page-container">
           <Reveal>
-            <div className="relative overflow-hidden rounded-[26px] sm:rounded-[32px] border border-slate-800/80 bg-gradient-to-br from-[#061427] via-[#0B1F41] to-[#040D1A] p-7 sm:p-10 lg:p-14 text-white shadow-[0_24px_50px_-12px_rgba(11,31,65,0.35)]">
+            <div className="relative overflow-hidden rounded-[26px] sm:rounded-[32px] border border-slate-800/80 bg-gradient-to-br from-[#0E0E0E] via-[#181818] to-[#090909] p-7 sm:p-10 lg:p-14 text-white shadow-[0_24px_50px_-12px_rgba(24,24,24,0.35)]">
               
               {/* Subtle ambient lighting */}
               <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-brand-blue/20 blur-3xl" />
-              <div className="pointer-events-none absolute -left-20 -bottom-20 h-72 w-72 rounded-full bg-cyan-400/15 blur-3xl" />
+              <div className="pointer-events-none absolute -left-20 -bottom-20 h-72 w-72 rounded-full bg-sky-400/15 blur-3xl" />
 
               <div className="relative z-10 max-w-3xl">
                 {/* Vision Eyebrow */}

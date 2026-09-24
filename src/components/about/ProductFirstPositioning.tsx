@@ -20,9 +20,9 @@ const script = Caveat({ subsets: ["latin"], weight: ["500", "600"], display: "sw
 
 const TONES = {
   blue: { accent: "#147DFF", soft: "#EEF5FF", chip: "#DCEBFF", border: "#DCE9FB" },
-  green: { accent: "#16A34A", soft: "#EDF9F1", chip: "#D5F2E0", border: "#D8F0E1" },
-  purple: { accent: "#8B5CF6", soft: "#F4EFFE", chip: "#E7DDFD", border: "#E6DDFB" },
-  orange: { accent: "#F97316", soft: "#FFF4EA", chip: "#FFE3CC", border: "#FBE3CF" },
+  green: { accent: "#165AA3", soft: "#ECF3FA", chip: "#D4E3F3", border: "#D5E4F3" },
+  purple: { accent: "#5CA6F6", soft: "#EFF6FE", chip: "#DDECFD", border: "#DDECFB" },
+  orange: { accent: "#1684F9", soft: "#EBF4FE", chip: "#CDE5FE", border: "#CFE4FB" },
 } as const;
 
 const LIFECYCLE_STEPS = [
@@ -130,7 +130,7 @@ export default function ProductFirstPositioning() {
               <h2 className="mt-6 font-display text-[44px] font-extrabold leading-[1] tracking-[-0.035em] text-brand-navy sm:text-[58px] xl:text-[clamp(56px,4.4vw,70px)]">
                 What We <span className="text-brand-blue">Do</span>
               </h2>
-              <p className="mt-2 font-display text-[28px] font-semibold leading-[1.15] tracking-[-0.02em] text-[#33456A] sm:text-[38px] xl:text-[clamp(36px,2.9vw,46px)]">
+              <p className="mt-2 font-display text-[28px] font-semibold leading-[1.15] tracking-[-0.02em] text-[#4E4E4E] sm:text-[38px] xl:text-[clamp(36px,2.9vw,46px)]">
                 Built as a{" "}
                 <span className="bg-gradient-to-r from-[#147DFF] to-[#0F63CC] bg-clip-text text-transparent">
                   Product Company
@@ -173,7 +173,7 @@ export default function ProductFirstPositioning() {
                 </div>
 
                 {/* Floating delivery card */}
-                <div className="absolute bottom-[6%] left-[4%] w-[210px] rounded-[20px] border border-white/90 bg-white/75 p-3.5 sm:rounded-[26px] sm:p-5 shadow-[0_24px_48px_-20px_rgba(20,70,150,0.45),inset_0_1px_0_#fff] ring-1 ring-[#CFE2FB] backdrop-blur-xl sm:left-[14%] sm:w-[310px] sm:-rotate-[3deg]">
+                <div className="absolute bottom-[6%] left-[4%] w-[210px] rounded-[20px] border border-white/90 bg-white/75 p-3.5 sm:rounded-[26px] sm:p-5 shadow-[0_24px_48px_-20px_rgba(85,85,85,0.45),inset_0_1px_0_#fff] ring-1 ring-[#CFE2FB] backdrop-blur-xl sm:left-[14%] sm:w-[310px] sm:-rotate-[3deg]">
                   <div className="flex items-center gap-4">
                     <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl sm:h-[54px] sm:w-[54px] bg-[linear-gradient(145deg,#EEF5FF,#D6E8FF)]">
                       <BarChart3 className="h-7 w-7 text-brand-blue" strokeWidth={2.4} />
@@ -194,7 +194,7 @@ export default function ProductFirstPositioning() {
 
           {/* ---------- Lifecycle panel ---------- */}
           <Reveal delay={0.1} className="mt-8 xl:mt-6">
-            <div className="rounded-[30px] border border-white bg-white/70 p-5 shadow-[0_30px_60px_-30px_rgba(20,70,150,0.35),inset_0_1px_0_#fff] backdrop-blur-xl sm:p-7">
+            <div className="rounded-[30px] border border-white bg-white/70 p-5 shadow-[0_30px_60px_-30px_rgba(85,85,85,0.35),inset_0_1px_0_#fff] backdrop-blur-xl sm:p-7">
               <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
                 <span className="flex items-center gap-3">
                   <Layers className="h-7 w-7 text-brand-blue" strokeWidth={2} />
@@ -222,7 +222,7 @@ export default function ProductFirstPositioning() {
                           <FlowArrow />
                         </span>
                       )}
-                      <div className="group flex min-w-0 flex-1 flex-col rounded-[22px] border border-[var(--tone-border)] bg-[linear-gradient(170deg,var(--tone-soft)_0%,rgba(255,255,255,0.92)_60%)] p-5 xl:p-4 2xl:p-5 shadow-[0_14px_30px_-20px_rgba(20,70,150,0.4)] transition-transform duration-300 hover:-translate-y-1 xl:min-h-[262px]">
+                      <div className="group flex min-w-0 flex-1 flex-col rounded-[22px] border border-[var(--tone-border)] bg-[linear-gradient(170deg,var(--tone-soft)_0%,rgba(255,255,255,0.92)_60%)] p-5 xl:p-4 2xl:p-5 shadow-[0_14px_30px_-20px_rgba(85,85,85,0.4)] transition-transform duration-300 hover:-translate-y-1 xl:min-h-[262px]">
                         <div className="flex items-center justify-between">
                           <span className="font-display text-[28px] font-medium leading-none text-[var(--tone)] opacity-80">
                             {s.step}

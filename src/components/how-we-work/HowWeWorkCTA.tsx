@@ -7,10 +7,10 @@ import Reveal from "@/components/Reveal";
 export default function HowWeWorkCTA() {
   return (
     <section className="relative overflow-hidden bg-white page-container py-14 sm:py-18 lg:py-24">
-      <div className="relative overflow-hidden rounded-[26px] sm:rounded-[32px] border border-slate-800/80 bg-gradient-to-br from-[#061427] via-[#0B1F41] to-[#040D1A] p-7 sm:p-10 lg:p-14 text-white shadow-[0_24px_50px_-12px_rgba(11,31,65,0.35)]">
+      <div className="relative overflow-hidden rounded-[26px] sm:rounded-[32px] border border-slate-800/80 bg-gradient-to-br from-[#0E0E0E] via-[#181818] to-[#090909] p-7 sm:p-10 lg:p-14 text-white shadow-[0_24px_50px_-12px_rgba(24,24,24,0.35)]">
         {/* Ambient Glow */}
         <div className="pointer-events-none absolute -left-20 top-0 h-64 w-64 rounded-full bg-brand-blue/15 blur-3xl" />
-        <div className="pointer-events-none absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl" />
+        <div className="pointer-events-none absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-sky-400/10 blur-3xl" />
 
         <Reveal>
           <div className="relative mx-auto max-w-3xl text-center">

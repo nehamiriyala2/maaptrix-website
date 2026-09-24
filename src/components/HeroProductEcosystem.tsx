@@ -41,7 +41,7 @@ export default function HeroProductEcosystem() {
           <div className="pointer-events-none absolute inset-y-0 left-0 w-24 sm:w-32 bg-gradient-to-r from-white/40 via-white/10 to-transparent" />
           
           {/* Subtle bottom vignette */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0B1F41]/20 to-transparent" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#181818]/20 to-transparent" />
         </div>
 
         {/* ===================================================================== */}
@@ -52,7 +52,7 @@ export default function HeroProductEcosystem() {
         <motion.div
           animate={reduceMotion ? {} : { y: [0, -4, 0] }}
           transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute left-3.5 sm:left-6 top-4 sm:top-7 z-20 rounded-2xl border border-white/90 bg-white/95 backdrop-blur-md p-2.5 sm:p-3 shadow-[0_12px_28px_-6px_rgba(11,31,65,0.15)]"
+          className="absolute left-3.5 sm:left-6 top-4 sm:top-7 z-20 rounded-2xl border border-white/90 bg-white/95 backdrop-blur-md p-2.5 sm:p-3 shadow-[0_12px_28px_-6px_rgba(24,24,24,0.15)]"
         >
           <div className="flex flex-col items-center text-center">
             <div className="flex h-6 w-6 sm:h-7 sm:w-7 items-center justify-center rounded-lg bg-brand-blue-light text-brand-blue mb-1">
@@ -74,9 +74,9 @@ export default function HeroProductEcosystem() {
         <motion.div
           animate={reduceMotion ? {} : { y: [0, 4, 0] }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-          className="absolute right-3.5 sm:right-6 top-6 sm:top-8 z-20 flex items-center gap-2 rounded-full border border-white/90 bg-white/95 backdrop-blur-md px-3 sm:px-3.5 py-1.5 shadow-[0_10px_25px_-5px_rgba(11,31,65,0.14)]"
+          className="absolute right-3.5 sm:right-6 top-6 sm:top-8 z-20 flex items-center gap-2 rounded-full border border-white/90 bg-white/95 backdrop-blur-md px-3 sm:px-3.5 py-1.5 shadow-[0_10px_25px_-5px_rgba(24,24,24,0.14)]"
         >
-          <span className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+          <span className="flex h-5 w-5 items-center justify-center rounded-full bg-sky-50 text-sky-600">
             <ShieldCheck className="h-3.5 w-3.5" />
           </span>
           <div className="text-[0.62rem] sm:text-[0.68rem] leading-tight text-left">
@@ -93,7 +93,7 @@ export default function HeroProductEcosystem() {
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
           className="absolute left-[32%] sm:left-[36%] top-[48%] sm:top-[50%] z-20 flex items-center gap-2 rounded-full border border-white/95 bg-white/95 backdrop-blur-md px-3 sm:px-3.5 py-1.5 shadow-lg"
         >
-          <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="h-2 w-2 rounded-full bg-sky-500 animate-pulse" />
           <div className="text-[0.62rem] sm:text-[0.68rem] leading-tight text-left">
             <span className="block font-bold text-slate-400 uppercase tracking-wider text-[0.52rem]">
               LIVE OPS
@@ -123,7 +123,7 @@ export default function HeroProductEcosystem() {
         <motion.div
           animate={reduceMotion ? {} : { y: [0, -3, 0] }}
           transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
-          className="absolute right-3.5 sm:right-6 bottom-3.5 sm:bottom-6 z-20 flex items-center gap-2.5 sm:gap-3 rounded-2xl border border-white/90 bg-white/95 backdrop-blur-md p-2.5 sm:p-3 shadow-[0_16px_36px_-8px_rgba(11,31,65,0.2)]"
+          className="absolute right-3.5 sm:right-6 bottom-3.5 sm:bottom-6 z-20 flex items-center gap-2.5 sm:gap-3 rounded-2xl border border-white/90 bg-white/95 backdrop-blur-md p-2.5 sm:p-3 shadow-[0_16px_36px_-8px_rgba(24,24,24,0.2)]"
         >
           <div className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-xl bg-brand-blue-light text-brand-blue border border-brand-blue/20">
             <BarChart3 className="h-4 w-4 sm:h-4.5 sm:w-4.5" />

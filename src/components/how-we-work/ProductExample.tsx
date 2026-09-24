@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Bus, CheckCircle2, MapPin, RefreshCw, ShieldCheck, Smartphone, Users } from "lucide-react";
+import { ArrowRight, Bus, MapPin, RefreshCw, Users } from "lucide-react";
 import Reveal from "@/components/Reveal";
 
 export default function ProductExample() {
@@ -36,10 +36,10 @@ export default function ProductExample() {
             <div className="h-full rounded-2xl border border-[#CCE5FF] bg-white p-6 shadow-2xs flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-[0.68rem] font-mono font-bold text-rose-500 uppercase">
+                  <span className="text-[0.68rem] font-mono font-bold text-sky-500 uppercase">
                     Stage 01
                   </span>
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-rose-50 text-rose-600">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sky-50 text-sky-600">
                     <Bus className="h-4 w-4" />
                   </div>
                 </div>
@@ -96,10 +96,10 @@ export default function ProductExample() {
             <div className="h-full rounded-2xl border border-[#CCE5FF] bg-white p-6 shadow-2xs flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-[0.68rem] font-mono font-bold text-indigo-600 uppercase">
+                  <span className="text-[0.68rem] font-mono font-bold text-sky-600 uppercase">
                     Stage 03
                   </span>
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-50 text-indigo-600">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sky-50 text-sky-600">
                     <Users className="h-4 w-4" />
                   </div>
                 </div>
@@ -156,7 +156,7 @@ export default function ProductExample() {
         {/* Action link */}
         <div className="mt-10 text-center">
           <Link
-            href="/products#transport"
+            href="/products/school-transport"
             className="inline-flex items-center gap-2 text-sm font-semibold text-brand-blue hover:text-brand-blue-dark transition-colors"
           >
             <span>Explore the School Transport Management System</span>

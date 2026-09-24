@@ -19,25 +19,25 @@ const ROLES: { icon: Icon; title: string; desc: string; card: string; chip: stri
     icon: Car,
     title: "Driver",
     desc: "Simplified mobile flow for routes & attendance.",
-    card: "bg-[#F3FBF7] border-[#D6F0E3]",
-    chip: "bg-[#DCF3E7]",
-    ink: "text-emerald-600",
+    card: "bg-[#F3F7FB] border-[#D4E2F2]",
+    chip: "bg-[#DBE7F4]",
+    ink: "text-sky-600",
   },
   {
     icon: Users,
     title: "Parent",
     desc: "Real-time alerts, live map & pickup status.",
-    card: "bg-[#F8F5FF] border-[#E6DEFB]",
-    chip: "bg-[#ECE4FD]",
-    ink: "text-violet-600",
+    card: "bg-[#F5FAFF] border-[#DEECFB]",
+    chip: "bg-[#E4F0FD]",
+    ink: "text-sky-600",
   },
   {
     icon: FileText,
     title: "Staff",
     desc: "Clean everyday administration workflows.",
-    card: "bg-[#FFF8F2] border-[#FBE5D2]",
-    chip: "bg-[#FFE9D6]",
-    ink: "text-orange-500",
+    card: "bg-[#F2F8FF] border-[#D2E6FB]",
+    chip: "bg-[#D7EAFE]",
+    ink: "text-sky-500",
   },
 ];
 
@@ -75,7 +75,7 @@ export default function UsabilityFocusSection() {
               aria-hidden
             />
 
-            <div className="relative rounded-[26px] border border-[#DCEEFF] bg-white p-5 shadow-[0_20px_60px_rgba(11,31,65,0.08)] sm:p-8">
+            <div className="relative rounded-[26px] border border-[#DCEEFF] bg-white p-5 shadow-[0_20px_60px_rgba(24,24,24,0.08)] sm:p-8">
               <div className="flex items-center gap-4">
                 <span className="h-[2.5px] w-12 rounded-full bg-brand-blue" />
                 <span className="text-[13px] font-bold uppercase tracking-[0.08em] text-brand-blue sm:text-[14px]">

@@ -5,7 +5,7 @@ import ProductQuickLinks from "@/components/contact/ProductQuickLinks";
 import ContactCTA from "@/components/contact/ContactCTA";
 
 export const metadata: Metadata = {
-  title: "Contact Maaptrix | Request a Product Demo",
+  title: "Contact Us",
   description:
     "Contact Maaptrix to learn more about its practical software products for real-world operations or request a product demonstration.",
 };

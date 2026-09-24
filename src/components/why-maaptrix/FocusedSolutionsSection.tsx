@@ -61,7 +61,7 @@ function FloatCard({ className, delay, float, children }: { className: string; d
       <motion.div
         animate={{ y: [0, -4, 0] }}
         transition={{ duration: 5 + float, repeat: Infinity, ease: "easeInOut", delay: float }}
-        className="rounded-[20px] border border-[#DCEEFF] bg-white shadow-[0_22px_46px_-20px_rgba(11,31,65,0.28)]"
+        className="rounded-[20px] border border-[#DCEEFF] bg-white shadow-[0_22px_46px_-20px_rgba(24,24,24,0.28)]"
       >
         {children}
       </motion.div>
@@ -109,11 +109,11 @@ function WorkflowVisual() {
         >
           <div className="absolute inset-0 -translate-x-3 translate-y-3 rounded-[26px] border border-[#DCEEFF] bg-white/40" />
           <div className="absolute inset-0 -translate-x-1.5 translate-y-1.5 rounded-[26px] border border-[#DCEEFF] bg-white/55" />
-          <div className="relative space-y-3.5 rounded-[26px] border border-[#DCEEFF] bg-white/90 p-4 shadow-[0_30px_60px_-30px_rgba(11,31,65,0.3)] backdrop-blur-md">
+          <div className="relative space-y-3.5 rounded-[26px] border border-[#DCEEFF] bg-white/90 p-4 shadow-[0_30px_60px_-30px_rgba(24,24,24,0.3)] backdrop-blur-md">
             {ROWS.map(({ letter, icon: I, title, desc }) => (
               <div
                 key={letter}
-                className="group relative flex h-[94px] items-center gap-4 overflow-hidden rounded-[17px] border border-[#DCEEFF] bg-[#FDFEFF] pl-6 pr-5 shadow-[0_10px_24px_-20px_rgba(11,31,65,0.4)]"
+                className="group relative flex h-[94px] items-center gap-4 overflow-hidden rounded-[17px] border border-[#DCEEFF] bg-[#FDFEFF] pl-6 pr-5 shadow-[0_10px_24px_-20px_rgba(24,24,24,0.4)]"
               >
                 <span className="absolute inset-y-3 left-0 w-[4px] rounded-r-full bg-brand-blue" aria-hidden />
                 <span className="flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-[14px] bg-[#EAF3FF] font-display text-[17px] font-bold text-brand-blue">

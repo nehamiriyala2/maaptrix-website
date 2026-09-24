@@ -6,7 +6,6 @@ import ProductFirstPositioning from "@/components/about/ProductFirstPositioning"
 import WhereWeStart from "@/components/about/WhereWeStart";
 import AboutMissionVision from "@/components/about/AboutMissionVision";
 import AboutCoreValues from "@/components/about/AboutCoreValues";
-import AboutLifecycleSummary from "@/components/about/AboutLifecycleSummary";
 import AboutCTA from "@/components/about/AboutCTA";
 
 export const metadata: Metadata = {
@@ -25,7 +24,6 @@ export default function AboutPage() {
       <WhereWeStart />
       <AboutMissionVision />
       <AboutCoreValues />
-      <AboutLifecycleSummary />
       <AboutCTA />
     </>
   );

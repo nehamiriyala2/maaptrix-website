@@ -75,7 +75,7 @@ const BARS = [18, 26, 34, 30, 44, 50, 46, 58, 64, 72, 80];
 function Dashboard() {
   return (
     <div
-      className="relative flex overflow-hidden rounded-[30px] border border-[#DCE7F5] bg-white/95 shadow-[0_50px_90px_-40px_rgba(20,70,150,0.45),0_2px_8px_rgba(20,70,150,0.06)]"
+      className="relative flex overflow-hidden rounded-[30px] border border-[#DCE7F5] bg-white/95 shadow-[0_50px_90px_-40px_rgba(85,85,85,0.45),0_2px_8px_rgba(85,85,85,0.06)]"
       style={{ width: DASH_W, height: DASH_H }}
     >
       {/* Sidebar */}
@@ -107,7 +107,7 @@ function Dashboard() {
 
         <div className="grid grid-cols-3 gap-3">
           {STATS.map(({ value, label, icon: Icon }) => (
-            <div key={label} className="flex items-center justify-between rounded-2xl border border-[#EEF3FA] bg-white p-3.5 shadow-[0_6px_16px_-10px_rgba(20,70,150,0.3)]">
+            <div key={label} className="flex items-center justify-between rounded-2xl border border-[#EEF3FA] bg-white p-3.5 shadow-[0_6px_16px_-10px_rgba(85,85,85,0.3)]">
               <div>
                 <p className="font-display text-[22px] font-bold leading-none text-brand-navy">{value}</p>
                 <p className="mt-1.5 text-[11px] text-[#6A7A95]">{label}</p>
@@ -151,7 +151,7 @@ function Dashboard() {
                 <svg viewBox="0 0 42 42" className="h-full w-full -rotate-90">
                   <circle cx="21" cy="21" r="16" fill="none" stroke="#EAF3FF" strokeWidth="5" />
                   <circle cx="21" cy="21" r="16" fill="none" stroke="#147DFF" strokeWidth="5" strokeDasharray="85.5 100.5" strokeLinecap="round" />
-                  <circle cx="21" cy="21" r="16" fill="none" stroke="#FDBA74" strokeWidth="5" strokeDasharray="8 100.5" strokeDashoffset="-88" strokeLinecap="round" />
+                  <circle cx="21" cy="21" r="16" fill="none" stroke="#76B6FB" strokeWidth="5" strokeDasharray="8 100.5" strokeDashoffset="-88" strokeLinecap="round" />
                 </svg>
                 <span className="absolute inset-0 flex items-center justify-center font-display text-[20px] font-bold text-brand-navy">85%</span>
               </div>
@@ -159,7 +159,7 @@ function Dashboard() {
                 {[
                   ["bg-brand-blue", "Active Users"],
                   ["bg-[#6FB0FF]", "Returning Users"],
-                  ["bg-[#FDBA74]", "New Users"],
+                  ["bg-[#76B6FB]", "New Users"],
                 ].map(([c, l]) => (
                   <p key={l} className="flex items-center gap-1.5">
                     <span className={`h-2 w-2 rounded-full ${c}`} />
@@ -177,11 +177,11 @@ function Dashboard() {
             <div className="mt-2.5 space-y-2.5">
               {[
                 { icon: UserRound, t: "New organization onboarded", c: "text-brand-blue bg-[#EAF3FF]", time: "2 hours ago" },
-                { icon: RefreshCw, t: "Feature update released", c: "text-emerald-600 bg-emerald-50", time: "5 hours ago" },
+                { icon: RefreshCw, t: "Feature update released", c: "text-sky-600 bg-sky-50", time: "5 hours ago" },
                 { icon: CircleCheck, t: "Support request resolved", c: "text-brand-blue bg-[#EAF3FF]", time: "1 day ago" },
               ].map(({ icon: Icon, t, c, time }) => (
                 <div key={t} className="flex items-center justify-between text-[11.5px]">
-                  <span className="flex items-center gap-2 text-[#3D4F6B]">
+                  <span className="flex items-center gap-2 text-[#545454]">
                     <span className={`flex h-6 w-6 items-center justify-center rounded-lg ${c}`}>
                       <Icon className="h-3.5 w-3.5" />
                     </span>
@@ -201,10 +201,10 @@ function Dashboard() {
             <div className="mt-2.5 space-y-2.5">
               {[
                 { icon: Wrench, t: "Development", c: "text-brand-blue bg-[#EAF3FF]" },
-                { icon: Settings, t: "Operations", c: "text-emerald-600 bg-emerald-50" },
-                { icon: RefreshCw, t: "Improvement", c: "text-orange-500 bg-orange-50" },
+                { icon: Settings, t: "Operations", c: "text-sky-600 bg-sky-50" },
+                { icon: RefreshCw, t: "Improvement", c: "text-sky-500 bg-sky-50" },
               ].map(({ icon: Icon, t, c }) => (
-                <p key={t} className="flex items-center gap-2 text-[11.5px] text-[#3D4F6B]">
+                <p key={t} className="flex items-center gap-2 text-[11.5px] text-[#545454]">
                   <span className={`flex h-6 w-6 items-center justify-center rounded-lg ${c}`}>
                     <Icon className="h-3.5 w-3.5" />
                   </span>
@@ -259,7 +259,7 @@ function HeroVisual() {
           transition={{ duration: 0.7, delay: 0.5, ease: EASE }}
           className="absolute bottom-[6px] right-[10px] -rotate-[10deg]"
         >
-          <div className="flex items-center gap-4 rounded-[24px] border border-white bg-white/75 px-6 py-5 shadow-[0_28px_50px_-22px_rgba(20,70,150,0.55)] ring-1 ring-[#D6E7FB] backdrop-blur-xl">
+          <div className="flex items-center gap-4 rounded-[24px] border border-white bg-white/75 px-6 py-5 shadow-[0_28px_50px_-22px_rgba(85,85,85,0.55)] ring-1 ring-[#D6E7FB] backdrop-blur-xl">
             <Rocket className="h-10 w-10 text-brand-blue" fill="#A9D2FF" strokeWidth={1.8} />
             <div>
               <p className="font-display text-[19px] font-semibold leading-tight text-brand-navy">Simple Products</p>
@@ -307,14 +307,14 @@ export default function WhyHero() {
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
                 href="/products"
-                className="group inline-flex h-[60px] items-center justify-center gap-3 rounded-xl bg-brand-navy px-8 text-[17px] font-semibold text-white shadow-[0_14px_28px_-14px_rgba(11,31,65,0.75)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-blue"
+                className="group inline-flex h-[60px] items-center justify-center gap-3 rounded-xl bg-brand-navy px-8 text-[17px] font-semibold text-white shadow-[0_14px_28px_-14px_rgba(24,24,24,0.75)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-blue"
               >
                 Explore Products
                 <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex h-[60px] items-center justify-center rounded-xl border border-[#DCE7F5] bg-white px-8 text-[17px] font-semibold text-brand-navy shadow-[0_8px_20px_-14px_rgba(20,70,150,0.4)] transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-blue hover:text-brand-blue"
+                className="inline-flex h-[60px] items-center justify-center rounded-xl border border-[#DCE7F5] bg-white px-8 text-[17px] font-semibold text-brand-navy shadow-[0_8px_20px_-14px_rgba(85,85,85,0.4)] transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-blue hover:text-brand-blue"
               >
                 Request a Demo
               </Link>

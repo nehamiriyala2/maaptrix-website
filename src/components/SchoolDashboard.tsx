@@ -22,7 +22,7 @@ export default function SchoolDashboard() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   return (
-    <div className="relative w-full overflow-hidden rounded-[24px] lg:rounded-[28px] border border-slate-200/90 bg-[#f7fafe] p-3.5 sm:p-5 lg:p-6 shadow-[0_16px_44px_-12px_rgba(11,31,65,0.1)] select-none transition-all duration-300">
+    <div className="relative w-full overflow-hidden rounded-[24px] lg:rounded-[28px] border border-slate-200/90 bg-[#f7fafe] p-3.5 sm:p-5 lg:p-6 shadow-[0_16px_44px_-12px_rgba(24,24,24,0.1)] select-none transition-all duration-300">
       
       {/* Ambient Radial Background Glow */}
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_50%,rgba(20,125,255,0.07),transparent_70%)]" />
@@ -193,7 +193,7 @@ export default function SchoolDashboard() {
           <div
             onMouseEnter={() => setHoveredCard("student")}
             onMouseLeave={() => setHoveredCard(null)}
-            className="group rounded-[18px] border border-slate-200/90 bg-white p-3.5 shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-blue/50 hover:shadow-[0_12px_24px_-6px_rgba(11,31,65,0.1)]"
+            className="group rounded-[18px] border border-slate-200/90 bg-white p-3.5 shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-blue/50 hover:shadow-[0_12px_24px_-6px_rgba(24,24,24,0.1)]"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2.5">
@@ -229,14 +229,14 @@ export default function SchoolDashboard() {
                     </span>
                   </div>
                 </div>
-                <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[0.62rem] font-bold text-emerald-700">
+                <span className="rounded-full bg-sky-50 px-2 py-0.5 text-[0.62rem] font-bold text-sky-700">
                   Active
                 </span>
               </div>
 
               <div className="flex items-center justify-between rounded-lg bg-slate-50/80 px-2.5 py-1.5 transition-colors hover:bg-brand-blue-light/40">
                 <div className="flex items-center gap-2">
-                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-rose-100 text-[0.62rem] font-bold text-rose-600">
+                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-sky-100 text-[0.62rem] font-bold text-sky-600">
                     DR
                   </div>
                   <div>
@@ -248,14 +248,14 @@ export default function SchoolDashboard() {
                     </span>
                   </div>
                 </div>
-                <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[0.62rem] font-bold text-emerald-700">
+                <span className="rounded-full bg-sky-50 px-2 py-0.5 text-[0.62rem] font-bold text-sky-700">
                   Active
                 </span>
               </div>
 
               <div className="flex items-center justify-between rounded-lg bg-slate-50/80 px-2.5 py-1.5 transition-colors hover:bg-brand-blue-light/40">
                 <div className="flex items-center gap-2">
-                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-amber-100 text-[0.62rem] font-bold text-amber-700">
+                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-sky-100 text-[0.62rem] font-bold text-sky-700">
                     VP
                   </div>
                   <div>
@@ -267,7 +267,7 @@ export default function SchoolDashboard() {
                     </span>
                   </div>
                 </div>
-                <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[0.62rem] font-bold text-emerald-700">
+                <span className="rounded-full bg-sky-50 px-2 py-0.5 text-[0.62rem] font-bold text-sky-700">
                   Active
                 </span>
               </div>
@@ -278,7 +278,7 @@ export default function SchoolDashboard() {
           <div
             onMouseEnter={() => setHoveredCard("academics")}
             onMouseLeave={() => setHoveredCard(null)}
-            className="group rounded-[18px] border border-slate-200/90 bg-white p-3.5 shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-blue/50 hover:shadow-[0_12px_24px_-6px_rgba(11,31,65,0.1)]"
+            className="group rounded-[18px] border border-slate-200/90 bg-white p-3.5 shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-blue/50 hover:shadow-[0_12px_24px_-6px_rgba(24,24,24,0.1)]"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2.5">
@@ -302,18 +302,18 @@ export default function SchoolDashboard() {
             <div className="mt-2.5 flex flex-col divide-y divide-slate-100 border-t border-slate-100 pt-1 text-[0.72rem]">
               <div className="flex items-center justify-between py-1.5">
                 <div className="flex items-center gap-2">
-                  <Calculator className="h-3.5 w-3.5 text-emerald-600" />
+                  <Calculator className="h-3.5 w-3.5 text-sky-600" />
                   <span className="font-semibold text-brand-navy">Mathematics</span>
                 </div>
-                <span className="font-bold text-emerald-600">28/30</span>
+                <span className="font-bold text-sky-600">28/30</span>
               </div>
 
               <div className="flex items-center justify-between py-1.5">
                 <div className="flex items-center gap-2">
-                  <FlaskConical className="h-3.5 w-3.5 text-cyan-600" />
+                  <FlaskConical className="h-3.5 w-3.5 text-sky-600" />
                   <span className="font-semibold text-brand-navy">Science</span>
                 </div>
-                <span className="font-bold text-emerald-600">26/30</span>
+                <span className="font-bold text-sky-600">26/30</span>
               </div>
 
               <div className="flex items-center justify-between py-1.5">
@@ -326,10 +326,10 @@ export default function SchoolDashboard() {
 
               <div className="flex items-center justify-between py-1.5">
                 <div className="flex items-center gap-2">
-                  <Globe className="h-3.5 w-3.5 text-indigo-600" />
+                  <Globe className="h-3.5 w-3.5 text-sky-600" />
                   <span className="font-semibold text-brand-navy">Social Studies</span>
                 </div>
-                <span className="font-bold text-emerald-600">27/30</span>
+                <span className="font-bold text-sky-600">27/30</span>
               </div>
             </div>
           </div>
@@ -338,7 +338,7 @@ export default function SchoolDashboard() {
           <div
             onMouseEnter={() => setHoveredCard("events")}
             onMouseLeave={() => setHoveredCard(null)}
-            className="group rounded-[18px] border border-slate-200/90 bg-white p-3.5 shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-blue/50 hover:shadow-[0_12px_24px_-6px_rgba(11,31,65,0.1)]"
+            className="group rounded-[18px] border border-slate-200/90 bg-white p-3.5 shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-blue/50 hover:shadow-[0_12px_24px_-6px_rgba(24,24,24,0.1)]"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2.5">
@@ -382,7 +382,7 @@ export default function SchoolDashboard() {
             <div className="mt-2 flex flex-col gap-1 text-[0.66rem]">
               <div className="flex items-center justify-between text-slate-600">
                 <div className="flex items-center gap-1.5">
-                  <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-sky-500" />
                   <span>Term 1 Examination</span>
                 </div>
                 <span className="font-semibold text-slate-500 text-[0.62rem]">Sep 10, 2025</span>
@@ -461,7 +461,7 @@ export default function SchoolDashboard() {
           <div
             onMouseEnter={() => setHoveredCard("attendance")}
             onMouseLeave={() => setHoveredCard(null)}
-            className="group rounded-[18px] border border-slate-200/90 bg-white p-3.5 shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-blue/50 hover:shadow-[0_12px_24px_-6px_rgba(11,31,65,0.1)]"
+            className="group rounded-[18px] border border-slate-200/90 bg-white p-3.5 shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-blue/50 hover:shadow-[0_12px_24px_-6px_rgba(24,24,24,0.1)]"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2.5">
@@ -478,8 +478,8 @@ export default function SchoolDashboard() {
                 </div>
               </div>
               <div className="flex items-center gap-1.5">
-                <span className="rounded-lg bg-emerald-50 px-1.5 py-0.5 text-[0.64rem] font-extrabold text-emerald-700 border border-emerald-100">
-                  94% <span className="font-normal text-emerald-600">Overall</span>
+                <span className="rounded-lg bg-sky-50 px-1.5 py-0.5 text-[0.64rem] font-extrabold text-sky-700 border border-sky-100">
+                  94% <span className="font-normal text-sky-600">Overall</span>
                 </span>
                 <div className="flex h-6 w-6 items-center justify-center rounded-full border border-slate-200 text-slate-400 group-hover:border-brand-blue group-hover:bg-brand-blue group-hover:text-white transition-all">
                   <ChevronRight className="h-3.5 w-3.5" />
@@ -520,7 +520,7 @@ export default function SchoolDashboard() {
           <div
             onMouseEnter={() => setHoveredCard("communication")}
             onMouseLeave={() => setHoveredCard(null)}
-            className="group rounded-[18px] border border-slate-200/90 bg-white p-3.5 shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-blue/50 hover:shadow-[0_12px_24px_-6px_rgba(11,31,65,0.1)]"
+            className="group rounded-[18px] border border-slate-200/90 bg-white p-3.5 shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-blue/50 hover:shadow-[0_12px_24px_-6px_rgba(24,24,24,0.1)]"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2.5">
@@ -584,7 +584,7 @@ export default function SchoolDashboard() {
           <div
             onMouseEnter={() => setHoveredCard("analytics")}
             onMouseLeave={() => setHoveredCard(null)}
-            className="group rounded-[18px] border border-slate-200/90 bg-white p-3.5 shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-blue/50 hover:shadow-[0_12px_24px_-6px_rgba(11,31,65,0.1)]"
+            className="group rounded-[18px] border border-slate-200/90 bg-white p-3.5 shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-blue/50 hover:shadow-[0_12px_24px_-6px_rgba(24,24,24,0.1)]"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2.5">
@@ -637,7 +637,7 @@ export default function SchoolDashboard() {
 
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-1.5 text-slate-500">
-                    <UserCheck className="h-3 w-3 text-cyan-600" />
+                    <UserCheck className="h-3 w-3 text-sky-600" />
                     <span className="text-[0.66rem] font-medium">Teachers</span>
                   </div>
                   <span className="font-extrabold text-brand-navy text-[0.74rem]">12</span>
@@ -645,7 +645,7 @@ export default function SchoolDashboard() {
 
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-1.5 text-slate-500">
-                    <BookOpen className="h-3 w-3 text-indigo-600" />
+                    <BookOpen className="h-3 w-3 text-sky-600" />
                     <span className="text-[0.66rem] font-medium">Classes</span>
                   </div>
                   <span className="font-extrabold text-brand-navy text-[0.74rem]">28</span>

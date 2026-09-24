@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, CheckCircle2, Workflow } from "lucide-react";
+import { Workflow } from "lucide-react";
 import Reveal from "@/components/Reveal";
 
 export default function ProcessIntro() {

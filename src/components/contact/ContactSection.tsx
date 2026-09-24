@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useState, useEffect } from "react";
+import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import {
   ArrowRight,
@@ -9,9 +9,7 @@ import {
   Globe,
   Mail,
   RefreshCw,
-  Send,
   ShieldCheck,
-  Sparkles,
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
 
@@ -45,22 +43,17 @@ function DemoFormInner() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  useEffect(() => {
-    if (productParam) {
-      const lower = productParam.toLowerCase();
-      if (lower.includes("transport")) {
-        setFormData((prev) => ({
-          ...prev,
-          productInterest: "School Transport Management System",
-        }));
-      } else if (lower.includes("school") || lower.includes("management")) {
-        setFormData((prev) => ({
-          ...prev,
-          productInterest: "Small School Management Module",
-        }));
-      }
+  // Pre-select the product from ?product= (adjusting state during render, not in an effect)
+  const [appliedParam, setAppliedParam] = useState<string | null>(null);
+  if (productParam && productParam !== appliedParam) {
+    setAppliedParam(productParam);
+    const lower = productParam.toLowerCase();
+    if (lower.includes("transport")) {
+      setFormData((prev) => ({ ...prev, productInterest: "School Transport Management System" }));
+    } else if (lower.includes("school") || lower.includes("management")) {
+      setFormData((prev) => ({ ...prev, productInterest: "Small School Management Module" }));
     }
-  }, [productParam]);
+  }
 
   const validate = (): boolean => {
     const newErrors: FormErrors = {};
@@ -169,7 +162,7 @@ function DemoFormInner() {
             htmlFor="fullName"
             className="block text-xs font-semibold text-brand-navy mb-1.5"
           >
-            Full Name <span className="text-rose-500">*</span>
+            Full Name <span className="text-sky-500">*</span>
           </label>
           <input
             id="fullName"
@@ -182,12 +175,12 @@ function DemoFormInner() {
             placeholder="e.g. Rajesh Sharma"
             className={`w-full rounded-xl border px-3.5 py-3 text-sm text-brand-navy placeholder:text-slate-400 transition-colors focus:outline-hidden focus:ring-2 ${
               errors.fullName
-                ? "border-rose-300 bg-rose-50/40 focus:border-rose-400 focus:ring-rose-200"
+                ? "border-sky-300 bg-sky-50/40 focus:border-sky-400 focus:ring-sky-200"
                 : "border-slate-200 bg-slate-50/50 hover:border-slate-300 focus:border-brand-blue focus:bg-white focus:ring-brand-blue/20"
             }`}
           />
           {errors.fullName && (
-            <p className="mt-1 text-xs text-rose-500 font-medium">
+            <p className="mt-1 text-xs text-sky-500 font-medium">
               {errors.fullName}
             </p>
           )}
@@ -199,7 +192,7 @@ function DemoFormInner() {
             htmlFor="email"
             className="block text-xs font-semibold text-brand-navy mb-1.5"
           >
-            Email Address <span className="text-rose-500">*</span>
+            Email Address <span className="text-sky-500">*</span>
           </label>
           <input
             id="email"
@@ -212,12 +205,12 @@ function DemoFormInner() {
             placeholder="e.g. rajesh@example.com"
             className={`w-full rounded-xl border px-3.5 py-3 text-sm text-brand-navy placeholder:text-slate-400 transition-colors focus:outline-hidden focus:ring-2 ${
               errors.email
-                ? "border-rose-300 bg-rose-50/40 focus:border-rose-400 focus:ring-rose-200"
+                ? "border-sky-300 bg-sky-50/40 focus:border-sky-400 focus:ring-sky-200"
                 : "border-slate-200 bg-slate-50/50 hover:border-slate-300 focus:border-brand-blue focus:bg-white focus:ring-brand-blue/20"
             }`}
           />
           {errors.email && (
-            <p className="mt-1 text-xs text-rose-500 font-medium">
+            <p className="mt-1 text-xs text-sky-500 font-medium">
               {errors.email}
             </p>
           )}
@@ -278,7 +271,7 @@ function DemoFormInner() {
             htmlFor="message"
             className="block text-xs font-semibold text-brand-navy mb-1.5"
           >
-            Message <span className="text-rose-500">*</span>
+            Message <span className="text-sky-500">*</span>
           </label>
           <textarea
             id="message"
@@ -291,12 +284,12 @@ function DemoFormInner() {
             placeholder="Tell us about your organization's operational challenges or requirements..."
             className={`w-full rounded-xl border px-3.5 py-3 text-sm text-brand-navy placeholder:text-slate-400 transition-colors focus:outline-hidden focus:ring-2 resize-none ${
               errors.message
-                ? "border-rose-300 bg-rose-50/40 focus:border-rose-400 focus:ring-rose-200"
+                ? "border-sky-300 bg-sky-50/40 focus:border-sky-400 focus:ring-sky-200"
                 : "border-slate-200 bg-slate-50/50 hover:border-slate-300 focus:border-brand-blue focus:bg-white focus:ring-brand-blue/20"
             }`}
           />
           {errors.message && (
-            <p className="mt-1 text-xs text-rose-500 font-medium">
+            <p className="mt-1 text-xs text-sky-500 font-medium">
               {errors.message}
             </p>
           )}
