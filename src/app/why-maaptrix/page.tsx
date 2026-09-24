@@ -3,7 +3,7 @@ import {
   WhyClosingCTA,
   WhyDifferentiators,
   WhyHero,
-  WhyProductCompany,
+  WhyImpact,
 } from "@/components/why-maaptrix/WhySections";
 import { pageMetadata } from "@/lib/seo";
 
@@ -18,8 +18,8 @@ export default function WhyMaaptrixPage() {
     <>
       <WhyHero />
       <WhyApproach />
+      <WhyImpact />
       <WhyDifferentiators />
-      <WhyProductCompany />
       <WhyClosingCTA />
     </>
   );

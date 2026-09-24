@@ -34,7 +34,7 @@ export default function Hero() {
               className="inline-flex items-center gap-2"
             >
               <span className="h-2 w-2 rounded-full bg-brand-blue animate-pulse" />
-              <p className="text-[0.72rem] font-bold uppercase tracking-[0.22em] text-brand-blue sm:text-xs">
+              <p className="text-[13px] font-bold uppercase tracking-[0.12em] text-brand-blue">
                 SIMPLE TECHNOLOGY. SAFER TOMORROWS.
               </p>
             </motion.div>
@@ -44,7 +44,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.06 }}
-              className="mt-4 sm:mt-5 font-display text-[2.4rem] sm:text-[3.2rem] lg:text-[3.35rem] xl:text-[3.9rem] font-extrabold leading-[1.06] tracking-[-0.035em] text-brand-navy"
+              className="mt-4 sm:mt-5 font-display text-[34px] sm:text-[42px] lg:text-[52px] xl:text-[58px] font-extrabold leading-[1.06] tracking-[-0.035em] text-brand-navy"
             >
               <span className="block">Technology</span>
               <span className="block">Products Built for</span>
@@ -72,14 +72,14 @@ export default function Hero() {
             >
               <Link
                 href="/products"
-                className="group inline-flex items-center justify-center gap-2 rounded-[12px] bg-brand-navy px-6 sm:px-7 py-3.5 sm:py-4 text-[0.9rem] sm:text-[0.94rem] font-semibold text-white shadow-[0_8px_24px_-6px_rgba(24,24,24,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-blue hover:shadow-[0_12px_28px_-6px_rgba(20,125,255,0.45)]"
+                className="group inline-flex items-center justify-center gap-2 rounded-[12px] bg-brand-blue h-12 px-6 text-[15px] sm:text-[16px] font-semibold text-white shadow-[0_8px_24px_-8px_rgba(22,131,245,0.55)] transition-all duration-300 hover:bg-brand-blue-dark hover:shadow-[0_12px_28px_-6px_rgba(20,125,255,0.45)]"
               >
                 <span>Explore Our Products</span>
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 rounded-[12px] border border-slate-200/90 bg-white/95 px-6 sm:px-7 py-3.5 sm:py-4 text-[0.9rem] sm:text-[0.94rem] font-semibold text-brand-navy shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-blue/40 hover:bg-brand-blue-light/50"
+                className="inline-flex items-center justify-center gap-2 rounded-[12px] border border-[#BFDFFF] bg-white h-12 px-6 text-[15px] sm:text-[16px] font-semibold text-brand-blue shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-blue/40 hover:bg-brand-blue-light/50"
               >
                 Request a Demo
               </Link>

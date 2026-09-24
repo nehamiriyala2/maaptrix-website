@@ -1,5 +1,4 @@
 import HowWeWorkHero from "@/components/how-we-work/HowWeWorkHero";
-import ProcessJourney from "@/components/how-we-work/ProcessJourney";
 import LifecycleLoop from "@/components/how-we-work/LifecycleLoop";
 import ProductExample from "@/components/how-we-work/ProductExample";
 import HowWeWorkCTA from "@/components/how-we-work/HowWeWorkCTA";
@@ -15,7 +14,6 @@ export default function HowWeWorkPage() {
   return (
     <>
       <HowWeWorkHero />
-      <ProcessJourney />
       <LifecycleLoop />
       <ProductExample />
       <HowWeWorkCTA />

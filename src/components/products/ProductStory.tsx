@@ -18,10 +18,10 @@ interface ProductStoryProps {
 export default function ProductStory({ id, problem, solution, workflow }: ProductStoryProps) {
   return (
     <>
-      <section id={id} className="scroll-mt-24 bg-white py-16 sm:py-20" aria-label="Problem and solution">
+      <section id={id} className="scroll-mt-24 bg-white py-12 sm:py-16 lg:py-20" aria-label="Problem and solution">
         <div className="page-container">
           <div className="mx-auto grid max-w-[1240px] gap-6 lg:grid-cols-2">
-            <Reveal className="h-full rounded-[24px] border border-slate-200 bg-slate-50 p-7 sm:p-9">
+            <Reveal className="h-full rounded-[24px] border border-[#CFE4FF] bg-white p-7 sm:p-9">
               <p className="inline-flex items-center gap-2 text-[13px] font-bold uppercase tracking-[0.14em] text-slate-500">
                 <CircleAlert className="h-4 w-4" aria-hidden />
                 The Problem
@@ -40,7 +40,7 @@ export default function ProductStory({ id, problem, solution, workflow }: Produc
               </ul>
             </Reveal>
 
-            <Reveal delay={0.08} className="h-full rounded-[24px] border border-brand-blue/30 bg-brand-blue-light p-7 sm:p-9">
+            <Reveal delay={0.08} className="h-full rounded-[24px] border border-[#BFDFFF] bg-brand-blue-light p-7 sm:p-9">
               <p className="inline-flex items-center gap-2 text-[13px] font-bold uppercase tracking-[0.14em] text-brand-blue">
                 <Lightbulb className="h-4 w-4" aria-hidden />
                 The Solution
@@ -62,7 +62,7 @@ export default function ProductStory({ id, problem, solution, workflow }: Produc
         </div>
       </section>
 
-      <section className="bg-[#F3F8FF] py-16 sm:py-20" aria-labelledby={`${id}-workflow`}>
+      <section className="bg-[#F2F8FF] py-12 sm:py-16 lg:py-20" aria-labelledby={`${id}-workflow`}>
         <div className="page-container">
           <div className="mx-auto max-w-[1240px]">
             <Reveal className="max-w-2xl">
@@ -70,14 +70,14 @@ export default function ProductStory({ id, problem, solution, workflow }: Produc
                 <span className="h-2 w-2 rounded-full bg-brand-blue" aria-hidden />
                 How It Works
               </p>
-              <h2 id={`${id}-workflow`} className="mt-4 font-display text-[28px] font-bold leading-[1.15] text-brand-navy sm:text-[36px]">
+              <h2 id={`${id}-workflow`} className="mt-4 font-display text-[30px] leading-[1.12] sm:text-[34px] lg:text-[40px] font-bold text-brand-navy">
                 A day with the product, <span className="text-brand-blue">step by step.</span>
               </h2>
             </Reveal>
             <Reveal delay={0.08}>
               <ol className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
                 {workflow.map(({ title, desc }, i) => (
-                  <li key={title} className="relative rounded-2xl border border-[#DCEAFF] bg-white p-5">
+                  <li key={title} className="relative rounded-2xl border border-[#CFE4FF] bg-white p-5">
                     <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-blue text-[14px] font-bold text-white">
                       {i + 1}
                     </span>

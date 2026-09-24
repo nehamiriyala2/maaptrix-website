@@ -14,7 +14,7 @@ export default function SchoolTransportProduct() {
   const [activeRole, setActiveRole] = useState<"admin" | "driver" | "parent">("admin");
 
   return (
-    <section id="transport" className="scroll-mt-24 relative overflow-hidden bg-white py-12 sm:py-16 lg:py-20 border-b border-slate-100 select-none">
+    <section id="transport" className="scroll-mt-24 relative overflow-hidden bg-white py-12 sm:py-16 lg:py-20 select-none">
       <div className="page-container">
         
         {/* ========================================================================= */}
@@ -25,7 +25,7 @@ export default function SchoolTransportProduct() {
             <div className="flex flex-col gap-3">
               <div className="flex items-center justify-between px-1">
                 <span className="text-xs font-bold uppercase tracking-wider text-brand-blue flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-sky-500 animate-pulse" />
+                  <span className="h-2 w-2 rounded-full bg-brand-blue animate-pulse" />
                   Live Operational Console Preview
                 </span>
                 <span className="text-xs text-slate-400 font-medium hidden sm:inline">
@@ -91,7 +91,7 @@ export default function SchoolTransportProduct() {
           </div>
 
           {/* Role Showcase Content */}
-          <div className="mt-6 rounded-2xl sm:rounded-3xl border border-[#CCE5FF] bg-gradient-to-br from-[#F8FCFF] to-white p-6 sm:p-8 shadow-xs">
+          <div className="mt-6 rounded-2xl sm:rounded-3xl border border-[#CFE4FF] bg-gradient-to-br from-[#F8FCFF] to-white p-6 sm:p-8 shadow-[0_8px_24px_rgba(30,136,255,0.06)]">
             
             {/* ADMIN ROLE */}
             {activeRole === "admin" && (
@@ -129,20 +129,20 @@ export default function SchoolTransportProduct() {
                   </ul>
                 </div>
 
-                <div className="lg:col-span-5 rounded-2xl bg-white border border-slate-200 p-4 shadow-sm">
+                <div className="lg:col-span-5 rounded-2xl bg-white border border-[#CFE4FF] p-4 shadow-[0_8px_24px_rgba(30,136,255,0.06)]">
                   <span className="text-xs font-bold text-brand-navy block mb-3">Admin Capabilities</span>
                   <div className="space-y-2 text-xs">
-                    <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between">
+                    <div className="p-2.5 rounded-lg bg-[#F5FAFF] border border-[#D5E8FF] flex items-center justify-between">
                       <span className="font-semibold text-slate-700">Fleet Multi-Bus Overview</span>
-                      <span className="text-[0.68rem] text-sky-600 font-bold bg-sky-50 px-2 py-0.5 rounded">Active</span>
+                      <span className="text-[0.68rem] text-brand-blue font-bold bg-[#EAF5FF] px-2 py-0.5 rounded">Active</span>
                     </div>
-                    <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between">
+                    <div className="p-2.5 rounded-lg bg-[#F5FAFF] border border-[#D5E8FF] flex items-center justify-between">
                       <span className="font-semibold text-slate-700">Route Replay &amp; Logs</span>
                       <span className="text-[0.68rem] text-brand-blue font-bold bg-brand-blue-light px-2 py-0.5 rounded">Enabled</span>
                     </div>
-                    <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between">
+                    <div className="p-2.5 rounded-lg bg-[#F5FAFF] border border-[#D5E8FF] flex items-center justify-between">
                       <span className="font-semibold text-slate-700">Speed &amp; Safety Thresholds</span>
-                      <span className="text-[0.68rem] text-sky-600 font-bold bg-sky-50 px-2 py-0.5 rounded">Monitored</span>
+                      <span className="text-[0.68rem] text-brand-blue font-bold bg-[#EAF5FF] px-2 py-0.5 rounded">Monitored</span>
                     </div>
                   </div>
                 </div>
@@ -180,20 +180,20 @@ export default function SchoolTransportProduct() {
                   </ul>
                 </div>
 
-                <div className="lg:col-span-5 rounded-2xl bg-white border border-slate-200 p-4 shadow-sm">
+                <div className="lg:col-span-5 rounded-2xl bg-white border border-[#CFE4FF] p-4 shadow-[0_8px_24px_rgba(30,136,255,0.06)]">
                   <span className="text-xs font-bold text-brand-navy block mb-3">Driver App Flow</span>
                   <div className="space-y-2 text-xs">
-                    <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between">
+                    <div className="p-2.5 rounded-lg bg-[#F5FAFF] border border-[#D5E8FF] flex items-center justify-between">
                       <span className="font-semibold text-slate-700">Turn-by-Turn Route Flow</span>
-                      <span className="text-[0.68rem] text-sky-600 font-bold bg-sky-50 px-2 py-0.5 rounded">GPS Sync</span>
+                      <span className="text-[0.68rem] text-brand-blue font-bold bg-[#EAF5FF] px-2 py-0.5 rounded">GPS Sync</span>
                     </div>
-                    <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between">
+                    <div className="p-2.5 rounded-lg bg-[#F5FAFF] border border-[#D5E8FF] flex items-center justify-between">
                       <span className="font-semibold text-slate-700">Student Boarding Check-In</span>
                       <span className="text-[0.68rem] text-brand-blue font-bold bg-brand-blue-light px-2 py-0.5 rounded">1-Tap</span>
                     </div>
-                    <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between">
+                    <div className="p-2.5 rounded-lg bg-[#F5FAFF] border border-[#D5E8FF] flex items-center justify-between">
                       <span className="font-semibold text-slate-700">Drop-off Confirmation</span>
-                      <span className="text-[0.68rem] text-sky-600 font-bold bg-sky-50 px-2 py-0.5 rounded">Validated</span>
+                      <span className="text-[0.68rem] text-brand-blue font-bold bg-[#EAF5FF] px-2 py-0.5 rounded">Validated</span>
                     </div>
                   </div>
                 </div>
@@ -227,20 +227,20 @@ export default function SchoolTransportProduct() {
                   </ul>
                 </div>
 
-                <div className="lg:col-span-5 rounded-2xl bg-white border border-slate-200 p-4 shadow-sm">
+                <div className="lg:col-span-5 rounded-2xl bg-white border border-[#CFE4FF] p-4 shadow-[0_8px_24px_rgba(30,136,255,0.06)]">
                   <span className="text-xs font-bold text-brand-navy block mb-3">Parent App Experience</span>
                   <div className="space-y-2 text-xs">
-                    <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between">
+                    <div className="p-2.5 rounded-lg bg-[#F5FAFF] border border-[#D5E8FF] flex items-center justify-between">
                       <span className="font-semibold text-slate-700">Live Vehicle Location</span>
-                      <span className="text-[0.68rem] text-sky-600 font-bold bg-sky-50 px-2 py-0.5 rounded">Live ETA</span>
+                      <span className="text-[0.68rem] text-brand-blue font-bold bg-[#EAF5FF] px-2 py-0.5 rounded">Live ETA</span>
                     </div>
-                    <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between">
+                    <div className="p-2.5 rounded-lg bg-[#F5FAFF] border border-[#D5E8FF] flex items-center justify-between">
                       <span className="font-semibold text-slate-700">Boarding &amp; Drop Alerts</span>
                       <span className="text-[0.68rem] text-brand-blue font-bold bg-brand-blue-light px-2 py-0.5 rounded">Instant Push</span>
                     </div>
-                    <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-100 flex items-center justify-between">
+                    <div className="p-2.5 rounded-lg bg-[#F5FAFF] border border-[#D5E8FF] flex items-center justify-between">
                       <span className="font-semibold text-slate-700">Guardian OTP Validation</span>
-                      <span className="text-[0.68rem] text-sky-600 font-bold bg-sky-50 px-2 py-0.5 rounded">Secure</span>
+                      <span className="text-[0.68rem] text-brand-blue font-bold bg-[#EAF5FF] px-2 py-0.5 rounded">Secure</span>
                     </div>
                   </div>
                 </div>
@@ -257,12 +257,12 @@ export default function SchoolTransportProduct() {
           
           {/* Safety Card */}
           <Reveal delay={0.06}>
-            <div className="h-full rounded-2xl border border-[#CCE5FF] bg-white p-6 shadow-2xs flex flex-col justify-between">
+            <div className="h-full rounded-2xl border border-[#CFE4FF] bg-white p-6 shadow-[0_8px_24px_rgba(30,136,255,0.06)] flex flex-col justify-between">
               <div>
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-blue-light text-brand-blue mb-4 border border-brand-blue/20">
                   <ShieldCheck className="h-5 w-5" />
                 </div>
-                <h4 className="font-display text-lg font-bold text-brand-navy">
+                <h4 className="font-display text-[19px] font-bold text-brand-navy">
                   Safety Within Everyday Transport Operations
                 </h4>
                 <ul className="mt-4 space-y-2 text-xs sm:text-sm text-slate-600">
@@ -289,27 +289,27 @@ export default function SchoolTransportProduct() {
 
           {/* Connected Operations Card */}
           <Reveal delay={0.12}>
-            <div className="h-full rounded-2xl border border-[#CCE5FF] bg-white p-6 shadow-2xs flex flex-col justify-between">
+            <div className="h-full rounded-2xl border border-[#CFE4FF] bg-white p-6 shadow-[0_8px_24px_rgba(30,136,255,0.06)] flex flex-col justify-between">
               <div>
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-blue-light text-brand-blue mb-4 border border-brand-blue/20">
                   <Radio className="h-5 w-5" />
                 </div>
-                <h4 className="font-display text-lg font-bold text-brand-navy">
+                <h4 className="font-display text-[19px] font-bold text-brand-navy">
                   Connected Operations
                 </h4>
                 <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
                   Real-time communication between school administrators, drivers and parents:
                 </p>
                 <div className="mt-4 space-y-2 text-xs font-semibold text-brand-navy">
-                  <div className="p-2 rounded-lg bg-slate-50 border border-slate-100">
+                  <div className="p-2 rounded-lg bg-[#F5FAFF] border border-[#D5E8FF]">
                     School Admin Dashboard
                   </div>
                   <div className="text-center text-brand-blue text-xs">↓</div>
-                  <div className="p-2 rounded-lg bg-slate-50 border border-slate-100">
+                  <div className="p-2 rounded-lg bg-[#F5FAFF] border border-[#D5E8FF]">
                     Driver Mobile Application
                   </div>
                   <div className="text-center text-brand-blue text-xs">↓</div>
-                  <div className="p-2 rounded-lg bg-slate-50 border border-slate-100">
+                  <div className="p-2 rounded-lg bg-[#F5FAFF] border border-[#D5E8FF]">
                     Parent Companion Application
                   </div>
                 </div>
@@ -319,12 +319,12 @@ export default function SchoolTransportProduct() {
 
           {/* Support & Operational Assistance */}
           <Reveal delay={0.18}>
-            <div className="h-full rounded-2xl border border-[#CCE5FF] bg-white p-6 shadow-2xs flex flex-col justify-between">
+            <div className="h-full rounded-2xl border border-[#CFE4FF] bg-white p-6 shadow-[0_8px_24px_rgba(30,136,255,0.06)] flex flex-col justify-between">
               <div>
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-blue-light text-brand-blue mb-4 border border-brand-blue/20">
                   <LifeBuoy className="h-5 w-5" />
                 </div>
-                <h4 className="font-display text-lg font-bold text-brand-navy">
+                <h4 className="font-display text-[19px] font-bold text-brand-navy">
                   Support &amp; Operational Assistance
                 </h4>
                 <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -342,7 +342,7 @@ export default function SchoolTransportProduct() {
         {/* ========================================================================= */}
         {/* 5. APPROVED POSITIONING STATEMENT */}
         {/* ========================================================================= */}
-        <div className="mt-12 rounded-2xl border border-slate-200 bg-slate-50/80 p-5 sm:p-6 text-center max-w-3xl mx-auto">
+        <div className="mt-12 rounded-2xl border border-[#CFE4FF] bg-white p-5 sm:p-6 text-center max-w-3xl mx-auto">
           <p className="text-sm sm:text-base font-semibold text-brand-navy">
             &ldquo;A practical transport operations platform built to make school transportation more visible, organized and safety-focused.&rdquo;
           </p>

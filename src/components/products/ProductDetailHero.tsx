@@ -57,7 +57,7 @@ export default function ProductDetailHero({
               <span className="h-[2px] w-8 rounded-full bg-brand-blue" />
               <span className="text-[13px] font-bold uppercase tracking-[0.14em] text-brand-blue">{eyebrow}</span>
             </span>
-            <h1 className="mt-5 font-display text-[36px] font-extrabold leading-[1.06] tracking-[-0.03em] text-brand-navy sm:text-[48px] xl:text-[56px]">
+            <h1 className="mt-5 font-display text-[34px] leading-[1.06] sm:text-[42px] lg:text-[52px] xl:text-[58px] font-extrabold tracking-[-0.03em] text-brand-navy">
               {title} <span className="text-brand-blue">{titleAccent}</span>
             </h1>
             <p className={`mt-5 max-w-[580px] ${image ? "" : "mx-auto"} text-[17px] leading-[1.6] text-slate-600 sm:text-[18px]`}>{description}</p>
@@ -76,14 +76,14 @@ export default function ProductDetailHero({
             <div className={`mt-8 flex flex-col gap-3 sm:flex-row ${image ? "" : "sm:justify-center"}`}>
               <Link
                 href="/contact"
-                className="group inline-flex h-[54px] items-center justify-center gap-2.5 whitespace-nowrap rounded-[11px] bg-brand-blue px-7 text-[16px] font-bold text-white shadow-[0_12px_26px_-12px_rgba(20,125,255,0.8)] transition-colors hover:bg-brand-blue-dark"
+                className="group inline-flex h-12 items-center justify-center gap-2.5 whitespace-nowrap rounded-[11px] bg-brand-blue px-7 text-[16px] font-bold text-white shadow-[0_12px_26px_-12px_rgba(20,125,255,0.8)] transition-colors hover:bg-brand-blue-dark"
               >
                 Request a Demo
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Link>
               <a
                 href={`#${detailsId}`}
-                className="inline-flex h-[54px] items-center justify-center gap-2.5 whitespace-nowrap rounded-[11px] border border-slate-300 bg-white px-7 text-[16px] font-bold text-brand-navy transition-colors hover:border-brand-blue hover:text-brand-blue"
+                className="inline-flex h-12 items-center justify-center gap-2.5 whitespace-nowrap rounded-[11px] border border-slate-300 bg-white px-7 text-[16px] font-bold text-brand-navy transition-colors hover:border-brand-blue hover:text-brand-blue"
               >
                 See How It Works
                 <ArrowDown className="h-5 w-5 text-brand-blue" />
@@ -98,7 +98,7 @@ export default function ProductDetailHero({
             transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
             className="relative min-w-0"
           >
-            <div className="overflow-hidden rounded-[26px] border border-[#DCEAFF] bg-white shadow-[0_30px_70px_-34px_rgba(10,10,10,0.35)]">
+            <div className="overflow-hidden rounded-[26px] border border-[#CFE4FF] bg-white shadow-[0_30px_70px_-34px_rgba(10,10,10,0.35)]">
               <Image
                 src={image.src}
                 alt={image.alt}

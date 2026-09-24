@@ -4,7 +4,7 @@ import Reveal from "./Reveal";
 
 export default function FinalCTA() {
   return (
-    <section className="bg-white py-16 sm:py-20" aria-labelledby="final-cta-heading">
+    <section className="bg-white py-12 sm:py-16 lg:py-20" aria-labelledby="final-cta-heading">
       <div className="page-container">
         <Reveal>
           <div className="relative mx-auto max-w-[1320px] overflow-hidden rounded-[28px] bg-[linear-gradient(135deg,#147DFF_0%,#3B97FF_55%,#6DB4FF_100%)] px-6 py-14 text-center text-white shadow-[0_30px_70px_-34px_rgba(20,125,255,0.7)] sm:px-12 sm:py-16">
@@ -14,7 +14,7 @@ export default function FinalCTA() {
             <p className="relative text-[13px] font-bold uppercase tracking-[0.16em] text-white/85">Get Started with Maaptrix</p>
             <h2
               id="final-cta-heading"
-              className="relative mx-auto mt-4 max-w-3xl font-display text-[30px] font-bold leading-[1.12] tracking-tight sm:text-[42px]"
+              className="relative mx-auto mt-4 max-w-3xl font-display text-[30px] leading-[1.12] sm:text-[34px] lg:text-[40px] font-bold tracking-tight"
             >
               Have an operational problem worth solving?
             </h2>

@@ -23,11 +23,11 @@ const PRODUCTS = [
 export default function HomeProducts() {
   return (
     <section
-      className="bg-[linear-gradient(180deg,#EEF6FF_0%,#F7FAFE_100%)] py-16 sm:py-20"
+      className="bg-[#F2F8FF] py-12 sm:py-16 lg:py-20"
       aria-labelledby="home-products-heading"
     >
       <div className="page-container">
-        <div className="mx-auto grid max-w-[1320px] items-center gap-10 lg:grid-cols-2 lg:gap-14">
+        <div className="mx-auto grid max-w-[1280px] items-center gap-10 lg:grid-cols-[minmax(0,52fr)_minmax(0,48fr)] lg:gap-10">
           <Reveal>
             <p className="inline-flex items-center gap-2 text-[13px] font-bold uppercase tracking-[0.16em] text-brand-blue">
               <span className="h-2 w-2 rounded-full bg-brand-blue" aria-hidden />
@@ -35,7 +35,7 @@ export default function HomeProducts() {
             </p>
             <h2
               id="home-products-heading"
-              className="mt-4 font-display text-[32px] font-bold leading-[1.1] tracking-tight text-brand-navy sm:text-[40px]"
+              className="mt-4 font-display text-[30px] leading-[1.12] sm:text-[34px] lg:text-[40px] font-bold tracking-tight text-brand-navy"
             >
               Software built around <span className="text-brand-blue">real operations.</span>
             </h2>
@@ -49,7 +49,7 @@ export default function HomeProducts() {
                 <li key={href}>
                   <Link
                     href={href}
-                    className="group flex items-start gap-4 rounded-2xl border border-[#DCEAFF] bg-white p-5 shadow-[0_10px_30px_-24px_rgba(10,10,10,0.4)] transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-blue/50"
+                    className="group flex items-start gap-4 rounded-2xl border border-[#CFE4FF] bg-white p-5 shadow-[0_10px_30px_-24px_rgba(10,10,10,0.4)] transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-blue/50"
                   >
                     <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-blue-light text-brand-blue">
                       <Icon className="h-6 w-6" aria-hidden />
@@ -80,16 +80,14 @@ export default function HomeProducts() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div className="overflow-hidden rounded-[26px] border border-[#DCEAFF] bg-white shadow-[0_30px_70px_-40px_rgba(10,10,10,0.45)]">
-              <Image
-                src="/hero/school-ecosystem-scene.jpg"
-                alt="Illustrated school campus with a school bus following a highlighted route"
-                width={1376}
-                height={768}
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="h-auto w-full"
-              />
-            </div>
+            <Image
+              src="/hero/home-products-visual.jpg"
+              alt="Maaptrix parent app showing live school bus tracking, beside students boarding a school bus"
+              width={878}
+              height={755}
+              sizes="(min-width: 1024px) 46vw, 100vw"
+              className="h-auto w-full object-contain [mask-composite:intersect] [mask-image:linear-gradient(to_right,transparent_0%,#000_5%,#000_96%,transparent_100%),linear-gradient(to_bottom,transparent_0%,#000_5%,#000_90%,transparent_100%)]"
+            />
           </Reveal>
         </div>
       </div>

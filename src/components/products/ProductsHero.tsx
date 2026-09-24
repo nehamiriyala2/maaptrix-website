@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import DeviceMockup from "@/components/products/DeviceMockup";
+import Image from "next/image";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -56,7 +56,7 @@ export default function ProductsHero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.65, delay: 0.06, ease: EASE }}
-              className="mt-6 max-w-[680px] font-display text-[40px] font-extrabold leading-[1.05] tracking-[-0.035em] text-brand-navy sm:text-[54px] xl:text-[clamp(44px,3.7vw,64px)]"
+              className="mt-6 max-w-[680px] font-display text-[40px] font-extrabold leading-[1.05] tracking-[-0.035em] text-brand-navy sm:text-[54px] xl:text-[clamp(44px,3.7vw,58px)]"
             >
               <span className="block xl:whitespace-nowrap">Software Built Around</span>
               <span className="block text-brand-blue xl:whitespace-nowrap">Real Operational Needs.</span>
@@ -80,7 +80,7 @@ export default function ProductsHero() {
             >
               <Link
                 href="/contact"
-                className="group inline-flex h-[54px] whitespace-nowrap items-center justify-center gap-2.5 rounded-[11px] bg-brand-navy px-7 text-[16px] font-bold text-white shadow-[0_12px_26px_-12px_rgba(24,24,24,0.7)] transition-colors duration-300 hover:bg-brand-blue sm:min-w-[196px]"
+                className="group inline-flex h-12 whitespace-nowrap items-center justify-center gap-2.5 rounded-[11px] bg-brand-blue px-6 text-[16px] font-semibold text-white shadow-[0_12px_26px_-14px_rgba(22,131,245,0.8)] transition-colors duration-300 hover:bg-brand-blue-dark sm:min-w-[196px]"
               >
                 Request a Demo
                 <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -88,7 +88,7 @@ export default function ProductsHero() {
               <button
                 type="button"
                 onClick={scrollToProducts}
-                className="group inline-flex h-[54px] cursor-pointer whitespace-nowrap items-center justify-center gap-2.5 rounded-[11px] border border-[#CBD9EA] bg-white px-7 text-[16px] font-bold text-brand-navy transition-colors duration-300 hover:border-brand-blue hover:text-brand-blue sm:min-w-[190px]"
+                className="group inline-flex h-12 cursor-pointer whitespace-nowrap items-center justify-center gap-2.5 rounded-[11px] border border-[#BFDFFF] bg-white px-6 text-[16px] font-semibold text-brand-blue transition-colors duration-300 hover:border-brand-blue hover:text-brand-blue sm:min-w-[190px]"
               >
                 Explore Products
                 <ArrowRight className="h-5 w-5 text-brand-blue transition-transform duration-300 group-hover:translate-x-1" />
@@ -96,17 +96,22 @@ export default function ProductsHero() {
             </motion.div>
           </div>
 
-          {/* Right: laptop + phone product visual */}
+          {/* Right: supplied product illustration */}
           <motion.div
             initial={{ opacity: 0, scale: 0.97 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.15, ease: EASE }}
-            className="relative mx-auto w-full max-w-[800px]"
+            className="relative mx-auto w-full max-w-[860px]"
           >
-            <div className="pointer-events-none absolute inset-6 rounded-[40px] bg-[#147DFF]/10 blur-[40px]" aria-hidden />
-            <div className="relative">
-              <DeviceMockup />
-            </div>
+            <Image
+              src="/hero/products-visual.png"
+              alt="Student using a laptop in front of the Maaptrix school dashboard with live tracking, attendance and messages"
+              width={992}
+              height={750}
+              priority
+              sizes="(min-width: 1280px) 54vw, 100vw"
+              className="h-auto w-full object-contain [mask-composite:intersect] [mask-image:linear-gradient(to_right,transparent_0%,#000_7%,#000_95%,transparent_100%),linear-gradient(to_bottom,transparent_0%,#000_6%,#000_88%,transparent_100%)]"
+            />
           </motion.div>
         </div>
       </div>

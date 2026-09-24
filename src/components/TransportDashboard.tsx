@@ -1,984 +1,622 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import Image from "next/image";
 import {
+  Bus,
   Check,
   ChevronRight,
-  Crosshair,
-  GraduationCap,
+  House,
+  LocateFixed,
   MapPin,
   Maximize2,
   Minus,
+  Navigation2,
+  PersonStanding,
   Plus,
-  Radio,
 } from "lucide-react";
+
+/*
+ * School Transport live operations map.
+ * Everything is laid out in one 902×727 design space: the SVG map stretches
+ * to the container (strokes stay crisp via non-scaling-stroke) and the HTML
+ * overlays (markers, cards, labels) are anchored to the same coordinates in %.
+ */
 
 type FilterType = "all" | "transit" | "stop" | "idle";
 type MapMode = "live" | "satellite";
+type BusId = "MPX-07" | "MPX-11" | "MPX-03";
 
-// Waypoint coordinates for Route A (Primary Active Blue Route)
-const ROUTE_A_POINTS = [
-  { x: 218, y: 120 },
-  { x: 245, y: 128 },
-  { x: 275, y: 140 },
-  { x: 300, y: 170 },
-  { x: 320, y: 205 }, // Maple Residency Stop
-  { x: 345, y: 220 },
-  { x: 380, y: 232 },
-  { x: 410, y: 250 },
-  { x: 420, y: 290 },
-  { x: 440, y: 345 },
-  { x: 472, y: 375 },
-  { x: 505, y: 395 }, // School Destination
-];
+const VW = 902;
+const VH = 727;
 
-// Waypoint coordinates for Route B (Secondary Branch for Bus MPX-11)
-const ROUTE_B_POINTS = [
-  { x: 320, y: 350 },
-  { x: 350, y: 365 },
-  { x: 385, y: 372 },
-  { x: 420, y: 360 },
-  { x: 460, y: 380 },
-  { x: 495, y: 395 },
-];
+const BLUE = "#1683F5";
+const NAVY = "#0B1B36";
+const MUTED = "#6B7C93";
+const GREEN = "#1FA971";
+const SKY = "#38A9F5";
 
-function interpolatePath(points: { x: number; y: number }[], progress: number) {
-  const totalSegments = points.length - 1;
-  const p = Math.max(0, Math.min(1, progress)) * totalSegments;
-  const index = Math.floor(p);
-  const t = p - index;
+const BUSES: Record<BusId, { status: "transit" | "stop"; students: number; fill: string }> = {
+  "MPX-07": { status: "transit", students: 24, fill: "86%" },
+  "MPX-11": { status: "transit", students: 28, fill: "100%" },
+  "MPX-03": { status: "stop", students: 18, fill: "64%" },
+};
 
-  if (index >= totalSegments) return points[totalSegments];
+/* ------------------------------------------------------------- Map art */
 
-  const p0 = points[index];
-  const p1 = points[index + 1];
-
-  return {
-    x: p0.x + (p1.x - p0.x) * t,
-    y: p0.y + (p1.y - p0.y) * t,
+function rng(seed: number) {
+  let s = seed;
+  return () => {
+    s = (s * 16807) % 2147483647;
+    return (s - 1) / 2147483646;
   };
 }
 
+// Neighbourhood street grids: small rotated patches of parallel streets.
+const PATCHES = (() => {
+  const r = rng(11);
+  return Array.from({ length: 70 }, () => {
+    const w = 60 + r() * 90;
+    const h = 45 + r() * 70;
+    const gap = 11 + r() * 6;
+    return { cx: r() * VW, cy: r() * VH, rot: (r() - 0.5) * 60, w, h, gap };
+  });
+})();
+
+// Secondary roads: long gentle curves.
+const SECONDARY = (() => {
+  const r = rng(29);
+  return Array.from({ length: 26 }, () => {
+    const x = r() * VW;
+    const y = r() * VH;
+    const a = r() * Math.PI;
+    const len = 160 + r() * 260;
+    const x2 = x + Math.cos(a) * len;
+    const y2 = y + Math.sin(a) * len;
+    const mx = (x + x2) / 2 + (r() - 0.5) * 80;
+    const my = (y + y2) / 2 + (r() - 0.5) * 80;
+    return `M${x.toFixed(0)} ${y.toFixed(0)} Q${mx.toFixed(0)} ${my.toFixed(0)} ${x2.toFixed(0)} ${y2.toFixed(0)}`;
+  });
+})();
+
+const MAJOR = [
+  "M-20 250 C 200 238 350 200 520 180 S 800 118 930 96",
+  "M-20 470 C 150 430 300 470 420 452 S 700 418 930 440",
+  "M168 -20 C 190 150 150 300 200 450 S 232 650 250 750",
+  "M650 -20 C 640 120 700 200 690 300 S 722 500 782 750",
+  "M-20 120 C 120 100 260 62 400 70 S 620 42 930 22",
+  "M-20 648 C 200 604 450 642 620 604 S 800 582 930 602",
+  "M40 750 C 200 562 350 382 520 262 S 800 62 880 -20",
+  "M300 750 C 330 640 300 560 360 520",
+];
+
+const WATER = [
+  "M118 128 C 138 112 172 116 184 134 S 178 170 150 172 S 104 150 118 128Z",
+  "M328 338 C 356 318 398 334 410 360 S 468 378 472 408 S 444 452 404 442 S 358 402 344 386 S 308 358 328 338Z",
+  "M250 290 C 262 282 292 284 300 294 S 280 306 262 304 S 242 298 250 290Z",
+  "M838 182 C 852 172 872 178 874 194 S 858 212 844 206 S 828 192 838 182Z",
+  "M868 470 C 880 462 896 468 894 482 S 876 494 866 486 S 860 476 868 470Z",
+  "M44 470 C 56 462 76 466 76 478 S 58 490 48 484 S 36 476 44 470Z",
+  "M712 304 C 720 298 734 302 732 312 S 718 320 712 316 S 706 308 712 304Z",
+  "M548 620 C 566 606 598 612 600 630 S 578 654 558 646 S 534 632 548 620Z",
+];
+
+const PARKS = [
+  "M738 204 C 776 160 860 148 910 168 L910 334 C 860 344 800 322 770 292 S 718 240 738 204Z",
+  "M96 306 C 118 290 164 296 176 322 S 170 372 140 380 S 88 362 86 338 S 84 316 96 306Z",
+  "M18 566 C 44 548 98 556 110 584 S 98 636 62 640 S 12 616 10 594 S 8 576 18 566Z",
+  "M478 420 C 492 410 516 416 520 434 S 512 468 494 468 S 470 452 470 438 S 470 426 478 420Z",
+  "M700 566 C 718 552 756 558 762 580 S 748 614 722 612 S 694 598 694 584 S 692 574 700 566Z",
+  "M404 604 C 420 594 452 598 460 614 S 452 642 428 642 S 398 630 398 618 S 398 608 404 604Z",
+  "M232 344 C 246 336 280 340 288 354 S 276 374 256 372 S 226 362 226 354 S 226 348 232 344Z",
+  "M20 40 C 40 28 80 32 88 52 S 76 84 50 82 S 12 68 12 56 S 12 46 20 40Z",
+];
+
+// Routes
+const ROUTE_A = [
+  "M296 163 C 310 178 330 182 353 178", // behind the bus
+  "M409 200 C 418 225 425 262 445 285 S 480 300 505 305 S 538 318 540 340 L540 356 C 548 385 570 410 600 450 C 615 462 630 470 630 490 L632 510 C 640 520 650 520 660 518",
+];
+const ROUTE_A_DASHED = "M353 178 C 375 176 395 185 409 200";
+const ROUTE_11 = "M432 494 C 450 510 480 520 507 508 C 540 505 565 520 585 535";
+const ROUTE_03 = "M624 362 C 640 372 660 377 682 375";
+const ROUTE_GRAY =
+  "M585 535 C 592 552 600 566 614 566 S 650 556 672 548 S 715 520 728 464 C 734 440 742 425 740 408 C 730 392 705 380 682 375";
+
+function MapArt({ satellite }: { satellite: boolean }) {
+  const c = satellite
+    ? { land: "#DCE3D8", street: "#EEF1EA", casing: "#C7CFC2", water: "#9FC3E3", park: "#B9D4AE" }
+    : { land: "#EAF0F7", street: "#FFFFFF", casing: "#D7E1EC", water: "#C6DDF5", park: "#D6EBD4" };
+  const ns = { vectorEffect: "non-scaling-stroke" as const };
+
+  return (
+    <svg
+      viewBox={`0 0 ${VW} ${VH}`}
+      preserveAspectRatio="none"
+      className="absolute inset-0 h-full w-full"
+      aria-hidden
+    >
+      <rect width={VW} height={VH} fill={c.land} />
+
+      {/* neighbourhood streets */}
+      {PATCHES.map((p, i) => (
+        <g key={i} transform={`translate(${p.cx} ${p.cy}) rotate(${p.rot})`}>
+          {Array.from({ length: Math.floor(p.h / p.gap) + 1 }, (_, k) => {
+            const y = -p.h / 2 + k * p.gap;
+            return <line key={`h${k}`} x1={-p.w / 2} y1={y} x2={p.w / 2} y2={y} stroke={c.street} strokeWidth="1.3" style={ns} />;
+          })}
+          {Array.from({ length: Math.floor(p.w / (p.gap * 1.6)) + 1 }, (_, k) => {
+            const x = -p.w / 2 + k * p.gap * 1.6;
+            return <line key={`v${k}`} x1={x} y1={-p.h / 2} x2={x} y2={p.h / 2} stroke={c.street} strokeWidth="1.3" style={ns} />;
+          })}
+        </g>
+      ))}
+
+      {PARKS.map((d) => (
+        <path key={d} d={d} fill={c.park} />
+      ))}
+
+      {/* secondary + major roads */}
+      {SECONDARY.map((d) => (
+        <g key={d}>
+          <path d={d} fill="none" stroke={c.casing} strokeWidth="4.6" strokeLinecap="round" style={ns} />
+          <path d={d} fill="none" stroke={c.street} strokeWidth="3" strokeLinecap="round" style={ns} />
+        </g>
+      ))}
+      {MAJOR.map((d) => (
+        <g key={d}>
+          <path d={d} fill="none" stroke={c.casing} strokeWidth="8" strokeLinecap="round" style={ns} />
+          <path d={d} fill="none" stroke={c.street} strokeWidth="5.6" strokeLinecap="round" style={ns} />
+        </g>
+      ))}
+
+      {WATER.map((d) => (
+        <path key={d} d={d} fill={c.water} />
+      ))}
+
+      {/* secondary (gray) route */}
+      <path d={ROUTE_GRAY} fill="none" stroke="#FFFFFF" strokeWidth="6" strokeLinecap="round" style={ns} />
+      <path d={ROUTE_GRAY} fill="none" stroke="#98A6B7" strokeWidth="3" strokeDasharray="6 6" strokeLinecap="round" style={ns} />
+
+      {/* MPX-11 and MPX-03 approach segments */}
+      <path d={ROUTE_11} fill="none" stroke="#FFFFFF" strokeWidth="6" strokeLinecap="round" style={ns} />
+      <path d={ROUTE_11} fill="none" stroke="#6FB3F8" strokeWidth="3" strokeDasharray="6 6" strokeLinecap="round" style={ns} />
+      <path d={ROUTE_03} fill="none" stroke="#FFFFFF" strokeWidth="6" strokeLinecap="round" style={ns} />
+      <path d={ROUTE_03} fill="none" stroke="#6FB3F8" strokeWidth="3" strokeDasharray="6 6" strokeLinecap="round" style={ns} />
+
+      {/* primary route: halo + line */}
+      {ROUTE_A.map((d) => (
+        <g key={d}>
+          <path d={d} fill="none" stroke={BLUE} strokeOpacity="0.16" strokeWidth="11" strokeLinecap="round" strokeLinejoin="round" style={ns} />
+          <path d={d} fill="none" stroke="#FFFFFF" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" style={ns} />
+          <path d={d} fill="none" stroke={BLUE} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" style={ns} />
+        </g>
+      ))}
+      <path d={ROUTE_A_DASHED} fill="none" stroke="#FFFFFF" strokeWidth="7" strokeLinecap="round" style={ns} />
+      <path d={ROUTE_A_DASHED} fill="none" stroke={BLUE} strokeWidth="4" strokeDasharray="7 6" strokeLinecap="round" style={ns} />
+    </svg>
+  );
+}
+
+/* ------------------------------------------------------------ Overlays */
+
+function At({ x, y, className = "", children }: { x: number; y: number; className?: string; children: ReactNode }) {
+  return (
+    <div className={`absolute ${className}`} style={{ left: `${(x / VW) * 100}%`, top: `${(y / VH) * 100}%` }}>
+      {children}
+    </div>
+  );
+}
+
+const CARD = "rounded-[12px] border border-[#D5E8FA] bg-white shadow-[0_8px_24px_rgba(30,90,150,0.10)]";
+
+function UpcomingStop({ x, y, gray = false }: { x: number; y: number; gray?: boolean }) {
+  return (
+    <At x={x} y={y}>
+      <span
+        className="block h-[13px] w-[13px] -translate-x-1/2 -translate-y-1/2 rounded-full border-[2.5px] bg-white"
+        style={{ borderColor: gray ? "#8B99AA" : BLUE }}
+      />
+    </At>
+  );
+}
+
+function CompletedStop({ x, y }: { x: number; y: number }) {
+  return (
+    <At x={x} y={y}>
+      <span
+        className="flex h-[17px] w-[17px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-white shadow-[0_1px_3px_rgba(11,27,54,0.3)]"
+        style={{ background: GREEN }}
+      >
+        <Check className="h-2.5 w-2.5 text-white" strokeWidth={3.5} />
+      </span>
+    </At>
+  );
+}
+
+function BusPin({
+  x,
+  y,
+  id,
+  dim,
+  selected,
+  onSelect,
+}: {
+  x: number;
+  y: number;
+  id: BusId;
+  dim: boolean;
+  selected: boolean;
+  onSelect: (id: BusId) => void;
+}) {
+  return (
+    <At x={x} y={y} className="z-20">
+      <button
+        type="button"
+        onClick={() => onSelect(id)}
+        aria-label={`Select bus ${id}`}
+        aria-pressed={selected}
+        className="relative block -translate-x-1/2 -translate-y-full cursor-pointer transition-[opacity,transform] duration-300 hover:scale-105"
+        style={{ opacity: dim ? 0.25 : 1 }}
+      >
+        {selected && <span className="absolute left-1/2 top-[15px] h-9 w-9 -translate-x-1/2 -translate-y-1/2 animate-ping rounded-full bg-[#1683F5]/25" />}
+        <svg viewBox="0 0 32 42" width="30" height="40" className="relative drop-shadow-[0_4px_6px_rgba(11,27,54,0.28)]" aria-hidden>
+          <path d="M16 41C16 41 31 26.5 31 16A15 15 0 0 0 1 16c0 10.5 15 25 15 25Z" fill={BLUE} stroke="#FFFFFF" strokeWidth="2" />
+        </svg>
+        <Bus className="absolute left-1/2 top-[7px] h-[16px] w-[16px] -translate-x-1/2 text-white" strokeWidth={2.4} />
+      </button>
+    </At>
+  );
+}
+
+function BusCard({ x, y, id, dim }: { x: number; y: number; id: BusId; dim: boolean }) {
+  const b = BUSES[id];
+  const atStop = b.status === "stop";
+  return (
+    <At x={x} y={y} className="z-10 hidden sm:block">
+      <div className={`${CARD} px-3.5 py-2.5 transition-opacity duration-300`} style={{ opacity: dim ? 0.3 : 1 }}>
+        <p className="whitespace-nowrap text-[13.5px] font-bold leading-tight" style={{ color: NAVY }}>
+          Bus {id}
+        </p>
+        <p className="mt-1 flex items-center gap-1.5 whitespace-nowrap text-[12px] leading-tight">
+          <span className="font-medium" style={{ color: atStop ? NAVY : GREEN }}>
+            {atStop ? "At stop" : "On route"}
+          </span>
+          <span className="h-[5px] w-[5px] rounded-full" style={{ background: atStop ? SKY : GREEN }} />
+          <span style={{ color: MUTED }}>{b.students} students</span>
+        </p>
+      </div>
+    </At>
+  );
+}
+
+const LABELS: { x: number; y: number; text: string; small?: boolean; park?: boolean }[] = [
+  { x: 228, y: 84, text: "Kondapur" },
+  { x: 543, y: 114, text: "Madhapur" },
+  { x: 686, y: 127, text: "HITEC City" },
+  { x: 110, y: 224, text: "Gachibowli" },
+  { x: 280, y: 276, text: "HITEC City" },
+  { x: 386, y: 304, text: "Cyber Towers", small: true },
+  { x: 246, y: 339, text: "Raidurg" },
+  { x: 378, y: 401, text: "Durgam Cheruvu", small: true },
+  { x: 808, y: 256, text: "KBR\nNational Park", park: true },
+];
+
+const POIS: [number, number][] = [
+  [337, 309],
+  [646, 280],
+  [196, 540],
+];
+
+/* ------------------------------------------------------------- Export */
+
 export default function TransportDashboard() {
+  const rootRef = useRef<HTMLDivElement>(null);
   const [filter, setFilter] = useState<FilterType>("all");
   const [mapMode, setMapMode] = useState<MapMode>("live");
   const [zoomLevel, setZoomLevel] = useState(1);
-  const [selectedBus, setSelectedBus] = useState<"MPX-07" | "MPX-11" | "MPX-03">("MPX-07");
-  
-  // Animation progress states (0 to 1)
-  const [progressA, setProgressA] = useState(0.2);
-  const [progressB, setProgressB] = useState(0.5);
-  const [etaSeconds, setEtaSeconds] = useState(120);
+  const [selectedBus, setSelectedBus] = useState<BusId>("MPX-07");
 
-  const requestRef = useRef<number | null>(null);
-  const lastTimeRef = useRef<number | null>(null);
+  const isDim = (id: BusId) => filter !== "all" && BUSES[id].status !== filter;
+  const sel = BUSES[selectedBus];
 
-  // Smooth continuous animation loop
-  useEffect(() => {
-    const animate = (time: number) => {
-      if (lastTimeRef.current !== null) {
-        const delta = (time - lastTimeRef.current) / 1000;
-        
-        // Bus A travels along route A in ~36 seconds loop
-        setProgressA((prev) => (prev + delta * 0.028) % 1);
-        
-        // Bus B travels along route B in ~28 seconds loop
-        setProgressB((prev) => (prev + delta * 0.035) % 1);
-      }
-      lastTimeRef.current = time;
-      requestRef.current = requestAnimationFrame(animate);
-    };
+  const toggleFullscreen = () => {
+    const el = rootRef.current;
+    if (!el) return;
+    if (document.fullscreenElement) void document.exitFullscreen();
+    else void el.requestFullscreen?.().catch(() => {});
+  };
 
-    requestRef.current = requestAnimationFrame(animate);
-    return () => {
-      if (requestRef.current) cancelAnimationFrame(requestRef.current);
-    };
-  }, []);
-
-  // Subtle ETA countdown timer for dynamic realism
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setEtaSeconds((prev) => (prev > 45 ? prev - 1 : 120));
-    }, 2000);
-    return () => clearInterval(interval);
-  }, []);
-
-  // Current animated bus positions
-  const busAPos = interpolatePath(ROUTE_A_POINTS, progressA);
-  const busBPos = interpolatePath(ROUTE_B_POINTS, progressB);
-  
-  // Static Bus MPX-03 at stop
-  const bus03Pos = { x: 468, y: 255 };
-
-  const etaMinutes = Math.ceil(etaSeconds / 60);
+  const FILTERS: { id: FilterType; label: string; count: number; dot?: string }[] = [
+    { id: "all", label: "All Buses", count: 12 },
+    { id: "transit", label: "In Transit", count: 9, dot: GREEN },
+    { id: "stop", label: "At Stop", count: 2, dot: SKY },
+    { id: "idle", label: "Idle", count: 1, dot: "#94A3B8" },
+  ];
 
   return (
-    <div className="relative w-full overflow-hidden rounded-[20px] lg:rounded-[24px] border border-slate-200/90 bg-[#f3f7fb] shadow-[0_16px_40px_-12px_rgba(24,24,24,0.14)] select-none transition-all duration-300">
-      
-      {/* ========================================================================= */}
-      {/* 1. TOP HEADER OVERLAY (Filter Status Pills + Mode Controls) */}
-      {/* ========================================================================= */}
-      <div className="absolute inset-x-0 top-0 z-30 flex flex-wrap items-center justify-between gap-2.5 p-3.5 sm:p-4.5 pointer-events-none">
-        
-        {/* Left Filter Status Pills */}
-        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 pointer-events-auto">
-          {/* All Buses */}
-          <button
-            type="button"
-            onClick={() => setFilter("all")}
-            className={`inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-bold transition-all duration-200 shadow-xs ${
-              filter === "all"
-                ? "bg-brand-blue text-white shadow-[0_4px_14px_-2px_rgba(20,125,255,0.5)]"
-                : "bg-white/95 text-brand-navy/80 hover:bg-white hover:text-brand-navy border border-slate-200/80"
-            }`}
-          >
-            <span>All Buses</span>
+    <div
+      ref={rootRef}
+      className="relative h-[520px] w-full select-none overflow-hidden rounded-[22px] border border-[#D8E9FA] bg-[#EAF0F7] shadow-[0_12px_32px_-14px_rgba(30,90,150,0.22)] sm:h-[560px] lg:h-[600px]"
+    >
+      {/* Map + anchored overlays (zoomable) */}
+      <div
+        className="absolute inset-0 origin-center transition-transform duration-300 ease-out"
+        style={{ transform: `scale(${zoomLevel})` }}
+      >
+        <MapArt satellite={mapMode === "satellite"} />
+
+        {/* place labels */}
+        {LABELS.map(({ x, y, text, small, park }) => (
+          <At key={`${text}-${x}`} x={x} y={y} className="pointer-events-none">
             <span
-              className={`flex h-4.5 min-w-4.5 items-center justify-center rounded-full px-1.5 text-[0.68rem] font-bold ${
-                filter === "all"
-                  ? "bg-white/25 text-white"
-                  : "bg-slate-100 text-brand-navy/70"
-              }`}
+              className={`block -translate-x-1/2 -translate-y-1/2 whitespace-pre text-center leading-tight ${
+                small ? "text-[11.5px]" : "text-[13px]"
+              } ${text === "Cyber Towers" || text === "Durgam Cheruvu" ? "hidden md:block" : ""}`}
+              style={{
+                color: park ? "#4F7A5C" : MUTED,
+                fontWeight: 500,
+                textShadow: "0 0 3px #fff, 0 0 3px #fff",
+              }}
             >
-              12
+              {text}
             </span>
-          </button>
+          </At>
+        ))}
+        {POIS.map(([x, y]) => (
+          <At key={`${x}-${y}`} x={x} y={y}>
+            <span className="block h-[9px] w-[9px] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white bg-[#A3B0C0]" />
+          </At>
+        ))}
 
-          {/* In Transit */}
-          <button
-            type="button"
-            onClick={() => setFilter("transit")}
-            className={`inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-bold transition-all duration-200 shadow-xs ${
-              filter === "transit"
-                ? "bg-sky-600 text-white shadow-[0_4px_14px_-2px_rgba(16,98,185,0.45)]"
-                : "bg-white/95 text-brand-navy/80 hover:bg-white hover:text-brand-navy border border-slate-200/80"
-            }`}
-          >
-            <span className="h-2 w-2 rounded-full bg-sky-500 animate-pulse" />
-            <span>In Transit</span>
-            <span className="text-[0.68rem] font-semibold text-slate-500">9</span>
-          </button>
+        {/* stops */}
+        {[
+          [353, 178],
+          [462, 296],
+          [540, 356],
+          [600, 450],
+          [507, 508],
+        ].map(([x, y]) => (
+          <UpcomingStop key={`${x}-${y}`} x={x} y={y} />
+        ))}
+        <UpcomingStop x={682} y={375} gray />
+        <UpcomingStop x={728} y={464} gray />
+        <CompletedStop x={409} y={200} />
+        <CompletedStop x={740} y={408} />
+        <CompletedStop x={585} y={535} />
 
-          {/* At Stop */}
-          <button
-            type="button"
-            onClick={() => setFilter("stop")}
-            className={`inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-bold transition-all duration-200 shadow-xs ${
-              filter === "stop"
-                ? "bg-sky-500 text-white shadow-[0_4px_14px_-2px_rgba(11,124,245,0.45)]"
-                : "bg-white/95 text-brand-navy/80 hover:bg-white hover:text-brand-navy border border-slate-200/80"
-            }`}
-          >
-            <span className="h-2 w-2 rounded-full bg-sky-500" />
-            <span>At Stop</span>
-            <span className="text-[0.68rem] font-semibold text-slate-500">2</span>
-          </button>
-
-          {/* Idle */}
-          <button
-            type="button"
-            onClick={() => setFilter("idle")}
-            className={`hidden sm:inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-bold transition-all duration-200 shadow-xs ${
-              filter === "idle"
-                ? "bg-slate-700 text-white"
-                : "bg-white/95 text-brand-navy/80 hover:bg-white hover:text-brand-navy border border-slate-200/80"
-            }`}
-          >
-            <span className="h-2 w-2 rounded-full bg-slate-400" />
-            <span>Idle</span>
-            <span className="text-[0.68rem] font-semibold text-slate-500">1</span>
-          </button>
-        </div>
-
-        {/* Right Controls: Live / Satellite Toggle & Fullscreen */}
-        <div className="flex items-center gap-2 pointer-events-auto">
-          <div className="flex items-center rounded-xl border border-slate-200/90 bg-white/95 p-1 shadow-xs backdrop-blur-md">
-            <button
-              type="button"
-              onClick={() => setMapMode("live")}
-              className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-bold transition-all duration-200 ${
-                mapMode === "live"
-                  ? "bg-brand-blue text-white shadow-xs"
-                  : "text-slate-600 hover:text-slate-900"
-              }`}
-            >
-              <Radio className="h-3 w-3 animate-pulse text-white" />
-              <span>Live</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => setMapMode("satellite")}
-              className={`rounded-lg px-2.5 py-1 text-xs font-bold transition-all duration-200 ${
-                mapMode === "satellite"
-                  ? "bg-brand-navy text-white shadow-xs"
-                  : "text-slate-600 hover:text-slate-900"
-              }`}
-            >
-              Satellite
-            </button>
+        {/* school */}
+        <At x={672} y={518} className="z-10">
+          <span className="flex h-[42px] w-[42px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[12px] border-[3px] border-white bg-[#1683F5] shadow-[0_6px_14px_rgba(22,131,245,0.4)]">
+            <House className="h-5 w-5 text-white" strokeWidth={2.4} />
+          </span>
+        </At>
+        <At x={692} y={490} className="z-10 hidden sm:block">
+          <div className={`${CARD} px-3.5 py-2`}>
+            <p className="whitespace-nowrap text-[13px] font-bold leading-tight" style={{ color: NAVY }}>
+              Greenfield
+              <br />
+              International School
+            </p>
           </div>
+        </At>
 
-          <button
-            type="button"
-            className="flex h-8 w-8 items-center justify-center rounded-xl border border-slate-200/90 bg-white/95 text-slate-700 shadow-xs transition-all hover:bg-white hover:text-brand-blue"
-            aria-label="Toggle Fullscreen"
-          >
-            <Maximize2 className="h-3.5 w-3.5" />
-          </button>
-        </div>
-      </div>
-
-      {/* ========================================================================= */}
-      {/* 2. REALISTIC VECTOR CITY MAP CANVAS (SVG Graphic Architecture) */}
-      {/* ========================================================================= */}
-      <div className="relative h-[480px] sm:h-[520px] lg:h-[550px] xl:h-[570px] w-full overflow-hidden">
-        <svg
-          viewBox="0 0 680 500"
-          preserveAspectRatio="xMidYMid slice"
-          className="h-full w-full object-cover transition-transform duration-300"
-          style={{ transform: `scale(${zoomLevel})` }}
-        >
-          <defs>
-            {/* Soft grid pattern for neighborhood blocks */}
-            <pattern
-              id="urban-grid"
-              width="36"
-              height="36"
-              patternUnits="userSpaceOnUse"
-            >
-              <path
-                d="M 36 0 L 0 0 0 36"
-                fill="none"
-                stroke="#e5edf5"
-                strokeWidth="0.8"
-                opacity="0.85"
-              />
-            </pattern>
-
-            {/* Subtle arterial road glow */}
-            <filter id="route-glow" x="-10%" y="-10%" width="120%" height="120%">
-              <feDropShadow
-                dx="0"
-                dy="2"
-                stdDeviation="3"
-                floodColor="#147dff"
-                floodOpacity="0.3"
-              />
-            </filter>
-
-            {/* Card shadow for floating badges */}
-            <filter id="badge-shadow" x="-20%" y="-20%" width="140%" height="140%">
-              <feDropShadow
-                dx="0"
-                dy="3"
-                stdDeviation="4"
-                floodColor="#181818"
-                floodOpacity="0.14"
-              />
-            </filter>
-          </defs>
-
-          {/* Base Map Land Fill */}
-          <rect width="680" height="500" fill={mapMode === "live" ? "#f4f8fb" : "#363636"} />
-          <rect width="680" height="500" fill="url(#urban-grid)" />
-
-          {/* ------------------------------------------------------------- */}
-          {/* Natural Landmarks & Water Bodies */}
-          {/* ------------------------------------------------------------- */}
-          
-          {/* Durgam Cheruvu Lake */}
-          <path
-            d="M 220,380 C 240,350 270,360 295,395 C 315,425 340,435 345,470 C 330,490 280,480 250,470 C 220,460 205,420 220,380 Z"
-            fill={mapMode === "live" ? "#d0e7f9" : "#424242"}
-            stroke={mapMode === "live" ? "#b7daf5" : "#343434"}
-            strokeWidth="1.5"
-            opacity="0.9"
-          />
-          <text
-            x="280"
-            y="435"
-            textAnchor="middle"
-            fill={mapMode === "live" ? "#5088b8" : "#8ac2f0"}
-            fontSize="9"
-            fontWeight="600"
-            fontFamily="sans-serif"
-            letterSpacing="0.04em"
-          >
-            Durgam Cheruvu
-          </text>
-
-          {/* KBR National Park (Green Reserve Area) */}
-          <path
-            d="M 520,230 C 545,210 590,215 620,240 C 650,265 660,310 635,340 C 605,370 560,360 535,330 C 510,300 500,250 520,230 Z"
-            fill={mapMode === "live" ? "#D4E2F2" : "#1F1F1F"}
-            stroke={mapMode === "live" ? "#BCD3EB" : "#191919"}
-            strokeWidth="1.5"
-            opacity="0.95"
-          />
-          <text
-            x="580"
-            y="285"
-            textAnchor="middle"
-            fill={mapMode === "live" ? "#2F67A2" : "#8AB2DD"}
-            fontSize="9.5"
-            fontWeight="700"
-            fontFamily="sans-serif"
-          >
-            KBR
-          </text>
-          <text
-            x="580"
-            y="298"
-            textAnchor="middle"
-            fill={mapMode === "live" ? "#2F67A2" : "#8AB2DD"}
-            fontSize="8.5"
-            fontWeight="600"
-            fontFamily="sans-serif"
-          >
-            National Park
-          </text>
-
-          {/* Secondary Green Urban Patches */}
-          <path
-            d="M 80,180 C 100,165 125,170 135,190 C 145,210 130,230 110,235 C 90,240 75,220 70,200 Z"
-            fill={mapMode === "live" ? "#DEEAF6" : "#1B1B1B"}
-            opacity="0.8"
-          />
-          <path
-            d="M 370,110 C 390,95 420,100 435,120 C 445,140 430,160 405,165 C 380,170 360,145 370,110 Z"
-            fill={mapMode === "live" ? "#DEEAF6" : "#1B1B1B"}
-            opacity="0.75"
-          />
-
-          {/* ------------------------------------------------------------- */}
-          {/* City Road Network (Realistic Major Expressways & Grid Lanes) */}
-          {/* ------------------------------------------------------------- */}
-          
-          {/* Tertiary Local Street Grids */}
-          <g fill="none" stroke={mapMode === "live" ? "#ffffff" : "#444444"} strokeWidth="2.5" strokeLinecap="round" opacity="0.95">
-            {/* North-South local streets */}
-            <path d="M 60,30 L 60,470" />
-            <path d="M 120,30 L 120,470" />
-            <path d="M 180,30 L 180,470" />
-            <path d="M 240,30 L 240,470" />
-            <path d="M 300,30 L 300,470" />
-            <path d="M 360,30 L 360,470" />
-            <path d="M 420,30 L 420,470" />
-            <path d="M 480,30 L 480,470" />
-            <path d="M 540,30 L 540,470" />
-            <path d="M 600,30 L 600,470" />
-
-            {/* East-West local avenues */}
-            <path d="M 20,80 L 660,80" />
-            <path d="M 20,150 L 660,150" />
-            <path d="M 20,220 L 660,220" />
-            <path d="M 20,290 L 660,290" />
-            <path d="M 20,360 L 660,360" />
-            <path d="M 20,420 L 660,420" />
-          </g>
-
-          {/* Secondary Arterial Connectors */}
-          <g fill="none" stroke={mapMode === "live" ? "#e4edf7" : "#3F3F3F"} strokeWidth="5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M 30,120 C 140,110 240,160 350,150 C 460,140 560,180 660,170" />
-            <path d="M 40,320 C 150,330 260,290 380,310 C 490,330 580,300 660,310" />
-            <path d="M 150,30 C 160,140 210,250 220,380 C 230,430 240,460 250,490" />
-            <path d="M 460,30 C 470,150 490,260 510,380 C 520,430 530,460 540,490" />
-          </g>
-
-          {/* Major Arterial Expressways (Base Casing Outline for depth) */}
-          <g fill="none" stroke={mapMode === "live" ? "#d8e4f0" : "#1B1B1B"} strokeLinecap="round" strokeLinejoin="round">
-            <path
-              d="M 10,290 C 80,285 140,250 200,220 C 270,185 360,165 460,150 C 540,140 600,120 670,110"
-              strokeWidth="9"
-            />
-            <path
-              d="M 180,20 C 210,90 260,140 320,200 C 370,250 420,290 480,330 C 540,370 600,390 670,400"
-              strokeWidth="8"
-            />
-            <path
-              d="M 30,440 C 110,400 190,340 260,280 C 330,220 400,180 500,160 C 580,140 640,135 670,130"
-              strokeWidth="7.5"
-            />
-          </g>
-
-          {/* Major Arterial Expressways (Inner Crisp White Fill) */}
-          <g fill="none" stroke={mapMode === "live" ? "#ffffff" : "#3b5373"} strokeLinecap="round" strokeLinejoin="round">
-            <path
-              d="M 10,290 C 80,285 140,250 200,220 C 270,185 360,165 460,150 C 540,140 600,120 670,110"
-              strokeWidth="6"
-            />
-            <path
-              d="M 180,20 C 210,90 260,140 320,200 C 370,250 420,290 480,330 C 540,370 600,390 670,400"
-              strokeWidth="5.5"
-            />
-            <path
-              d="M 30,440 C 110,400 190,340 260,280 C 330,220 400,180 500,160 C 580,140 640,135 670,130"
-              strokeWidth="5"
-            />
-          </g>
-
-          {/* ------------------------------------------------------------- */}
-          {/* City District & Landmark Labels */}
-          {/* ------------------------------------------------------------- */}
-          <g fill={mapMode === "live" ? "#7e97b3" : "#a2b7d0"} fontSize="11" fontWeight="600" fontFamily="sans-serif">
-            <text x="175" y="112">Kondapur</text>
-            <text x="60" y="275">Gachibowli</text>
-            <text x="180" y="345">HITEC City</text>
-            <text x="150" y="425">Raidurg</text>
-            <text x="390" y="145">Madhapur</text>
-            <text x="500" y="165">HITEC City</text>
-            <text x="560" y="335">Gafoor Towers</text>
-          </g>
-
-          {/* Cyber Towers Landmark Dot */}
-          <g transform="translate(255, 385)">
-            <circle cx="0" cy="0" r="3.5" fill="#147dff" opacity="0.8" />
-            <text
-              x="8"
-              y="3.5"
-              fill={mapMode === "live" ? "#5a7798" : "#a8c0dd"}
-              fontSize="9"
-              fontWeight="600"
-              fontFamily="sans-serif"
-            >
-              Cyber Towers
-            </text>
-          </g>
-
-          {/* ------------------------------------------------------------- */}
-          {/* 3. TRANSIT ROUTE NETWORKS (Solid Active Blue & Gray Dashed) */}
-          {/* ------------------------------------------------------------- */}
-
-          {/* Secondary Gray Dashed Route (Route B - Gafoor Towers Loop) */}
-          <path
-            d="M 440,345 C 470,335 520,320 545,300 C 565,280 550,260 500,260 C 475,260 460,260 440,262"
-            fill="none"
-            stroke="#94a3b8"
-            strokeWidth="2.8"
-            strokeDasharray="5 5"
-            strokeLinecap="round"
-          />
-
-          {/* Secondary branch to school */}
-          <path
-            d="M 320,350 C 350,365 385,372 420,360 C 460,380 495,395 505,395"
-            fill="none"
-            stroke="#94a3b8"
-            strokeWidth="2.5"
-            strokeDasharray="4 4"
-            strokeLinecap="round"
-          />
-
-          {/* Primary Active Route (Route A - Vibrant Solid Blue) */}
-          {/* Outer Soft Glow */}
-          <path
-            d="M 218,120 C 245,128 275,140 300,170 C 320,205 345,220 380,232 C 410,250 420,290 440,345 C 472,375 490,390 505,395"
-            fill="none"
-            stroke="#147dff"
-            strokeWidth="7"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            opacity="0.2"
-          />
-
-          {/* Main Solid Route Line */}
-          <path
-            d="M 218,120 C 245,128 275,140 300,170 C 320,205 345,220 380,232 C 410,250 420,290 440,345 C 472,375 490,390 505,395"
-            fill="none"
-            stroke="#147dff"
-            strokeWidth="3.6"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            filter="url(#route-glow)"
-          />
-
-          {/* Animated Route Flowing Dash Indicator */}
-          <path
-            d="M 218,120 C 245,128 275,140 300,170 C 320,205 345,220 380,232 C 410,250 420,290 440,345 C 472,375 490,390 505,395"
-            fill="none"
-            stroke="#ffffff"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeDasharray="4 14"
-            style={{ animation: "dash-flow 3.5s linear infinite" }}
-          />
-
-          {/* ------------------------------------------------------------- */}
-          {/* Stops Along Routes */}
-          {/* ------------------------------------------------------------- */}
-          
-          {/* Completed Stop 1 (Near Kondapur) */}
-          <g transform="translate(268, 138)">
-            <circle cx="0" cy="0" r="5" fill="#ffffff" stroke="#147dff" strokeWidth="2.5" />
-            <circle cx="0" cy="0" r="2" fill="#147dff" />
-          </g>
-
-          {/* Active Stop (Maple Residency Target) */}
-          <g transform="translate(320, 205)">
-            <circle cx="0" cy="0" r="10" fill="none" stroke="#147dff" strokeWidth="1.5" className="animate-pulse-ring" />
-            <circle cx="0" cy="0" r="5.5" fill="#ffffff" stroke="#147dff" strokeWidth="2.8" />
-            <circle cx="0" cy="0" r="2.2" fill="#147dff" />
-          </g>
-
-          {/* Waypoint Stop 3 */}
-          <g transform="translate(380, 232)">
-            <circle cx="0" cy="0" r="4.5" fill="#ffffff" stroke="#147dff" strokeWidth="2.2" />
-          </g>
-
-          {/* Waypoint Stop 4 */}
-          <g transform="translate(440, 345)">
-            <circle cx="0" cy="0" r="4.5" fill="#ffffff" stroke="#94a3b8" strokeWidth="2.2" />
-          </g>
-
-          {/* Secondary Route Completed Stop with Checkmark (Gafoor Towers) */}
-          <g transform="translate(545, 300)">
-            <circle cx="0" cy="0" r="6" fill="#1062B9" />
-            <path
-              d="M -2.5,0 L -0.8,2 L 2.8,-1.8"
-              fill="none"
-              stroke="#ffffff"
-              strokeWidth="1.4"
-              strokeLinecap="round"
-            />
-          </g>
-
-          {/* Intermediate Gray Stop */}
-          <g transform="translate(500, 260)">
-            <circle cx="0" cy="0" r="4" fill="#ffffff" stroke="#94a3b8" strokeWidth="2" />
-          </g>
-
-          {/* ------------------------------------------------------------- */}
-          {/* Destination: Greenfield International School */}
-          {/* ------------------------------------------------------------- */}
-          <g transform="translate(505, 395)" filter="url(#badge-shadow)">
-            {/* Pulsing ring */}
-            <circle cx="0" cy="0" r="14" fill="#147dff" opacity="0.15" className="animate-ping-soft" />
-            
-            {/* School Destination Card */}
-            <g transform="translate(0, -6)">
-              <rect
-                x="-14"
-                y="-14"
-                width="28"
-                height="28"
-                rx="8"
-                fill="#147dff"
-              />
-              <path
-                d="M -7,2 L 0,-6 L 7,2 L 7,7 L -7,7 Z"
-                fill="#ffffff"
-              />
-              <rect x="-2.5" y="1.5" width="5" height="5.5" fill="#147dff" />
-
-              {/* School Label Card */}
-              <g transform="translate(20, -10)">
-                <rect
-                  x="0"
-                  y="0"
-                  width="132"
-                  height="34"
-                  rx="7"
-                  fill="#ffffff"
-                  stroke="#e2e8f0"
-                  strokeWidth="1"
-                />
-                <text
-                  x="10"
-                  y="14"
-                  fill="#181818"
-                  fontSize="10"
-                  fontWeight="700"
-                  fontFamily="sans-serif"
-                >
-                  Greenfield
-                </text>
-                <text
-                  x="10"
-                  y="26"
-                  fill="#475569"
-                  fontSize="9"
-                  fontWeight="600"
-                  fontFamily="sans-serif"
-                >
-                  International School
-                </text>
-              </g>
-            </g>
-          </g>
-
-          {/* ------------------------------------------------------------- */}
-          {/* Floating Callout Card: Next Stop - Maple Residency */}
-          {/* ------------------------------------------------------------- */}
-          <g transform="translate(325, 168)" filter="url(#badge-shadow)">
-            <g>
-              {/* Card Container */}
-              <rect
-                x="0"
-                y="0"
-                width="132"
-                height="46"
-                rx="10"
-                fill="#ffffff"
-                stroke="#e2e8f0"
-                strokeWidth="1"
-              />
-              {/* Indicator stem pointing down to stop (320, 205) */}
-              <polygon points="18,46 24,52 28,46" fill="#ffffff" stroke="#e2e8f0" strokeWidth="1" />
-
-              {/* Icon */}
-              <circle cx="17" cy="23" r="9.5" fill="#ECF4FD" stroke="#A7CCF3" strokeWidth="1" />
-              <g transform="translate(17, 23)">
-                <circle cx="0" cy="-3" r="2" fill="#1062B9" />
-                <path d="M -2.8,3.8 C -2.8,0.8 2.8,0.8 2.8,3.8" stroke="#1062B9" strokeWidth="1.3" fill="none" />
-              </g>
-
-              {/* Text */}
-              <text
-                x="34"
-                y="15"
-                fill="#64748b"
-                fontSize="7.5"
-                fontWeight="700"
-                fontFamily="sans-serif"
-                letterSpacing="0.04em"
-              >
-                NEXT STOP
-              </text>
-              <text
-                x="34"
-                y="27"
-                fill="#181818"
-                fontSize="11"
-                fontWeight="700"
-                fontFamily="sans-serif"
-              >
+        {/* next stop card */}
+        <At x={432} y={186} className="z-10 hidden md:block">
+          <div className={`${CARD} relative flex items-center gap-2.5 py-2.5 pl-2.5 pr-4`}>
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#EAF5FF]" style={{ color: BLUE }}>
+              <PersonStanding className="h-4.5 w-4.5" strokeWidth={2.2} />
+            </span>
+            <span className="leading-tight">
+              <span className="block text-[11.5px]" style={{ color: MUTED }}>
+                Next Stop
+              </span>
+              <span className="block whitespace-nowrap text-[13.5px] font-semibold" style={{ color: NAVY }}>
                 Maple Residency
-              </text>
-              <text
-                x="34"
-                y="39"
-                fill="#64748b"
-                fontSize="8.5"
-                fontWeight="600"
-                fontFamily="sans-serif"
-              >
-                {etaMinutes} mins • 0.8 km
-              </text>
-            </g>
-          </g>
-
-          {/* ------------------------------------------------------------- */}
-          {/* 4. ANIMATED BUS FLEET MARKERS */}
-          {/* ------------------------------------------------------------- */}
-
-          {/* BUS 3: MPX-03 (Stationed At Stop - Amber Pin) */}
-          {(filter === "all" || filter === "stop") && (
-            <g
-              transform={`translate(${bus03Pos.x}, ${bus03Pos.y})`}
-              className="cursor-pointer transition-transform duration-300 hover:scale-105"
-              onClick={() => setSelectedBus("MPX-03")}
-              filter="url(#badge-shadow)"
-            >
-              {/* Pulsing ring */}
-              <circle cx="0" cy="0" r="11" fill="#0B7CF5" opacity="0.25" className="animate-ping-soft" />
-
-              {/* Bus Pin Marker */}
-              <circle cx="0" cy="0" r="10" fill="#0B7CF5" stroke="#ffffff" strokeWidth="2" />
-              <g transform="translate(-4, -4) scale(0.35)">
-                <path
-                  d="M4 16c0 .88.39 1.67 1 2.22V20a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1h8v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4s-8 .5-8 4v10zm3.5 1c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6H6V6h12v5z"
-                  fill="#ffffff"
-                />
-              </g>
-
-              {/* Floating Badge */}
-              <g transform="translate(16, -14)">
-                <rect
-                  x="0"
-                  y="0"
-                  width="112"
-                  height="30"
-                  rx="7"
-                  fill="#ffffff"
-                  stroke="#e2e8f0"
-                  strokeWidth="1"
-                />
-                <text
-                  x="8"
-                  y="13"
-                  fill="#181818"
-                  fontSize="9.5"
-                  fontWeight="700"
-                  fontFamily="sans-serif"
-                >
-                  Bus MPX-03
-                </text>
-                <circle cx="11" cy="22" r="2.2" fill="#0B7CF5" />
-                <text
-                  x="17"
-                  y="24"
-                  fill="#095CB4"
-                  fontSize="8"
-                  fontWeight="600"
-                  fontFamily="sans-serif"
-                >
-                  At stop • 18 students
-                </text>
-              </g>
-            </g>
-          )}
-
-          {/* BUS 2: MPX-11 (In Transit on Lower Route Branch - Blue Pin) */}
-          {(filter === "all" || filter === "transit") && (
-            <g
-              transform={`translate(${busBPos.x}, ${busBPos.y})`}
-              className="cursor-pointer transition-transform duration-300 hover:scale-105"
-              onClick={() => setSelectedBus("MPX-11")}
-              filter="url(#badge-shadow)"
-            >
-              {/* Radar pulse */}
-              <circle cx="0" cy="0" r="12" fill="#147dff" opacity="0.22" className="animate-ping-soft" />
-
-              {/* Marker Circle */}
-              <circle cx="0" cy="0" r="10" fill="#147dff" stroke="#ffffff" strokeWidth="2" />
-              <g transform="translate(-4, -4) scale(0.35)">
-                <path
-                  d="M4 16c0 .88.39 1.67 1 2.22V20a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1h8v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4s-8 .5-8 4v10zm3.5 1c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6H6V6h12v5z"
-                  fill="#ffffff"
-                />
-              </g>
-
-              {/* Floating Badge */}
-              <g transform="translate(16, -14)">
-                <rect
-                  x="0"
-                  y="0"
-                  width="114"
-                  height="30"
-                  rx="7"
-                  fill="#ffffff"
-                  stroke="#e2e8f0"
-                  strokeWidth="1"
-                />
-                <text
-                  x="8"
-                  y="13"
-                  fill="#181818"
-                  fontSize="9.5"
-                  fontWeight="700"
-                  fontFamily="sans-serif"
-                >
-                  Bus MPX-11
-                </text>
-                <circle cx="11" cy="22" r="2.2" fill="#1062B9" />
-                <text
-                  x="17"
-                  y="24"
-                  fill="#3E3E3E"
-                  fontSize="8"
-                  fontWeight="600"
-                  fontFamily="sans-serif"
-                >
-                  On route • 28 students
-                </text>
-              </g>
-            </g>
-          )}
-
-          {/* BUS 1: MPX-07 (Main Flagship Bus Travelling Along Route A) */}
-          {(filter === "all" || filter === "transit") && (
-            <g
-              transform={`translate(${busAPos.x}, ${busAPos.y})`}
-              className="cursor-pointer transition-transform duration-300 hover:scale-105"
-              onClick={() => setSelectedBus("MPX-07")}
-              filter="url(#badge-shadow)"
-            >
-              {/* Smooth expanding radar ring */}
-              <circle cx="0" cy="0" r="14" fill="#147dff" opacity="0.25" className="animate-ping-soft" />
-
-              {/* Bus Pin Marker */}
-              <circle cx="0" cy="0" r="11" fill="#147dff" stroke="#ffffff" strokeWidth="2.5" />
-              <g transform="translate(-4.5, -4.5) scale(0.38)">
-                <path
-                  d="M4 16c0 .88.39 1.67 1 2.22V20a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1h8v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4s-8 .5-8 4v10zm3.5 1c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6H6V6h12v5z"
-                  fill="#ffffff"
-                />
-              </g>
-
-              {/* Floating Badge */}
-              <g transform="translate(18, -15)">
-                <rect
-                  x="0"
-                  y="0"
-                  width="116"
-                  height="32"
-                  rx="7"
-                  fill="#ffffff"
-                  stroke="#147dff"
-                  strokeWidth="1.2"
-                />
-                <text
-                  x="8"
-                  y="14"
-                  fill="#181818"
-                  fontSize="10"
-                  fontWeight="700"
-                  fontFamily="sans-serif"
-                >
-                  Bus MPX-07
-                </text>
-                <circle cx="12" cy="23" r="2.2" fill="#1062B9" />
-                <text
-                  x="18"
-                  y="25"
-                  fill="#3E3E3E"
-                  fontSize="8.2"
-                  fontWeight="600"
-                  fontFamily="sans-serif"
-                >
-                  On route • 24 students
-                </text>
-              </g>
-            </g>
-          )}
-        </svg>
-      </div>
-
-      {/* ========================================================================= */}
-      {/* 5. FLOATING BUS DETAILS CARD (Bottom-Left) */}
-      {/* ========================================================================= */}
-      <div className="absolute bottom-3 left-3 z-30 w-[240px] sm:w-[270px] pointer-events-auto">
-        <div className="rounded-[16px] border border-slate-200/90 bg-white/98 p-3 shadow-[0_14px_34px_-8px_rgba(24,24,24,0.2)] backdrop-blur-md transition-all duration-300">
-          
-          {/* Top Row: Thumbnail + Bus ID + On Route Status */}
-          <div className="flex items-center gap-2.5">
-            <div className="relative h-11 w-13 shrink-0 overflow-hidden rounded-lg border border-slate-200/80 bg-slate-100">
-              <Image
-                src="/transport/school-bus-thumb.jpg"
-                alt="School Bus Fleet"
-                fill
-                className="object-cover"
-                sizes="60px"
-              />
-            </div>
-            <div className="flex flex-1 flex-col">
-              <div className="flex items-center justify-between">
-                <span className="font-display text-sm font-bold text-brand-navy">
-                  {selectedBus}
-                </span>
-                <span className="inline-flex items-center gap-1 rounded-full bg-sky-50 px-2 py-0.5 text-[0.62rem] font-bold text-sky-700">
-                  <span className="h-1.5 w-1.5 rounded-full bg-sky-500 animate-pulse" />
-                  {selectedBus === "MPX-03" ? "At Stop" : "On Route"}
-                </span>
-              </div>
-              <span className="text-[0.68rem] font-semibold text-slate-500">
-                Route A - West Zone
               </span>
-            </div>
-          </div>
-
-          {/* Capacity Progress Bar */}
-          <div className="mt-2.5 flex items-center justify-between gap-2">
-            <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-slate-100">
-              <div
-                className="h-full rounded-full bg-brand-blue transition-all duration-500"
-                style={{ width: selectedBus === "MPX-03" ? "65%" : selectedBus === "MPX-11" ? "100%" : "85%" }}
-              />
-            </div>
-            <span className="shrink-0 text-[0.68rem] font-bold text-brand-navy">
-              {selectedBus === "MPX-03" ? "18/28" : selectedBus === "MPX-11" ? "28/28" : "24/28"}{" "}
-              <span className="font-normal text-slate-400">Students</span>
+              <span className="mt-0.5 block text-[11.5px] font-semibold" style={{ color: NAVY }}>
+                2 mins <span style={{ color: MUTED }}>• 0.8 km</span>
+              </span>
             </span>
+            <span className="absolute -bottom-[6px] left-1/2 h-3 w-3 -translate-x-1/2 rotate-45 border-b border-r border-[#D5E8FA] bg-white" />
           </div>
+        </At>
 
-          {/* Next Stop Segment */}
-          <div className="mt-2.5 flex items-center justify-between rounded-xl border border-slate-100 bg-brand-blue-light/30 p-2 transition-colors hover:bg-brand-blue-light/50">
-            <div className="flex items-center gap-2">
-              <span className="flex h-6.5 w-6.5 items-center justify-center rounded-lg bg-brand-blue text-white shadow-2xs">
-                <MapPin className="h-3.5 w-3.5" />
+        {/* buses */}
+        <BusCard x={313} y={98} id="MPX-07" dim={isDim("MPX-07")} />
+        <BusCard x={637} y={298} id="MPX-03" dim={isDim("MPX-03")} />
+        <BusCard x={447} y={430} id="MPX-11" dim={isDim("MPX-11")} />
+        <BusPin x={292} y={166} id="MPX-07" dim={isDim("MPX-07")} selected={selectedBus === "MPX-07"} onSelect={setSelectedBus} />
+        <BusPin x={620} y={366} id="MPX-03" dim={isDim("MPX-03")} selected={selectedBus === "MPX-03"} onSelect={setSelectedBus} />
+        <BusPin x={430} y={496} id="MPX-11" dim={isDim("MPX-11")} selected={selectedBus === "MPX-11"} onSelect={setSelectedBus} />
+      </div>
+
+      {/* Top-left filters */}
+      <div className="absolute left-3 top-3 z-30 flex max-w-[calc(100%-24px)] flex-wrap gap-2 sm:left-4 sm:top-4 md:max-w-[62%]">
+        {FILTERS.map(({ id, label, count, dot }) => {
+          const active = filter === id;
+          return (
+            <button
+              key={id}
+              type="button"
+              onClick={() => setFilter(id)}
+              aria-pressed={active}
+              className={`${id === "idle" ? "hidden sm:inline-flex" : "inline-flex"} h-8 cursor-pointer items-center gap-1.5 rounded-[10px] px-2.5 text-[12px] font-semibold transition-colors duration-200 sm:h-10 sm:gap-2 sm:px-3.5 sm:text-[13px] ${
+                active
+                  ? "bg-[#1683F5] text-white shadow-[0_6px_16px_-6px_rgba(22,131,245,0.7)]"
+                  : "border border-[#D5E8FA] bg-white text-[#0B1B36] shadow-[0_4px_12px_rgba(30,90,150,0.08)] hover:border-[#1683F5]"
+              }`}
+            >
+              {dot && <span className="h-2 w-2 rounded-full" style={{ background: dot }} />}
+              {label}
+              <span
+                className={`flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-[11px] font-bold ${
+                  active ? "bg-white/25 text-white" : "bg-[#EEF3F9] text-[#52657D]"
+                }`}
+              >
+                {count}
               </span>
-              <div>
-                <span className="block text-[0.58rem] font-bold uppercase tracking-wider text-slate-400 leading-tight">
-                  Next Stop
-                </span>
-                <span className="block text-[0.72rem] font-bold text-brand-navy leading-tight">
-                  Maple Residency
-                </span>
-                <span className="block text-[0.62rem] font-medium text-slate-500 leading-tight">
-                  {etaMinutes} mins • 0.8 km
-                </span>
-              </div>
-            </div>
-            <ChevronRight className="h-4 w-4 text-slate-400" />
-          </div>
-        </div>
+            </button>
+          );
+        })}
       </div>
 
-      {/* ========================================================================= */}
-      {/* 6. MAP LEGEND (Bottom-Center) */}
-      {/* ========================================================================= */}
-      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 hidden md:flex items-center gap-3 rounded-full border border-slate-200/80 bg-white/95 px-4 py-1.5 text-[0.68rem] font-bold text-slate-600 shadow-xs backdrop-blur-md pointer-events-auto">
-        <div className="flex items-center gap-1.5">
-          <span className="h-2 w-2 rounded-full bg-brand-blue" />
-          <span>Bus</span>
+      {/* Top-right: Live / Satellite + fullscreen */}
+      <div className="absolute right-3 top-3 z-30 hidden items-center gap-2.5 sm:right-4 sm:top-4 sm:flex">
+        <div className="flex items-center rounded-[12px] border border-[#D5E8FA] bg-white p-1 shadow-[0_4px_12px_rgba(30,90,150,0.08)]">
+          {(["live", "satellite"] as const).map((m) => (
+            <button
+              key={m}
+              type="button"
+              onClick={() => setMapMode(m)}
+              aria-pressed={mapMode === m}
+              className={`h-8 cursor-pointer rounded-[9px] px-4 text-[13px] font-semibold capitalize transition-colors ${
+                mapMode === m ? "bg-[#1683F5] text-white" : "text-[#0B1B36] hover:text-[#1683F5]"
+              }`}
+            >
+              {m}
+            </button>
+          ))}
         </div>
-        <span className="text-slate-300">|</span>
-        <div className="flex items-center gap-1.5">
-          <span className="h-0.5 w-3.5 rounded-full bg-brand-blue" />
-          <span>Route</span>
-        </div>
-        <span className="text-slate-300">|</span>
-        <div className="flex items-center gap-1.5">
-          <span className="h-2 w-2 rounded-full border border-brand-blue bg-white" />
-          <span>Upcoming Stop</span>
-        </div>
-        <span className="text-slate-300">|</span>
-        <div className="flex items-center gap-1.5">
-          <Check className="h-3 w-3 text-sky-600" strokeWidth={3} />
-          <span>Completed Stop</span>
-        </div>
-        <span className="text-slate-300">|</span>
-        <div className="flex items-center gap-1.5">
-          <GraduationCap className="h-3 w-3 text-brand-blue" />
-          <span>School</span>
-        </div>
-      </div>
-
-      {/* ========================================================================= */}
-      {/* 7. MAP NAVIGATION TOOLS (Bottom-Right) */}
-      {/* ========================================================================= */}
-      <div className="absolute bottom-3 right-3 z-30 flex flex-col gap-1.5 pointer-events-auto">
-        <div className="flex flex-col overflow-hidden rounded-xl border border-slate-200/90 bg-white/95 shadow-xs backdrop-blur-md">
-          <button
-            type="button"
-            onClick={() => setZoomLevel((z) => Math.min(1.4, z + 0.1))}
-            className="flex h-7.5 w-7.5 items-center justify-center text-slate-600 transition-colors hover:bg-slate-100 hover:text-brand-blue"
-            aria-label="Zoom in"
-          >
-            <Plus className="h-3.5 w-3.5" />
-          </button>
-          <div className="h-px bg-slate-200" />
-          <button
-            type="button"
-            onClick={() => setZoomLevel((z) => Math.max(0.9, z - 0.1))}
-            className="flex h-7.5 w-7.5 items-center justify-center text-slate-600 transition-colors hover:bg-slate-100 hover:text-brand-blue"
-            aria-label="Zoom out"
-          >
-            <Minus className="h-3.5 w-3.5" />
-          </button>
-        </div>
-
         <button
           type="button"
-          onClick={() => setZoomLevel(1)}
-          className="flex h-7.5 w-7.5 items-center justify-center rounded-xl border border-slate-200/90 bg-white/95 text-slate-600 shadow-xs backdrop-blur-md transition-colors hover:bg-slate-100 hover:text-brand-blue"
-          aria-label="Reset orientation"
+          onClick={toggleFullscreen}
+          aria-label="Toggle fullscreen"
+          className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-[12px] border border-[#D5E8FA] bg-white text-[#0B1B36] shadow-[0_4px_12px_rgba(30,90,150,0.08)] hover:text-[#1683F5]"
         >
-          <Crosshair className="h-3.5 w-3.5" />
+          <Maximize2 className="h-4 w-4" />
         </button>
       </div>
 
+      {/* Right-side map controls */}
+      <div className="absolute bottom-4 right-3 z-30 flex flex-col items-center gap-2 sm:right-4">
+        <button
+          type="button"
+          onClick={() => setZoomLevel(1)}
+          aria-label="Reset north"
+          className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-[12px] border border-[#D5E8FA] bg-white text-[#0B1B36] shadow-[0_4px_12px_rgba(30,90,150,0.1)] hover:text-[#1683F5]"
+        >
+          <Navigation2 className="h-4 w-4" />
+        </button>
+        <div className="flex flex-col overflow-hidden rounded-[12px] border border-[#D5E8FA] bg-white shadow-[0_4px_12px_rgba(30,90,150,0.1)]">
+          <button
+            type="button"
+            onClick={() => setZoomLevel((z) => Math.min(1.4, +(z + 0.1).toFixed(2)))}
+            aria-label="Zoom in"
+            className="flex h-10 w-10 cursor-pointer items-center justify-center text-[#0B1B36] hover:text-[#1683F5]"
+          >
+            <Plus className="h-4 w-4" />
+          </button>
+          <span className="h-px bg-[#E3EEF9]" />
+          <button
+            type="button"
+            onClick={() => setZoomLevel((z) => Math.max(1, +(z - 0.1).toFixed(2)))}
+            aria-label="Zoom out"
+            className="flex h-10 w-10 cursor-pointer items-center justify-center text-[#0B1B36] hover:text-[#1683F5]"
+          >
+            <Minus className="h-4 w-4" />
+          </button>
+        </div>
+        <button
+          type="button"
+          onClick={() => setZoomLevel(1)}
+          aria-label="Recenter map"
+          className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-[12px] border border-[#D5E8FA] bg-white text-[#0B1B36] shadow-[0_4px_12px_rgba(30,90,150,0.1)] hover:text-[#1683F5]"
+        >
+          <LocateFixed className="h-4 w-4" />
+        </button>
+      </div>
+
+      {/* Selected bus panel (bottom-left) */}
+      <div className="absolute bottom-3 left-3 z-30 w-[214px] sm:bottom-4 sm:left-4 sm:w-[300px] lg:w-[316px]">
+        <div className="rounded-[16px] border border-[#D5E8FA] bg-white p-3 shadow-[0_8px_24px_rgba(30,90,150,0.12)] sm:rounded-[18px] sm:p-4">
+          <div className="flex items-start gap-3">
+            <div className="relative hidden h-[58px] w-[80px] shrink-0 overflow-hidden rounded-[10px] sm:block">
+              <Image src="/transport/school-bus-thumb.jpg" alt="School bus" fill sizes="80px" className="object-cover" />
+            </div>
+            <div className="flex flex-1 items-start justify-between gap-2 pt-1">
+              <span className="whitespace-nowrap font-display text-[15px] font-bold sm:text-[17px]" style={{ color: NAVY }}>
+                {selectedBus}
+              </span>
+              <span
+                className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-[8px] px-2.5 py-1 text-[11.5px] font-semibold sm:text-[12.5px]"
+                style={
+                  sel.status === "stop"
+                    ? { background: "#EAF5FF", color: BLUE }
+                    : { background: "#E8F7EF", color: "#15803D" }
+                }
+              >
+                <span className="h-2 w-2 rounded-full" style={{ background: sel.status === "stop" ? SKY : GREEN }} />
+                {sel.status === "stop" ? "At Stop" : "On Route"}
+              </span>
+            </div>
+          </div>
+
+          <p className="mt-2 text-[13px] font-semibold sm:mt-3 sm:text-[15px]" style={{ color: NAVY }}>
+            Route A - West Zone
+          </p>
+          <div className="mt-2 flex items-center gap-3">
+            <div className="h-[6px] flex-1 overflow-hidden rounded-full bg-[#E3EEF9]">
+              <div
+                className="h-full rounded-full bg-gradient-to-r from-[#1683F5] to-[#5AAEFA] transition-[width] duration-500"
+                style={{ width: sel.fill }}
+              />
+            </div>
+            <span className="text-right leading-tight">
+              <span className="block text-[14px] font-bold sm:text-[15px]" style={{ color: NAVY }}>
+                {sel.students}/28
+              </span>
+              <span className="block text-[11px]" style={{ color: MUTED }}>
+                Students
+              </span>
+            </span>
+          </div>
+
+          <div className="mt-2.5 flex items-center gap-2.5 rounded-[12px] border border-[#E1ECF8] bg-white px-2.5 py-2 sm:mt-3 sm:gap-3 sm:px-3 sm:py-2.5">
+            <MapPin className="h-5 w-5 shrink-0" style={{ color: BLUE }} fill="#1683F5" fillOpacity={0.15} />
+            <span className="flex-1 leading-tight">
+              <span className="block text-[11.5px]" style={{ color: MUTED }}>
+                Next Stop
+              </span>
+              <span className="block text-[13.5px] font-semibold" style={{ color: NAVY }}>
+                Maple Residency
+              </span>
+              <span className="block text-[11.5px]" style={{ color: MUTED }}>
+                2 mins • 0.8 km
+              </span>
+            </span>
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#EAF5FF]" style={{ color: BLUE }}>
+              <ChevronRight className="h-4 w-4" />
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Legend (bottom-center) */}
+      <div className="absolute bottom-4 left-[calc(50%+90px)] z-20 hidden -translate-x-1/2 items-center gap-5 rounded-[12px] border border-[#D5E8FA] bg-white px-5 py-2.5 text-[12.5px] text-[#3A4A60] shadow-[0_8px_24px_rgba(30,90,150,0.10)] xl:flex 2xl:left-1/2">
+        <span className="flex items-center gap-2">
+          <span className="h-3 w-3 rounded-full bg-[#1683F5]" />
+          Bus
+        </span>
+        <span className="flex items-center gap-2">
+          <span className="h-[3px] w-4 rounded-full bg-[#1683F5]" />
+          Route
+        </span>
+        <span className="flex items-center gap-2">
+          <span className="h-3 w-3 rounded-full border-[2.5px] border-[#1683F5] bg-white" />
+          Upcoming Stop
+        </span>
+        <span className="flex items-center gap-2">
+          <span className="flex h-3.5 w-3.5 items-center justify-center rounded-full" style={{ background: GREEN }}>
+            <Check className="h-2.5 w-2.5 text-white" strokeWidth={3.5} />
+          </span>
+          Completed Stop
+        </span>
+        <span className="flex items-center gap-2">
+          <House className="h-3.5 w-3.5 text-[#1683F5]" strokeWidth={2.6} />
+          School
+        </span>
+      </div>
     </div>
   );
 }

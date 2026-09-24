@@ -50,7 +50,7 @@ export default function SchoolManagementPage() {
         ]}
       />
       <SchoolManagementProduct />
-      <ProductsCTA />
+      <ProductsCTA tinted />
     </>
   );
 }

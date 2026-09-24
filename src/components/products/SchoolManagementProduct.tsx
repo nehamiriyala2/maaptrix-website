@@ -12,7 +12,7 @@ import SchoolDashboard from "@/components/SchoolDashboard";
 
 export default function SchoolManagementProduct() {
   return (
-    <section id="school" className="scroll-mt-24 relative overflow-hidden bg-blue-white py-12 sm:py-16 lg:py-20 border-b border-slate-100 select-none">
+    <section id="school" className="scroll-mt-24 relative overflow-hidden bg-white py-12 sm:py-16 lg:py-20 select-none">
       <div className="page-container">
         
         {/* ========================================================================= */}
@@ -22,8 +22,8 @@ export default function SchoolManagementProduct() {
           <Reveal>
             <div className="flex flex-col gap-3">
               <div className="flex items-center justify-between px-1">
-                <span className="text-xs font-bold uppercase tracking-wider text-sky-700 flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-sky-500 animate-pulse" />
+                <span className="text-xs font-bold uppercase tracking-wider text-brand-blue flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-brand-blue animate-pulse" />
                   School Administrative Ecosystem Preview
                 </span>
                 <span className="text-xs text-slate-400 font-medium hidden sm:inline">
@@ -42,12 +42,12 @@ export default function SchoolManagementProduct() {
           
           {/* 1. Students */}
           <Reveal delay={0.05}>
-            <div className="h-full rounded-2xl border border-[#CCE5FF] bg-white p-6 shadow-2xs flex flex-col justify-between hover:border-brand-blue transition-colors">
+            <div className="h-full rounded-2xl border border-[#CFE4FF] bg-white p-6 shadow-[0_8px_24px_rgba(30,136,255,0.06)] flex flex-col justify-between hover:border-brand-blue transition-colors">
               <div>
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-blue-light text-brand-blue mb-4 border border-brand-blue/20">
                   <Users className="h-5 w-5" />
                 </div>
-                <h4 className="font-display text-lg font-bold text-brand-navy">
+                <h4 className="font-display text-[19px] font-bold text-brand-navy">
                   Student Administration
                 </h4>
                 <ul className="mt-4 space-y-2 text-xs sm:text-sm text-slate-600">
@@ -70,12 +70,12 @@ export default function SchoolManagementProduct() {
 
           {/* 2. Academics */}
           <Reveal delay={0.1}>
-            <div className="h-full rounded-2xl border border-[#CCE5FF] bg-white p-6 shadow-2xs flex flex-col justify-between hover:border-brand-blue transition-colors">
+            <div className="h-full rounded-2xl border border-[#CFE4FF] bg-white p-6 shadow-[0_8px_24px_rgba(30,136,255,0.06)] flex flex-col justify-between hover:border-brand-blue transition-colors">
               <div>
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-blue-light text-brand-blue mb-4 border border-brand-blue/20">
                   <BookOpen className="h-5 w-5" />
                 </div>
-                <h4 className="font-display text-lg font-bold text-brand-navy">
+                <h4 className="font-display text-[19px] font-bold text-brand-navy">
                   Everyday Academic Administration
                 </h4>
                 <ul className="mt-4 space-y-2 text-xs sm:text-sm text-slate-600">
@@ -98,12 +98,12 @@ export default function SchoolManagementProduct() {
 
           {/* 3. Communication */}
           <Reveal delay={0.15}>
-            <div className="h-full rounded-2xl border border-[#CCE5FF] bg-white p-6 shadow-2xs flex flex-col justify-between hover:border-brand-blue transition-colors">
+            <div className="h-full rounded-2xl border border-[#CFE4FF] bg-white p-6 shadow-[0_8px_24px_rgba(30,136,255,0.06)] flex flex-col justify-between hover:border-brand-blue transition-colors">
               <div>
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-blue-light text-brand-blue mb-4 border border-brand-blue/20">
                   <Bell className="h-5 w-5" />
                 </div>
-                <h4 className="font-display text-lg font-bold text-brand-navy">
+                <h4 className="font-display text-[19px] font-bold text-brand-navy">
                   School-to-Parent Communication
                 </h4>
                 <ul className="mt-4 space-y-2 text-xs sm:text-sm text-slate-600">
@@ -126,12 +126,12 @@ export default function SchoolManagementProduct() {
 
           {/* 4. Events */}
           <Reveal delay={0.2}>
-            <div className="h-full rounded-2xl border border-[#CCE5FF] bg-white p-6 shadow-2xs flex flex-col justify-between hover:border-brand-blue transition-colors">
+            <div className="h-full rounded-2xl border border-[#CFE4FF] bg-white p-6 shadow-[0_8px_24px_rgba(30,136,255,0.06)] flex flex-col justify-between hover:border-brand-blue transition-colors">
               <div>
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-blue-light text-brand-blue mb-4 border border-brand-blue/20">
                   <Calendar className="h-5 w-5" />
                 </div>
-                <h4 className="font-display text-lg font-bold text-brand-navy">
+                <h4 className="font-display text-[19px] font-bold text-brand-navy">
                   Events &amp; School Moments
                 </h4>
                 <ul className="mt-4 space-y-2 text-xs sm:text-sm text-slate-600">
@@ -157,7 +157,7 @@ export default function SchoolManagementProduct() {
         {/* ========================================================================= */}
         {/* 4. APPROVED POSITIONING STATEMENT */}
         {/* ========================================================================= */}
-        <div className="mt-12 rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 text-center max-w-3xl mx-auto shadow-2xs">
+        <div className="mt-12 rounded-2xl border border-[#CFE4FF] bg-white p-5 sm:p-6 text-center max-w-3xl mx-auto shadow-[0_8px_24px_rgba(30,136,255,0.06)]">
           <p className="text-sm sm:text-base font-semibold text-brand-navy">
             &ldquo;Essential digital school operations in a simple, affordable and easy-to-adopt product.&rdquo;
           </p>

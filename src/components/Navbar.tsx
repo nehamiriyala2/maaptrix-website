@@ -71,7 +71,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="fixed top-3 sm:top-4 inset-x-0 z-50 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto pointer-events-none transition-all duration-300">
+      <header className="fixed top-3 sm:top-4 inset-x-0 z-50 px-3 sm:px-6 lg:px-8 max-w-[1400px] mx-auto pointer-events-none transition-all duration-300">
         <nav
           className={`pointer-events-auto w-full rounded-2xl sm:rounded-full px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between transition-all duration-300 ${
             scrolled
@@ -103,7 +103,7 @@ export default function Navbar() {
                 />
               );
               const linkClass = `group relative py-1 text-[0.9rem] xl:text-[0.94rem] font-medium tracking-[-0.01em] transition-colors ${
-                active ? "text-brand-navy font-semibold" : "text-brand-navy/70 hover:text-brand-navy"
+                active ? "text-brand-blue font-semibold" : "text-brand-navy/80 hover:text-brand-blue"
               }`;
 
               if (link.href !== "/products") {
@@ -196,7 +196,7 @@ export default function Navbar() {
             </button>
             <Link
               href="/contact"
-              className="group inline-flex items-center gap-1.5 rounded-full bg-brand-navy px-5 py-2.5 text-[0.85rem] xl:text-[0.88rem] font-semibold text-white shadow-[0_4px_14px_-3px_rgba(24,24,24,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-blue hover:shadow-[0_8px_20px_-4px_rgba(20,125,255,0.45)]"
+              className="group inline-flex items-center gap-1.5 rounded-full bg-brand-blue px-5 py-2.5 text-[0.85rem] xl:text-[0.88rem] font-semibold text-white shadow-[0_4px_14px_-4px_rgba(22,131,245,0.6)] hover:bg-brand-blue-dark transition-all duration-300 hover:shadow-[0_8px_20px_-4px_rgba(20,125,255,0.45)]"
             >
               <span>Request a Demo</span>
               <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -316,7 +316,7 @@ export default function Navbar() {
                   <Link
                     href="/contact"
                     onClick={() => setOpen(false)}
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-navy px-5 py-2.5 text-xs font-semibold text-white shadow-md transition-colors hover:bg-brand-blue"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-blue px-5 py-2.5 text-xs font-semibold text-white shadow-md transition-colors hover:bg-brand-blue-dark"
                   >
                     <span>Request a Demo</span>
                     <ArrowRight className="h-3.5 w-3.5" />

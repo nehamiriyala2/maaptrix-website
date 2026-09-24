@@ -55,7 +55,7 @@ const VALUE_POINTS = [
 
 export function AboutIntro() {
   return (
-    <section className="relative overflow-hidden bg-white pb-16 pt-8 sm:pb-20 sm:pt-12 lg:pb-24 lg:pt-14">
+    <section className="relative overflow-hidden bg-white pb-12 pt-8 sm:pb-16 sm:pt-12 lg:pb-20 lg:pt-14">
       {/* Subtle atmospheric ambient glow */}
       <div
         className="pointer-events-none absolute -left-20 top-0 h-[450px] w-[450px] rounded-full bg-[#EAF5FF]/60 blur-[100px]"
@@ -79,7 +79,7 @@ export function AboutIntro() {
             </div>
 
             {/* Main Heading */}
-            <h1 className="mt-4 font-display text-[40px] font-extrabold leading-[1.08] tracking-[-0.035em] text-brand-navy sm:text-[50px] lg:text-[54px] xl:text-[60px]">
+            <h1 className="mt-4 font-display text-[34px] leading-[1.06] sm:text-[42px] lg:text-[52px] xl:text-[58px] font-extrabold tracking-[-0.035em] text-brand-navy">
               Technology Products<br />
               Built Around <span className="text-brand-blue">Real<br />
               Problems.</span>
@@ -114,7 +114,7 @@ export function AboutIntro() {
             <div className="mt-8 sm:mt-9">
               <Link
                 href="#start-heading"
-                className="group inline-flex h-[54px] w-full items-center justify-center gap-2.5 rounded-[12px] bg-brand-blue px-8 text-[15.5px] font-bold text-white shadow-[0_12px_24px_-8px_rgba(20,125,255,0.6)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-blue-dark hover:shadow-[0_14px_28px_-6px_rgba(20,125,255,0.7)] sm:h-[58px] sm:w-[290px]"
+                className="group inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-[12px] bg-brand-blue px-8 text-[15.5px] font-bold text-white shadow-[0_12px_24px_-8px_rgba(20,125,255,0.6)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-blue-dark hover:shadow-[0_14px_28px_-6px_rgba(20,125,255,0.7)] sm:h-[58px] sm:w-[290px]"
               >
                 Learn More About Us
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden />
@@ -142,7 +142,7 @@ export function AboutIntro() {
               />
 
               {/* Main Image Container */}
-              <div className="relative overflow-hidden rounded-[20px] sm:rounded-[26px] border border-[#DCEEFF] bg-white shadow-[0_25px_60px_-25px_rgba(20,60,120,0.18)]">
+              <div className="relative overflow-hidden rounded-[20px] sm:rounded-[26px] border border-[#CFE4FF] bg-white shadow-[0_25px_60px_-25px_rgba(20,60,120,0.18)]">
                 <Image
                   src="/about/about-story-building.jpg"
                   alt="Maaptrix headquarters building"
@@ -155,7 +155,7 @@ export function AboutIntro() {
               </div>
 
               {/* Floating Card 1: Top Right */}
-              <div className="absolute -top-3 -right-2 sm:-top-5 sm:-right-5 lg:-top-6 lg:-right-7 z-10 flex w-[185px] sm:w-[205px] items-center gap-3 rounded-[16px] border border-[#E2EEFC] bg-white p-3.5 sm:p-4 shadow-[0_12px_32px_-8px_rgba(20,60,120,0.14)]">
+              <div className="absolute -top-3 -right-2 sm:-top-5 sm:-right-5 lg:-top-6 lg:-right-7 z-10 flex w-[185px] sm:w-[205px] items-center gap-3 rounded-[16px] border border-[#CFE4FF] bg-white p-3.5 sm:p-4 shadow-[0_12px_32px_-8px_rgba(20,60,120,0.14)]">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] bg-[#EDF5FF] text-brand-blue">
                   <Building2 className="h-5 w-5" strokeWidth={2} aria-hidden />
                 </div>
@@ -167,7 +167,7 @@ export function AboutIntro() {
               </div>
 
               {/* Floating Card 2: Bottom Left */}
-              <div className="absolute -bottom-4 -left-2 sm:-bottom-5 sm:-left-5 lg:-bottom-6 lg:-left-7 z-10 flex w-[265px] sm:w-[295px] items-center gap-3.5 rounded-[16px] border border-[#E2EEFC] bg-white p-3.5 sm:p-4 shadow-[0_14px_36px_-10px_rgba(20,60,120,0.16)]">
+              <div className="absolute -bottom-4 -left-2 sm:-bottom-5 sm:-left-5 lg:-bottom-6 lg:-left-7 z-10 flex w-[265px] sm:w-[295px] items-center gap-3.5 rounded-[16px] border border-[#CFE4FF] bg-white p-3.5 sm:p-4 shadow-[0_14px_36px_-10px_rgba(20,60,120,0.16)]">
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[10px] bg-[#EDF5FF] text-brand-blue">
                   <TrendingUp className="h-[22px] w-[22px]" strokeWidth={2.2} aria-hidden />
                 </div>
@@ -212,7 +212,7 @@ const FOCUS_CARDS = [
 
 export function AboutWhereWeStart() {
   return (
-    <section className="bg-[#F1F7FF] py-[55px] sm:py-[60px]" aria-labelledby="start-heading">
+    <section className="bg-[#F2F8FF] py-12 sm:py-16" aria-labelledby="start-heading">
       <div className="page-container">
         <div className="mx-auto grid max-w-[1240px] items-center gap-8 lg:grid-cols-2 lg:gap-12 xl:gap-16">
           <Reveal>
@@ -224,7 +224,7 @@ export function AboutWhereWeStart() {
             </div>
             <h2
               id="start-heading"
-              className="mt-3.5 font-display text-[28px] font-bold leading-[1.18] tracking-tight text-brand-navy sm:text-[31px]"
+              className="mt-3.5 font-display text-[30px] leading-[1.12] sm:text-[34px] lg:text-[40px] font-bold tracking-tight text-brand-navy"
             >
               Building practical technology for<br className="hidden sm:inline" />{" "}
               <span className="text-brand-blue">everyday operations.</span>
@@ -240,7 +240,7 @@ export function AboutWhereWeStart() {
                 <Link
                   key={title}
                   href={href}
-                  className="group flex h-[62px] w-full items-center gap-3.5 rounded-[12px] border border-[#E2EEFC] bg-white px-4 shadow-[0_2px_8px_rgba(20,125,255,0.03)] transition-all duration-200 hover:-translate-y-0.5 hover:border-brand-blue/50 hover:shadow-sm"
+                  className="group flex h-[62px] w-full items-center gap-3.5 rounded-[12px] border border-[#CFE4FF] bg-white px-4 shadow-[0_2px_8px_rgba(20,125,255,0.03)] transition-all duration-200 hover:-translate-y-0.5 hover:border-brand-blue/50 hover:shadow-sm"
                 >
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] bg-[#EDF5FF] text-brand-blue">
                     <Icon className="h-[18px] w-[18px]" strokeWidth={2} aria-hidden />
@@ -279,13 +279,13 @@ const VISION_POINTS: { icon: LucideIcon; title: string }[] = [
 
 export function AboutMissionVision() {
   return (
-    <section className="bg-[linear-gradient(180deg,#FFFFFF_0%,#F3F8FF_100%)] py-16 sm:py-20" aria-label="Our mission and vision">
+    <section className="bg-white py-12 sm:py-16 lg:py-20" aria-label="Our mission and vision">
       <div className="page-container">
         <div className="mx-auto grid max-w-[1400px] items-stretch gap-8 lg:grid-cols-[minmax(0,40fr)_minmax(0,60fr)] lg:gap-10">
           {/* Mission */}
           <Reveal className="flex flex-col justify-center">
             <Label>Our Mission</Label>
-            <h2 className="mt-5 font-display text-[30px] font-bold leading-[1.15] tracking-tight text-brand-navy sm:text-[38px]">
+            <h2 className="mt-5 font-display text-[30px] leading-[1.12] sm:text-[34px] lg:text-[40px] font-bold tracking-tight text-brand-navy">
               To create simple, dependable and accessible <span className="text-brand-blue">digital products</span>
             </h2>
             <p className="mt-4 text-[17px] leading-[1.6] text-slate-600 sm:text-[19px]">
@@ -307,7 +307,7 @@ export function AboutMissionVision() {
 
             <Link
               href="/products"
-              className="group mt-8 flex items-center gap-4 rounded-2xl border border-[#DCEAFF] bg-white p-4 shadow-[0_14px_34px_-26px_rgba(10,10,10,0.4)] transition-colors hover:border-brand-blue/50 sm:p-5"
+              className="group mt-8 flex items-center gap-4 rounded-2xl border border-[#CFE4FF] bg-white p-4 shadow-[0_14px_34px_-26px_rgba(10,10,10,0.4)] transition-colors hover:border-brand-blue/50 sm:p-5"
             >
               <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white p-1.5 ring-1 ring-[#DCEAFF]">
                 <Logo showWordmark={false} imageClassName="h-full w-full" />
@@ -333,7 +333,7 @@ export function AboutMissionVision() {
 
             <div className="relative 2xl:max-w-[45%]">
               <Label light>Our Vision</Label>
-              <h2 className="mt-5 font-display text-[28px] font-semibold leading-[1.18] tracking-tight sm:text-[36px]">
+              <h2 className="mt-5 font-display text-[30px] leading-[1.12] sm:text-[34px] lg:text-[40px] font-semibold tracking-tight">
                 To build Maaptrix into a{" "}
                 <span className="font-bold text-[#4DA8FF]">trusted Indian software product company</span>
               </h2>
@@ -508,7 +508,7 @@ const PRINCIPLES_LIST = [
 
 export function AboutPrinciples() {
   return (
-    <section className="relative overflow-hidden bg-[#F4F9FF] py-18 sm:py-20 lg:py-24" aria-labelledby="principles-heading">
+    <section className="relative overflow-hidden bg-[#F2F8FF] py-12 sm:py-16 lg:py-20" aria-labelledby="principles-heading">
       {/* Subtle curved background shapes */}
       <div
         className="pointer-events-none absolute -right-24 -top-24 h-[550px] w-[550px] rounded-full bg-[#E3F0FD]/60 blur-[100px]"
@@ -530,7 +530,7 @@ export function AboutPrinciples() {
           </div>
           <h2
             id="principles-heading"
-            className="mt-3.5 font-display text-[34px] font-bold leading-[1.12] tracking-tight text-brand-navy sm:text-[44px] lg:text-[48px]"
+            className="mt-3.5 font-display text-[30px] leading-[1.12] sm:text-[34px] lg:text-[40px] font-bold tracking-tight text-brand-navy"
           >
             What guides <span className="text-brand-blue">how we build.</span>
           </h2>
@@ -545,7 +545,7 @@ export function AboutPrinciples() {
             {PRINCIPLES_LIST.map(({ num, title, desc, renderIcon }) => (
               <div
                 key={num}
-                className="flex min-h-[255px] flex-col justify-between gap-5 rounded-[20px] border border-[#DCE9F7] bg-white p-6 shadow-[0_8px_24px_rgba(30,90,150,0.06)] transition-all duration-200 hover:-translate-y-1 hover:border-brand-blue/40 hover:shadow-[0_12px_28px_rgba(30,90,150,0.1)] sm:min-h-[270px] sm:p-7"
+                className="flex min-h-[255px] flex-col justify-between gap-5 rounded-[20px] border border-[#CFE4FF] bg-white p-6 shadow-[0_8px_24px_rgba(30,90,150,0.06)] transition-all duration-200 hover:-translate-y-1 hover:border-brand-blue/40 hover:shadow-[0_12px_28px_rgba(30,90,150,0.1)] sm:min-h-[270px] sm:p-7"
               >
                 {/* Top Icon */}
                 <div className="flex h-[100px] w-[100px] shrink-0 items-center justify-center rounded-full bg-[#EAF4FF] sm:h-[110px] sm:w-[110px]">
@@ -573,13 +573,13 @@ export function AboutPrinciples() {
 
         {/* Bottom Horizontal CTA Bar */}
         <Reveal delay={0.12} className="mt-8 sm:mt-10">
-          <div className="flex flex-col items-start justify-between gap-6 rounded-[18px] border border-[#DCE9F7] bg-white/90 px-7 py-7 shadow-[0_8px_24px_rgba(30,90,150,0.04)] backdrop-blur-sm sm:flex-row sm:items-center sm:px-10 sm:py-8">
-            <h3 className="font-display text-[25px] font-bold leading-[1.2] text-brand-navy sm:text-[28px] lg:text-[30px]">
+          <div className="flex flex-col items-start justify-between gap-6 rounded-[18px] border border-[#CFE4FF] bg-white/90 px-7 py-7 shadow-[0_8px_24px_rgba(30,90,150,0.04)] backdrop-blur-sm sm:flex-row sm:items-center sm:px-10 sm:py-8">
+            <h3 className="font-display text-[22px] font-bold leading-[1.2] text-brand-navy sm:text-[26px]">
               Explore what Maaptrix <span className="text-brand-blue">is building.</span>
             </h3>
             <Link
               href="/products"
-              className="group inline-flex h-[54px] w-full shrink-0 items-center justify-center gap-2 rounded-[12px] bg-brand-blue px-7 text-[15px] font-bold text-white shadow-[0_10px_22px_-6px_rgba(20,125,255,0.6)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-blue-dark hover:shadow-[0_12px_26px_-4px_rgba(20,125,255,0.7)] sm:h-[56px] sm:w-[215px]"
+              className="group inline-flex h-12 w-full shrink-0 items-center justify-center gap-2 rounded-[12px] bg-brand-blue px-7 text-[15px] font-bold text-white shadow-[0_10px_22px_-6px_rgba(20,125,255,0.6)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-blue-dark hover:shadow-[0_12px_26px_-4px_rgba(20,125,255,0.7)] sm:h-[56px] sm:w-[215px]"
             >
               Explore Products
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

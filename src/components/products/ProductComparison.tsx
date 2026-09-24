@@ -32,7 +32,7 @@ const PRODUCTS = [
 
 export default function ProductComparison() {
   return (
-    <section className="bg-[#F2F5F9] py-16 sm:py-20" aria-labelledby="comparison-heading">
+    <section className="bg-[#F2F8FF] py-12 sm:py-16 lg:py-20" aria-labelledby="comparison-heading">
       <div className="page-container">
         <Reveal className="mx-auto max-w-3xl text-center">
           <p className="inline-flex items-center gap-2 text-[13px] font-bold uppercase tracking-[0.16em] text-brand-blue">
@@ -41,7 +41,7 @@ export default function ProductComparison() {
           </p>
           <h2
             id="comparison-heading"
-            className="mt-4 font-display text-[32px] font-bold leading-[1.15] tracking-tight text-brand-navy sm:text-[44px]"
+            className="mt-4 font-display text-[30px] leading-[1.12] sm:text-[34px] lg:text-[40px] font-bold tracking-tight text-brand-navy"
           >
             Two Products. <span className="text-brand-blue">Different Operational Needs.</span>
           </h2>
@@ -55,14 +55,14 @@ export default function ProductComparison() {
             {PRODUCTS.map(({ num, name, icon: Icon, items, focus }) => (
               <article
                 key={num}
-                className="relative flex flex-col overflow-hidden rounded-[22px] border border-[#D8E1EC] bg-[#EEF2F7] p-7 pt-9 shadow-[0_18px_40px_-30px_rgba(10,10,10,0.45)] sm:p-8 sm:pt-10"
+                className="relative flex flex-col overflow-hidden rounded-[22px] border border-[#CFE4FF] bg-[#EEF2F7] p-7 pt-9 shadow-[0_18px_40px_-30px_rgba(10,10,10,0.45)] sm:p-8 sm:pt-10"
               >
                 <span
                   className="absolute inset-x-0 top-0 h-[5px] bg-gradient-to-r from-brand-blue to-[#4DA8FF]"
                   aria-hidden
                 />
                 <div className="flex items-center gap-3.5">
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#D2DEEC] bg-white text-brand-navy">
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#CFE4FF] bg-white text-brand-navy">
                     <Icon className="h-6 w-6" strokeWidth={1.8} aria-hidden />
                   </span>
                   <div>

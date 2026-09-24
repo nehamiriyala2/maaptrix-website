@@ -13,7 +13,7 @@ const STEPS = [
 
 export default function HomeProcessPreview() {
   return (
-    <section className="bg-[#F3F8FF] py-16 sm:py-20" aria-labelledby="home-process-heading">
+    <section className="bg-[#F2F8FF] py-12 sm:py-16 lg:py-20" aria-labelledby="home-process-heading">
       <div className="page-container">
         <div className="mx-auto max-w-[1320px]">
           <Reveal className="mx-auto max-w-2xl text-center">
@@ -23,7 +23,7 @@ export default function HomeProcessPreview() {
             </p>
             <h2
               id="home-process-heading"
-              className="mt-4 font-display text-[32px] font-bold leading-[1.1] tracking-tight text-brand-navy sm:text-[40px]"
+              className="mt-4 font-display text-[30px] leading-[1.12] sm:text-[34px] lg:text-[40px] font-bold tracking-tight text-brand-navy"
             >
               One disciplined lifecycle, <span className="text-brand-blue">start to finish.</span>
             </h2>
@@ -37,7 +37,7 @@ export default function HomeProcessPreview() {
             />
             {STEPS.map(({ num, name, desc, icon: Icon }) => (
               <li key={num} className="relative flex h-full gap-4 rounded-2xl bg-white p-5 lg:flex-col lg:items-center lg:gap-0 lg:bg-transparent lg:p-0 lg:text-center">
-                  <span className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-[#DCEAFF] bg-white text-brand-blue shadow-[0_8px_20px_-10px_rgba(20,125,255,0.6)]">
+                  <span className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-[#CFE4FF] bg-white text-brand-blue shadow-[0_8px_20px_-10px_rgba(20,125,255,0.6)]">
                     <Icon className="h-6 w-6" aria-hidden />
                   </span>
                   <span className="min-w-0">

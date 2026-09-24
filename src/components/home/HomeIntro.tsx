@@ -10,7 +10,7 @@ const FACTS = [
 
 export default function HomeIntro() {
   return (
-    <section className="bg-white py-16 sm:py-20" aria-labelledby="home-intro-heading">
+    <section className="bg-white py-12 sm:py-16 lg:py-20" aria-labelledby="home-intro-heading">
       <div className="page-container">
         <div className="mx-auto grid max-w-[1320px] gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
           <Reveal>
@@ -20,7 +20,7 @@ export default function HomeIntro() {
             </p>
             <h2
               id="home-intro-heading"
-              className="mt-4 font-display text-[32px] font-bold leading-[1.1] tracking-tight text-brand-navy sm:text-[40px]"
+              className="mt-4 font-display text-[30px] leading-[1.12] sm:text-[34px] lg:text-[40px] font-bold tracking-tight text-brand-navy"
             >
               Technology built around <span className="text-brand-blue">real-world problems.</span>
             </h2>
@@ -41,7 +41,7 @@ export default function HomeIntro() {
             </p>
             <ul className="mt-8 grid gap-4 sm:grid-cols-3">
               {FACTS.map(({ icon: Icon, title, desc }) => (
-                <li key={title} className="rounded-2xl border border-[#DCEAFF] bg-[#F7FAFE] p-5">
+                <li key={title} className="rounded-2xl border border-[#CFE4FF] bg-[#F7FAFE] p-5">
                   <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-brand-blue shadow-[0_4px_12px_-6px_rgba(20,125,255,0.5)]">
                     <Icon className="h-5 w-5" aria-hidden />
                   </span>

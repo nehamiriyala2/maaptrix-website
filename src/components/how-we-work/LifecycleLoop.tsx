@@ -22,19 +22,19 @@ const LOOP_NODES = [
 
 export default function LifecycleLoop() {
   return (
-    <section className="relative overflow-hidden bg-white py-14 sm:py-18 lg:py-24 border-b border-slate-100 select-none">
+    <section className="relative overflow-hidden bg-white py-12 sm:py-16 lg:py-20 select-none">
       <div className="page-container">
         
         {/* Header */}
         <Reveal className="max-w-3xl mx-auto text-center">
           <div className="inline-flex items-center gap-2">
             <span className="h-1.5 w-1.5 rounded-full bg-brand-blue" />
-            <p className="text-[0.72rem] font-bold uppercase tracking-[0.2em] text-brand-blue sm:text-xs">
+            <p className="text-[13px] font-bold uppercase tracking-[0.12em] text-brand-blue">
               Continuous Evolution
             </p>
           </div>
 
-          <h2 className="mt-3 font-display text-2xl sm:text-3xl lg:text-[2.85rem] font-bold tracking-tight text-brand-navy leading-[1.12]">
+          <h2 className="mt-3 font-display text-[30px] leading-[1.12] sm:text-[34px] lg:text-[40px] font-bold tracking-tight text-brand-navy">
             Products Are <span className="text-brand-blue">Never Finished.</span>
           </h2>
 

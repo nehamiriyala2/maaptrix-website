@@ -17,14 +17,14 @@ import Logo from "@/components/Logo";
 
 export default function ProductsOverview() {
   return (
-    <section id="overview" className="scroll-mt-24 relative overflow-hidden border-b border-slate-100 bg-gradient-to-b from-white via-[#F1F8FF] to-[#EAF4FF] py-14 sm:py-16 lg:py-20">
+    <section id="overview" className="scroll-mt-24 relative overflow-hidden bg-white py-12 sm:py-16 lg:py-20">
       <div className="page-container">
         <Reveal className="mx-auto max-w-3xl text-center">
           <span className="inline-flex items-center gap-2 text-[13px] font-bold uppercase tracking-[0.16em] text-brand-blue">
             <span className="h-2 w-2 rounded-full bg-brand-blue" />
             Product Ecosystem
           </span>
-          <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-brand-navy sm:text-4xl lg:text-[2.75rem] leading-[1.12]">
+          <h2 className="mt-4 font-display text-[30px] leading-[1.12] sm:text-[34px] lg:text-[40px] font-bold tracking-tight text-brand-navy">
             Two Focused Products, <span className="text-brand-blue">One Operating Discipline</span>
           </h2>
           <p className="mt-4 text-base leading-[1.7] text-slate-600 sm:text-lg">
@@ -42,10 +42,10 @@ export default function ProductsOverview() {
           {/* PRODUCT 01: SCHOOL TRANSPORT MANAGEMENT SYSTEM */}
           {/* ----------------------------------------------------------------------- */}
           <Reveal delay={0.08}>
-            <div className="group relative flex h-full flex-col justify-between overflow-hidden rounded-[28px] sm:rounded-[32px] border border-[#CCE5FF] bg-gradient-to-br from-white via-[#F8FCFF] to-[#EDF6FF] p-6 sm:p-8 shadow-[0_12px_40px_-10px_rgba(20,125,255,0.1)] transition-all duration-300 hover:-translate-y-1 hover:border-brand-blue hover:shadow-[0_20px_50px_-12px_rgba(20,125,255,0.2)]">
+            <div className="group relative flex h-full flex-col justify-between overflow-hidden rounded-[28px] sm:rounded-[32px] border border-[#CFE4FF] bg-gradient-to-br from-white via-[#F8FCFF] to-[#EDF6FF] p-6 sm:p-8 shadow-[0_12px_40px_-10px_rgba(20,125,255,0.1)] transition-all duration-300 hover:-translate-y-1 hover:border-brand-blue hover:shadow-[0_20px_50px_-12px_rgba(20,125,255,0.2)]">
               
               <div>
-                <div className="mb-6 overflow-hidden rounded-2xl border border-[#DCEAFF]">
+                <div className="mb-6 overflow-hidden rounded-2xl border border-[#CFE4FF]">
                   <Image
                     src="/hero/transport-card-scene.jpg"
                     alt="Smartphone showing a school bus route map beside a school bus"
@@ -71,7 +71,7 @@ export default function ProductsOverview() {
                 </div>
 
                 {/* Product Title */}
-                <h3 className="mt-5 font-display text-2xl sm:text-3xl font-bold text-brand-navy tracking-tight">
+                <h3 className="mt-5 font-display text-[24px] sm:text-[26px] font-bold text-brand-navy tracking-tight">
                   School <span className="text-brand-blue">Transport</span>
                 </h3>
 
@@ -148,10 +148,10 @@ export default function ProductsOverview() {
           {/* PRODUCT 02: SMALL SCHOOL MANAGEMENT MODULE */}
           {/* ----------------------------------------------------------------------- */}
           <Reveal delay={0.16}>
-            <div className="group relative flex h-full flex-col justify-between overflow-hidden rounded-[28px] sm:rounded-[32px] border border-[#CCE5FF] bg-gradient-to-br from-white via-[#F8FCFF] to-[#EDF6FF] p-6 sm:p-8 shadow-[0_12px_40px_-10px_rgba(20,125,255,0.1)] transition-all duration-300 hover:-translate-y-1 hover:border-brand-blue hover:shadow-[0_20px_50px_-12px_rgba(20,125,255,0.2)]">
+            <div className="group relative flex h-full flex-col justify-between overflow-hidden rounded-[28px] sm:rounded-[32px] border border-[#CFE4FF] bg-gradient-to-br from-white via-[#F8FCFF] to-[#EDF6FF] p-6 sm:p-8 shadow-[0_12px_40px_-10px_rgba(20,125,255,0.1)] transition-all duration-300 hover:-translate-y-1 hover:border-brand-blue hover:shadow-[0_20px_50px_-12px_rgba(20,125,255,0.2)]">
               
               <div>
-                <div className="mb-6 overflow-hidden rounded-2xl border border-[#DCEAFF]">
+                <div className="mb-6 overflow-hidden rounded-2xl border border-[#CFE4FF]">
                   <Image
                     src="/hero/school-card-scene.jpg"
                     alt="Tablet displaying a school administration dashboard"
@@ -169,15 +169,15 @@ export default function ProductsOverview() {
                       imageClassName="h-6 w-6 rounded object-contain"
                       wordmarkClassName="text-sm sm:text-base font-bold font-display tracking-tight text-brand-navy"
                     />
-                    <span className="text-xs font-bold text-sky-700">SchoolPro</span>
+                    <span className="text-xs font-bold text-brand-blue">SchoolPro</span>
                   </div>
-                  <span className="rounded-full bg-sky-50 px-3 py-1 text-[0.68rem] font-bold uppercase tracking-wider text-sky-700 border border-sky-200">
+                  <span className="rounded-full bg-[#EAF5FF] px-3 py-1 text-[0.68rem] font-bold uppercase tracking-wider text-brand-blue border border-sky-200">
                     OPERATIONS MODULE
                   </span>
                 </div>
 
                 {/* Product Title */}
-                <h3 className="mt-5 font-display text-2xl sm:text-3xl font-bold text-brand-navy tracking-tight">
+                <h3 className="mt-5 font-display text-[24px] sm:text-[26px] font-bold text-brand-navy tracking-tight">
                   School <span className="text-brand-blue">Management</span>
                 </h3>
 
@@ -194,28 +194,28 @@ export default function ProductsOverview() {
                   {/* Capabilities (6 cols) */}
                   <div className="sm:col-span-12 grid gap-2.5 sm:grid-cols-2">
                     <div className="flex items-start gap-2.5 text-xs text-brand-navy font-medium">
-                      <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-sky-50 text-sky-700 mt-0.5">
+                      <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-[#EAF5FF] text-brand-blue mt-0.5">
                         <Users className="h-3 w-3" />
                       </div>
                       <span>Student onboarding &amp; profile management</span>
                     </div>
 
                     <div className="flex items-start gap-2.5 text-xs text-brand-navy font-medium">
-                      <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-sky-50 text-sky-700 mt-0.5">
+                      <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-[#EAF5FF] text-brand-blue mt-0.5">
                         <Activity className="h-3 w-3" />
                       </div>
                       <span>Daily automated attendance &amp; records</span>
                     </div>
 
                     <div className="flex items-start gap-2.5 text-xs text-brand-navy font-medium">
-                      <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-sky-50 text-sky-700 mt-0.5">
+                      <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-[#EAF5FF] text-brand-blue mt-0.5">
                         <Bell className="h-3 w-3" />
                       </div>
                       <span>Parent announcements &amp; academic updates</span>
                     </div>
 
                     <div className="flex items-start gap-2.5 text-xs text-brand-navy font-medium">
-                      <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-sky-50 text-sky-700 mt-0.5">
+                      <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-[#EAF5FF] text-brand-blue mt-0.5">
                         <Calendar className="h-3 w-3" />
                       </div>
                       <span>Event calendar &amp; administrative notices</span>

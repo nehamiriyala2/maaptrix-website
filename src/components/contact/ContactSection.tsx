@@ -1,13 +1,13 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { ArrowRight, CheckCircle2, Globe, Mail, MonitorPlay, RefreshCw } from "lucide-react";
+import { ArrowRight, CheckCircle2, Globe, Mail, Headphones, RefreshCw } from "lucide-react";
 import Reveal from "@/components/Reveal";
 
 const CONTACT_EMAIL = "hello@maaptrix.com";
 
-const ENQUIRY_TYPES = ["Product enquiry", "Demo request", "Business discussion", "General enquiry"] as const;
-type EnquiryType = (typeof ENQUIRY_TYPES)[number];
+/** Not a visible field: "Request a Demo" switches it so the email subject says so. */
+type EnquiryType = "General enquiry" | "Demo request";
 
 interface FormData {
   fullName: string;
@@ -25,7 +25,7 @@ const EMPTY: FormData = {
   email: "",
   organization: "",
   phone: "",
-  enquiryType: "Product enquiry",
+  enquiryType: "General enquiry",
   message: "",
 };
 
@@ -62,7 +62,7 @@ function buildMailto(d: FormData) {
 
 const inputBase =
   "w-full rounded-xl border bg-white px-4 py-3 text-[15px] text-brand-navy placeholder:text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-blue/25";
-const inputOk = "border-slate-300 hover:border-slate-400 focus:border-brand-blue";
+const inputOk = "border-[#BCD9F7] hover:border-[#8DC1F4] focus:border-brand-blue";
 const inputErr = "border-brand-blue bg-brand-blue-light/40 focus:border-brand-blue";
 
 function Field({
@@ -147,7 +147,7 @@ function ContactForm({
 
   if (sent) {
     return (
-      <div className="rounded-[24px] border border-[#DCEAFF] bg-white p-8 text-center sm:p-10" role="status">
+      <div className="rounded-[24px] border border-[#CFE4FF] bg-white p-8 text-center sm:p-10" role="status">
         <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-blue-light text-brand-blue">
           <CheckCircle2 className="h-7 w-7" aria-hidden />
         </span>
@@ -188,9 +188,9 @@ function ContactForm({
       onSubmit={onSubmit}
       noValidate
       aria-labelledby="form-heading"
-      className="rounded-[24px] border border-[#DCEAFF] bg-white p-6 shadow-[0_24px_60px_-40px_rgba(10,10,10,0.4)] sm:p-8"
+      className="rounded-[22px] border border-[#CFE4FF] bg-white p-6 shadow-[0_8px_24px_rgba(30,136,255,0.06)] sm:p-8"
     >
-      <h2 id="form-heading" className="font-display text-[22px] font-bold text-brand-navy sm:text-[24px]">
+      <h2 id="form-heading" className="font-display text-[24px] font-bold tracking-tight text-brand-navy sm:text-[30px]">
         Send us a message
       </h2>
       <p className="mt-1 text-[14px] text-slate-500">
@@ -243,34 +243,17 @@ function ContactForm({
             autoComplete="tel"
             value={data.phone}
             onChange={(e) => set("phone", e.target.value)}
-            placeholder="+91"
+            placeholder="+91 98765 43210"
             className={`${inputBase} ${errors.phone ? inputErr : inputOk}`}
             {...a11y("phone")}
           />
         </Field>
         <div className="sm:col-span-2">
-          <Field id="enquiryType" label="Enquiry type" required>
-            <select
-              id="enquiryType"
-              name="enquiryType"
-              value={data.enquiryType}
-              onChange={(e) => set("enquiryType", e.target.value as EnquiryType)}
-              className={`${inputBase} ${inputOk} cursor-pointer`}
-            >
-              {ENQUIRY_TYPES.map((t) => (
-                <option key={t} value={t}>
-                  {t}
-                </option>
-              ))}
-            </select>
-          </Field>
-        </div>
-        <div className="sm:col-span-2">
           <Field id="message" label="Message" required error={errors.message}>
             <textarea
               id="message"
               name="message"
-              rows={5}
+              rows={3}
               value={data.message}
               onChange={(e) => set("message", e.target.value)}
               placeholder="Tell us what you're looking for, or which product you'd like to discuss."
@@ -284,7 +267,7 @@ function ContactForm({
       <button
         type="submit"
         disabled={submitting}
-        className="group mt-7 inline-flex h-[52px] w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-brand-blue px-6 text-[15px] font-bold text-white shadow-[0_12px_26px_-12px_rgba(20,125,255,0.8)] transition-colors hover:bg-brand-blue-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue disabled:cursor-not-allowed disabled:opacity-70"
+        className="group mt-7 inline-flex h-[50px] w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-brand-blue px-6 text-[15px] font-bold text-white shadow-[0_12px_26px_-12px_rgba(20,125,255,0.8)] transition-colors hover:bg-brand-blue-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue disabled:cursor-not-allowed disabled:opacity-70"
       >
         Send Message
         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden />
@@ -313,13 +296,14 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="bg-white py-14 sm:py-16" aria-label="Contact details and enquiry form">
+    <section className="bg-white py-12 sm:py-16" aria-label="Contact details and enquiry form">
       <div className="page-container">
-        <div className="mx-auto grid max-w-[1180px] items-start gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-14">
-          <Reveal className="space-y-8">
+        <div className="mx-auto grid max-w-[1400px] items-start gap-10 lg:grid-cols-[minmax(0,40fr)_minmax(0,60fr)] lg:gap-10">
+          <Reveal className="space-y-6">
             <div>
-              <h2 className="font-display text-[26px] font-bold text-brand-navy sm:text-[30px]">Let&apos;s Connect</h2>
-              <p className="mt-2 text-[16px] leading-relaxed text-slate-600">
+              <h2 className="font-display text-[30px] leading-[1.12] sm:text-[34px] lg:text-[40px] font-bold tracking-tight text-brand-navy">Let&apos;s Connect</h2>
+              <span className="mt-2 block h-[3px] w-14 rounded-full bg-brand-blue" aria-hidden />
+              <p className="mt-4 text-[16px] leading-relaxed text-slate-600">
                 Reach us directly, or use the form and we&apos;ll reply by email.
               </p>
             </div>
@@ -332,10 +316,10 @@ export default function ContactSection() {
                     <a
                       href={href}
                       {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                      className="flex items-center gap-4 rounded-2xl border border-[#DCEAFF] px-4 py-3.5 transition-colors hover:border-brand-blue/50 hover:bg-brand-blue-light/40"
+                      className="flex items-center gap-5 rounded-2xl border border-[#CFE4FF] bg-white px-5 py-4 shadow-[0_8px_24px_-20px_rgba(10,10,10,0.35)] transition-colors hover:border-brand-blue/50 hover:bg-brand-blue-light/40"
                     >
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-blue-light text-brand-blue">
-                        <Icon className="h-5 w-5" aria-hidden />
+                      <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-brand-blue-light text-brand-blue">
+                        <Icon className="h-7 w-7" aria-hidden />
                       </span>
                       <span>
                         <span className="block text-[12px] font-bold uppercase tracking-[0.1em] text-slate-400">{label}</span>
@@ -347,22 +331,24 @@ export default function ContactSection() {
               ))}
             </dl>
 
-            <div className="rounded-2xl bg-[#F3F8FF] p-5">
-              <p className="flex items-center gap-2 font-display text-[17px] font-bold text-brand-navy">
-                <MonitorPlay className="h-5 w-5 text-brand-blue" aria-hidden />
-                Looking for a product demo?
-              </p>
-              <p className="mt-1.5 text-[15px] leading-relaxed text-slate-600">
-                Tell us what you need and our team will get in touch.
-              </p>
-              <button
-                type="button"
-                onClick={requestDemo}
-                className="group mt-4 inline-flex cursor-pointer items-center gap-2 text-[15px] font-semibold text-brand-blue hover:text-brand-blue-dark"
-              >
-                Request a Demo
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden />
-              </button>
+            <div className="flex items-start gap-5 rounded-2xl border border-[#CFE4FF] bg-white px-5 py-5 shadow-[0_8px_24px_-20px_rgba(10,10,10,0.35)]">
+              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-brand-blue-light text-brand-blue">
+                <Headphones className="h-7 w-7" aria-hidden />
+              </span>
+              <div>
+                <p className="font-display text-[17px] font-bold text-brand-navy">Looking for a product demo?</p>
+                <p className="mt-1.5 text-[15px] leading-relaxed text-slate-600">
+                  Tell us what you need and our team will get in touch.
+                </p>
+                <button
+                  type="button"
+                  onClick={requestDemo}
+                  className="group mt-3 inline-flex cursor-pointer items-center gap-2 text-[16px] font-semibold text-brand-blue hover:text-brand-blue-dark"
+                >
+                  Request a Demo
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden />
+                </button>
+              </div>
             </div>
           </Reveal>
 
