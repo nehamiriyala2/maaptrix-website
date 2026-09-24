@@ -13,7 +13,8 @@ interface ProductDetailHeroProps {
   titleAccent: string;
   description: string;
   pills: string[];
-  image: { src: string; alt: string; width: number; height: number };
+  /** Optional hero photo. `cover` crops it to 4:3 (for square photos). */
+  image?: { src: string; alt: string; width: number; height: number; cover?: boolean };
   /** id of the section the secondary CTA scrolls to */
   detailsId: string;
 }
@@ -45,23 +46,23 @@ export default function ProductDetailHero({
           </span>
         </nav>
 
-        <div className="mx-auto grid max-w-[1440px] items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-14">
+        <div className={`mx-auto grid items-center gap-10 lg:gap-14 ${image ? "max-w-[1440px] lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]" : "max-w-3xl text-center"}`}>
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: EASE }}
             className="min-w-0"
           >
-            <span className="inline-flex items-center gap-3">
+            <span className={`inline-flex items-center gap-3 ${image ? "" : "justify-center"}`}>
               <span className="h-[2px] w-8 rounded-full bg-brand-blue" />
               <span className="text-[13px] font-bold uppercase tracking-[0.14em] text-brand-blue">{eyebrow}</span>
             </span>
             <h1 className="mt-5 font-display text-[36px] font-extrabold leading-[1.06] tracking-[-0.03em] text-brand-navy sm:text-[48px] xl:text-[56px]">
               {title} <span className="text-brand-blue">{titleAccent}</span>
             </h1>
-            <p className="mt-5 max-w-[580px] text-[17px] leading-[1.6] text-slate-600 sm:text-[18px]">{description}</p>
+            <p className={`mt-5 max-w-[580px] ${image ? "" : "mx-auto"} text-[17px] leading-[1.6] text-slate-600 sm:text-[18px]`}>{description}</p>
 
-            <ul className="mt-6 flex flex-wrap gap-2" aria-label="Key capabilities">
+            <ul className={`mt-6 flex flex-wrap gap-2 ${image ? "" : "justify-center"}`} aria-label="Key capabilities">
               {pills.map((p) => (
                 <li
                   key={p}
@@ -72,7 +73,7 @@ export default function ProductDetailHero({
               ))}
             </ul>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className={`mt-8 flex flex-col gap-3 sm:flex-row ${image ? "" : "sm:justify-center"}`}>
               <Link
                 href="/contact"
                 className="group inline-flex h-[54px] items-center justify-center gap-2.5 whitespace-nowrap rounded-[11px] bg-brand-blue px-7 text-[16px] font-bold text-white shadow-[0_12px_26px_-12px_rgba(20,125,255,0.8)] transition-colors hover:bg-brand-blue-dark"
@@ -90,6 +91,7 @@ export default function ProductDetailHero({
             </div>
           </motion.div>
 
+          {image && (
           <motion.div
             initial={{ opacity: 0, y: 14, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -104,10 +106,11 @@ export default function ProductDetailHero({
                 height={image.height}
                 priority
                 sizes="(min-width: 1024px) 50vw, 100vw"
-                className="h-auto w-full"
+                className={image.cover ? "aspect-[4/3] h-auto w-full object-cover" : "h-auto w-full"}
               />
             </div>
           </motion.div>
+          )}
         </div>
       </div>
     </section>

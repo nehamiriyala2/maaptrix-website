@@ -1,30 +1,26 @@
-import type { Metadata } from "next";
-import AboutHero from "@/components/about/AboutHero";
-import CompanyStory from "@/components/about/CompanyStory";
-import WhatWeDo from "@/components/about/WhatWeDo";
-import ProductFirstPositioning from "@/components/about/ProductFirstPositioning";
-import WhereWeStart from "@/components/about/WhereWeStart";
-import AboutMissionVision from "@/components/about/AboutMissionVision";
-import AboutCoreValues from "@/components/about/AboutCoreValues";
-import AboutCTA from "@/components/about/AboutCTA";
+import {
+  AboutClosingCTA,
+  AboutIntro,
+  AboutMissionVision,
+  AboutPrinciples,
+  AboutWhereWeStart,
+} from "@/components/about/AboutSections";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About Us",
-  description:
-    "Maaptrix Private Limited is a technology company focused on building and managing its own software products around real-world operational problems.",
-};
+export const metadata = pageMetadata(
+  "/about",
+  "About Us",
+  "Maaptrix is a technology company that builds, owns and manages its own software products around real-world operational problems. Our mission, vision and principles.",
+);
 
 export default function AboutPage() {
   return (
     <>
-      <AboutHero />
-      <CompanyStory />
-      <WhatWeDo />
-      <ProductFirstPositioning />
-      <WhereWeStart />
+      <AboutIntro />
+      <AboutWhereWeStart />
       <AboutMissionVision />
-      <AboutCoreValues />
-      <AboutCTA />
+      <AboutPrinciples />
+      <AboutClosingCTA />
     </>
   );
 }

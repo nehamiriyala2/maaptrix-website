@@ -1,439 +1,374 @@
 "use client";
 
-import { Suspense, useState } from "react";
-import { useSearchParams } from "next/navigation";
-import {
-  ArrowRight,
-  CheckCircle2,
-  ExternalLink,
-  Globe,
-  Mail,
-  RefreshCw,
-  ShieldCheck,
-} from "lucide-react";
+import { useRef, useState } from "react";
+import { ArrowRight, CheckCircle2, Globe, Mail, MonitorPlay, RefreshCw } from "lucide-react";
 import Reveal from "@/components/Reveal";
+
+const CONTACT_EMAIL = "hello@maaptrix.com";
+
+const ENQUIRY_TYPES = ["Product enquiry", "Demo request", "Business discussion", "General enquiry"] as const;
+type EnquiryType = (typeof ENQUIRY_TYPES)[number];
 
 interface FormData {
   fullName: string;
   email: string;
   organization: string;
-  productInterest: string;
+  phone: string;
+  enquiryType: EnquiryType;
   message: string;
 }
 
-interface FormErrors {
-  fullName?: string;
-  email?: string;
-  message?: string;
+type FormErrors = Partial<Record<keyof FormData, string>>;
+
+const EMPTY: FormData = {
+  fullName: "",
+  email: "",
+  organization: "",
+  phone: "",
+  enquiryType: "Product enquiry",
+  message: "",
+};
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const PHONE_RE = /^[+()\-\s\d]{7,20}$/;
+
+function validate(d: FormData): FormErrors {
+  const e: FormErrors = {};
+  if (!d.fullName.trim()) e.fullName = "Please enter your full name.";
+  if (!d.email.trim()) e.email = "Please enter your work email.";
+  else if (!EMAIL_RE.test(d.email.trim())) e.email = "That email doesn't look right. Please check it.";
+  if (!d.organization.trim()) e.organization = "Please enter your company or organization.";
+  if (d.phone.trim() && !PHONE_RE.test(d.phone.trim())) e.phone = "Please enter a valid phone number, or leave it blank.";
+  if (d.message.trim().length < 10) e.message = "Please add a short message (at least 10 characters).";
+  return e;
 }
 
-function DemoFormInner() {
-  const searchParams = useSearchParams();
-  const productParam = searchParams.get("product");
+/** Builds a pre-filled email to Maaptrix; there is no server-side form endpoint. */
+function buildMailto(d: FormData) {
+  const subject = `${d.enquiryType} — ${d.organization.trim()}`;
+  const body = [
+    d.message.trim(),
+    "",
+    "—",
+    `Name: ${d.fullName.trim()}`,
+    `Email: ${d.email.trim()}`,
+    `Organization: ${d.organization.trim()}`,
+    d.phone.trim() ? `Phone: ${d.phone.trim()}` : "",
+  ]
+    .filter((l, i, a) => l !== "" || i < a.length - 1)
+    .join("\n");
+  return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
 
-  const [formData, setFormData] = useState<FormData>({
-    fullName: "",
-    email: "",
-    organization: "",
-    productInterest: "General Enquiry",
-    message: "",
+const inputBase =
+  "w-full rounded-xl border bg-white px-4 py-3 text-[15px] text-brand-navy placeholder:text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-blue/25";
+const inputOk = "border-slate-300 hover:border-slate-400 focus:border-brand-blue";
+const inputErr = "border-brand-blue bg-brand-blue-light/40 focus:border-brand-blue";
+
+function Field({
+  id,
+  label,
+  required,
+  error,
+  children,
+}: {
+  id: string;
+  label: string;
+  required?: boolean;
+  error?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div>
+      <label htmlFor={id} className="mb-1.5 block text-[14px] font-semibold text-brand-navy">
+        {label}{" "}
+        {required ? (
+          <span className="text-brand-blue" aria-hidden>
+            *
+          </span>
+        ) : (
+          <span className="font-normal text-slate-400">(optional)</span>
+        )}
+      </label>
+      {children}
+      {error && (
+        <p id={`${id}-error`} role="alert" className="mt-1.5 text-[13px] font-medium text-brand-blue-dark">
+          {error}
+        </p>
+      )}
+    </div>
+  );
+}
+
+function ContactForm({
+  formRef,
+  demoRequests,
+}: {
+  formRef: React.RefObject<HTMLFormElement | null>;
+  demoRequests: number;
+}) {
+  const [data, setData] = useState<FormData>(EMPTY);
+  // "Request a Demo" pre-selects the demo enquiry type (adjusting state during render).
+  const [appliedDemo, setAppliedDemo] = useState(0);
+  if (demoRequests !== appliedDemo) {
+    setAppliedDemo(demoRequests);
+    setData((d) => ({ ...d, enquiryType: "Demo request" }));
+  }
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [submitting, setSubmitting] = useState(false);
+  const [sent, setSent] = useState<string | null>(null);
+
+  const set = <K extends keyof FormData>(key: K, value: FormData[K]) => {
+    setData((d) => ({ ...d, [key]: value }));
+    if (errors[key]) setErrors((e) => ({ ...e, [key]: undefined }));
+  };
+
+  const a11y = (key: keyof FormData) => ({
+    "aria-invalid": Boolean(errors[key]),
+    "aria-describedby": errors[key] ? `${key}-error` : undefined,
   });
 
-  const [errors, setErrors] = useState<FormErrors>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  // Pre-select the product from ?product= (adjusting state during render, not in an effect)
-  const [appliedParam, setAppliedParam] = useState<string | null>(null);
-  if (productParam && productParam !== appliedParam) {
-    setAppliedParam(productParam);
-    const lower = productParam.toLowerCase();
-    if (lower.includes("transport")) {
-      setFormData((prev) => ({ ...prev, productInterest: "School Transport Management System" }));
-    } else if (lower.includes("school") || lower.includes("management")) {
-      setFormData((prev) => ({ ...prev, productInterest: "Small School Management Module" }));
-    }
-  }
-
-  const validate = (): boolean => {
-    const newErrors: FormErrors = {};
-
-    if (!formData.fullName.trim()) {
-      newErrors.fullName = "Please enter your name.";
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = "Please enter a valid email address.";
-    } else {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(formData.email.trim())) {
-        newErrors.email = "Please enter a valid email address.";
-      }
-    }
-
-    if (!formData.message.trim()) {
-      newErrors.message = "Please tell us a little about your requirement.";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!validate()) {
+  const onSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
+    ev.preventDefault();
+    if (submitting) return;
+    const found = validate(data);
+    setErrors(found);
+    const first = Object.keys(found)[0];
+    if (first) {
+      document.getElementById(first)?.focus();
       return;
     }
-
-    setIsSubmitting(true);
-
-    // Safe frontend client-side interaction
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-    }, 600);
+    setSubmitting(true);
+    const href = buildMailto(data);
+    window.location.href = href;
+    setSent(href);
+    setSubmitting(false);
   };
 
-  const handleReset = () => {
-    setFormData({
-      fullName: "",
-      email: "",
-      organization: "",
-      productInterest: "General Enquiry",
-      message: "",
-    });
-    setErrors({});
-    setIsSubmitted(false);
-  };
-
-  if (isSubmitted) {
+  if (sent) {
     return (
-      <div className="rounded-2xl sm:rounded-3xl border border-[#CCE5FF] bg-gradient-to-br from-white via-[#F8FCFF] to-[#EDF6FF] p-8 sm:p-10 text-center shadow-xs">
-        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-blue-light text-brand-blue mb-5 border border-brand-blue/30 shadow-xs">
-          <CheckCircle2 className="h-7 w-7" />
-        </div>
-
-        <h3 className="font-display text-2xl sm:text-3xl font-bold text-brand-navy">
-          Thank You
-        </h3>
-
-        <p className="mt-3 text-base text-slate-700 max-w-md mx-auto leading-relaxed">
-          Thank you. Your enquiry has been received.
+      <div className="rounded-[24px] border border-[#DCEAFF] bg-white p-8 text-center sm:p-10" role="status">
+        <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-blue-light text-brand-blue">
+          <CheckCircle2 className="h-7 w-7" aria-hidden />
+        </span>
+        <h3 className="mt-5 font-display text-[24px] font-bold text-brand-navy">Your message is ready to send</h3>
+        <p className="mx-auto mt-3 max-w-md text-[15px] leading-relaxed text-slate-600">
+          We&apos;ve opened your email app with your enquiry addressed to {CONTACT_EMAIL}. Press send there and the
+          Maaptrix team will reply by email.
         </p>
-
-        <p className="mt-2 text-xs text-slate-500 max-w-sm mx-auto">
-          We look forward to discussing your operational requirements and showing you our products.
+        <p className="mx-auto mt-3 max-w-md text-[14px] text-slate-500">
+          Email app didn&apos;t open?{" "}
+          <a href={sent} className="font-semibold text-brand-blue underline-offset-2 hover:underline">
+            Try again
+          </a>{" "}
+          or write to{" "}
+          <a href={`mailto:${CONTACT_EMAIL}`} className="font-semibold text-brand-blue underline-offset-2 hover:underline">
+            {CONTACT_EMAIL}
+          </a>
+          .
         </p>
-
-        <div className="mt-8">
-          <button
-            type="button"
-            onClick={handleReset}
-            className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-2.5 text-xs font-semibold text-brand-navy shadow-xs transition-colors hover:border-brand-blue hover:text-brand-blue cursor-pointer"
-          >
-            <RefreshCw className="h-3.5 w-3.5" />
-            <span>Send Another Message</span>
-          </button>
-        </div>
+        <button
+          type="button"
+          onClick={() => {
+            setData(EMPTY);
+            setSent(null);
+          }}
+          className="mt-7 inline-flex cursor-pointer items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-2.5 text-[14px] font-semibold text-brand-navy transition-colors hover:border-brand-blue hover:text-brand-blue"
+        >
+          <RefreshCw className="h-4 w-4" aria-hidden />
+          Start a new enquiry
+        </button>
       </div>
     );
   }
 
   return (
-    <div className="rounded-2xl sm:rounded-3xl border border-[#CCE5FF] bg-white p-6 sm:p-8 lg:p-10 shadow-xs">
-      {/* Form Header */}
-      <div className="border-b border-slate-100 pb-5 mb-6">
-        <span className="text-[0.72rem] font-bold uppercase tracking-wider text-brand-blue block">
-          Direct Product Consultation
-        </span>
-        <h3 className="font-display text-2xl sm:text-3xl font-bold text-brand-navy mt-1">
-          Request a Demo
-        </h3>
-        <p className="mt-1.5 text-xs sm:text-sm text-slate-600">
-          Share a few details and we&apos;ll understand how to direct your enquiry.
-        </p>
-      </div>
+    <form
+      ref={formRef}
+      onSubmit={onSubmit}
+      noValidate
+      aria-labelledby="form-heading"
+      className="rounded-[24px] border border-[#DCEAFF] bg-white p-6 shadow-[0_24px_60px_-40px_rgba(10,10,10,0.4)] sm:p-8"
+    >
+      <h2 id="form-heading" className="font-display text-[22px] font-bold text-brand-navy sm:text-[24px]">
+        Send us a message
+      </h2>
+      <p className="mt-1 text-[14px] text-slate-500">
+        Fields marked <span className="text-brand-blue">*</span> are required.
+      </p>
 
-      <form onSubmit={handleSubmit} noValidate className="space-y-4 sm:space-y-5">
-        {/* Full Name */}
-        <div>
-          <label
-            htmlFor="fullName"
-            className="block text-xs font-semibold text-brand-navy mb-1.5"
-          >
-            Full Name <span className="text-sky-500">*</span>
-          </label>
+      <div className="mt-6 grid gap-5 sm:grid-cols-2">
+        <Field id="fullName" label="Full name" required error={errors.fullName}>
           <input
             id="fullName"
-            type="text"
-            value={formData.fullName}
-            onChange={(e) => {
-              setFormData({ ...formData, fullName: e.target.value });
-              if (errors.fullName) setErrors({ ...errors, fullName: undefined });
-            }}
-            placeholder="e.g. Rajesh Sharma"
-            className={`w-full rounded-xl border px-3.5 py-3 text-sm text-brand-navy placeholder:text-slate-400 transition-colors focus:outline-hidden focus:ring-2 ${
-              errors.fullName
-                ? "border-sky-300 bg-sky-50/40 focus:border-sky-400 focus:ring-sky-200"
-                : "border-slate-200 bg-slate-50/50 hover:border-slate-300 focus:border-brand-blue focus:bg-white focus:ring-brand-blue/20"
-            }`}
+            name="fullName"
+            autoComplete="name"
+            value={data.fullName}
+            onChange={(e) => set("fullName", e.target.value)}
+            placeholder="Your name"
+            className={`${inputBase} ${errors.fullName ? inputErr : inputOk}`}
+            {...a11y("fullName")}
           />
-          {errors.fullName && (
-            <p className="mt-1 text-xs text-sky-500 font-medium">
-              {errors.fullName}
-            </p>
-          )}
-        </div>
-
-        {/* Email Address */}
-        <div>
-          <label
-            htmlFor="email"
-            className="block text-xs font-semibold text-brand-navy mb-1.5"
-          >
-            Email Address <span className="text-sky-500">*</span>
-          </label>
+        </Field>
+        <Field id="email" label="Work email" required error={errors.email}>
           <input
             id="email"
+            name="email"
             type="email"
-            value={formData.email}
-            onChange={(e) => {
-              setFormData({ ...formData, email: e.target.value });
-              if (errors.email) setErrors({ ...errors, email: undefined });
-            }}
-            placeholder="e.g. rajesh@example.com"
-            className={`w-full rounded-xl border px-3.5 py-3 text-sm text-brand-navy placeholder:text-slate-400 transition-colors focus:outline-hidden focus:ring-2 ${
-              errors.email
-                ? "border-sky-300 bg-sky-50/40 focus:border-sky-400 focus:ring-sky-200"
-                : "border-slate-200 bg-slate-50/50 hover:border-slate-300 focus:border-brand-blue focus:bg-white focus:ring-brand-blue/20"
-            }`}
+            autoComplete="email"
+            value={data.email}
+            onChange={(e) => set("email", e.target.value)}
+            placeholder="you@organization.com"
+            className={`${inputBase} ${errors.email ? inputErr : inputOk}`}
+            {...a11y("email")}
           />
-          {errors.email && (
-            <p className="mt-1 text-xs text-sky-500 font-medium">
-              {errors.email}
-            </p>
-          )}
-        </div>
-
-        {/* Company / Organization (Optional) */}
-        <div>
-          <label
-            htmlFor="organization"
-            className="block text-xs font-semibold text-brand-navy mb-1.5"
-          >
-            Company / Organization{" "}
-            <span className="text-xs text-slate-400 font-normal">(Optional)</span>
-          </label>
+        </Field>
+        <Field id="organization" label="Company / organization" required error={errors.organization}>
           <input
             id="organization"
-            type="text"
-            value={formData.organization}
-            onChange={(e) =>
-              setFormData({ ...formData, organization: e.target.value })
-            }
-            placeholder="e.g. Oakridge International School"
-            className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3.5 py-3 text-sm text-brand-navy placeholder:text-slate-400 transition-colors hover:border-slate-300 focus:border-brand-blue focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-brand-blue/20"
+            name="organization"
+            autoComplete="organization"
+            value={data.organization}
+            onChange={(e) => set("organization", e.target.value)}
+            placeholder="School or company name"
+            className={`${inputBase} ${errors.organization ? inputErr : inputOk}`}
+            {...a11y("organization")}
           />
-        </div>
-
-        {/* Product Interest (Select) */}
-        <div>
-          <label
-            htmlFor="productInterest"
-            className="block text-xs font-semibold text-brand-navy mb-1.5"
-          >
-            Product Interest
-          </label>
-          <select
-            id="productInterest"
-            value={formData.productInterest}
-            onChange={(e) =>
-              setFormData({ ...formData, productInterest: e.target.value })
-            }
-            className="w-full rounded-xl border border-slate-200 bg-slate-50/50 px-3.5 py-3 text-sm text-brand-navy transition-colors hover:border-slate-300 focus:border-brand-blue focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-brand-blue/20 cursor-pointer"
-          >
-            <option value="School Transport Management System">
-              School Transport Management System
-            </option>
-            <option value="Small School Management Module">
-              Small School Management Module
-            </option>
-            <option value="General Enquiry">
-              General Enquiry
-            </option>
-          </select>
-        </div>
-
-        {/* Message */}
-        <div>
-          <label
-            htmlFor="message"
-            className="block text-xs font-semibold text-brand-navy mb-1.5"
-          >
-            Message <span className="text-sky-500">*</span>
-          </label>
-          <textarea
-            id="message"
-            rows={4}
-            value={formData.message}
-            onChange={(e) => {
-              setFormData({ ...formData, message: e.target.value });
-              if (errors.message) setErrors({ ...errors, message: undefined });
-            }}
-            placeholder="Tell us about your organization's operational challenges or requirements..."
-            className={`w-full rounded-xl border px-3.5 py-3 text-sm text-brand-navy placeholder:text-slate-400 transition-colors focus:outline-hidden focus:ring-2 resize-none ${
-              errors.message
-                ? "border-sky-300 bg-sky-50/40 focus:border-sky-400 focus:ring-sky-200"
-                : "border-slate-200 bg-slate-50/50 hover:border-slate-300 focus:border-brand-blue focus:bg-white focus:ring-brand-blue/20"
-            }`}
+        </Field>
+        <Field id="phone" label="Phone" error={errors.phone}>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            autoComplete="tel"
+            value={data.phone}
+            onChange={(e) => set("phone", e.target.value)}
+            placeholder="+91"
+            className={`${inputBase} ${errors.phone ? inputErr : inputOk}`}
+            {...a11y("phone")}
           />
-          {errors.message && (
-            <p className="mt-1 text-xs text-sky-500 font-medium">
-              {errors.message}
-            </p>
-          )}
+        </Field>
+        <div className="sm:col-span-2">
+          <Field id="enquiryType" label="Enquiry type" required>
+            <select
+              id="enquiryType"
+              name="enquiryType"
+              value={data.enquiryType}
+              onChange={(e) => set("enquiryType", e.target.value as EnquiryType)}
+              className={`${inputBase} ${inputOk} cursor-pointer`}
+            >
+              {ENQUIRY_TYPES.map((t) => (
+                <option key={t} value={t}>
+                  {t}
+                </option>
+              ))}
+            </select>
+          </Field>
         </div>
-
-        {/* Submit Button */}
-        <div className="pt-2">
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="group w-full inline-flex items-center justify-center gap-2 rounded-xl bg-brand-navy px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:bg-brand-blue hover:shadow-md disabled:opacity-70 cursor-pointer"
-          >
-            {isSubmitting ? (
-              <>
-                <RefreshCw className="h-4 w-4 animate-spin" />
-                <span>Processing...</span>
-              </>
-            ) : (
-              <>
-                <span>Request a Demo</span>
-                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </>
-            )}
-          </button>
+        <div className="sm:col-span-2">
+          <Field id="message" label="Message" required error={errors.message}>
+            <textarea
+              id="message"
+              name="message"
+              rows={5}
+              value={data.message}
+              onChange={(e) => set("message", e.target.value)}
+              placeholder="Tell us what you're looking for, or which product you'd like to discuss."
+              className={`${inputBase} ${errors.message ? inputErr : inputOk} resize-y`}
+              {...a11y("message")}
+            />
+          </Field>
         </div>
+      </div>
 
-        <p className="text-[0.68rem] text-slate-400 text-center pt-1">
-          Direct product enquiry · Confidential communication
-        </p>
-      </form>
-    </div>
+      <button
+        type="submit"
+        disabled={submitting}
+        className="group mt-7 inline-flex h-[52px] w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-brand-blue px-6 text-[15px] font-bold text-white shadow-[0_12px_26px_-12px_rgba(20,125,255,0.8)] transition-colors hover:bg-brand-blue-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue disabled:cursor-not-allowed disabled:opacity-70"
+      >
+        Send Message
+        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden />
+      </button>
+      <p className="mt-3 text-center text-[13px] text-slate-500">
+        Sending opens your email app with this message addressed to {CONTACT_EMAIL}.
+      </p>
+    </form>
   );
 }
 
+const DETAILS = [
+  { icon: Mail, label: "Email", value: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}` },
+  { icon: Globe, label: "Website", value: "maaptrix.com", href: "https://maaptrix.com" },
+];
+
 export default function ContactSection() {
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const [demoRequests, setDemoRequests] = useState(0);
+
+  const requestDemo = () => {
+    setDemoRequests((n) => n + 1);
+    formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.setTimeout(() => document.getElementById("fullName")?.focus({ preventScroll: true }), 400);
+  };
+
   return (
-    <section className="relative overflow-hidden bg-white py-14 sm:py-18 lg:py-24 border-b border-slate-100 select-none">
+    <section className="bg-white py-14 sm:py-16" aria-label="Contact details and enquiry form">
       <div className="page-container">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-          
-          {/* ================================================================= */}
-          {/* LEFT COLUMN: Contact Details & Reassurance (5 cols on lg) */}
-          {/* ================================================================= */}
-          <div className="lg:col-span-5 space-y-8">
-            <Reveal>
-              <div className="inline-flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-brand-blue" />
-                <p className="text-[0.72rem] font-bold uppercase tracking-[0.2em] text-brand-blue sm:text-xs">
-                  Direct Channel
-                </p>
-              </div>
-
-              <h2 className="mt-3 font-display text-2xl sm:text-3xl lg:text-[2.65rem] font-bold tracking-tight text-brand-navy leading-[1.14]">
-                Start a Conversation.
-              </h2>
-
-              <p className="mt-4 text-base sm:text-lg leading-[1.7] text-slate-700 font-normal">
-                Tell us what you&apos;re looking for and we&apos;ll help you
-                understand which Maaptrix product may be relevant to your needs.
+        <div className="mx-auto grid max-w-[1180px] items-start gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-14">
+          <Reveal className="space-y-8">
+            <div>
+              <h2 className="font-display text-[26px] font-bold text-brand-navy sm:text-[30px]">Let&apos;s Connect</h2>
+              <p className="mt-2 text-[16px] leading-relaxed text-slate-600">
+                Reach us directly, or use the form and we&apos;ll reply by email.
               </p>
-            </Reveal>
+            </div>
 
-            {/* Verified Contact Details Cards */}
-            <Reveal delay={0.1}>
-              <div className="space-y-3.5 pt-2">
-                {/* Email */}
-                <a
-                  href="mailto:hello@maaptrix.com"
-                  className="group flex items-center justify-between p-4 rounded-2xl border border-[#CCE5FF] bg-gradient-to-r from-[#F8FCFF] to-white transition-all duration-300 hover:border-brand-blue hover:shadow-xs"
-                >
-                  <div className="flex items-center gap-3.5">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-blue-light text-brand-blue border border-brand-blue/20 group-hover:bg-brand-blue group-hover:text-white transition-colors">
-                      <Mail className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <span className="block text-xs font-mono font-bold text-slate-400 uppercase">
-                        Email Address
+            <dl className="space-y-3">
+              {DETAILS.map(({ icon: Icon, label, value, href }) => (
+                <div key={label}>
+                  <dt className="sr-only">{label}</dt>
+                  <dd>
+                    <a
+                      href={href}
+                      {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                      className="flex items-center gap-4 rounded-2xl border border-[#DCEAFF] px-4 py-3.5 transition-colors hover:border-brand-blue/50 hover:bg-brand-blue-light/40"
+                    >
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-blue-light text-brand-blue">
+                        <Icon className="h-5 w-5" aria-hidden />
                       </span>
-                      <span className="block text-sm sm:text-base font-bold text-brand-navy group-hover:text-brand-blue transition-colors">
-                        hello@maaptrix.com
+                      <span>
+                        <span className="block text-[12px] font-bold uppercase tracking-[0.1em] text-slate-400">{label}</span>
+                        <span className="block text-[16px] font-semibold text-brand-navy">{value}</span>
                       </span>
-                    </div>
-                  </div>
-                  <ExternalLink className="h-4 w-4 text-slate-400 group-hover:text-brand-blue transition-colors" />
-                </a>
-
-                {/* Website */}
-                <a
-                  href="https://maaptrix.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center justify-between p-4 rounded-2xl border border-[#CCE5FF] bg-gradient-to-r from-[#F8FCFF] to-white transition-all duration-300 hover:border-brand-blue hover:shadow-xs"
-                >
-                  <div className="flex items-center gap-3.5">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-blue-light text-brand-blue border border-brand-blue/20 group-hover:bg-brand-blue group-hover:text-white transition-colors">
-                      <Globe className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <span className="block text-xs font-mono font-bold text-slate-400 uppercase">
-                        Official Website
-                      </span>
-                      <span className="block text-sm sm:text-base font-bold text-brand-navy group-hover:text-brand-blue transition-colors">
-                        maaptrix.com
-                      </span>
-                    </div>
-                  </div>
-                  <ExternalLink className="h-4 w-4 text-slate-400 group-hover:text-brand-blue transition-colors" />
-                </a>
-              </div>
-            </Reveal>
-
-            {/* Operational Reassurance Card */}
-            <Reveal delay={0.15}>
-              <div className="rounded-2xl border border-[#CCE5FF] bg-[#F8FCFF] p-5 sm:p-6 shadow-2xs">
-                <div className="flex items-center gap-2 text-xs font-bold text-brand-blue mb-2">
-                  <ShieldCheck className="h-4 w-4" />
-                  <span>Built Around Real Operational Needs.</span>
+                    </a>
+                  </dd>
                 </div>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  Maaptrix develops focused digital products designed around
-                  everyday operational problems, user workflows and continuous
-                  product improvement.
-                </p>
-              </div>
-            </Reveal>
-          </div>
+              ))}
+            </dl>
 
-          {/* ================================================================= */}
-          {/* RIGHT COLUMN: Request a Demo Form (7 cols on lg) */}
-          {/* ================================================================= */}
-          <div className="lg:col-span-7">
-            <Reveal delay={0.1}>
-              <Suspense
-                fallback={
-                  <div className="rounded-2xl sm:rounded-3xl border border-slate-200 bg-slate-50 p-8 text-center text-xs text-slate-400">
-                    Loading enquiry form...
-                  </div>
-                }
+            <div className="rounded-2xl bg-[#F3F8FF] p-5">
+              <p className="flex items-center gap-2 font-display text-[17px] font-bold text-brand-navy">
+                <MonitorPlay className="h-5 w-5 text-brand-blue" aria-hidden />
+                Looking for a product demo?
+              </p>
+              <p className="mt-1.5 text-[15px] leading-relaxed text-slate-600">
+                Tell us what you need and our team will get in touch.
+              </p>
+              <button
+                type="button"
+                onClick={requestDemo}
+                className="group mt-4 inline-flex cursor-pointer items-center gap-2 text-[15px] font-semibold text-brand-blue hover:text-brand-blue-dark"
               >
-                <DemoFormInner />
-              </Suspense>
-            </Reveal>
-          </div>
+                Request a Demo
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden />
+              </button>
+            </div>
+          </Reveal>
 
+          <Reveal delay={0.08}>
+            <ContactForm formRef={formRef} demoRequests={demoRequests} />
+          </Reveal>
         </div>
       </div>
     </section>

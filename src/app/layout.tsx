@@ -17,6 +17,8 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://maaptrix.com"),
+  alternates: { canonical: "/" },
   title: {
     template: "%s | Maaptrix",
     default: "Maaptrix | Technology Products Built for Real-World Operations",

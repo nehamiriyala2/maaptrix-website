@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import {
   Activity,
@@ -44,6 +45,17 @@ export default function ProductsOverview() {
             <div className="group relative flex h-full flex-col justify-between overflow-hidden rounded-[28px] sm:rounded-[32px] border border-[#CCE5FF] bg-gradient-to-br from-white via-[#F8FCFF] to-[#EDF6FF] p-6 sm:p-8 shadow-[0_12px_40px_-10px_rgba(20,125,255,0.1)] transition-all duration-300 hover:-translate-y-1 hover:border-brand-blue hover:shadow-[0_20px_50px_-12px_rgba(20,125,255,0.2)]">
               
               <div>
+                <div className="mb-6 overflow-hidden rounded-2xl border border-[#DCEAFF]">
+                  <Image
+                    src="/hero/transport-card-scene.jpg"
+                    alt="Smartphone showing a school bus route map beside a school bus"
+                    width={1200}
+                    height={896}
+                    sizes="(min-width: 1024px) 45vw, 100vw"
+                    className="aspect-[16/9] h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                </div>
+
                 {/* Top Header: Logo/Wordmark + Category Pill */}
                 <div className="flex items-center justify-between border-b border-slate-100 pb-4">
                   <div className="flex items-center gap-2.5">
@@ -139,6 +151,17 @@ export default function ProductsOverview() {
             <div className="group relative flex h-full flex-col justify-between overflow-hidden rounded-[28px] sm:rounded-[32px] border border-[#CCE5FF] bg-gradient-to-br from-white via-[#F8FCFF] to-[#EDF6FF] p-6 sm:p-8 shadow-[0_12px_40px_-10px_rgba(20,125,255,0.1)] transition-all duration-300 hover:-translate-y-1 hover:border-brand-blue hover:shadow-[0_20px_50px_-12px_rgba(20,125,255,0.2)]">
               
               <div>
+                <div className="mb-6 overflow-hidden rounded-2xl border border-[#DCEAFF]">
+                  <Image
+                    src="/hero/school-card-scene.jpg"
+                    alt="Tablet displaying a school administration dashboard"
+                    width={1200}
+                    height={896}
+                    sizes="(min-width: 1024px) 45vw, 100vw"
+                    className="aspect-[16/9] h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                </div>
+
                 {/* Top Header: Logo/Wordmark + Category Pill */}
                 <div className="flex items-center justify-between border-b border-slate-100 pb-4">
                   <div className="flex items-center gap-2.5">

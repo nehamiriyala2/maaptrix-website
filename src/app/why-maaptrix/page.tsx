@@ -1,26 +1,26 @@
-import type { Metadata } from "next";
-import WhyHero from "@/components/why-maaptrix/WhyHero";
-import KeyDifference from "@/components/why-maaptrix/KeyDifference";
-import SixDifferentiators from "@/components/why-maaptrix/SixDifferentiators";
-import ProductEcosystemDirection from "@/components/why-maaptrix/ProductEcosystemDirection";
-import CustomerValue from "@/components/why-maaptrix/CustomerValue";
-import WhyCTA from "@/components/why-maaptrix/WhyCTA";
+import {
+  WhyApproach,
+  WhyClosingCTA,
+  WhyDifferentiators,
+  WhyHero,
+  WhyProductCompany,
+} from "@/components/why-maaptrix/WhySections";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: { absolute: "Why Maaptrix | Product-First Software Solutions" },
-  description:
-    "Discover how Maaptrix builds focused software products through a product-first approach, end-to-end ownership, usability and continuous improvement.",
-};
+export const metadata = pageMetadata(
+  "/why-maaptrix",
+  "Why Choose Maaptrix",
+  "Why Maaptrix builds focused software products: product ownership, purpose-built solutions, simplicity and continuous improvement.",
+);
 
 export default function WhyMaaptrixPage() {
   return (
     <>
       <WhyHero />
-      <KeyDifference />
-      <SixDifferentiators />
-      <ProductEcosystemDirection />
-      <CustomerValue />
-      <WhyCTA />
+      <WhyApproach />
+      <WhyDifferentiators />
+      <WhyProductCompany />
+      <WhyClosingCTA />
     </>
   );
 }
