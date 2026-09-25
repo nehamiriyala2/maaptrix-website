@@ -32,7 +32,7 @@ const PRODUCTS = [
 
 export default function ProductComparison() {
   return (
-    <section className="bg-[#F2F8FF] py-12 sm:py-16 lg:py-20" aria-labelledby="comparison-heading">
+    <section className="surface-soft py-16 sm:py-20 lg:py-24" aria-labelledby="comparison-heading">
       <div className="page-container">
         <Reveal className="mx-auto max-w-3xl text-center">
           <p className="inline-flex items-center gap-2 text-[13px] font-bold uppercase tracking-[0.16em] text-brand-blue">
@@ -41,7 +41,7 @@ export default function ProductComparison() {
           </p>
           <h2
             id="comparison-heading"
-            className="mt-4 font-display text-[30px] leading-[1.12] sm:text-[34px] lg:text-[40px] font-bold tracking-tight text-brand-navy"
+            className="mt-4 font-display text-[32px] leading-[1.08] sm:text-[40px] lg:text-[46px] xl:text-[50px] font-bold tracking-tight text-brand-navy"
           >
             Two Products. <span className="text-brand-blue">Different Operational Needs.</span>
           </h2>
@@ -51,39 +51,40 @@ export default function ProductComparison() {
         </Reveal>
 
         <Reveal delay={0.08}>
-          <div className="mx-auto mt-12 grid max-w-[900px] gap-6 md:grid-cols-2">
-            {PRODUCTS.map(({ num, name, icon: Icon, items, focus }) => (
+          <div className="mx-auto mt-12 grid max-w-[1120px] gap-6 md:grid-cols-2 lg:gap-8">
+            {PRODUCTS.map(({ num, name, icon: Icon, items, focus }, i) => (
               <article
                 key={num}
-                className="relative flex flex-col overflow-hidden rounded-[22px] border border-[#CFE4FF] bg-[#EEF2F7] p-7 pt-9 shadow-[0_18px_40px_-30px_rgba(10,10,10,0.45)] sm:p-8 sm:pt-10"
+                className="flex flex-col overflow-hidden rounded-[20px] border border-[#D5E6F7] bg-white shadow-[0_24px_50px_-30px_rgba(16,42,86,0.45)] transition-transform duration-300 hover:-translate-y-1"
               >
-                <span
-                  className="absolute inset-x-0 top-0 h-[5px] bg-gradient-to-r from-brand-blue to-[#4DA8FF]"
-                  aria-hidden
-                />
-                <div className="flex items-center gap-3.5">
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#CFE4FF] bg-white text-brand-navy">
-                    <Icon className="h-6 w-6" strokeWidth={1.8} aria-hidden />
-                  </span>
-                  <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-brand-blue">Product {num}</p>
-                    <h3 className="font-display text-[21px] font-semibold leading-tight text-brand-navy sm:text-[22px]">
-                      {name}
-                    </h3>
+                <div
+                  className={`relative overflow-hidden px-7 py-6 text-white sm:px-8 ${
+                    i === 0 ? "bg-[linear-gradient(125deg,#1683F7_0%,#0E71E6_100%)]" : "bg-[linear-gradient(125deg,#0B63D6_0%,#073B78_100%)]"
+                  }`}
+                >
+                  <span className="pointer-events-none absolute -right-10 -top-12 h-36 w-36 rotate-12 rounded-[28px] border border-white/15" aria-hidden />
+                  <div className="relative flex items-center gap-4">
+                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[12px] bg-white/15">
+                      <Icon className="h-6 w-6" strokeWidth={1.8} aria-hidden />
+                    </span>
+                    <div>
+                      <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-white/75">Product {num}</p>
+                      <h3 className="font-display text-[22px] font-bold leading-tight sm:text-[24px]">{name}</h3>
+                    </div>
                   </div>
                 </div>
 
-                <ul className="mt-6 space-y-3.5">
+                <ul className="space-y-3.5 px-7 pb-7 pt-7 sm:px-8">
                   {items.map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-[15px] leading-snug text-brand-navy sm:text-[16px]">
+                    <li key={item} className="flex items-start gap-3 text-[15.5px] leading-snug text-brand-navy sm:text-[16px]">
                       <CircleCheck className="mt-0.5 h-[18px] w-[18px] shrink-0 text-brand-blue" strokeWidth={2} aria-hidden />
                       {item}
                     </li>
                   ))}
                 </ul>
 
-                <p className="mt-auto pt-10 text-[13.5px] text-slate-600">
-                  <span className="text-slate-500">Primary focus:</span> {focus}
+                <p className="mx-7 mb-7 mt-auto rounded-[10px] bg-[#EAF4FF] px-4 py-3 text-[14px] text-brand-navy sm:mx-8 sm:mb-8">
+                  <span className="font-semibold text-brand-blue">Primary focus:</span> {focus}
                 </p>
               </article>
             ))}

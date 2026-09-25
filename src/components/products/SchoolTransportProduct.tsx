@@ -3,9 +3,6 @@
 import { useState } from "react";
 import {
   CheckCircle2,
-  LifeBuoy,
-  Radio,
-  ShieldCheck,
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import { TransportFeatureScroll } from "@/components/products/ProductFeatureScrolls";
@@ -257,7 +254,7 @@ export default function SchoolTransportProduct() {
               <span className="h-2 w-2 rounded-full bg-brand-blue" aria-hidden />
               Inside the Platform
             </p>
-            <h2 className="mt-4 font-display text-[30px] leading-[1.12] sm:text-[34px] lg:text-[40px] font-bold tracking-tight text-brand-navy">
+            <h2 className="mt-4 font-display text-[32px] leading-[1.08] sm:text-[40px] lg:text-[46px] xl:text-[50px] font-bold tracking-tight text-brand-navy">
               Every part of school transport, <span className="text-brand-blue">connected.</span>
             </h2>
           </Reveal>

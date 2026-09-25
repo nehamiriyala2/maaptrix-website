@@ -6,7 +6,7 @@ import Reveal from "@/components/Reveal";
 
 export default function ProductExample() {
   return (
-    <section className="relative overflow-hidden bg-[#F2F8FF] py-12 sm:py-16 lg:py-20 select-none">
+    <section className="surface-soft relative overflow-hidden py-16 sm:py-20 lg:py-24 select-none">
       <div className="page-container">
         
         {/* Header */}
@@ -18,7 +18,7 @@ export default function ProductExample() {
             </p>
           </div>
 
-          <h2 className="mt-3 font-display text-[30px] leading-[1.12] sm:text-[34px] lg:text-[40px] font-bold tracking-tight text-brand-navy">
+          <h2 className="mt-3 font-display text-[32px] leading-[1.08] sm:text-[40px] lg:text-[46px] xl:text-[50px] font-bold tracking-tight text-brand-navy">
             From Operational Need to <span className="text-brand-blue">Product.</span>
           </h2>
 
@@ -29,11 +29,12 @@ export default function ProductExample() {
         </Reveal>
 
         {/* 4-Stage Concrete Example Flow */}
-        <div className="mt-10 sm:mt-12 grid grid-cols-1 lg:grid-cols-4 gap-5">
+        <div className="relative mt-16 grid grid-cols-1 gap-x-5 gap-y-12 pt-2 [counter-reset:step] sm:mt-14 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+          <span className="absolute left-[6%] right-[10%] top-[7px] hidden h-[2px] bg-[linear-gradient(90deg,#9BCBFB,#1683F7,#9BCBFB)] lg:block" aria-hidden />
           
           {/* 1. OPERATIONAL NEED */}
           <Reveal delay={0.05}>
-            <div className="h-full rounded-2xl border border-[#CFE4FF] bg-white p-6 shadow-[0_8px_24px_rgba(30,136,255,0.06)] flex flex-col justify-between">
+            <div className="relative h-full rounded-[18px] border border-[#D5E6F7] bg-white p-6 pt-16 shadow-[0_18px_40px_-26px_rgba(16,42,86,0.4)] flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1 [counter-increment:step] before:absolute before:left-6 before:top-0 before:flex before:h-[64px] before:w-[64px] before:-translate-y-1/2 before:items-center before:justify-center before:rounded-full before:border-4 before:border-[#F3F8FF] before:bg-[#1683F7] before:font-display before:text-[22px] before:font-bold before:text-white before:shadow-[0_10px_20px_-8px_rgba(22,131,247,0.8)] before:content-[counter(step,decimal-leading-zero)]">
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-[12px] font-bold uppercase tracking-[0.12em] text-brand-blue">
@@ -63,7 +64,7 @@ export default function ProductExample() {
 
           {/* 2. PRODUCT IDEA */}
           <Reveal delay={0.1}>
-            <div className="h-full rounded-2xl border border-[#CFE4FF] bg-white p-6 shadow-[0_8px_24px_rgba(30,136,255,0.06)] flex flex-col justify-between">
+            <div className="relative h-full rounded-[18px] border border-[#D5E6F7] bg-white p-6 pt-16 shadow-[0_18px_40px_-26px_rgba(16,42,86,0.4)] flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1 [counter-increment:step] before:absolute before:left-6 before:top-0 before:flex before:h-[64px] before:w-[64px] before:-translate-y-1/2 before:items-center before:justify-center before:rounded-full before:border-4 before:border-[#F3F8FF] before:bg-[#1683F7] before:font-display before:text-[22px] before:font-bold before:text-white before:shadow-[0_10px_20px_-8px_rgba(22,131,247,0.8)] before:content-[counter(step,decimal-leading-zero)]">
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-[12px] font-bold uppercase tracking-[0.12em] text-brand-blue">
@@ -93,7 +94,7 @@ export default function ProductExample() {
 
           {/* 3. PRODUCT EXPERIENCE */}
           <Reveal delay={0.15}>
-            <div className="h-full rounded-2xl border border-[#CFE4FF] bg-white p-6 shadow-[0_8px_24px_rgba(30,136,255,0.06)] flex flex-col justify-between">
+            <div className="relative h-full rounded-[18px] border border-[#D5E6F7] bg-white p-6 pt-16 shadow-[0_18px_40px_-26px_rgba(16,42,86,0.4)] flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1 [counter-increment:step] before:absolute before:left-6 before:top-0 before:flex before:h-[64px] before:w-[64px] before:-translate-y-1/2 before:items-center before:justify-center before:rounded-full before:border-4 before:border-[#F3F8FF] before:bg-[#1683F7] before:font-display before:text-[22px] before:font-bold before:text-white before:shadow-[0_10px_20px_-8px_rgba(22,131,247,0.8)] before:content-[counter(step,decimal-leading-zero)]">
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-[12px] font-bold uppercase tracking-[0.12em] text-brand-blue">
@@ -123,7 +124,7 @@ export default function ProductExample() {
 
           {/* 4. CONTINUOUS IMPROVEMENT */}
           <Reveal delay={0.2}>
-            <div className="h-full rounded-2xl border border-[#BFDFFF] bg-gradient-to-br from-white to-[#F0F7FF] p-6 shadow-[0_8px_24px_rgba(30,136,255,0.06)] flex flex-col justify-between">
+            <div className="relative h-full rounded-[18px] border border-[#D5E6F7] bg-[linear-gradient(160deg,#FFFFFF_0%,#EAF4FF_100%)] p-6 pt-16 shadow-[0_18px_40px_-26px_rgba(16,42,86,0.4)] flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1 [counter-increment:step] before:absolute before:left-6 before:top-0 before:flex before:h-[64px] before:w-[64px] before:-translate-y-1/2 before:items-center before:justify-center before:rounded-full before:border-4 before:border-[#F3F8FF] before:bg-[#1683F7] before:font-display before:text-[22px] before:font-bold before:text-white before:shadow-[0_10px_20px_-8px_rgba(22,131,247,0.8)] before:content-[counter(step,decimal-leading-zero)]">
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-[12px] font-bold uppercase tracking-[0.12em] text-brand-blue">

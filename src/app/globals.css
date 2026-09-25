@@ -4,14 +4,14 @@
   --background: #ffffff;
   --foreground: #181818;
 
-  --brand-blue: #1683f5;
-  --brand-blue-dark: #0f6fd8;
+  --brand-blue: #1683f7;
+  --brand-blue-dark: #0757c9;
   --brand-blue-light: #eaf5ff;
   --brand-blue-tint: #f7fafe;
-  --brand-navy: #0b1b36;
+  --brand-navy: #10233f;
   --brand-navy-secondary: #414141;
   --brand-navy-light: #393939;
-  --brand-ink: #0b1b36;
+  --brand-ink: #10233f;
   --brand-line: #bfe3ff;
   --brand-line-light: #ddf1ff;
   --brand-mist: #e8f5ff;
@@ -220,9 +220,11 @@ body {
    re-centering inside its own max-width box. */
 .page-container {
   width: 100%;
-  /* 20px mobile → 32px tablet+, content capped at 1280px (backgrounds stay full-bleed) */
-  padding-left: max(clamp(20px, 4vw, 32px), calc((100% - 1280px) / 2));
-  padding-right: max(clamp(20px, 4vw, 32px), calc((100% - 1280px) / 2));
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(20px, 3.5vw, 48px);
+  padding-right: clamp(20px, 3.5vw, 48px);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -238,3 +240,33 @@ body {
 
 
 
+
+/* ------------------------------------------------------------------ */
+/* Maaptrix section surfaces (layered, not flat stripes)               */
+/* ------------------------------------------------------------------ */
+
+/* White base with a soft light-blue glow on the right */
+.surface-glow-right {
+  background-color: #ffffff;
+  background-image: radial-gradient(ellipse 55% 60% at 100% 30%, rgba(22, 131, 247, 0.09) 0%, transparent 70%);
+}
+
+/* White base with a soft light-blue glow on the left */
+.surface-glow-left {
+  background-color: #ffffff;
+  background-image: radial-gradient(ellipse 55% 60% at 0% 70%, rgba(22, 131, 247, 0.08) 0%, transparent 70%);
+}
+
+/* Pale blue with a very faint dot grid */
+.surface-soft {
+  background-color: #f3f8ff;
+  background-image:
+    radial-gradient(rgba(22, 131, 247, 0.09) 1px, transparent 1.2px),
+    linear-gradient(180deg, #f4f9ff 0%, #eaf4ff 100%);
+  background-size: 22px 22px, 100% 100%;
+}
+
+/* Bright blue feature block */
+.surface-blue {
+  background: linear-gradient(125deg, #1683f7 0%, #0e71e6 55%, #0757c9 100%);
+}

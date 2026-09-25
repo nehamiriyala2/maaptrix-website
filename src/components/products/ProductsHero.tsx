@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import HeroBluePanel from "@/components/HeroBluePanel";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -17,27 +18,7 @@ export default function ProductsHero() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-[linear-gradient(180deg,#EEF6FF_0%,#FFFFFF_55%,#FAFCFF_100%)] pb-8 pt-[72px] sm:pt-20 xl:min-h-[640px] xl:pb-[30px]">
-      {/* Atmosphere */}
-      <div className="pointer-events-none absolute inset-0" aria-hidden>
-        <div className="absolute right-[-6%] top-[8%] h-[560px] w-[560px] rounded-full bg-[#EAF4FF]" />
-        <motion.div
-          animate={{ y: [0, -6, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute right-[5%] top-[6%] h-[120px] w-[140px] opacity-[0.18]"
-          style={{ backgroundImage: "radial-gradient(#147DFF 2px, transparent 2.2px)", backgroundSize: "20px 20px" }}
-        />
-        <div
-          className="absolute left-[44%] top-[62%] h-[100px] w-[90px] opacity-[0.14]"
-          style={{ backgroundImage: "radial-gradient(#147DFF 2px, transparent 2.2px)", backgroundSize: "18px 18px" }}
-        />
-        <svg viewBox="0 0 1600 700" preserveAspectRatio="none" className="absolute inset-0 h-full w-full">
-          <path d="M760 360 L800 300" stroke="#147DFF" strokeOpacity=".18" strokeWidth="4" strokeLinecap="round" />
-          <path d="M1540 260 L1510 320" stroke="#147DFF" strokeOpacity=".18" strokeWidth="4" strokeLinecap="round" />
-          <path d="M820 640 C1000 560 1250 600 1600 520" fill="none" stroke="#147DFF" strokeOpacity=".1" strokeWidth="1.5" />
-        </svg>
-      </div>
-
+    <section className="bg-white relative overflow-hidden pb-14 pt-12 sm:pt-16 xl:pb-16 xl:pt-16">
       <div className="page-container relative">
         <div className="mx-auto grid max-w-[1440px] items-center gap-12 xl:grid-cols-[minmax(0,46fr)_minmax(0,54fr)] xl:gap-10">
           {/* Left copy */}
@@ -103,6 +84,7 @@ export default function ProductsHero() {
             transition={{ duration: 0.7, delay: 0.15, ease: EASE }}
             className="relative mx-auto w-full max-w-[860px]"
           >
+            <div className="relative overflow-hidden rounded-[22px] border-[6px] border-white bg-white shadow-[0_40px_80px_-30px_rgba(7,60,140,0.55)]">
             <Image
               src="/hero/products-visual.png"
               alt="Student using a laptop in front of the Maaptrix school dashboard with live tracking, attendance and messages"
@@ -110,8 +92,10 @@ export default function ProductsHero() {
               height={750}
               priority
               sizes="(min-width: 1280px) 54vw, 100vw"
-              className="h-auto w-full object-contain [mask-composite:intersect] [mask-image:linear-gradient(to_right,transparent_0%,#000_7%,#000_95%,transparent_100%),linear-gradient(to_bottom,transparent_0%,#000_6%,#000_88%,transparent_100%)]"
+              quality={90}
+              className="h-auto w-full object-contain"
             />
+            </div>
           </motion.div>
         </div>
       </div>

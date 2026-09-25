@@ -8,7 +8,7 @@ import { StoryCard, type StoryCardData } from "@/components/scroll/StoryCard";
 function ProductMedia({ src, alt }: { src: string; alt: string }) {
   return (
     <div className="relative h-full overflow-hidden rounded-[18px] border border-[#D5E8FA] bg-[#F2F8FF]">
-      <Image src={src} alt={alt} fill sizes="(min-width: 768px) 560px, 100vw" className="object-cover" />
+      <Image src={src} alt={alt} fill quality={90} sizes="(min-width: 768px) 560px, 100vw" className="object-contain" />
     </div>
   );
 }
@@ -61,14 +61,14 @@ const PRODUCTS: StoryCardData[] = [
 
 export default function ProductsOverview() {
   return (
-    <section id="overview" className="scroll-mt-24 relative bg-white py-12 sm:py-16 lg:py-20">
+    <section id="overview" className="surface-glow-right scroll-mt-24 relative py-16 sm:py-20">
       <div className="page-container">
         <Reveal className="mx-auto max-w-3xl text-center">
           <span className="inline-flex items-center gap-2 text-[13px] font-bold uppercase tracking-[0.12em] text-brand-blue">
             <span className="h-2 w-2 rounded-full bg-brand-blue" />
             Product Ecosystem
           </span>
-          <h2 className="mt-4 font-display text-[30px] leading-[1.12] sm:text-[34px] lg:text-[40px] font-bold tracking-tight text-brand-navy">
+          <h2 className="mt-4 font-display text-[32px] leading-[1.08] sm:text-[40px] lg:text-[46px] xl:text-[50px] font-bold tracking-tight text-brand-navy">
             Two Focused Products, <span className="text-brand-blue">One Operating Discipline</span>
           </h2>
           <p className="mt-4 text-base leading-[1.7] text-slate-600 sm:text-lg">
@@ -77,7 +77,7 @@ export default function ProductsOverview() {
           </p>
         </Reveal>
 
-        <div className="mx-auto mt-10 max-w-[1200px]">
+        <div className="mt-10">
           <StackedCards>
             {PRODUCTS.map((p) => (
               <StoryCard key={p.num} {...p} />

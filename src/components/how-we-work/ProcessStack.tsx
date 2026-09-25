@@ -88,9 +88,9 @@ export const PROCESS_STEPS: StoryCardData[] = [
 
 export default function ProcessStack() {
   return (
-    <section className="bg-white py-12 sm:py-16 lg:py-20" aria-labelledby="process-heading">
+    <section className="surface-glow-right py-16 sm:py-20" aria-labelledby="process-heading">
       <div className="page-container">
-        <div className="mx-auto max-w-[1200px]">
+        <div className="">
           <Reveal className="mx-auto max-w-2xl text-center">
             <p className="inline-flex items-center gap-2 text-[13px] font-bold uppercase tracking-[0.12em] text-brand-blue">
               <span className="h-2 w-2 rounded-full bg-brand-blue" aria-hidden />
@@ -98,11 +98,11 @@ export default function ProcessStack() {
             </p>
             <h2
               id="process-heading"
-              className="mt-4 font-display text-[30px] leading-[1.12] sm:text-[34px] lg:text-[40px] font-bold tracking-tight text-brand-navy"
+              className="mt-4 font-display text-[32px] leading-[1.08] sm:text-[40px] lg:text-[46px] xl:text-[50px] font-bold tracking-tight text-brand-navy"
             >
               From discovery to <span className="text-brand-blue">ongoing support.</span>
             </h2>
-            <p className="mt-4 text-[16px] leading-[1.6] text-[#52657D] sm:text-[17px]">
+            <p className="mt-4 text-[17px] leading-[1.65] text-[#52657D] lg:text-[18px]">
               Five steps we follow with every organization that adopts a Maaptrix product.
             </p>
           </Reveal>

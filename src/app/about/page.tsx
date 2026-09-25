@@ -1,9 +1,9 @@
 import {
-  AboutClosingCTA,
-  AboutIntro,
+  AboutHero,
+  AboutWhereWeStart,
   AboutMissionVision,
   AboutPrinciples,
-  AboutWhereWeStart,
+  AboutClosingCTA,
 } from "@/components/about/AboutSections";
 import { pageMetadata } from "@/lib/seo";
 
@@ -16,7 +16,7 @@ export const metadata = pageMetadata(
 export default function AboutPage() {
   return (
     <>
-      <AboutIntro />
+      <AboutHero />
       <AboutWhereWeStart />
       <AboutMissionVision />
       <AboutPrinciples />

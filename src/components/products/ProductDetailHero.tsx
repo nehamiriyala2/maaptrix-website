@@ -29,7 +29,7 @@ export default function ProductDetailHero({
   detailsId,
 }: ProductDetailHeroProps) {
   return (
-    <section className="relative overflow-hidden border-b border-slate-100 bg-[linear-gradient(180deg,#EEF6FF_0%,#FFFFFF_70%)] pb-14 pt-10 sm:pb-16 sm:pt-12 lg:pb-20">
+    <section className="surface-glow-right relative overflow-hidden border-b border-[#E6EEF7] pb-14 pt-10 sm:pb-16 sm:pt-12 lg:pb-20">
       <div
         className="pointer-events-none absolute right-[-10%] top-[5%] h-[520px] w-[520px] rounded-full bg-[#DCEBFF]/60 blur-[90px]"
         aria-hidden
@@ -57,7 +57,7 @@ export default function ProductDetailHero({
               <span className="h-[2px] w-8 rounded-full bg-brand-blue" />
               <span className="text-[13px] font-bold uppercase tracking-[0.14em] text-brand-blue">{eyebrow}</span>
             </span>
-            <h1 className="mt-5 font-display text-[34px] leading-[1.06] sm:text-[42px] lg:text-[52px] xl:text-[58px] font-extrabold tracking-[-0.03em] text-brand-navy">
+            <h1 className="mt-5 font-display text-[38px] leading-[1.04] sm:text-[48px] lg:text-[56px] xl:text-[64px] font-extrabold tracking-[-0.03em] text-brand-navy">
               {title} <span className="text-brand-blue">{titleAccent}</span>
             </h1>
             <p className={`mt-5 max-w-[580px] ${image ? "" : "mx-auto"} text-[17px] leading-[1.6] text-slate-600 sm:text-[18px]`}>{description}</p>

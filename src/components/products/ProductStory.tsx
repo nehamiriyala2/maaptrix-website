@@ -20,7 +20,7 @@ export default function ProductStory({ id, problem, solution, workflow }: Produc
     <>
       <section id={id} className="scroll-mt-24 bg-white py-12 sm:py-16 lg:py-20" aria-label="Problem and solution">
         <div className="page-container">
-          <div className="mx-auto grid max-w-[1240px] gap-6 lg:grid-cols-2">
+          <div className="grid gap-6 lg:grid-cols-2">
             <Reveal className="h-full rounded-[24px] border border-[#CFE4FF] bg-white p-7 sm:p-9">
               <p className="inline-flex items-center gap-2 text-[13px] font-bold uppercase tracking-[0.14em] text-slate-500">
                 <CircleAlert className="h-4 w-4" aria-hidden />
@@ -62,15 +62,15 @@ export default function ProductStory({ id, problem, solution, workflow }: Produc
         </div>
       </section>
 
-      <section className="bg-[#F2F8FF] py-12 sm:py-16 lg:py-20" aria-labelledby={`${id}-workflow`}>
+      <section className="surface-soft py-16 sm:py-20" aria-labelledby={`${id}-workflow`}>
         <div className="page-container">
-          <div className="mx-auto max-w-[1240px]">
+          <div className="">
             <Reveal className="max-w-2xl">
               <p className="inline-flex items-center gap-2 text-[13px] font-bold uppercase tracking-[0.16em] text-brand-blue">
                 <span className="h-2 w-2 rounded-full bg-brand-blue" aria-hidden />
                 How It Works
               </p>
-              <h2 id={`${id}-workflow`} className="mt-4 font-display text-[30px] leading-[1.12] sm:text-[34px] lg:text-[40px] font-bold text-brand-navy">
+              <h2 id={`${id}-workflow`} className="mt-4 font-display text-[32px] leading-[1.08] sm:text-[40px] lg:text-[46px] xl:text-[50px] font-bold text-brand-navy">
                 A day with the product, <span className="text-brand-blue">step by step.</span>
               </h2>
             </Reveal>

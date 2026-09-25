@@ -58,7 +58,7 @@ export default function SchoolTransportPage() {
         ]}
       />
       <SchoolTransportProduct />
-      <ProductsCTA tinted />
+      <ProductsCTA />
     </>
   );
 }

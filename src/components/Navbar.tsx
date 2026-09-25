@@ -71,14 +71,14 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="fixed top-3 sm:top-4 inset-x-0 z-50 px-3 sm:px-6 lg:px-8 max-w-[1400px] mx-auto pointer-events-none transition-all duration-300">
-        <nav
-          className={`pointer-events-auto w-full rounded-2xl sm:rounded-full px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between transition-all duration-300 ${
-            scrolled
-              ? "bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-[0_12px_36px_-8px_rgba(24,24,24,0.12)]"
-              : "bg-white/90 backdrop-blur-md border border-white/80 shadow-[0_8px_30px_-6px_rgba(24,24,24,0.06)]"
-          }`}
-        >
+      <header
+        className={`fixed inset-x-0 top-0 z-50 border-b transition-[background-color,box-shadow,border-color] duration-300 ${
+          scrolled
+            ? "border-[#D6E4F3] bg-white/90 shadow-[0_10px_30px_-14px_rgba(16,42,86,0.28)] backdrop-blur-md"
+            : "border-[#E6EEF7] bg-white"
+        }`}
+      >
+        <nav className="page-container flex h-16 items-center justify-between lg:h-[76px]">
           {/* Left: Brand Logo & Wordmark */}
           <Link
             href="/"
@@ -92,18 +92,18 @@ export default function Navbar() {
           </Link>
 
           {/* Center: Navigation Links */}
-          <div className="hidden items-center gap-6 xl:gap-8 lg:flex">
+          <div className="hidden h-full items-center gap-4 xl:gap-8 lg:flex">
             {NAV_LINKS.map((link) => {
               const active = isLinkActive(link.href);
               const underline = (
                 <span
-                  className={`absolute inset-x-0 -bottom-1 h-[2px] rounded-full bg-brand-blue transition-transform duration-300 ease-out ${
+                  className={`absolute inset-x-0 -bottom-[23px] h-[3px] rounded-t-full bg-brand-blue transition-transform duration-300 ease-out ${
                     active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
                   }`}
                 />
               );
-              const linkClass = `group relative py-1 text-[0.9rem] xl:text-[0.94rem] font-medium tracking-[-0.01em] transition-colors ${
-                active ? "text-brand-blue font-semibold" : "text-brand-navy/80 hover:text-brand-blue"
+              const linkClass = `group relative py-1 text-[14px] xl:text-[15px] font-medium tracking-[-0.01em] transition-colors ${
+                active ? "text-brand-blue font-semibold" : "text-brand-navy hover:text-brand-blue"
               }`;
 
               if (link.href !== "/products") {
@@ -148,7 +148,7 @@ export default function Navbar() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 6 }}
                         transition={{ duration: 0.16 }}
-                        className="absolute left-1/2 top-full z-50 w-[340px] -translate-x-1/2 pt-4"
+                        className="absolute left-1/2 top-full z-50 w-[340px] -translate-x-1/2 pt-6"
                       >
                         <div className="rounded-2xl border border-slate-200 bg-white p-2 shadow-[0_20px_50px_-20px_rgba(10,10,10,0.3)]">
                           {PRODUCT_LINKS.map(({ label, desc, href, icon: Icon }) => (
@@ -189,14 +189,14 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setSearchOpen((v) => !v)}
-              className="inline-flex h-8.5 w-8.5 items-center justify-center rounded-full text-brand-navy/70 transition-colors hover:bg-brand-blue-light hover:text-brand-blue focus-visible:outline-2 focus-visible:outline-brand-blue cursor-pointer"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-[10px] text-brand-navy transition-colors hover:bg-brand-blue-light hover:text-brand-blue focus-visible:outline-2 focus-visible:outline-brand-blue cursor-pointer"
               aria-label="Search site"
             >
               <Search className="h-4 w-4" />
             </button>
             <Link
               href="/contact"
-              className="group inline-flex items-center gap-1.5 rounded-full bg-brand-blue px-5 py-2.5 text-[0.85rem] xl:text-[0.88rem] font-semibold text-white shadow-[0_4px_14px_-4px_rgba(22,131,245,0.6)] hover:bg-brand-blue-dark transition-all duration-300 hover:shadow-[0_8px_20px_-4px_rgba(20,125,255,0.45)]"
+              className="group inline-flex h-11 items-center gap-2 rounded-[10px] bg-brand-blue px-5 text-[15px] font-semibold text-white transition-colors duration-300 hover:bg-brand-blue-dark"
             >
               <span>Request a Demo</span>
               <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -208,7 +208,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
-              className="inline-flex h-8.5 w-8.5 items-center justify-center rounded-full text-brand-navy transition-colors hover:bg-brand-blue-light"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-[10px] text-brand-navy transition-colors hover:bg-brand-blue-light"
               aria-label={open ? "Close menu" : "Open menu"}
             >
               {open ? <X className="h-4.5 w-4.5" /> : <Menu className="h-4.5 w-4.5" />}
@@ -224,7 +224,7 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.2 }}
-              className="pointer-events-auto mt-2 overflow-hidden rounded-2xl border border-slate-200 bg-white/95 backdrop-blur-md p-3 shadow-xl"
+              className="page-container border-t border-[#E6EEF7] bg-white py-3"
             >
               <div className="flex items-center justify-between gap-3">
                 <div className="flex flex-1 items-center gap-2.5 rounded-xl border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs text-brand-navy">
@@ -252,16 +252,16 @@ export default function Navbar() {
         <AnimatePresence>
           {open && (
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: -10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: -10 }}
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.22, ease: "easeInOut" }}
-              className="pointer-events-auto mt-2 overflow-hidden rounded-2xl border border-slate-200/90 bg-white/95 backdrop-blur-md p-5 shadow-2xl lg:hidden"
+              className="max-h-[calc(100vh-64px)] overflow-y-auto border-t border-[#E6EEF7] bg-white px-5 pb-6 pt-3 shadow-[0_20px_30px_-20px_rgba(16,42,86,0.3)] lg:hidden"
             >
               <div className="flex flex-col gap-1">
                 {NAV_LINKS.map((link) => {
                   const active = isLinkActive(link.href);
-                  const cls = `rounded-xl px-3.5 py-2.5 text-sm font-medium transition-colors ${
+                  const cls = `rounded-[10px] px-3.5 py-3 text-[15px] font-medium transition-colors ${
                     active
                       ? "bg-brand-blue-light text-brand-blue font-semibold"
                       : "text-brand-navy/85 hover:bg-brand-blue-light/50 hover:text-brand-navy"
@@ -316,7 +316,7 @@ export default function Navbar() {
                   <Link
                     href="/contact"
                     onClick={() => setOpen(false)}
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-blue px-5 py-2.5 text-xs font-semibold text-white shadow-md transition-colors hover:bg-brand-blue-dark"
+                    className="inline-flex h-12 items-center justify-center gap-2 rounded-[10px] bg-brand-blue px-5 text-[15px] font-semibold text-white transition-colors hover:bg-brand-blue-dark"
                   >
                     <span>Request a Demo</span>
                     <ArrowRight className="h-3.5 w-3.5" />

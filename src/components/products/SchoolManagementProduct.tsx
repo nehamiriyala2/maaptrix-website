@@ -1,11 +1,6 @@
 "use client";
 
 import {
-  Bell,
-  BookOpen,
-  Calendar,
-  CheckCircle2,
-  Users,
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import { SchoolFeatureScroll } from "@/components/products/ProductFeatureScrolls";
@@ -42,7 +37,7 @@ export default function SchoolManagementProduct() {
               <span className="h-2 w-2 rounded-full bg-brand-blue" aria-hidden />
               Inside the Module
             </p>
-            <h2 className="mt-4 font-display text-[30px] leading-[1.12] sm:text-[34px] lg:text-[40px] font-bold tracking-tight text-brand-navy">
+            <h2 className="mt-4 font-display text-[32px] leading-[1.08] sm:text-[40px] lg:text-[46px] xl:text-[50px] font-bold tracking-tight text-brand-navy">
               Everything a smaller school <span className="text-brand-blue">needs, in one place.</span>
             </h2>
           </Reveal>

@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -15,7 +14,6 @@ import {
   Lightbulb,
   MessageSquare,
   Network,
-  Play,
   Settings,
   Target,
   UserRound,
@@ -23,6 +21,9 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import WatchVideoButton from "@/components/WatchVideoButton";
+import BlueCTA from "@/components/BlueCTA";
+import HeroBluePanel from "@/components/HeroBluePanel";
 import TrackingMockup from "@/components/why-maaptrix/TrackingMockup";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -53,71 +54,11 @@ const HERO_POINTS: { icon: LucideIcon; title: [string, string]; desc: string }[]
   { icon: Settings, title: ["Product", "Driven"], desc: "We create and own our products." },
   { icon: BarChart3, title: ["Long-Term", "Impact"], desc: "Scalable products for a better tomorrow." },
 ];
-
-function VideoNotice({ onClose }: { onClose: () => void }) {
-  return (
-    <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-[#0B1B36]/45 px-5"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="why-video-title"
-      onClick={onClose}
-    >
-      <div
-        className="w-full max-w-[440px] rounded-[20px] border border-[#CFE4FF] bg-white p-7 text-center shadow-[0_24px_60px_-20px_rgba(11,27,54,0.4)]"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#EFF7FF] text-[#1683F5]">
-          <Play className="h-5 w-5 fill-current" aria-hidden />
-        </span>
-        <h2 id="why-video-title" className="mt-4 font-display text-[22px] font-bold text-[#0B1B36]">
-          Product video coming soon
-        </h2>
-        <p className="mt-2 text-[15px] leading-[1.6] text-[#52657D]">
-          Until it&apos;s ready, the Maaptrix team can walk you through the product in a live demo.
-        </p>
-        <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
-          <Link
-            href="/contact"
-            className="inline-flex h-12 items-center justify-center gap-2 rounded-[12px] bg-[#1683F5] px-6 text-[15px] font-semibold text-white hover:bg-[#0F6FD8]"
-          >
-            Request a Demo
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-          <button
-            type="button"
-            onClick={onClose}
-            autoFocus
-            className="inline-flex h-12 cursor-pointer items-center justify-center rounded-[12px] border border-[#CFE4FF] bg-white px-6 text-[15px] font-semibold text-[#1683F5] hover:bg-[#EFF7FF]"
-          >
-            Close
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export function WhyHero() {
-  const [videoOpen, setVideoOpen] = useState(false);
-
-  useEffect(() => {
-    if (!videoOpen) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setVideoOpen(false);
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [videoOpen]);
-
   return (
-    <section className="relative overflow-hidden bg-white pb-12 pt-10 sm:pb-16 sm:pt-12 xl:pb-[64px] xl:pt-[88px]">
-      {/* very subtle light-blue atmosphere */}
-      <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_70%_at_78%_45%,#F3F9FF_0%,rgba(255,255,255,0)_70%)]"
-        aria-hidden
-      />
-
-      <div className="relative mx-auto w-full max-w-[1664px] px-5 sm:px-8 xl:px-[clamp(40px,5vw,86px)]">
-        <div className="grid items-center gap-12 xl:grid-cols-[minmax(0,560px)_minmax(0,1fr)] xl:gap-6 2xl:grid-cols-[minmax(0,610px)_minmax(0,1fr)]">
+    <section className="bg-white relative overflow-hidden pb-12 pt-10 sm:pb-16 sm:pt-12 xl:pb-[64px] xl:pt-[72px]">
+      <div className="page-container relative">
+        <div className="grid items-center gap-12 xl:grid-cols-[minmax(0,560px)_minmax(0,1fr)] xl:gap-8 2xl:grid-cols-[minmax(0,610px)_minmax(0,1fr)]">
           {/* Left */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}
@@ -167,16 +108,7 @@ export function WhyHero() {
                 Explore Our Products
                 <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
-              <button
-                type="button"
-                onClick={() => setVideoOpen(true)}
-                className="inline-flex h-[58px] cursor-pointer items-center justify-center gap-3.5 whitespace-nowrap rounded-[14px] border border-[#CFE4FF] bg-white px-7 text-[17px] 2xl:px-8 font-semibold text-[#0B1B36] shadow-[0_8px_20px_-14px_rgba(20,90,160,0.35)] transition-colors duration-300 hover:border-[#1683F5] xl:h-[62px] xl:text-[18px]"
-              >
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1683F5] text-white">
-                  <Play className="ml-0.5 h-3.5 w-3.5 fill-current" aria-hidden />
-                </span>
-                Watch Video
-              </button>
+              <WatchVideoButton className="inline-flex h-[58px] cursor-pointer items-center justify-center gap-3.5 whitespace-nowrap rounded-[14px] border border-[#CFE4FF] bg-white px-7 text-[17px] 2xl:px-8 font-semibold text-[#0B1B36] shadow-[0_8px_20px_-14px_rgba(20,90,160,0.35)] transition-colors duration-300 hover:border-[#1683F5] xl:h-[62px] xl:text-[18px]" />
             </div>
           </motion.div>
 
@@ -185,14 +117,12 @@ export function WhyHero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.1, ease: EASE }}
-            className="mx-auto w-full min-w-0 max-w-[960px] xl:mx-0 xl:-mr-[clamp(0px,4.4vw,90px)] xl:w-auto xl:max-w-none"
+            className="mx-auto w-full min-w-0 max-w-[840px]"
           >
             <TrackingMockup />
           </motion.div>
         </div>
       </div>
-
-      {videoOpen && <VideoNotice onClose={() => setVideoOpen(false)} />}
     </section>
   );
 }
@@ -223,36 +153,50 @@ const APPROACH: { icon: LucideIcon; title: [string, string]; desc: string }[] = 
 
 export function WhyApproach() {
   return (
-    <section className="bg-[#F2F8FF] py-12 sm:py-16 lg:py-20" aria-labelledby="approach-heading">
-      <div className="page-container">
-        <div className="mx-auto max-w-[1320px]">
-          <Reveal className="max-w-[560px]">
-            <Eyebrow>The Maaptrix Approach</Eyebrow>
-            <h2 id="approach-heading" className={`mt-4 font-display text-[30px] font-bold leading-[1.12] tracking-tight sm:text-[34px] lg:text-[40px] ${NAVY}`}>
-              Built around <span className="text-[#1683F7]">real problems.</span>
-            </h2>
-            <p className={`mt-4 text-[16px] leading-[1.6] ${BODY}`}>
+    <section className="bg-white" aria-labelledby="approach-heading">
+      <div className="surface-blue relative overflow-hidden pb-16 pt-24 text-white [clip-path:polygon(0_48px,100%_0,100%_100%,0_100%)] sm:pb-20 sm:pt-28 lg:pb-24">
+        <div className="pointer-events-none absolute inset-0" aria-hidden>
+          <div className="absolute -right-24 top-16 h-[360px] w-[360px] rotate-12 rounded-[56px] border border-white/10" />
+          <div className="absolute -bottom-32 -left-24 h-[320px] w-[320px] rotate-12 rounded-[56px] bg-white/[0.05]" />
+        </div>
+        <div className="page-container relative">
+          <Reveal className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-end">
+            <div>
+              <p className="inline-flex items-center gap-2 text-[13px] font-bold uppercase tracking-[0.12em] text-white/80">
+                <span className="h-2 w-2 rounded-full bg-white" aria-hidden />
+                The Maaptrix Approach
+              </p>
+              <h2 id="approach-heading" className="mt-4 font-display text-[32px] font-bold leading-[1.1] tracking-tight sm:text-[40px] lg:text-[46px]">
+                Built around real problems.
+              </h2>
+            </div>
+            <p className="max-w-[520px] text-[17px] leading-[1.65] text-white/85 lg:justify-self-end">
               Maaptrix combines software engineering and project management to build, operate and continuously improve
               its own digital products.
             </p>
           </Reveal>
           <Reveal delay={0.08}>
-            <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {APPROACH.map(({ icon, title, desc }) => (
+            <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {APPROACH.map(({ icon: Icon, title, desc }, i) => (
                 <li
                   key={title[0]}
-                  className="flex flex-col rounded-2xl border border-[#CFE4FF] bg-white p-6 shadow-[0_10px_28px_-22px_rgba(16,43,92,0.35)] transition-transform duration-300 hover:-translate-y-1"
+                  className="group relative flex flex-col rounded-[18px] bg-white p-6 text-[#10233F] shadow-[0_24px_40px_-24px_rgba(4,30,80,0.6)] transition-transform duration-300 hover:-translate-y-1"
                 >
-                  <IconBadge icon={icon} />
-                  <h3 className={`mt-5 font-display text-[18px] font-bold leading-tight ${NAVY}`}>
+                  <div className="flex items-start justify-between">
+                    <span className="flex h-12 w-12 items-center justify-center rounded-[12px] bg-[#EAF4FF] text-[#1683F7]">
+                      <Icon className="h-6 w-6" strokeWidth={2} aria-hidden />
+                    </span>
+                    <span className="font-display text-[34px] font-bold leading-none text-[#DCEBFD]">0{i + 1}</span>
+                  </div>
+                  <h3 className="mt-5 font-display text-[19px] font-bold leading-tight">
                     {title[0]}
                     <br />
                     {title[1]}
                   </h3>
-                  <p className={`mt-2.5 flex-1 text-[14.5px] leading-[1.55] ${BODY}`}>{desc}</p>
+                  <p className={`mt-2.5 flex-1 text-[15px] leading-[1.6] ${BODY}`}>{desc}</p>
                   <Link
                     href="/how-we-work"
-                    className="group mt-5 inline-flex items-center gap-1.5 text-[14px] font-semibold text-[#1683F7]"
+                    className="mt-5 inline-flex items-center gap-1.5 text-[14.5px] font-semibold text-[#1683F7]"
                   >
                     Learn More
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden />
@@ -282,17 +226,17 @@ const IMPACT_ICONS: { icon: LucideIcon; className: string }[] = [
 
 export function WhyImpact() {
   return (
-    <section className="bg-white py-12 sm:py-16 lg:py-20" aria-labelledby="impact-heading">
+    <section className="surface-glow-right py-16 sm:py-20 lg:py-24" aria-labelledby="impact-heading">
       <div className="page-container">
-        <div className="mx-auto grid max-w-[1320px] items-center gap-12 lg:grid-cols-2 lg:gap-14">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-14">
           <Reveal>
             <Eyebrow>Our Impact</Eyebrow>
-            <h2 id="impact-heading" className={`mt-4 font-display text-[30px] font-bold leading-[1.12] tracking-tight sm:text-[34px] lg:text-[40px] ${NAVY}`}>
+            <h2 id="impact-heading" className={`mt-4 font-display text-[32px] font-bold leading-[1.08] tracking-tight sm:text-[40px] lg:text-[46px] xl:text-[50px] ${NAVY}`}>
               Making everyday operations
               <br />
               <span className="text-[#1683F7]">simpler and safer.</span>
             </h2>
-            <p className={`mt-4 max-w-[520px] text-[16px] leading-[1.6] ${BODY}`}>
+            <p className={`mt-4 max-w-[520px] text-[17px] leading-[1.65] lg:text-[18px] ${BODY}`}>
               From school <strong className={`font-semibold ${NAVY}`}>transportation</strong> to academic management,
               Maaptrix helps organizations run better with technology that understands their day-to-day needs.
             </p>
@@ -350,31 +294,32 @@ const DIFFERENTIATORS: { icon: LucideIcon; title: string; desc: string }[] = [
 
 export function WhyDifferentiators() {
   return (
-    <section className="bg-[#F2F8FF] py-12 sm:py-16 lg:py-20" aria-labelledby="diff-heading">
+    <section className="surface-soft py-16 sm:py-20 lg:pb-16 lg:pt-20" aria-labelledby="diff-heading">
       <div className="page-container">
-        <div className="mx-auto grid max-w-[1320px] items-center gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-14">
+        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-14">
           <Reveal>
             <Eyebrow>What Makes Us Different</Eyebrow>
-            <h2 id="diff-heading" className={`mt-4 font-display text-[30px] font-bold leading-[1.12] tracking-tight sm:text-[34px] lg:text-[40px] ${NAVY}`}>
+            <h2 id="diff-heading" className={`mt-4 font-display text-[32px] font-bold leading-[1.08] tracking-tight sm:text-[40px] lg:text-[46px] xl:text-[50px] ${NAVY}`}>
               Four reasons organizations
               <br />
               <span className="text-[#1683F7]">choose Maaptrix.</span>
             </h2>
-            <p className={`mt-4 max-w-[460px] text-[16px] leading-[1.6] ${BODY}`}>
+            <p className={`mt-4 max-w-[460px] text-[17px] leading-[1.65] lg:text-[18px] ${BODY}`}>
               A focused product company with a clear mission to improve school operations through practical technology.
             </p>
           </Reveal>
           <Reveal delay={0.08}>
-            <ul className="grid gap-4 sm:grid-cols-2">
+            <ul className="grid gap-4 sm:grid-cols-2 sm:pb-8 sm:[&>li:nth-child(even)]:translate-y-8">
               {DIFFERENTIATORS.map(({ icon, title, desc }) => (
                 <li
                   key={title}
-                  className="flex items-start gap-4 rounded-2xl border border-[#CFE4FF] bg-white p-5 shadow-[0_10px_28px_-22px_rgba(16,43,92,0.35)] transition-transform duration-300 hover:-translate-y-1"
+                  className="group relative flex items-start gap-4 overflow-hidden rounded-[16px] border border-[#D5E6F7] bg-white p-6 shadow-[0_14px_32px_-22px_rgba(16,42,86,0.4)] transition-shadow duration-300 hover:shadow-[0_20px_40px_-22px_rgba(22,131,247,0.5)]"
                 >
+                  <span className="absolute inset-y-0 left-0 w-1 bg-[#1683F7] opacity-0 transition-opacity duration-300 group-hover:opacity-100" aria-hidden />
                   <IconBadge icon={icon} />
                   <div>
-                    <h3 className={`font-display text-[16px] font-bold ${NAVY}`}>{title}</h3>
-                    <p className={`mt-1.5 text-[14px] leading-snug ${BODY}`}>{desc}</p>
+                    <h3 className={`font-display text-[18px] font-bold ${NAVY}`}>{title}</h3>
+                    <p className={`mt-1.5 text-[15px] leading-[1.55] ${BODY}`}>{desc}</p>
                   </div>
                 </li>
               ))}
@@ -389,27 +334,13 @@ export function WhyDifferentiators() {
 /* 05 — CTA ----------------------------------------------------------------- */
 export function WhyClosingCTA() {
   return (
-    <section className="bg-white py-12 sm:py-16 lg:py-20" aria-labelledby="why-cta-heading">
-      <div className="page-container">
-        <Reveal className="relative mx-auto flex max-w-[1320px] flex-col items-start justify-between gap-6 overflow-hidden rounded-[24px] bg-[linear-gradient(120deg,#1683F7_0%,#208BFF_60%,#3A9BFF_100%)] px-8 py-10 text-white sm:flex-row sm:items-center sm:px-12 sm:py-12">
-          <div className="pointer-events-none absolute -right-16 -top-24 h-64 w-64 rounded-full bg-white/10" aria-hidden />
-          <div className="pointer-events-none absolute -bottom-28 right-1/3 h-56 w-56 rounded-full bg-white/[0.07]" aria-hidden />
-          <div className="relative">
-            <p className="text-[12.5px] font-bold uppercase tracking-[0.14em] text-white/85">Our Commitment</p>
-            <h2 id="why-cta-heading" className="mt-3 font-display text-[30px] leading-[1.12] sm:text-[34px] lg:text-[40px] font-bold">
-              Let&apos;s build smarter schools together.
-            </h2>
-            <p className="mt-2 text-[15.5px] text-white/90">Discover how Maaptrix can simplify and improve your operations.</p>
-          </div>
-          <Link
-            href="/contact"
-            className="group relative inline-flex h-12 shrink-0 items-center gap-2 rounded-[11px] bg-white px-7 text-[15px] font-bold text-[#1683F7] transition-colors hover:bg-[#E8F3FF]"
-          >
-            Request a Demo
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </Link>
-        </Reveal>
-      </div>
-    </section>
+    <BlueCTA
+      id="why-cta-heading"
+      eyebrow="Our Commitment"
+      title="Let's build smarter schools together."
+      text="Discover how Maaptrix can simplify and improve your operations."
+      primary={{ href: "/contact", label: "Request a Demo" }}
+      above="#EAF4FF"
+    />
   );
 }

@@ -30,7 +30,7 @@ function Layer({
 
   return (
     <div
-      className={`sticky ${last ? "" : "h-[72vh] md:h-[78vh]"}`}
+      className={`sticky ${last ? "" : "h-[72vh] md:h-[max(64vh,540px)]"}`}
       style={{ top: `calc(var(--stack-top) + ${index} * var(--stack-step))` }}
     >
       <motion.div style={{ scale }} className="origin-top will-change-transform">

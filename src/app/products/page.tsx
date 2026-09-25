@@ -16,7 +16,7 @@ export default function ProductsPage() {
       <ProductsHero />
       <ProductsOverview />
       <ProductComparison />
-      <ProductsCTA />
+      <ProductsCTA tinted />
     </>
   );
 }

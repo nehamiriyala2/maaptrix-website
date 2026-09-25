@@ -188,7 +188,7 @@ function ContactForm({
       onSubmit={onSubmit}
       noValidate
       aria-labelledby="form-heading"
-      className="rounded-[22px] border border-[#CFE4FF] bg-white p-6 shadow-[0_8px_24px_rgba(30,136,255,0.06)] sm:p-8"
+      className="rounded-[22px] border border-[#D5E6F7] bg-white p-6 shadow-[0_40px_80px_-36px_rgba(7,40,100,0.5)] sm:p-8 lg:p-10"
     >
       <h2 id="form-heading" className="font-display text-[24px] font-bold tracking-tight text-brand-navy sm:text-[30px]">
         Send us a message
@@ -296,12 +296,12 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="bg-white py-12 sm:py-16" aria-label="Contact details and enquiry form">
+    <section className="surface-glow-left pb-16 pt-12 sm:pb-20 sm:pt-14" aria-label="Contact details and enquiry form">
       <div className="page-container">
         <div className="mx-auto grid max-w-[1400px] items-start gap-10 lg:grid-cols-[minmax(0,40fr)_minmax(0,60fr)] lg:gap-10">
-          <Reveal className="space-y-6">
+          <Reveal className="space-y-6 lg:order-1 lg:pt-2">
             <div>
-              <h2 className="font-display text-[30px] leading-[1.12] sm:text-[34px] lg:text-[40px] font-bold tracking-tight text-brand-navy">Let&apos;s Connect</h2>
+              <h2 className="font-display text-[32px] leading-[1.08] sm:text-[40px] lg:text-[46px] xl:text-[50px] font-bold tracking-tight text-brand-navy">Let&apos;s Connect</h2>
               <span className="mt-2 block h-[3px] w-14 rounded-full bg-brand-blue" aria-hidden />
               <p className="mt-4 text-[16px] leading-relaxed text-slate-600">
                 Reach us directly, or use the form and we&apos;ll reply by email.
@@ -316,7 +316,7 @@ export default function ContactSection() {
                     <a
                       href={href}
                       {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                      className="flex items-center gap-5 rounded-2xl border border-[#CFE4FF] bg-white px-5 py-4 shadow-[0_8px_24px_-20px_rgba(10,10,10,0.35)] transition-colors hover:border-brand-blue/50 hover:bg-brand-blue-light/40"
+                      className="flex items-center gap-5 rounded-[16px] border border-[#D5E6F7] bg-white px-5 py-4 shadow-[0_12px_28px_-22px_rgba(16,42,86,0.4)] transition-[border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-brand-blue"
                     >
                       <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-brand-blue-light text-brand-blue">
                         <Icon className="h-7 w-7" aria-hidden />
@@ -331,7 +331,7 @@ export default function ContactSection() {
               ))}
             </dl>
 
-            <div className="flex items-start gap-5 rounded-2xl border border-[#CFE4FF] bg-white px-5 py-5 shadow-[0_8px_24px_-20px_rgba(10,10,10,0.35)]">
+            <div className="relative flex items-start gap-5 overflow-hidden rounded-[16px] bg-[linear-gradient(135deg,#EAF4FF_0%,#D9EBFF_100%)] px-5 py-5">
               <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-brand-blue-light text-brand-blue">
                 <Headphones className="h-7 w-7" aria-hidden />
               </span>
@@ -352,7 +352,7 @@ export default function ContactSection() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.08}>
+          <Reveal delay={0.08} className="relative z-10 lg:order-2 lg:-mt-[196px]">
             <ContactForm formRef={formRef} demoRequests={demoRequests} />
           </Reveal>
         </div>
