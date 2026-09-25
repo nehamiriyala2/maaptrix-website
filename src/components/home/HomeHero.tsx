@@ -6,9 +6,7 @@ import { motion } from "framer-motion";
 import {
   ArrowRight,
   BarChart3,
-  MapPin,
   Shield,
-  ShieldCheck,
   Users,
 } from "lucide-react";
 
@@ -16,31 +14,55 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 export default function HomeHero() {
   return (
-    <section className="relative overflow-hidden bg-[radial-gradient(ellipse_at_top_right,rgba(224,242,254,0.65)_0%,transparent_60%),radial-gradient(ellipse_at_bottom_left,rgba(239,246,255,0.85)_0%,transparent_50%),#FFFFFF] pb-14 pt-8 text-brand-navy sm:pb-16 sm:pt-10 lg:pb-20 lg:pt-12">
-      {/* Soft organic ambient lighting */}
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#F2F8FD] via-[#FFFFFF] to-[#FFFFFF] pb-12 pt-8 text-brand-navy sm:pb-16 sm:pt-10 lg:pb-18 lg:pt-12">
+      {/* Soft organic ambient lighting and wave glow */}
       <div
-        className="pointer-events-none absolute -left-20 top-0 h-[500px] w-[500px] rounded-full bg-[#E0F2FE]/60 blur-[100px]"
+        className="pointer-events-none absolute -left-20 top-0 h-[520px] w-[520px] rounded-full bg-[#E0F2FE]/70 blur-[120px]"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute -right-20 top-10 h-[550px] w-[550px] rounded-full bg-[#BAE6FD]/40 blur-[110px]"
+        className="pointer-events-none absolute -right-20 top-10 h-[560px] w-[560px] rounded-full bg-[#BAE6FD]/45 blur-[120px]"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute bottom-0 left-1/3 h-[350px] w-[350px] rounded-full bg-[#DBEAFE]/40 blur-[90px]"
+        className="pointer-events-none absolute bottom-0 left-1/4 h-[350px] w-[350px] rounded-full bg-[#DBEAFE]/35 blur-[90px]"
         aria-hidden
       />
 
+      {/* Subtle organic wavy ribbon background decorative vector */}
+      <svg
+        className="pointer-events-none absolute inset-0 h-full w-full opacity-40"
+        viewBox="0 0 1440 700"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden
+      >
+        <path
+          d="M-100 500 C 300 650, 600 350, 1000 450 C 1200 500, 1400 380, 1600 300"
+          stroke="url(#hero-wave-grad)"
+          strokeWidth="60"
+          strokeLinecap="round"
+          className="blur-2xl"
+        />
+        <defs>
+          <linearGradient id="hero-wave-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#BAE6FD" stopOpacity="0.5" />
+            <stop offset="50%" stopColor="#93C5FD" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="#E0F2FE" stopOpacity="0.1" />
+          </linearGradient>
+        </defs>
+      </svg>
+
       <div className="page-container relative z-10">
         <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] xl:gap-12">
-          {/* LEFT: Maaptrix introduction */}
+          {/* LEFT: Headline & Maaptrix Core Value Proposition */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: EASE }}
           >
             {/* Eyebrow badge with glowing blue dot */}
-            <div className="inline-flex items-center gap-2.5 rounded-full border border-[#D0E4FA] bg-[#EBF4FE] px-3.5 py-1.5 shadow-[0_2px_8px_rgba(22,131,247,0.06)]">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#D0E4FA] bg-[#EBF4FE] px-3.5 py-1.5 shadow-[0_2px_8px_rgba(22,131,247,0.06)]">
               <span className="relative flex h-2.5 w-2.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#1683F7] opacity-75" />
                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#1683F7]" />
@@ -53,43 +75,16 @@ export default function HomeHero() {
             {/* Main Bold Headline */}
             <h1 className="mt-5 font-display text-[42px] font-extrabold leading-[1.04] tracking-[-0.035em] text-[#0A1B39] sm:text-[52px] lg:text-[56px] xl:text-[62px]">
               Technology<br />
-              Solutions for<br />
-              <span className="text-[#1683F7]">Smarter Schools.</span>
+              Products Built for<br />
+              <span className="text-[#1683F7]">Real-World</span><br />
+              Operations.
             </h1>
 
             {/* Subtitle Description */}
-            <p className="mt-5 max-w-[540px] text-[16.5px] leading-[1.65] text-[#556987] sm:text-[17.5px]">
+            <p className="mt-5 max-w-[540px] text-[16px] leading-[1.65] text-[#556987] sm:text-[17px]">
               Maaptrix designs, develops, operates and continuously improves its own digital products, offered through
               subscription-based models.
             </p>
-
-            {/* Mid Feature Badges Capsule Bar */}
-            <div className="mt-6 flex flex-wrap items-center gap-1.5 sm:gap-2 rounded-full border border-[#D2E4F7] bg-white/95 p-1.5 px-3 shadow-[0_4px_16px_rgba(22,131,247,0.08)] backdrop-blur-md w-fit">
-              <span className="inline-flex items-center gap-1.5 text-[12.5px] font-bold text-[#0A1B39] px-2 py-0.5">
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#EBF4FE] text-[#1683F7]">
-                  <MapPin className="h-3 w-3" />
-                </span>
-                Live Tracking
-              </span>
-              <span className="inline-flex items-center gap-1.5 text-[12.5px] font-bold text-[#0A1B39] px-2 py-0.5">
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#EBF4FE] text-[#1683F7]">
-                  <ShieldCheck className="h-3 w-3" />
-                </span>
-                Safety Protocols
-              </span>
-              <span className="inline-flex items-center gap-1.5 text-[12.5px] font-bold text-[#0A1B39] px-2 py-0.5">
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#EBF4FE] text-[#1683F7]">
-                  <Users className="h-3 w-3" />
-                </span>
-                Parent Visibility
-              </span>
-              <span className="inline-flex items-center gap-1.5 text-[12.5px] font-bold text-[#0A1B39] px-2 py-0.5">
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#EBF4FE] text-[#1683F7]">
-                  <BarChart3 className="h-3 w-3" />
-                </span>
-                Smarter Operations
-              </span>
-            </div>
 
             {/* CTAs */}
             <div className="mt-7 flex flex-col gap-3.5 sm:flex-row">
@@ -135,9 +130,18 @@ export default function HomeHero() {
                 </span>
               </div>
             </div>
+
+            {/* Bottom Slogan Line */}
+            <div className="mt-7 flex items-center gap-3">
+              <div className="h-[1px] w-12 bg-[#BDD9F5]" />
+              <p className="text-[11.5px] font-bold tracking-[0.18em] text-[#4A729A] uppercase">
+                Empowering Schools for a Brighter Tomorrow
+              </p>
+              <div className="h-[1px] w-24 bg-[#BDD9F5]" />
+            </div>
           </motion.div>
 
-          {/* RIGHT: Blueprint 3D School Campus visual */}
+          {/* RIGHT: Blueprint 3-Portal Fluid Ecosystem Graphic */}
           <motion.div
             initial={{ opacity: 0, y: 16, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -146,14 +150,14 @@ export default function HomeHero() {
           >
             <div className="relative w-full">
               <Image
-                src="/hero/school-campus-hero.png"
-                alt="Maaptrix connected school operations blueprint with live bus tracking, parent notifications, student attendance and safe transportation"
-                width={1298}
-                height={1032}
+                src="/hero/home-hero-portals.png"
+                alt="Maaptrix connected school operations blueprint with school management classroom, school transport bus, and communication platform"
+                width={1228}
+                height={1010}
                 priority
                 quality={95}
                 sizes="(min-width: 1280px) 55vw, 100vw"
-                className="h-auto w-full object-contain"
+                className="h-auto w-full object-contain drop-shadow-[0_12px_32px_rgba(22,131,247,0.08)]"
               />
             </div>
           </motion.div>
