@@ -20,11 +20,11 @@ export default function SchoolTransportPage() {
         description="A subscription-based school transport platform designed to help schools manage transportation, improve visibility and strengthen communication between school administrators, drivers and parents."
         pills={["Fleet Tracking", "Safety Protocols", "Parent Visibility", "Subscription Model"]}
         image={{
-          src: "/transport/school-bus-thumb.jpg",
-          alt: "Yellow school bus",
+          src: "/transport/school-bus-modern.jpg",
+          alt: "Modern yellow school bus with School Transport signage outside campus",
           width: 1024,
-          height: 1024,
-          cover: true,
+          height: 682,
+          cover: false,
         }}
         detailsId="how-it-works"
       />

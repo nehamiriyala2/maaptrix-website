@@ -1,37 +1,13 @@
 "use client";
 
-import {
-} from "lucide-react";
 import Reveal from "@/components/Reveal";
 import { SchoolFeatureScroll } from "@/components/products/ProductFeatureScrolls";
-import SchoolDashboard from "@/components/SchoolDashboard";
 
 export default function SchoolManagementProduct() {
   return (
     <section id="school" className="scroll-mt-24 relative overflow-clip bg-white py-12 sm:py-16 lg:py-20 select-none">
       <div className="page-container">
-        
-        {/* ========================================================================= */}
-        {/* 2. LARGE MODULAR PRODUCT VISUAL (SchoolDashboard) */}
-        {/* ========================================================================= */}
         <div>
-          <Reveal>
-            <div className="flex flex-col gap-3">
-              <div className="flex items-center justify-between px-1">
-                <span className="text-xs font-bold uppercase tracking-wider text-brand-blue flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-brand-blue animate-pulse" />
-                  School Administrative Ecosystem Preview
-                </span>
-                <span className="text-xs text-slate-400 font-medium hidden sm:inline">
-                  Modular Student &amp; Academic Administration Hub
-                </span>
-              </div>
-              <SchoolDashboard />
-            </div>
-          </Reveal>
-        </div>
-
-        <div className="mt-16 sm:mt-20">
           <Reveal className="mx-auto max-w-2xl text-center">
             <p className="inline-flex items-center gap-2 text-[13px] font-bold uppercase tracking-[0.12em] text-brand-blue">
               <span className="h-2 w-2 rounded-full bg-brand-blue" aria-hidden />

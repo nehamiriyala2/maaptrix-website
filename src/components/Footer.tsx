@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Mail } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Logo from "./Logo";
 
 const NAV_LINKS = [
@@ -16,16 +16,20 @@ const PRODUCT_LINKS = [
   { label: "Small School Management Module", href: "/products/school-management" },
 ];
 
-const HEAD = "text-[13px] font-bold uppercase tracking-[0.12em] text-[#6FB7FF]";
-const LINK = "text-[15px] text-white/75 transition-colors hover:text-white";
+const HEAD = "text-[13px] font-bold uppercase tracking-[0.12em] text-[#38BDF8]";
+const LINK = "text-[15px] text-white/70 transition-colors hover:text-white";
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-[#062E63] text-white">
+    <footer className="relative overflow-hidden bg-black text-white">
       {/* bright-blue accent + soft geometric detail */}
       <div className="h-1 w-full bg-[linear-gradient(90deg,#1683F7_0%,#5AB0FF_50%,#1683F7_100%)]" aria-hidden />
       <div
-        className="pointer-events-none absolute -right-40 -top-10 h-[420px] w-[420px] rotate-12 rounded-[64px] border border-white/[0.06] bg-white/[0.02]"
+        className="pointer-events-none absolute -right-40 -top-10 h-[420px] w-[420px] rotate-12 rounded-[64px] border border-white/[0.04] bg-white/[0.01]"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute left-1/4 bottom-0 h-[300px] w-[300px] rounded-full bg-[radial-gradient(circle,rgba(22,131,247,0.08)_0%,transparent_70%)] blur-[80px]"
         aria-hidden
       />
 
@@ -42,8 +46,8 @@ export default function Footer() {
               Maaptrix builds and operates focused software products for real-world operations, delivered through
               dependable subscription-based models.
             </p>
-            <p className="mt-5 inline-flex items-center gap-2 text-[14px] font-semibold text-[#6FB7FF]">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#6FB7FF]" />
+            <p className="mt-5 inline-flex items-center gap-2 text-[14px] font-semibold text-[#38BDF8]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#38BDF8]" />
               Building Practical Digital Products for Everyday Operations.
             </p>
           </div>
@@ -76,18 +80,12 @@ export default function Footer() {
 
           <div className="sm:col-span-2 lg:col-span-3">
             <p className={HEAD}>Get in Touch</p>
-            <a
-              href="mailto:hello@maaptrix.com"
-              className="mt-5 inline-flex items-center gap-2.5 text-[15px] font-medium text-white transition-colors hover:text-[#9CCDFF]"
-            >
-              <span className="flex h-9 w-9 items-center justify-center rounded-[10px] bg-white/10">
-                <Mail className="h-4 w-4" />
-              </span>
-              hello@maaptrix.com
-            </a>
+            <p className="mt-4 text-[14.5px] leading-relaxed text-white/70">
+              Ready to modernize and simplify your school operations?
+            </p>
             <Link
               href="/contact"
-              className="group mt-5 flex h-12 w-full max-w-[260px] items-center justify-center gap-2 rounded-[10px] bg-[#1683F7] px-5 text-[15px] font-semibold text-white transition-colors hover:bg-[#2B92FF]"
+              className="group mt-5 flex h-12 w-full max-w-[260px] items-center justify-center gap-2 rounded-[10px] bg-[#1683F7] px-5 text-[15px] font-semibold text-white transition-colors hover:bg-[#0E71E6]"
             >
               Request a Demo
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -95,9 +93,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/12 pt-6 text-center sm:flex-row sm:text-left">
-          <p className="text-[13.5px] text-white/60">&copy; 2026 Maaptrix Private Limited. All rights reserved.</p>
-          <p className="text-[13.5px] text-white/50">Software products designed and operated for real-world operations.</p>
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-center sm:flex-row sm:text-left">
+          <p className="text-[13.5px] text-white/50">&copy; 2026 Maaptrix Private Limited. All rights reserved.</p>
+          <p className="text-[13.5px] text-white/40">Software products designed and operated for real-world operations.</p>
         </div>
       </div>
     </footer>

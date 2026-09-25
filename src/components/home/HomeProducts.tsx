@@ -52,7 +52,7 @@ function ProductCopy({
 export default function HomeProducts() {
   return (
     <>
-      {/* Our Products intro + School Management (light blue) */}
+      {/* Our Products intro + School Transportation (light blue) */}
       <section className="overflow-clip bg-[linear-gradient(180deg,#EAF4FF_0%,#F4F9FF_100%)] py-16 sm:py-20 lg:py-24" aria-labelledby="home-products-heading">
         <div className="page-container">
           <Reveal className="mx-auto max-w-3xl text-center">
@@ -74,29 +74,11 @@ export default function HomeProducts() {
 
           <div className="mt-12 grid items-center gap-10 lg:mt-16 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:gap-12 xl:gap-14">
             <Reveal className="order-2 min-w-0 lg:order-1 xl:-ml-[clamp(0px,3.5vw,72px)]">
-              <SchoolAdminUI />
+              <TransportAdminUI />
             </Reveal>
             <Reveal delay={0.08} className="order-1 lg:order-2 lg:sticky lg:top-28 lg:self-start lg:pt-6">
               <ProductCopy
                 num="Product 01"
-                icon={GraduationCap}
-                name="School Management"
-                desc="A complete school management platform designed to streamline academic and administrative operations."
-                features={["Student Management", "Attendance", "Academics", "Communication", "Reports & Analytics", "Notifications"]}
-                href="/products/school-management"
-              />
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* School Transportation (white) */}
-      <section className="overflow-clip bg-white py-16 sm:py-20 lg:py-24" aria-label="School Transportation">
-        <div className="page-container">
-          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:gap-12 xl:gap-14">
-            <Reveal className="lg:sticky lg:top-28 lg:self-start lg:pt-6">
-              <ProductCopy
-                num="Product 02"
                 icon={Bus}
                 name="School Transportation"
                 desc="A connected transport platform for school administrators, drivers and parents, with live vehicle tracking, route visibility, safety workflows and parent alerts."
@@ -104,8 +86,26 @@ export default function HomeProducts() {
                 href="/products/school-transport"
               />
             </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* School Management (white) */}
+      <section className="overflow-clip bg-white py-16 sm:py-20 lg:py-24" aria-label="School Management">
+        <div className="page-container">
+          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:gap-12 xl:gap-14">
+            <Reveal className="lg:sticky lg:top-28 lg:self-start lg:pt-6">
+              <ProductCopy
+                num="Product 02"
+                icon={GraduationCap}
+                name="School Management"
+                desc="A complete school management platform designed to streamline academic and administrative operations."
+                features={["Student Management", "Attendance", "Academics", "Communication", "Reports & Analytics", "Notifications"]}
+                href="/products/school-management"
+              />
+            </Reveal>
             <Reveal delay={0.08} className="min-w-0 xl:-mr-[clamp(0px,3.5vw,72px)]">
-              <TransportAdminUI />
+              <SchoolAdminUI />
             </Reveal>
           </div>
         </div>
