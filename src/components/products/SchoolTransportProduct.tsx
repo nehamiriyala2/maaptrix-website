@@ -8,13 +8,14 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import { TransportFeatureScroll } from "@/components/products/ProductFeatureScrolls";
 import TransportDashboard from "@/components/TransportDashboard";
 
 export default function SchoolTransportProduct() {
   const [activeRole, setActiveRole] = useState<"admin" | "driver" | "parent">("admin");
 
   return (
-    <section id="transport" className="scroll-mt-24 relative overflow-hidden bg-white py-12 sm:py-16 lg:py-20 select-none">
+    <section id="transport" className="scroll-mt-24 relative overflow-clip bg-white py-12 sm:py-16 lg:py-20 select-none">
       <div className="page-container">
         
         {/* ========================================================================= */}
@@ -250,93 +251,19 @@ export default function SchoolTransportProduct() {
           </div>
         </div>
 
-        {/* ========================================================================= */}
-        {/* 4. SAFETY & CONNECTED OPERATIONS & SUPPORT */}
-        {/* ========================================================================= */}
-        <div className="mt-12 sm:mt-16 grid grid-cols-1 gap-6 lg:grid-cols-3">
-          
-          {/* Safety Card */}
-          <Reveal delay={0.06}>
-            <div className="h-full rounded-2xl border border-[#CFE4FF] bg-white p-6 shadow-[0_8px_24px_rgba(30,136,255,0.06)] flex flex-col justify-between">
-              <div>
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-blue-light text-brand-blue mb-4 border border-brand-blue/20">
-                  <ShieldCheck className="h-5 w-5" />
-                </div>
-                <h4 className="font-display text-[19px] font-bold text-brand-navy">
-                  Safety Within Everyday Transport Operations
-                </h4>
-                <ul className="mt-4 space-y-2 text-xs sm:text-sm text-slate-600">
-                  <li className="flex items-start gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-brand-blue mt-1.5 shrink-0" />
-                    <span>SOS and safety-focused workflows</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-brand-blue mt-1.5 shrink-0" />
-                    <span>Pickup / drop attendance</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-brand-blue mt-1.5 shrink-0" />
-                    <span>Guardian validation with OTP support where applicable</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-brand-blue mt-1.5 shrink-0" />
-                    <span>Configurable speed monitoring and transport alerts</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
+        <div className="mt-16 sm:mt-20">
+          <Reveal className="mx-auto max-w-2xl text-center">
+            <p className="inline-flex items-center gap-2 text-[13px] font-bold uppercase tracking-[0.12em] text-brand-blue">
+              <span className="h-2 w-2 rounded-full bg-brand-blue" aria-hidden />
+              Inside the Platform
+            </p>
+            <h2 className="mt-4 font-display text-[30px] leading-[1.12] sm:text-[34px] lg:text-[40px] font-bold tracking-tight text-brand-navy">
+              Every part of school transport, <span className="text-brand-blue">connected.</span>
+            </h2>
           </Reveal>
-
-          {/* Connected Operations Card */}
-          <Reveal delay={0.12}>
-            <div className="h-full rounded-2xl border border-[#CFE4FF] bg-white p-6 shadow-[0_8px_24px_rgba(30,136,255,0.06)] flex flex-col justify-between">
-              <div>
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-blue-light text-brand-blue mb-4 border border-brand-blue/20">
-                  <Radio className="h-5 w-5" />
-                </div>
-                <h4 className="font-display text-[19px] font-bold text-brand-navy">
-                  Connected Operations
-                </h4>
-                <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  Real-time communication between school administrators, drivers and parents:
-                </p>
-                <div className="mt-4 space-y-2 text-xs font-semibold text-brand-navy">
-                  <div className="p-2 rounded-lg bg-[#F5FAFF] border border-[#D5E8FF]">
-                    School Admin Dashboard
-                  </div>
-                  <div className="text-center text-brand-blue text-xs">↓</div>
-                  <div className="p-2 rounded-lg bg-[#F5FAFF] border border-[#D5E8FF]">
-                    Driver Mobile Application
-                  </div>
-                  <div className="text-center text-brand-blue text-xs">↓</div>
-                  <div className="p-2 rounded-lg bg-[#F5FAFF] border border-[#D5E8FF]">
-                    Parent Companion Application
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-
-          {/* Support & Operational Assistance */}
-          <Reveal delay={0.18}>
-            <div className="h-full rounded-2xl border border-[#CFE4FF] bg-white p-6 shadow-[0_8px_24px_rgba(30,136,255,0.06)] flex flex-col justify-between">
-              <div>
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-blue-light text-brand-blue mb-4 border border-brand-blue/20">
-                  <LifeBuoy className="h-5 w-5" />
-                </div>
-                <h4 className="font-display text-[19px] font-bold text-brand-navy">
-                  Support &amp; Operational Assistance
-                </h4>
-                <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  Direct onboarding guidance, support ticketing workflows and ongoing technical assistance for daily transport management.
-                </p>
-                <div className="mt-5 p-3 rounded-xl bg-brand-blue-light/40 border border-brand-blue/20 text-xs text-brand-navy font-medium">
-                  Support / ticketing workflow for product assistance and operational reliability.
-                </div>
-              </div>
-            </div>
-          </Reveal>
-
+          <div className="mt-8 lg:mt-4">
+            <TransportFeatureScroll />
+          </div>
         </div>
 
         {/* ========================================================================= */}

@@ -1,27 +1,69 @@
 import Link from "next/link";
-import { ArrowRight, BarChart3, FileText, Layers, RefreshCw } from "lucide-react";
+import { ArrowRight, BarChart3, Layers, LayoutPanelLeft, Waypoints } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import StackedCards from "@/components/scroll/StackedCards";
+import { StoryCard, type StoryCardData } from "@/components/scroll/StoryCard";
 
-const PRINCIPLES = [
+const CARDS: StoryCardData[] = [
   {
+    num: "01",
     icon: Layers,
     title: "Designed for Real Operations",
-    description: "Built around the way organizations actually operate, day to day.",
+    text: "Maaptrix products start from how schools and organizations actually run their day, and are shaped around those real workflows rather than generic templates.",
+    points: ["Built around existing daily routines", "Separate views for each role", "Fits the way your team already works"],
+    visualTitle: "Academic Operations",
+    visual: {
+      kind: "list",
+      rows: [
+        { a: "Class 6 – A", b: "Mathematics · Period 2", tag: "In session", tone: "green", initials: "6A" },
+        { a: "Class 7 – B", b: "Science · Period 2", tag: "In session", tone: "green", initials: "7B" },
+        { a: "Class 8 – A", b: "Attendance pending", tag: "Pending", tone: "blue", initials: "8A" },
+        { a: "Staff meeting", b: "Today · 3:30 PM", tag: "Scheduled", tone: "gray", initials: "SM" },
+      ],
+    },
   },
   {
-    icon: FileText,
+    num: "02",
+    icon: LayoutPanelLeft,
     title: "Built for Simplicity",
-    description: "Straightforward workflows designed to be easy to understand and use.",
+    text: "Everyday tasks take fewer steps, and information is laid out so it can be understood at a glance by administrators, staff and parents alike.",
+    points: ["Clear, uncluttered screens", "Information that is easy to read", "Straightforward for new users"],
+    visualTitle: "Announcements",
+    visual: {
+      kind: "chat",
+      messages: [
+        { from: "School Office", text: "Reminder: Parent–teacher meeting on Saturday at 10 AM." },
+        { from: "Parent", text: "Thank you. Will the meeting be in the main hall?" },
+        { from: "School Office", text: "Yes, in the main hall. See you there!", me: true },
+      ],
+    },
   },
   {
-    icon: RefreshCw,
+    num: "03",
+    icon: Waypoints,
     title: "Built for Real-World Use",
-    description: "Designed around the people, workflows and situations that use our products every day.",
+    text: "Maaptrix connects the people, workflows and situations involved in daily operations, so the school office, drivers and parents work from the same up-to-date information.",
+    points: ["Admin, driver and parent apps connected", "Updates as situations change", "Designed for everyday conditions"],
+    visualTitle: "Live Transport",
+    visual: { kind: "map", caption: "Bus MP-07 · On route", status: "Next stop in 4 mins · 28 students" },
   },
   {
+    num: "04",
     icon: BarChart3,
     title: "Continuously Improved",
-    description: "Maintained, refined and improved long after the first release.",
+    text: "Our products are maintained and refined after release, evolving as operational needs change and as feedback comes in from the people who use them.",
+    points: ["Regular refinements after release", "Shaped by user feedback", "Built to grow with your needs"],
+    visualTitle: "Insights",
+    visual: {
+      kind: "stats",
+      stats: [
+        { label: "Attendance", value: "94%" },
+        { label: "On-time trips", value: "97%" },
+        { label: "Messages read", value: "88%" },
+      ],
+      bars: [42, 55, 48, 63, 58, 71, 76],
+      barLabel: "Weekly activity",
+    },
   },
 ];
 
@@ -29,10 +71,10 @@ export default function HomeWhyPreview() {
   return (
     <section className="bg-white py-12 sm:py-16 lg:py-20" aria-labelledby="home-why-heading">
       <div className="page-container">
-        <div className="mx-auto max-w-[1320px]">
+        <div className="mx-auto max-w-[1200px]">
           <Reveal className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="inline-flex items-center gap-2 text-[13px] font-bold uppercase tracking-[0.16em] text-brand-blue">
+              <p className="inline-flex items-center gap-2 text-[13px] font-bold uppercase tracking-[0.12em] text-brand-blue">
                 <span className="h-2 w-2 rounded-full bg-brand-blue" aria-hidden />
                 Why Maaptrix
               </p>
@@ -52,19 +94,13 @@ export default function HomeWhyPreview() {
             </Link>
           </Reveal>
 
-          <Reveal>
-          <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
-            {PRINCIPLES.map(({ icon: Icon, title, description }) => (
-              <li key={title} className="h-full rounded-2xl border border-[#CFE4FF] bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand-blue/50 hover:shadow-[0_16px_34px_-22px_rgba(20,125,255,0.5)]">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-blue-light text-brand-blue">
-                    <Icon className="h-5 w-5" aria-hidden />
-                  </span>
-                  <h3 className="mt-5 font-display text-[17px] font-bold leading-snug text-brand-navy">{title}</h3>
-                  <p className="mt-2 text-[14.5px] leading-relaxed text-slate-500">{description}</p>
-                </li>
-            ))}
-          </ul>
-          </Reveal>
+          <div className="mt-10">
+            <StackedCards>
+              {CARDS.map((c) => (
+                <StoryCard key={c.num} {...c} />
+              ))}
+            </StackedCards>
+          </div>
         </div>
       </div>
     </section>

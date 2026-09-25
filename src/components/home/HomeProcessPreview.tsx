@@ -1,14 +1,13 @@
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, CodeXml, Lightbulb, RefreshCw, Rocket, Search } from "lucide-react";
+import { ArrowRight, ClipboardList, Compass, LifeBuoy, Settings2, Share2 } from "lucide-react";
 import Reveal from "@/components/Reveal";
 
 const STEPS = [
-  { num: "01", name: "Identify", desc: "Understand real problems and user needs.", icon: Search },
-  { num: "02", name: "Design", desc: "Define practical, user-centric solutions.", icon: Lightbulb },
-  { num: "03", name: "Develop", desc: "Build scalable and secure products.", icon: CodeXml },
-  { num: "04", name: "Validate", desc: "Test for quality, usability and real-world readiness.", icon: CheckCircle2 },
-  { num: "05", name: "Launch", desc: "Deploy with proper onboarding and support.", icon: Rocket },
-  { num: "06", name: "Improve", desc: "Continuously evolve with user feedback.", icon: RefreshCw },
+  { num: "01", name: "Discover", desc: "Understand how your organization works today.", icon: Compass },
+  { num: "02", name: "Plan", desc: "Agree the modules, users and rollout order.", icon: ClipboardList },
+  { num: "03", name: "Implement", desc: "Configure the product and onboard your team.", icon: Settings2 },
+  { num: "04", name: "Connect", desc: "Bring administrators, staff, drivers and parents together.", icon: Share2 },
+  { num: "05", name: "Support", desc: "Stay involved with support, updates and improvements.", icon: LifeBuoy },
 ];
 
 export default function HomeProcessPreview() {
@@ -25,14 +24,14 @@ export default function HomeProcessPreview() {
               id="home-process-heading"
               className="mt-4 font-display text-[30px] leading-[1.12] sm:text-[34px] lg:text-[40px] font-bold tracking-tight text-brand-navy"
             >
-              One disciplined lifecycle, <span className="text-brand-blue">start to finish.</span>
+              From discovery to <span className="text-brand-blue">ongoing support.</span>
             </h2>
           </Reveal>
 
           <Reveal>
-          <ol className="relative mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-6 lg:gap-3">
+          <ol className="relative mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5 lg:gap-4">
             <span
-              className="absolute left-[8%] right-[8%] top-7 hidden h-[2px] bg-gradient-to-r from-brand-blue/20 via-brand-blue/60 to-brand-blue/20 lg:block"
+              className="absolute left-[10%] right-[10%] top-7 hidden h-[2px] bg-gradient-to-r from-brand-blue/20 via-brand-blue/60 to-brand-blue/20 lg:block"
               aria-hidden
             />
             {STEPS.map(({ num, name, desc, icon: Icon }) => (
