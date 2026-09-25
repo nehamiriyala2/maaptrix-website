@@ -80,7 +80,7 @@ export default function HomeProducts() {
               <ProductCopy
                 num="Product 01"
                 icon={Bus}
-                name="School Transportation"
+                name="Maaptrix School Transportation"
                 desc="A connected transport platform for school administrators, drivers and parents, with live vehicle tracking, route visibility, safety workflows and parent alerts."
                 features={["Live Bus Tracking", "Routes & Stops", "Driver Management", "Student Tracking", "Alerts & Notifications", "Reports & Analytics"]}
                 href="/products/school-transport"
@@ -98,7 +98,7 @@ export default function HomeProducts() {
               <ProductCopy
                 num="Product 02"
                 icon={GraduationCap}
-                name="School Management"
+                name="Maaptrix School Management"
                 desc="A complete school management platform designed to streamline academic and administrative operations."
                 features={["Student Management", "Attendance", "Academics", "Communication", "Reports & Analytics", "Notifications"]}
                 href="/products/school-management"

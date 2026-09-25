@@ -142,13 +142,13 @@ const FOCUS_CARDS = [
   {
     icon: Bus,
     title: "School transportation & student safety",
-    linkText: "School Transport",
+    linkText: " School Transport",
     href: "/products/school-transport",
   },
   {
     icon: GraduationCap,
     title: "Academic and administrative operations",
-    linkText: "School Management",
+    linkText: " School Management",
     href: "/products/school-management",
   },
   {
@@ -185,7 +185,7 @@ export function AboutWhereWeStart() {
               </p>
             </div>
             <h2 className="mt-5 max-w-[620px] font-display text-[34px] font-extrabold leading-[1.06] tracking-[-0.03em] text-white sm:text-[44px] lg:text-[50px] xl:text-[56px]">
-              Building practical technology for <span className="text-[#CFE8FF]">everyday operations.</span>
+              Building practical technology for everyday operations.
             </h2>
             <p className="mt-6 max-w-[560px] text-[17px] leading-[1.7] text-white/90 sm:text-[18px]">
               We began by focusing on practical digital solutions for school operations and related everyday operational needs, to help organizations run safer, simpler and more connected operations.

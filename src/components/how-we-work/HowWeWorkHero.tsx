@@ -15,82 +15,95 @@ const POINTS: { icon: LucideIcon; title: [string, string]; desc: string }[] = [
 
 export default function HowWeWorkHero() {
   return (
-    <section className="relative overflow-hidden bg-[linear-gradient(135deg,#0A5BDF_0%,#0045B0_32%,#012C82_62%,#01205A_100%)] text-white">
-      {/* deep-blue atmosphere matching the visual */}
-      <div className="pointer-events-none absolute inset-0" aria-hidden>
-        <div className="absolute -left-40 -top-40 h-[520px] w-[720px] rounded-full bg-[#1683F7]/35 blur-[90px]" />
-        <div className="absolute -bottom-48 left-[10%] h-[360px] w-[900px] rotate-[-8deg] rounded-[50%] border-t-[40px] border-[#0B6FF0]/25 blur-[6px]" />
-        <div
-          className="absolute left-[40%] top-10 h-[110px] w-[170px] opacity-25"
-          style={{ backgroundImage: "radial-gradient(#8CC8FF 1.3px, transparent 1.5px)", backgroundSize: "18px 18px" }}
-        />
-      </div>
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#F2F8FD] via-[#FFFFFF] to-[#FFFFFF] pb-14 pt-10 text-brand-navy sm:pb-16 sm:pt-14 lg:pb-18 lg:pt-16">
+      {/* Soft atmospheric ambient light */}
+      <div
+        className="pointer-events-none absolute -left-20 top-0 h-[500px] w-[500px] rounded-full bg-[#E0F2FE]/70 blur-[120px]"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute -right-20 top-10 h-[550px] w-[550px] rounded-full bg-[#BAE6FD]/45 blur-[120px]"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute bottom-0 left-1/3 h-[350px] w-[350px] rounded-full bg-[#DBEAFE]/35 blur-[90px]"
+        aria-hidden
+      />
 
-      <div className="page-container relative">
-        <div className="grid items-center gap-8 pb-4 pt-14 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-6 lg:py-0">
-          {/* Left */}
+      <div className="page-container relative z-10">
+        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-8">
+          {/* Left Column */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, ease: EASE }}
-            className="min-w-0 lg:py-16"
+            className="min-w-0"
           >
-            <p className="inline-flex items-center gap-2.5 text-[13px] font-bold uppercase tracking-[0.12em] text-white/90 sm:text-[14px]">
-              <span className="h-2 w-2 rounded-full bg-[#4DB5FF] shadow-[0_0_10px_#4DB5FF]" aria-hidden />
-              Our Product Approach
-            </p>
-            <h1 className="mt-6 font-display text-[38px] font-extrabold leading-[1.04] tracking-[-0.035em] sm:text-[48px] lg:text-[clamp(38px,3.9vw,60px)]">
-              <span className="block lg:whitespace-nowrap">Products Built Around</span>
-              <span className="block bg-[linear-gradient(90deg,#5CC8FF_0%,#8FD8FF_100%)] bg-clip-text text-transparent">Real Problems.</span>
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#D0E4FA] bg-[#EBF4FE] px-3.5 py-1.5 shadow-[0_2px_8px_rgba(22,131,247,0.06)]">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#1683F7] opacity-75" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#1683F7]" />
+              </span>
+              <p className="text-[12px] font-bold uppercase tracking-[0.14em] text-[#0A1B39]">
+                Our Product Approach
+              </p>
+            </div>
+
+            <h1 className="mt-5 font-display text-[38px] font-extrabold leading-[1.04] tracking-[-0.035em] text-[#0A1B39] sm:text-[48px] lg:text-[52px] xl:text-[58px]">
+              <span className="block">Products Built Around</span>
+              <span className="text-[#1683F7]">Real Problems.</span>
             </h1>
-            <p className="mt-6 max-w-[600px] text-[17px] leading-[1.65] text-white/75 sm:text-[19px]">
+
+            <p className="mt-5 max-w-[580px] text-[16.5px] leading-[1.65] text-[#556987] sm:text-[17.5px]">
               We identify recurring operational challenges and engineer dependable software solutions designed for
               everyday reliability.
             </p>
 
-            <ul className="mt-9 grid max-w-[660px] grid-cols-1 gap-6 sm:grid-cols-3 sm:gap-5 lg:grid-cols-1 lg:gap-4 xl:grid-cols-3 xl:gap-5">
+            <ul className="mt-8 grid max-w-[640px] grid-cols-1 gap-5 sm:grid-cols-3 sm:gap-4">
               {POINTS.map(({ icon: Icon, title, desc }) => (
-                <li key={title[0]} className="flex items-start gap-3.5">
-                  <span className="flex h-[56px] w-[56px] shrink-0 items-center justify-center rounded-full bg-[linear-gradient(145deg,#1E8BFF_0%,#0B5ED7_100%)] text-white shadow-[0_10px_24px_-8px_rgba(22,131,247,0.8)] ring-1 ring-white/15">
+                <li key={title[0]} className="flex items-start gap-3">
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[12px] bg-[#EAF4FF] text-[#1683F7]">
                     <Icon className="h-6 w-6" strokeWidth={2.2} aria-hidden />
                   </span>
                   <div className="min-w-0">
-                    <p className="font-display text-[17px] font-bold leading-tight sm:text-[18px]">
+                    <p className="font-display text-[16.5px] font-bold leading-tight text-[#0A1B39]">
                       {title[0]}
                       <br />
                       {title[1]}
                     </p>
-                    <p className="mt-2 text-[14.5px] leading-[1.5] text-white/70">{desc}</p>
+                    <p className="mt-1.5 text-[13.5px] leading-[1.45] text-[#556987]">{desc}</p>
                   </div>
                 </li>
               ))}
             </ul>
 
-            <Link
-              href="/products"
-              className="group mt-10 inline-flex h-[56px] items-center gap-3 rounded-[12px] bg-[#1683F7] px-8 text-[17px] font-semibold text-white shadow-[0_0_0_1px_rgba(120,190,255,0.5),0_18px_36px_-12px_rgba(22,131,247,0.9)] transition-colors hover:bg-[#2B92FF]"
-            >
-              Explore Our Products
-              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </Link>
+            <div className="mt-8">
+              <Link
+                href="/products"
+                className="group inline-flex h-[50px] items-center justify-center gap-2.5 whitespace-nowrap rounded-[12px] bg-[#1683F7] px-7 text-[15.5px] font-bold text-white shadow-[0_12px_28px_-8px_rgba(22,131,247,0.45)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#0E71E6]"
+              >
+                Explore Our Products
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
           </motion.div>
 
-          {/* Right: Maaptrix product-approach visual (bleeds to the right edge) */}
+          {/* Right Column: Maaptrix 3D isometric product ecosystem platform */}
           <motion.div
             initial={{ opacity: 0, scale: 0.97 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.1, ease: EASE }}
-            className="relative mx-auto w-full max-w-[640px] min-w-0 lg:mx-0 lg:w-auto lg:-mr-6 xl:-mr-10 lg:max-w-none"
+            className="relative mx-auto w-full max-w-[620px] min-w-0 lg:mx-0 lg:w-auto"
           >
             <Image
-              src="/hero/how-we-work-approach.png"
+              src="/hero/how-we-work-approach-white.png"
               alt="Maaptrix product platform at the centre of connected capabilities: simpler operations, connected communities, better communication, safer schools, streamlined management and data-driven growth"
               width={912}
-              height={941}
+              height={912}
               priority
-              quality={90}
-              sizes="(min-width: 1024px) 55vw, 100vw"
-              className="h-auto w-full object-contain [mask-composite:intersect] [mask-image:linear-gradient(to_right,transparent_0%,#000_10%,#000_94%,transparent_100%),linear-gradient(to_bottom,transparent_0%,#000_5%,#000_92%,transparent_100%)]"
+              quality={95}
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="h-auto w-full object-contain drop-shadow-[0_16px_36px_rgba(22,131,247,0.09)]"
             />
           </motion.div>
         </div>

@@ -1,3 +1,6 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Logo from "./Logo";
@@ -20,6 +23,9 @@ const HEAD = "text-[13px] font-bold uppercase tracking-[0.12em] text-[#38BDF8]";
 const LINK = "text-[15px] text-white/70 transition-colors hover:text-white";
 
 export default function Footer() {
+  const pathname = usePathname();
+  const isContactPage = pathname === "/contact";
+
   return (
     <footer className="relative overflow-hidden bg-black text-white">
       {/* bright-blue accent + soft geometric detail */}
@@ -83,13 +89,15 @@ export default function Footer() {
             <p className="mt-4 text-[14.5px] leading-relaxed text-white/70">
               Ready to modernize and simplify your school operations?
             </p>
-            <Link
-              href="/contact"
-              className="group mt-5 flex h-12 w-full max-w-[260px] items-center justify-center gap-2 rounded-[10px] bg-[#1683F7] px-5 text-[15px] font-semibold text-white transition-colors hover:bg-[#0E71E6]"
-            >
-              Request a Demo
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
+            {!isContactPage && (
+              <Link
+                href="/contact"
+                className="group mt-5 flex h-12 w-full max-w-[260px] items-center justify-center gap-2 rounded-[10px] bg-[#1683F7] px-5 text-[15px] font-semibold text-white transition-colors hover:bg-[#0E71E6]"
+              >
+                Request a Demo
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            )}
           </div>
         </div>
 

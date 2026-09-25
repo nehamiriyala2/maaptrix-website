@@ -52,13 +52,13 @@ function IconBadge({ icon: Icon, size = "md" }: { icon: LucideIcon; size?: "sm" 
 const HERO_POINTS: { icon: LucideIcon; title: [string, string]; desc: string }[] = [
   { icon: Users, title: ["People", "Focused"], desc: "Built for real users." },
   { icon: Settings, title: ["Product", "Driven"], desc: "We create and own our products." },
-  { icon: BarChart3, title: ["Long-Term", "Impact"], desc: "Scalable products for a better tomorrow." },
+  { icon: BarChart3, title: ["Long-Term", "Impact"], desc: "Scalable products for tomorrow." },
 ];
 export function WhyHero() {
   return (
     <section className="bg-white relative overflow-hidden pb-12 pt-10 sm:pb-16 sm:pt-12 xl:pb-[64px] xl:pt-[72px]">
       <div className="page-container relative">
-        <div className="grid items-center gap-12 xl:grid-cols-[minmax(0,560px)_minmax(0,1fr)] xl:gap-8 2xl:grid-cols-[minmax(0,610px)_minmax(0,1fr)]">
+        <div className="grid items-center gap-12 xl:grid-cols-[minmax(0,580px)_minmax(0,1fr)] xl:gap-8 2xl:grid-cols-[minmax(0,630px)_minmax(0,1fr)]">
           {/* Left */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}
@@ -80,19 +80,19 @@ export function WhyHero() {
               development through launch, support and continuous improvement.
             </p>
 
-            <ul className="mt-9 grid max-w-[610px] grid-cols-1 gap-5 sm:grid-cols-3 sm:gap-3">
+            <ul className="mt-9 grid max-w-full grid-cols-1 gap-5 sm:grid-cols-3 sm:gap-4">
               {HERO_POINTS.map(({ icon: Icon, title, desc }) => (
-                <li key={title[0]} className="flex items-start gap-3.5 sm:gap-3">
-                  <span className="flex h-[54px] w-[54px] shrink-0 items-center justify-center rounded-[14px] bg-[#EFF7FF] text-[#1683F5]">
+                <li key={title[0]} className="flex items-start gap-3">
+                  <span className="flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-[14px] bg-[#EFF7FF] text-[#1683F5]">
                     <Icon className="h-[26px] w-[26px]" strokeWidth={2} aria-hidden />
                   </span>
                   <div className="min-w-0 pt-0.5">
-                    <p className="font-display text-[17px] font-semibold leading-[1.25] text-[#0B1B36] xl:text-[18px]">
+                    <p className="font-display text-[16.5px] font-semibold leading-[1.25] text-[#0B1B36] xl:text-[17.5px]">
                       {title[0]}
                       <br />
                       {title[1]}
                     </p>
-                    <p className="mt-2 text-[14px] leading-[1.5] text-[#52657D]">
+                    <p className="mt-1.5 text-[14px] leading-[1.45] text-[#52657D]">
                       {desc}
                     </p>
                   </div>

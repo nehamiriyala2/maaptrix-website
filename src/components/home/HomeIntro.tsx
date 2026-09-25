@@ -23,12 +23,12 @@ export default function HomeIntro() {
               id="home-about-heading"
               className="mt-4 font-display text-[34px] font-extrabold leading-[1.05] tracking-[-0.03em] text-brand-navy sm:text-[44px] lg:text-[50px] xl:text-[58px]"
             >
-              Technology for
+              Software Products
               <br />
               <span className="text-brand-blue">
-                Brighter School
+                Built for
                 <br />
-                Operations
+                Real-World Needs
               </span>
             </h2>
             <p className="mt-5 text-[17px] leading-[1.7] text-[#40536B]">
