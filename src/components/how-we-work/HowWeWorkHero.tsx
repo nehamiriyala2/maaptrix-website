@@ -96,7 +96,7 @@ export default function HowWeWorkHero() {
             className="relative mx-auto w-full max-w-[620px] min-w-0 lg:mx-0 lg:w-auto"
           >
             <Image
-              src="/hero/how-we-work-approach-white.png"
+              src="/hero/how-we-work-approach-seamless.png"
               alt="Maaptrix product platform at the centre of connected capabilities: simpler operations, connected communities, better communication, safer schools, streamlined management and data-driven growth"
               width={912}
               height={912}

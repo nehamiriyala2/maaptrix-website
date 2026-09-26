@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { ArrowRight, CheckCircle2, Globe, Mail, Headphones, RefreshCw } from "lucide-react";
+import { ArrowRight, CheckCircle2, Globe, Mail, RefreshCw } from "lucide-react";
 import Reveal from "@/components/Reveal";
 
 const CONTACT_EMAIL = "hello@maaptrix.com";
@@ -102,18 +102,10 @@ function Field({
 
 function ContactForm({
   formRef,
-  demoRequests,
 }: {
   formRef: React.RefObject<HTMLFormElement | null>;
-  demoRequests: number;
 }) {
   const [data, setData] = useState<FormData>(EMPTY);
-  // "Request a Demo" pre-selects the demo enquiry type (adjusting state during render).
-  const [appliedDemo, setAppliedDemo] = useState(0);
-  if (demoRequests !== appliedDemo) {
-    setAppliedDemo(demoRequests);
-    setData((d) => ({ ...d, enquiryType: "Demo request" }));
-  }
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitting, setSubmitting] = useState(false);
   const [sent, setSent] = useState<string | null>(null);
@@ -287,14 +279,6 @@ const DETAILS = [
 export default function ContactSection() {
   const formRef = useRef<HTMLFormElement>(null);
 
-  const [demoRequests, setDemoRequests] = useState(0);
-
-  const requestDemo = () => {
-    setDemoRequests((n) => n + 1);
-    formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    window.setTimeout(() => document.getElementById("fullName")?.focus({ preventScroll: true }), 400);
-  };
-
   return (
     <section className="surface-glow-left pb-16 pt-12 sm:pb-20 sm:pt-14" aria-label="Contact details and enquiry form">
       <div className="page-container">
@@ -308,7 +292,7 @@ export default function ContactSection() {
               </p>
             </div>
 
-            <dl className="space-y-3">
+            <dl className="space-y-4">
               {DETAILS.map(({ icon: Icon, label, value, href }) => (
                 <div key={label}>
                   <dt className="sr-only">{label}</dt>
@@ -330,30 +314,10 @@ export default function ContactSection() {
                 </div>
               ))}
             </dl>
-
-            <div className="relative flex items-start gap-5 overflow-hidden rounded-[16px] bg-[linear-gradient(135deg,#EAF4FF_0%,#D9EBFF_100%)] px-5 py-5">
-              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-brand-blue-light text-brand-blue">
-                <Headphones className="h-7 w-7" aria-hidden />
-              </span>
-              <div>
-                <p className="font-display text-[17px] font-bold text-brand-navy">Looking for a product demo?</p>
-                <p className="mt-1.5 text-[15px] leading-relaxed text-slate-600">
-                  Tell us what you need and our team will get in touch.
-                </p>
-                <button
-                  type="button"
-                  onClick={requestDemo}
-                  className="group mt-3 inline-flex cursor-pointer items-center gap-2 text-[16px] font-semibold text-brand-blue hover:text-brand-blue-dark"
-                >
-                  Request a Demo
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden />
-                </button>
-              </div>
-            </div>
           </Reveal>
 
           <Reveal delay={0.08} className="relative z-10 lg:order-2 lg:-mt-[196px]">
-            <ContactForm formRef={formRef} demoRequests={demoRequests} />
+            <ContactForm formRef={formRef} />
           </Reveal>
         </div>
       </div>
