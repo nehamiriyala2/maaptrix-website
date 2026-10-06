@@ -45,23 +45,25 @@ function SafetyStrip() {
           <ol className="mx-auto mt-8 grid max-w-6xl auto-rows-fr grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:mt-10 lg:grid-cols-6 lg:gap-8">
             {SAFETY_STEPS.map(({ icon: Icon, label, emphasis }, i) => (
               <li key={label} className="relative">
-                <div className="flex h-full flex-col items-center rounded-[20px] bg-white/[0.09] px-3 pb-4 pt-4 text-center shadow-[0_10px_28px_-20px_rgba(4,30,80,0.55)] transition-colors duration-300 hover:bg-white/[0.13] lg:pt-5">
+                <div className="flex h-full flex-col items-center rounded-[20px] bg-white px-3 pb-4 pt-4 text-center shadow-[0_16px_32px_-20px_rgba(4,30,80,0.6)] lg:pt-5">
                   <span
-                    className={`flex h-11 w-11 items-center justify-center rounded-full bg-white shadow-[0_8px_18px_-10px_rgba(16,35,63,0.55)] lg:h-12 lg:w-12 ${
-                      emphasis ? "ring-4 ring-white/25" : ""
+                    className={`flex h-11 w-11 items-center justify-center rounded-full bg-white shadow-[0_6px_16px_-8px_rgba(16,35,63,0.35)] ring-1 lg:h-12 lg:w-12 ${
+                      emphasis ? "ring-[#FECACA]" : "ring-[#E3ECF7]"
                     }`}
                   >
                     <Icon className="h-[27px] w-[27px] lg:h-[29px] lg:w-[29px]" />
                   </span>
-                  <span className="mt-3 text-[12px] font-bold tracking-[0.14em] text-white/65">
+                  <span className="mt-3 text-[12px] font-bold tracking-[0.14em] text-brand-navy">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span className="mt-1 font-display text-[15px] font-bold leading-snug sm:text-[16px]">{label}</span>
+                  <span className="mt-1 font-display text-[15px] font-bold leading-snug text-brand-navy sm:text-[16px]">
+                    {label}
+                  </span>
                 </div>
                 {i < SAFETY_STEPS.length - 1 && (
                   /* Desktop connector: sits only in the gap between cards */
                   <ArrowRight
-                    className="pointer-events-none absolute left-[calc(100%+16px)] top-1/2 hidden h-4 w-4 -translate-x-1/2 -translate-y-1/2 text-white/70 lg:block"
+                    className="pointer-events-none absolute left-[calc(100%+16px)] top-1/2 hidden h-4 w-4 -translate-x-1/2 -translate-y-1/2 text-white/90 lg:block"
                     strokeWidth={2.25}
                     aria-hidden
                   />

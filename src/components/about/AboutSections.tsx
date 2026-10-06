@@ -83,8 +83,10 @@ export function AboutHero() {
             </h1>
 
             <p className="mt-6 max-w-[580px] text-[17px] leading-[1.7] text-[#40536B] sm:text-[18.5px]">
-              Maaptrix is a technology company that builds, owns and manages its own software products,
-              designed around real-world operational problems and delivered through subscription plans.
+              Maaptrix Private Limited is an Indian technology company building practical digital products that
+              simplify everyday operations across industries. We combine intuitive user experiences, dependable
+              technology, and real-world insights to create solutions that improve efficiency, solve meaningful
+              challenges, and evolve with the changing needs of our customers.
             </p>
 
             {/* Three Value Points in connected row */}
