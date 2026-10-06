@@ -73,7 +73,7 @@ export default function HomeWhyPreview() {
                 {
                   icon: Boxes,
                   title: "Product Ownership",
-                  text: "We create, own and operate our products, so they're maintained and supported for the long term.",
+                  text: "Built for the long term, our products are maintained, supported and continuously refined to remain reliable as customer needs evolve.",
                 },
               ].map(({ icon: Icon, title, text }) => (
                 <Link
@@ -102,7 +102,8 @@ export default function HomeWhyPreview() {
                 <span className="flex-1">
                   <span className="block font-display text-[19px] font-bold text-brand-navy">Continuous Improvement</span>
                   <span className="mt-1.5 block text-[15px] leading-[1.6] text-[#40536B]">
-                    Our products keep evolving after release, refined through real usage and feedback.
+                    We own and continuously evolve our products, helping customers simplify operations, improve
+                    efficiency, and stay ahead with dependable support and technology that grows with their needs.
                   </span>
                 </span>
                 <span className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-brand-blue sm:flex">

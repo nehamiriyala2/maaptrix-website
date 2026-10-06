@@ -1,7 +1,79 @@
 import Link from "next/link";
-import { ArrowRight, Bus, Check, GraduationCap, type LucideIcon } from "lucide-react";
+import type { ComponentType } from "react";
+import { ArrowRight, Bus, Check, GraduationCap, ShieldCheck, type LucideIcon } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import { SchoolAdminUI, TransportAdminUI } from "@/components/home/ProductUIs";
+import {
+  AttendanceIcon,
+  BellIcon,
+  GpsPinIcon,
+  RouteReplayIcon,
+  SirenIcon,
+  SpeedometerIcon,
+} from "@/components/home/SafetyIcons";
+
+const SAFETY_STEPS: { icon: ComponentType<{ className?: string }>; label: string; emphasis?: boolean }[] = [
+  { icon: GpsPinIcon, label: "Live Tracking" },
+  { icon: AttendanceIcon, label: "Pickup/Drop Attendance" },
+  { icon: SpeedometerIcon, label: "Speed Monitoring" },
+  { icon: BellIcon, label: "Parent Alerts" },
+  { icon: SirenIcon, label: "SOS", emphasis: true },
+  { icon: RouteReplayIcon, label: "Route Replay" },
+];
+
+function SafetyStrip() {
+  return (
+    <section
+      className="relative overflow-hidden bg-[linear-gradient(135deg,#1683F7_0%,#0757C9_100%)] py-12 text-white lg:py-14"
+      aria-labelledby="home-safety-heading"
+    >
+      <div className="page-container relative">
+        <Reveal className="text-center">
+          <p className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3.5 py-1.5 text-[13px] font-bold uppercase tracking-[0.12em]">
+            <ShieldCheck className="h-4 w-4" aria-hidden />
+            School Transportation
+          </p>
+          <h2
+            id="home-safety-heading"
+            className="mt-4 text-balance font-display text-[28px] font-bold leading-[1.1] tracking-tight sm:text-[36px] lg:text-[42px]"
+          >
+            Student Safety at Every Step
+          </h2>
+        </Reveal>
+
+        <Reveal delay={0.08}>
+          <ol className="mx-auto mt-8 grid max-w-6xl auto-rows-fr grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:mt-10 lg:grid-cols-6 lg:gap-8">
+            {SAFETY_STEPS.map(({ icon: Icon, label, emphasis }, i) => (
+              <li key={label} className="relative">
+                <div className="flex h-full flex-col items-center rounded-[20px] bg-white/[0.09] px-3 pb-4 pt-4 text-center shadow-[0_10px_28px_-20px_rgba(4,30,80,0.55)] transition-colors duration-300 hover:bg-white/[0.13] lg:pt-5">
+                  <span
+                    className={`flex h-11 w-11 items-center justify-center rounded-full bg-white shadow-[0_8px_18px_-10px_rgba(16,35,63,0.55)] lg:h-12 lg:w-12 ${
+                      emphasis ? "ring-4 ring-white/25" : ""
+                    }`}
+                  >
+                    <Icon className="h-[27px] w-[27px] lg:h-[29px] lg:w-[29px]" />
+                  </span>
+                  <span className="mt-3 text-[12px] font-bold tracking-[0.14em] text-white/65">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="mt-1 font-display text-[15px] font-bold leading-snug sm:text-[16px]">{label}</span>
+                </div>
+                {i < SAFETY_STEPS.length - 1 && (
+                  /* Desktop connector: sits only in the gap between cards */
+                  <ArrowRight
+                    className="pointer-events-none absolute left-[calc(100%+16px)] top-1/2 hidden h-4 w-4 -translate-x-1/2 -translate-y-1/2 text-white/70 lg:block"
+                    strokeWidth={2.25}
+                    aria-hidden
+                  />
+                )}
+              </li>
+            ))}
+          </ol>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
 
 function ProductCopy({
   num,
@@ -89,6 +161,9 @@ export default function HomeProducts() {
           </div>
         </div>
       </section>
+
+      {/* Student safety journey (School Transportation differentiator) */}
+      <SafetyStrip />
 
       {/* School Management (white) */}
       <section className="overflow-clip bg-white py-16 sm:py-20 lg:py-24" aria-label="School Management">

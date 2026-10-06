@@ -32,9 +32,10 @@ export default function HomeIntro() {
               </span>
             </h2>
             <p className="mt-5 text-[17px] leading-[1.7] text-[#40536B]">
-              Maaptrix Private Limited is a technology company focused on building and managing its own software
-              products. We identify real-world challenges, create purpose-built digital solutions and deliver them to
-              customers through subscription plans.
+              Maaptrix Private Limited is an Indian technology company building practical digital products that
+              simplify everyday operations across industries. We combine intuitive user experiences, dependable
+              technology, and real-world insights to create solutions that improve efficiency, solve meaningful
+              challenges, and evolve with the changing needs of our customers.
             </p>
 
             <ul className="mt-8 grid gap-5 sm:grid-cols-3 sm:gap-4">
