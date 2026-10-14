@@ -156,7 +156,7 @@ export default function HomeProducts() {
                 icon={Bus}
                 name="Maaptrix School Transportation"
                 desc="A connected transport platform for school administrators, drivers and parents, with live vehicle tracking, route visibility, safety workflows and parent alerts."
-                features={["Live Bus Tracking", "Routes & Stops", "Driver Management", "Student Tracking", "Alerts & Notifications", "Reports & Analytics"]}
+                features={["Live Bus Tracking", "Routes & Stops", "Driver Management", "Student Attendance & Safety", "Alerts & Notifications", "Reports & Analytics"]}
                 href="/products/school-transport"
               />
             </Reveal>

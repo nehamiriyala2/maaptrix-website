@@ -3,10 +3,10 @@ import { ArrowRight, Compass, Hammer, PenTool, RefreshCw } from "lucide-react";
 import Reveal from "@/components/Reveal";
 
 const STEPS = [
-  { num: "01", name: "Discover", desc: "Understand real operational challenges.", icon: Compass },
-  { num: "02", name: "Design", desc: "Create practical, user-focused solutions.", icon: PenTool },
-  { num: "03", name: "Build", desc: "Develop scalable and reliable products.", icon: Hammer },
-  { num: "04", name: "Improve", desc: "Continuously evolve based on real usage.", icon: RefreshCw },
+  { num: "01", name: "Understand", desc: "Understand real operational challenges.", icon: Compass },
+  { num: "02", name: "Simplify", desc: "Turn complex processes into simple experiences.", icon: PenTool },
+  { num: "03", name: "Deliver", desc: "Build dependable products for everyday use.", icon: Hammer },
+  { num: "04", name: "Evolve", desc: "Continuously improve through feedback and changing needs.", icon: RefreshCw },
 ];
 
 export default function HomeProcessPreview() {
@@ -29,9 +29,9 @@ export default function HomeProcessPreview() {
                 id="home-process-heading"
                 className="mt-4 font-display text-[32px] font-bold leading-[1.1] tracking-tight sm:text-[40px] lg:text-[48px]"
               >
-                From Real Problems
+                Built Around
                 <br />
-                to Real Impact
+                Real Needs
               </h2>
             </div>
             <Link

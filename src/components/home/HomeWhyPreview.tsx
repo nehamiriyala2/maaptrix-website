@@ -72,8 +72,8 @@ export default function HomeWhyPreview() {
                 },
                 {
                   icon: Boxes,
-                  title: "Product Ownership",
-                  text: "Built for the long term, our products are maintained, supported and continuously refined to remain reliable as customer needs evolve.",
+                  title: "Built for the Long Term",
+                  text: "Our products are maintained, supported and continuously refined to remain reliable as customer needs evolve.",
                 },
               ].map(({ icon: Icon, title, text }) => (
                 <Link

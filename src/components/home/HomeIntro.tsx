@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const PRINCIPLES = [
   { icon: HeartHandshake, title: "People First", desc: "Built for the students, parents and staff who use it." },
-  { icon: Boxes, title: "Product Driven", desc: "We build, own and manage our own products." },
+  { icon: Boxes, title: "Product Focused", desc: "We build, own and manage our own products." },
   { icon: Sprout, title: "Long-Term Thinking", desc: "Products that keep improving as needs grow." },
 ];
 
@@ -23,19 +23,19 @@ export default function HomeIntro() {
               id="home-about-heading"
               className="mt-4 font-display text-[34px] font-extrabold leading-[1.05] tracking-[-0.03em] text-brand-navy sm:text-[44px] lg:text-[50px] xl:text-[58px]"
             >
-              Software Products
+              Practical
               <br />
-              <span className="text-brand-blue">
-                Built for
-                <br />
-                Real-World Needs
-              </span>
+              Technology for
+              <br />
+              <span className="text-brand-blue">Real-World Needs</span>
             </h2>
             <p className="mt-5 text-[17px] leading-[1.7] text-[#40536B]">
               Maaptrix Private Limited is an Indian technology company building practical digital products that
-              simplify everyday operations across industries. We combine intuitive user experiences, dependable
-              technology, and real-world insights to create solutions that improve efficiency, solve meaningful
-              challenges, and evolve with the changing needs of our customers.
+              simplify everyday operations. We focus on intuitive experiences, dependable technology and solutions
+              designed around real-world needs.
+            </p>
+            <p className="mt-4 text-[17px] leading-[1.7] text-[#40536B]">
+              Our products are built for long-term use and continuously evolve as customer needs change.
             </p>
 
             <ul className="mt-8 grid gap-5 sm:grid-cols-3 sm:gap-4">

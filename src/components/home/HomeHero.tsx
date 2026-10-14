@@ -75,15 +75,15 @@ export default function HomeHero() {
             {/* Main Bold Headline */}
             <h1 className="mt-5 font-display text-[42px] font-extrabold leading-[1.04] tracking-[-0.035em] text-[#0A1B39] sm:text-[52px] lg:text-[56px] xl:text-[62px]">
               Technology<br />
-              Products Built for<br />
-              <span className="text-[#1683F7]">Real-World</span><br />
+              That Simplifies<br />
+              <span className="text-[#1683F7]">Everyday</span><br />
               Operations.
             </h1>
 
             {/* Subtitle Description */}
             <p className="mt-5 max-w-[540px] text-[16px] leading-[1.65] text-[#556987] sm:text-[17px]">
-              Maaptrix designs, develops, operates and continuously improves its own digital products, offered through
-              subscription-based models.
+              Maaptrix builds practical digital products that make everyday operations simpler, safer and more
+              connected.
             </p>
 
             {/* CTAs */}
@@ -110,7 +110,7 @@ export default function HomeHero() {
                   <Shield className="h-5 w-5" strokeWidth={2.2} />
                 </span>
                 <span className="text-[13px] font-bold leading-tight text-[#0A1B39]">
-                  Safer<br />Schools
+                  Trusted<br />Technology
                 </span>
               </div>
               <div className="flex items-center gap-2.5 px-4 py-2">

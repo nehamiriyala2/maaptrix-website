@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { SITE_DESCRIPTION, SITE_TITLE } from "@/lib/seo";
 import "./globals.css";
 
 const inter = Inter({
@@ -21,10 +22,9 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   title: {
     template: "%s | Maaptrix",
-    default: "Maaptrix | Technology Products Built for Real-World Operations",
+    default: SITE_TITLE,
   },
-  description:
-    "Maaptrix designs, develops, operates and continuously improves its own digital products, helping organizations simplify everyday operations through dependable subscription-based software.",
+  description: SITE_DESCRIPTION,
   keywords: [
     "Maaptrix",
     "software products",
@@ -36,9 +36,8 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Maaptrix Private Limited" }],
   openGraph: {
-    title: "Maaptrix | Technology Products Built for Real-World Operations",
-    description:
-      "Maaptrix designs, develops, operates and continuously improves its own digital products, helping organizations simplify everyday operations through dependable subscription-based software.",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     url: "https://maaptrix.com",
     siteName: "Maaptrix",
     type: "website",

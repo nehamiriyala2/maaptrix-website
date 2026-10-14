@@ -19,6 +19,12 @@ const PRODUCT_LINKS = [
   { label: "Small School Management Module", href: "/products/school-management" },
 ];
 
+const LEGAL_LINKS = [
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Terms of Use", href: "/terms-of-use" },
+  { label: "Data & Security", href: "/data-security" },
+];
+
 const HEAD = "text-[13px] font-bold uppercase tracking-[0.12em] text-[#38BDF8]";
 const LINK = "text-[15px] text-white/70 transition-colors hover:text-white";
 
@@ -103,6 +109,17 @@ export default function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-center sm:flex-row sm:text-left">
           <p className="text-[13.5px] text-white/50">&copy; 2026 Maaptrix Private Limited. All rights reserved.</p>
+          <nav aria-label="Legal">
+            <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+              {LEGAL_LINKS.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="text-[13.5px] text-white/60 transition-colors hover:text-white">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
           <p className="text-[13.5px] text-white/40">Software products designed and operated for real-world operations.</p>
         </div>
       </div>
