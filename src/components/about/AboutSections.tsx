@@ -76,17 +76,18 @@ export function AboutHero() {
             <SectionEyebrow>ABOUT MAAPTRIX</SectionEyebrow>
 
             <h1 className="mt-5 font-display text-[38px] font-extrabold leading-[1.04] tracking-[-0.04em] text-brand-navy sm:text-[50px] lg:text-[56px] xl:text-[62px]">
-              Technology That{" "}
+              Practical Technology{" "}
               <br className="hidden sm:inline" />
-              Simplifies{" "}
-              <span className="text-brand-blue">Everyday Operations.</span>
+              for <span className="text-brand-blue">Real-World Needs</span>
             </h1>
 
             <p className="mt-6 max-w-[580px] text-[17px] leading-[1.7] text-[#40536B] sm:text-[18.5px]">
               Maaptrix Private Limited is an Indian technology company building practical digital products that
-              simplify everyday operations across industries. We combine intuitive user experiences, dependable
-              technology, and real-world insights to create solutions that improve efficiency, solve meaningful
-              challenges, and evolve with the changing needs of our customers.
+              simplify everyday operations. We focus on intuitive experiences, dependable technology and solutions
+              designed around real-world needs.
+            </p>
+            <p className="mt-4 max-w-[580px] text-[17px] leading-[1.7] text-[#40536B] sm:text-[18.5px]">
+              Our products are built for long-term use and continuously evolve as customer needs change.
             </p>
 
             {/* Three Value Points in connected row */}
