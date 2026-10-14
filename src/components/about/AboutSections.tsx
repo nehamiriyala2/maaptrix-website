@@ -50,7 +50,7 @@ const HERO_VALUE_POINTS = [
   },
   {
     icon: Settings,
-    title: "Product Driven",
+    title: "Product Focused",
     desc: "We create and own our products.",
   },
   {
@@ -76,10 +76,10 @@ export function AboutHero() {
             <SectionEyebrow>ABOUT MAAPTRIX</SectionEyebrow>
 
             <h1 className="mt-5 font-display text-[38px] font-extrabold leading-[1.04] tracking-[-0.04em] text-brand-navy sm:text-[50px] lg:text-[56px] xl:text-[62px]">
-              Technology Products{" "}
+              Technology That{" "}
               <br className="hidden sm:inline" />
-              Built Around{" "}
-              <span className="text-brand-blue">Real Problems.</span>
+              Simplifies{" "}
+              <span className="text-brand-blue">Everyday Operations.</span>
             </h1>
 
             <p className="mt-6 max-w-[580px] text-[17px] leading-[1.7] text-[#40536B] sm:text-[18.5px]">
