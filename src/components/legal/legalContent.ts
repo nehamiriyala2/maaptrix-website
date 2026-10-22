@@ -1,8 +1,8 @@
 /*
  * Legal page content, copied verbatim from the client-supplied source document
  * (Privacy Policy, Terms of Use, Data & Security). DRAFT: pending business/legal
- * review. Do not edit the wording here without client approval; replace
- * "[Date]" only once an approved effective date is provided.
+ * review. Do not edit the wording here without client approval. The
+ * "Last Updated" date was set to 22 October 2026 at the client's request.
  *
  * Block types: a string is a paragraph, { list } is a bullet list and
  * { lines } is a group of short lines (e.g. a postal/contact block) rendered
@@ -18,11 +18,13 @@ export type LegalDocument = {
   sections: LegalSection[];
 };
 
+const LAST_UPDATED = "Last Updated: 22 October 2026";
+
 const CONTACT_LINES = ["Maaptrix Private Limited", "Hyderabad, Telangana, India", "Email: hello@maaptrix.com"];
 
 export const PRIVACY_POLICY: LegalDocument = {
   title: "Privacy Policy",
-  lastUpdated: "Last Updated: [Date]",
+  lastUpdated: LAST_UPDATED,
   intro: [
     "Maaptrix Private Limited (“Maaptrix”, “we”, “our” or “us”) respects the privacy of the individuals and organisations that use our websites, applications and digital products.",
     "This Privacy Policy explains how personal information may be collected, used, stored, shared and protected when you interact with Maaptrix services.",
@@ -142,7 +144,7 @@ export const PRIVACY_POLICY: LegalDocument = {
 
 export const TERMS_OF_USE: LegalDocument = {
   title: "Terms of Use",
-  lastUpdated: "Last Updated: [Date]",
+  lastUpdated: LAST_UPDATED,
   intro: [
     "These Terms of Use govern access to and use of websites, applications, platforms and services provided by Maaptrix Private Limited (“Maaptrix”, “we”, “our” or “us”).",
     "By accessing or using a Maaptrix service, users agree to use the service in accordance with these Terms and any applicable agreement between Maaptrix and the subscribing organisation.",
@@ -247,6 +249,7 @@ export const TERMS_OF_USE: LegalDocument = {
 
 export const DATA_SECURITY: LegalDocument = {
   title: "Data & Security",
+  lastUpdated: LAST_UPDATED,
   intro: [],
   sections: [
     {
