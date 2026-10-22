@@ -76,7 +76,7 @@ export default function HomeHero() {
             <h1 className="mt-5 font-display text-[42px] font-extrabold leading-[1.04] tracking-[-0.035em] text-[#0A1B39] sm:text-[52px] lg:text-[56px] xl:text-[62px]">
               Technology<br />
               That Simplifies<br />
-              <span className="text-[#1683F7]">Everyday</span><br />
+              <span className="text-[#1683F7]">Real-World</span><br />
               Operations.
             </h1>
 
@@ -135,7 +135,7 @@ export default function HomeHero() {
             <div className="mt-7 flex items-center gap-3">
               <div className="h-[1px] w-12 bg-[#BDD9F5]" />
               <p className="text-[11.5px] font-bold tracking-[0.18em] text-[#4A729A] uppercase">
-                Empowering Schools for a Brighter Tomorrow
+                Building Practical and Reliable Technology for a Better Tomorrow
               </p>
               <div className="h-[1px] w-24 bg-[#BDD9F5]" />
             </div>

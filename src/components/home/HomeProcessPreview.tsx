@@ -1,12 +1,13 @@
 import Link from "next/link";
-import { ArrowRight, Compass, Hammer, PenTool, RefreshCw } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import { DeliverIcon, EvolveIcon, SimplifyIcon, UnderstandIcon } from "@/components/home/ProcessIcons";
 
 const STEPS = [
-  { num: "01", name: "Understand", desc: "Understand real operational challenges.", icon: Compass },
-  { num: "02", name: "Simplify", desc: "Turn complex processes into simple experiences.", icon: PenTool },
-  { num: "03", name: "Deliver", desc: "Build dependable products for everyday use.", icon: Hammer },
-  { num: "04", name: "Evolve", desc: "Continuously improve through feedback and changing needs.", icon: RefreshCw },
+  { num: "01", name: "Understand", desc: "Understand real operational challenges.", icon: UnderstandIcon },
+  { num: "02", name: "Simplify", desc: "Turn complex processes into simple experiences.", icon: SimplifyIcon },
+  { num: "03", name: "Deliver", desc: "Build dependable products for everyday use.", icon: DeliverIcon },
+  { num: "04", name: "Evolve", desc: "Continuously improve through feedback and changing needs.", icon: EvolveIcon },
 ];
 
 export default function HomeProcessPreview() {
@@ -48,8 +49,8 @@ export default function HomeProcessPreview() {
               {STEPS.map(({ num, name, desc, icon: Icon }, i) => (
                 <li key={num} className="relative rounded-[16px] border border-white/20 bg-white/[0.08] p-6">
                   <div className="flex items-center justify-between">
-                    <span className="flex h-12 w-12 items-center justify-center rounded-[12px] bg-white text-brand-blue">
-                      <Icon className="h-6 w-6" aria-hidden />
+                    <span className="flex h-[72px] w-[72px] items-center justify-center rounded-[16px] bg-white shadow-[0_12px_24px_-12px_rgba(4,30,80,0.55)] lg:h-[88px] lg:w-[88px] lg:rounded-[18px]">
+                      <Icon className="h-[54px] w-[54px] lg:h-[66px] lg:w-[66px]" />
                     </span>
                     <span className="font-display text-[34px] font-bold leading-none text-white/25">{num}</span>
                   </div>

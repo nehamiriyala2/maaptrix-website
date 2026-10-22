@@ -26,7 +26,8 @@ const LEGAL_LINKS = [
 ];
 
 const HEAD = "text-[13px] font-bold uppercase tracking-[0.12em] text-[#38BDF8]";
-const LINK = "text-[15px] text-white/70 transition-colors hover:text-white";
+const LINK =
+  "rounded-sm text-[15px] text-white/70 transition-colors hover:text-white focus-visible:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#38BDF8]";
 
 export default function Footer() {
   const pathname = usePathname();
@@ -88,6 +89,21 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
+
+            <nav aria-labelledby="footer-legal-heading" className="mt-9">
+              <p id="footer-legal-heading" className={HEAD}>
+                Legal
+              </p>
+              <ul className="mt-5 flex flex-col gap-3">
+                {LEGAL_LINKS.map((l) => (
+                  <li key={l.href}>
+                    <Link href={l.href} className={LINK}>
+                      {l.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
           </div>
 
           <div className="sm:col-span-2 lg:col-span-3">
@@ -109,17 +125,6 @@ export default function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-center sm:flex-row sm:text-left">
           <p className="text-[13.5px] text-white/50">&copy; 2026 Maaptrix Private Limited. All rights reserved.</p>
-          <nav aria-label="Legal">
-            <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
-              {LEGAL_LINKS.map((l) => (
-                <li key={l.href}>
-                  <Link href={l.href} className="text-[13.5px] text-white/60 transition-colors hover:text-white">
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
           <p className="text-[13.5px] text-white/40">Software products designed and operated for real-world operations.</p>
         </div>
       </div>

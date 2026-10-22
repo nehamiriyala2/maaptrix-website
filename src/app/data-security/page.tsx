@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import LegalPage, { LEGAL_PLACEHOLDER_ROBOTS } from "@/components/legal/LegalPage";
+import LegalPage, { LEGAL_DRAFT_ROBOTS } from "@/components/legal/LegalPage";
+import { DATA_SECURITY } from "@/components/legal/legalContent";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -8,15 +9,9 @@ export const metadata: Metadata = {
     "Data & Security",
     "Information about how Maaptrix approaches data and security across its digital products.",
   ),
-  robots: LEGAL_PLACEHOLDER_ROBOTS,
+  robots: LEGAL_DRAFT_ROBOTS,
 };
 
 export default function DataSecurityPage() {
-  return (
-    <LegalPage
-      eyebrow="Legal"
-      title="Data & Security"
-      summary="How Maaptrix approaches the handling and protection of data across its products."
-    />
-  );
+  return <LegalPage eyebrow="Legal" document={DATA_SECURITY} />;
 }

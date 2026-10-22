@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const SITE_URL = "https://maaptrix.com";
 
 /** Homepage / site-wide default title and description (approved company messaging). */
-export const SITE_TITLE = "Maaptrix | Technology That Simplifies Everyday Operations";
+export const SITE_TITLE = "Technology That Simplifies Real-World Operations | Maaptrix";
 export const SITE_DESCRIPTION =
   "Maaptrix builds practical digital products that make everyday operations simpler, safer and more connected.";
 

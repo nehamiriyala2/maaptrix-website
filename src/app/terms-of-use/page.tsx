@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import LegalPage, { LEGAL_PLACEHOLDER_ROBOTS } from "@/components/legal/LegalPage";
+import LegalPage, { LEGAL_DRAFT_ROBOTS } from "@/components/legal/LegalPage";
+import { TERMS_OF_USE } from "@/components/legal/legalContent";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -8,15 +9,9 @@ export const metadata: Metadata = {
     "Terms of Use",
     "Terms of Use for the Maaptrix website and digital products.",
   ),
-  robots: LEGAL_PLACEHOLDER_ROBOTS,
+  robots: LEGAL_DRAFT_ROBOTS,
 };
 
 export default function TermsOfUsePage() {
-  return (
-    <LegalPage
-      eyebrow="Legal"
-      title="Terms of Use"
-      summary="The terms that apply to using the Maaptrix website and products."
-    />
-  );
+  return <LegalPage eyebrow="Legal" document={TERMS_OF_USE} />;
 }
