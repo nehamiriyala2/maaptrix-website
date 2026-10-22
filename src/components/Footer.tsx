@@ -2,7 +2,8 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Phone } from "lucide-react";
+import { CONTACT_PHONE, CONTACT_PHONE_HREF } from "@/lib/contact";
 import Logo from "./Logo";
 
 const NAV_LINKS = [
@@ -111,6 +112,10 @@ export default function Footer() {
             <p className="mt-4 text-[14.5px] leading-relaxed text-white/70">
               Ready to modernize and simplify your school operations?
             </p>
+            <a href={CONTACT_PHONE_HREF} className={`mt-4 inline-flex items-center gap-2.5 font-semibold ${LINK}`}>
+              <Phone className="h-4 w-4 text-[#38BDF8]" aria-hidden />
+              {CONTACT_PHONE}
+            </a>
             {!isContactPage && (
               <Link
                 href="/contact"
@@ -125,7 +130,7 @@ export default function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-center sm:flex-row sm:text-left">
           <p className="text-[13.5px] text-white/50">&copy; 2026 Maaptrix Private Limited. All rights reserved.</p>
-          <p className="text-[13.5px] text-white/40">Software products designed and operated for real-world operations.</p>
+          <p className="text-[13.5px] text-white/40">Software products designed and built for real-world operations.</p>
         </div>
       </div>
     </footer>

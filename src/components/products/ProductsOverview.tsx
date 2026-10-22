@@ -31,20 +31,6 @@ function ProductActions({ href }: { href: string }) {
 const PRODUCTS: StoryCardData[] = [
   {
     num: "Product 01",
-    icon: GraduationCap,
-    title: "Small School Management Module",
-    text: "Essential digital administration for smaller schools and kindergartens, without the complexity of a large enterprise platform.",
-    points: [
-      "Student onboarding & profile management",
-      "Daily attendance & academic records",
-      "Parent announcements & event updates",
-    ],
-    visualTitle: "School Management",
-    media: <ProductMedia src="/hero/school-card-scene.jpg" alt="Tablet displaying a school administration dashboard" />,
-    footer: <ProductActions href="/products/school-management" />,
-  },
-  {
-    num: "Product 02",
     icon: Bus,
     title: "School Transport Management System",
     text: "A connected platform for school transport: administrators, drivers and parents share live, organized and safety-focused transport information.",
@@ -56,6 +42,20 @@ const PRODUCTS: StoryCardData[] = [
     visualTitle: "Transport Management",
     media: <ProductMedia src="/hero/transport-card-scene.jpg" alt="Smartphone showing a school bus route map beside a school bus" />,
     footer: <ProductActions href="/products/school-transport" />,
+  },
+  {
+    num: "Product 02",
+    icon: GraduationCap,
+    title: "Small School Management Module",
+    text: "Essential digital administration for smaller schools and kindergartens, without the complexity of a large enterprise platform.",
+    points: [
+      "Student onboarding & profile management",
+      "Daily attendance & academic records",
+      "Parent announcements & event updates",
+    ],
+    visualTitle: "School Management",
+    media: <ProductMedia src="/hero/school-card-scene.jpg" alt="Tablet displaying a school administration dashboard" />,
+    footer: <ProductActions href="/products/school-management" />,
   },
 ];
 

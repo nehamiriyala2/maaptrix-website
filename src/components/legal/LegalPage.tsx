@@ -11,16 +11,17 @@ import type { LegalBlock, LegalDocument } from "./legalContent";
  */
 export const LEGAL_DRAFT_ROBOTS: Metadata["robots"] = { index: false, follow: true };
 
-const EMAIL = /([\w.+-]+@[\w-]+\.[\w.]+)/g;
+/** Email addresses and international phone numbers (e.g. +91 99406 36798). */
+const CONTACT = /([\w.+-]+@[\w-]+\.[\w.]+|\+\d[\d ]{8,}\d)/g;
 const BODY = "text-[16px] leading-[1.75] text-[#40536B] sm:text-[17px]";
 
-/** Renders text with any email addresses turned into mailto links. */
+/** Renders text with any email addresses / phone numbers turned into mailto / tel links. */
 function withEmailLinks(text: string): ReactNode {
-  return text.split(EMAIL).map((part, i) =>
+  return text.split(CONTACT).map((part, i) =>
     i % 2 === 1 ? (
       <a
         key={i}
-        href={`mailto:${part}`}
+        href={part.includes("@") ? `mailto:${part}` : `tel:${part.replace(/ /g, "")}`}
         className="rounded-sm font-semibold text-brand-blue underline decoration-brand-blue/30 underline-offset-[3px] transition-colors hover:text-brand-blue-dark hover:decoration-brand-blue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue"
       >
         {part}

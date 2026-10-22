@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { ArrowRight, CheckCircle2, Mail, RefreshCw } from "lucide-react";
+import { ArrowRight, CheckCircle2, Mail, Phone, RefreshCw } from "lucide-react";
+import { CONTACT_PHONE, CONTACT_PHONE_HREF } from "@/lib/contact";
 import Reveal from "@/components/Reveal";
 
 const CONTACT_EMAIL = "hello@maaptrix.com";
@@ -273,6 +274,7 @@ function ContactForm({
 
 const DETAILS = [
   { icon: Mail, label: "Email", value: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}` },
+  { icon: Phone, label: "Phone", value: CONTACT_PHONE, href: CONTACT_PHONE_HREF },
 ];
 
 export default function ContactSection() {

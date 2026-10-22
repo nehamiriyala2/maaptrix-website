@@ -20,7 +20,13 @@ export type LegalDocument = {
 
 const LAST_UPDATED = "Last Updated: 22 October 2026";
 
-const CONTACT_LINES = ["Maaptrix Private Limited", "Hyderabad, Telangana, India", "Email: hello@maaptrix.com"];
+// Phone line added at the client's request (22 October 2026); not in the original draft.
+const CONTACT_LINES = [
+  "Maaptrix Private Limited",
+  "Hyderabad, Telangana, India",
+  "Email: hello@maaptrix.com",
+  "Phone: +91 99406 36798",
+];
 
 export const PRIVACY_POLICY: LegalDocument = {
   title: "Privacy Policy",
