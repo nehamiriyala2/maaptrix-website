@@ -140,9 +140,9 @@ export default function AboutEcosystemIllustration() {
             </div>
 
             <div className="mt-3">
-              <h3 className="font-display text-[16px] font-bold text-brand-navy sm:text-[17px]">
+              <p className="font-display text-[16px] font-bold text-brand-navy sm:text-[17px]">
                 Maaptrix Core Engine
-              </h3>
+              </p>
               <p className="mt-0.5 text-[11.5px] font-medium text-[#52657D]">
                 Subscription Software Platform
               </p>
@@ -167,9 +167,9 @@ export default function AboutEcosystemIllustration() {
               </div>
               <div className="min-w-0">
                 <div className="flex items-center justify-between gap-1">
-                  <h4 className="font-display text-[13.5px] font-bold text-brand-navy">
+                  <p className="font-display text-[13.5px] font-bold text-brand-navy">
                     School Transport
-                  </h4>
+                  </p>
                   <span className="rounded bg-[#EFF7FF] px-1.5 py-0.5 text-[9.5px] font-bold text-brand-blue">
                     Live Telemetry
                   </span>
@@ -191,9 +191,9 @@ export default function AboutEcosystemIllustration() {
               </div>
               <div className="min-w-0">
                 <div className="flex items-center justify-between gap-1">
-                  <h4 className="font-display text-[13.5px] font-bold text-brand-navy">
+                  <p className="font-display text-[13.5px] font-bold text-brand-navy">
                     School Management
-                  </h4>
+                  </p>
                   <span className="rounded bg-[#EFF7FF] px-1.5 py-0.5 text-[9.5px] font-bold text-brand-blue">
                     Admin Suite
                   </span>
@@ -215,9 +215,9 @@ export default function AboutEcosystemIllustration() {
               </div>
               <div className="min-w-0">
                 <div className="flex items-center justify-between gap-1">
-                  <h4 className="font-display text-[13.5px] font-bold text-brand-navy">
+                  <p className="font-display text-[13.5px] font-bold text-brand-navy">
                     Safety &amp; Compliance
-                  </h4>
+                  </p>
                   <span className="rounded bg-emerald-50 px-1.5 py-0.5 text-[9.5px] font-bold text-emerald-700">
                     Protected
                   </span>
@@ -239,9 +239,9 @@ export default function AboutEcosystemIllustration() {
               </div>
               <div className="min-w-0">
                 <div className="flex items-center justify-between gap-1">
-                  <h4 className="font-display text-[13.5px] font-bold text-brand-navy">
+                  <p className="font-display text-[13.5px] font-bold text-brand-navy">
                     Parent &amp; Staff Apps
-                  </h4>
+                  </p>
                   <span className="rounded bg-[#EFF7FF] px-1.5 py-0.5 text-[9.5px] font-bold text-brand-blue">
                     Instant Sync
                   </span>

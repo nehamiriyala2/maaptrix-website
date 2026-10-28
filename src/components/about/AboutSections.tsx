@@ -100,9 +100,9 @@ export function AboutHero() {
                   <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#EAF5FF] text-brand-blue transition-colors group-hover:bg-brand-blue group-hover:text-white">
                     <Icon className="h-5 w-5" strokeWidth={2.2} aria-hidden />
                   </span>
-                  <h3 className="mt-3 font-display text-[15px] font-bold text-brand-navy">
+                  <h2 className="mt-3 font-display text-[15px] font-bold text-brand-navy">
                     {title}
-                  </h3>
+                  </h2>
                   <p className="mt-1 text-[13px] leading-[1.45] text-[#52657D]">
                     {desc}
                   </p>

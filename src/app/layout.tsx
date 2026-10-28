@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Analytics from "@/components/Analytics";
 import { SITE_DESCRIPTION, SITE_TITLE } from "@/lib/seo";
 import "./globals.css";
 
@@ -19,7 +20,7 @@ const manrope = Manrope({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://maaptrix.com"),
-  alternates: { canonical: "/" },
+  // No default canonical: each page sets its own, and the 404 page must not claim the homepage's.
   title: {
     template: "%s | Maaptrix",
     default: SITE_TITLE,
@@ -41,7 +42,17 @@ export const metadata: Metadata = {
     url: "https://maaptrix.com",
     siteName: "Maaptrix",
     type: "website",
+    locale: "en_IN",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+  },
+  // Google Search Console HTML-tag verification; set the token in the hosting environment.
+  ...(process.env.GOOGLE_SITE_VERIFICATION && {
+    verification: { google: process.env.GOOGLE_SITE_VERIFICATION },
+  }),
 };
 
 export default function RootLayout({
@@ -60,6 +71,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
