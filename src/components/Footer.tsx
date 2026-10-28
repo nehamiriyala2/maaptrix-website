@@ -118,7 +118,7 @@ export default function Footer() {
             </a>
             {!isContactPage && (
               <Link
-                href="/contact"
+                href="/contact?type=demo"
                 className="group mt-5 flex h-12 w-full max-w-[260px] items-center justify-center gap-2 rounded-[10px] bg-[#1683F7] px-5 text-[15px] font-semibold text-white transition-colors hover:bg-[#0E71E6]"
               >
                 Request a Demo

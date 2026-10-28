@@ -8,7 +8,7 @@ export default function HowWeWorkCTA() {
       title="Have an Operational Problem Worth Solving?"
       text="Explore the products Maaptrix is building for real-world operations."
       primary={{ href: "/products", label: "Explore Our Products" }}
-      secondary={{ href: "/contact", label: "Request a Demo" }}
+      secondary={{ href: "/contact?type=demo", label: "Request a Demo" }}
       above="#EAF4FF"
     />
   );

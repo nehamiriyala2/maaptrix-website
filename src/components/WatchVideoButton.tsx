@@ -54,7 +54,7 @@ export default function WatchVideoButton({ className, onBlue = false }: { classN
             </p>
             <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
               <Link
-                href="/contact"
+                href="/contact?type=demo"
                 className="inline-flex h-12 items-center justify-center gap-2 rounded-[10px] bg-[#1683F7] px-6 text-[15px] font-semibold text-white hover:bg-[#0757C9]"
               >
                 Request a Demo

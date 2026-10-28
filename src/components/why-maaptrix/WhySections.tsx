@@ -339,7 +339,7 @@ export function WhyClosingCTA() {
       eyebrow="Our Commitment"
       title="Let's build smarter schools together."
       text="Discover how Maaptrix can simplify and improve your operations."
-      primary={{ href: "/contact", label: "Request a Demo" }}
+      primary={{ href: "/contact?type=demo", label: "Request a Demo" }}
       above="#EAF4FF"
     />
   );

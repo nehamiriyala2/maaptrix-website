@@ -7,7 +7,7 @@ export default function FinalCTA() {
       eyebrow="Get Started with Maaptrix"
       title="Ready to Simplify Your School Operations?"
       text="Discover how Maaptrix can help make school transportation safer and everyday school operations simpler."
-      primary={{ href: "/contact", label: "Request a Free Demo" }}
+      primary={{ href: "/contact?type=demo", label: "Request a Free Demo" }}
     />
   );
 }

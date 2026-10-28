@@ -195,7 +195,7 @@ export default function Navbar() {
               <Search className="h-4 w-4" />
             </button>
             <Link
-              href="/contact"
+              href="/contact?type=demo"
               className="group inline-flex h-11 items-center gap-2 rounded-[10px] bg-brand-blue px-5 text-[15px] font-semibold text-white transition-colors duration-300 hover:bg-brand-blue-dark"
             >
               <span>Request a Demo</span>
@@ -314,7 +314,7 @@ export default function Navbar() {
                 })}
                 <div className="mt-3 pt-3 border-t border-slate-100 flex flex-col gap-2">
                   <Link
-                    href="/contact"
+                    href="/contact?type=demo"
                     onClick={() => setOpen(false)}
                     className="inline-flex h-12 items-center justify-center gap-2 rounded-[10px] bg-brand-blue px-5 text-[15px] font-semibold text-white transition-colors hover:bg-brand-blue-dark"
                   >

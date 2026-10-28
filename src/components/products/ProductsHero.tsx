@@ -60,7 +60,7 @@ export default function ProductsHero() {
               className="mt-8 flex flex-col gap-3.5 sm:flex-row"
             >
               <Link
-                href="/contact"
+                href="/contact?type=demo"
                 className="group inline-flex h-12 whitespace-nowrap items-center justify-center gap-2.5 rounded-[11px] bg-brand-blue px-6 text-[16px] font-semibold text-white shadow-[0_12px_26px_-14px_rgba(22,131,245,0.8)] transition-colors duration-300 hover:bg-brand-blue-dark sm:min-w-[196px]"
               >
                 Request a Demo

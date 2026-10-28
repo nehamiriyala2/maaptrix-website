@@ -75,7 +75,7 @@ export default function ProductDetailHero({
 
             <div className={`mt-8 flex flex-col gap-3 sm:flex-row ${image ? "" : "sm:justify-center"}`}>
               <Link
-                href="/contact"
+                href="/contact?type=demo"
                 className="group inline-flex h-12 items-center justify-center gap-2.5 whitespace-nowrap rounded-[11px] bg-brand-blue px-7 text-[16px] font-bold text-white shadow-[0_12px_26px_-12px_rgba(20,125,255,0.8)] transition-colors hover:bg-brand-blue-dark"
               >
                 Request a Demo

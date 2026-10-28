@@ -96,7 +96,7 @@ export default function HomeHero() {
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
-                href="/contact"
+                href="/contact?type=demo"
                 className="inline-flex h-[50px] items-center justify-center whitespace-nowrap rounded-[12px] border-2 border-[#1683F7] bg-white px-7 text-[15.5px] font-bold text-[#1683F7] shadow-[0_4px_12px_rgba(22,131,247,0.06)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#F0F7FF]"
               >
                 Request a Demo
