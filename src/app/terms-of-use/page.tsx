@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   ...pageMetadata(
     "/terms-of-use",
     "Terms of Use",
-    "Terms of Use for the Maaptrix website and digital products.",
+    "Terms governing access to and use of Maaptrix websites, applications and services, including authorised use, account responsibility and location information.",
   ),
   robots: LEGAL_DRAFT_ROBOTS,
 };

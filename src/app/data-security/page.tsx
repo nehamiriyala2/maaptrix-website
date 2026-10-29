@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   ...pageMetadata(
     "/data-security",
     "Data & Security",
-    "Information about how Maaptrix approaches data and security across its digital products.",
+    "How Maaptrix approaches data protection, access control, secure communication, location data and student information across its digital products.",
   ),
   robots: LEGAL_DRAFT_ROBOTS,
 };

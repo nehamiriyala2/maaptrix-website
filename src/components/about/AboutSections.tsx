@@ -100,9 +100,9 @@ export function AboutHero() {
                   <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#EAF5FF] text-brand-blue transition-colors group-hover:bg-brand-blue group-hover:text-white">
                     <Icon className="h-5 w-5" strokeWidth={2.2} aria-hidden />
                   </span>
-                  <h2 className="mt-3 font-display text-[15px] font-bold text-brand-navy">
+                  <p className="mt-3 font-display text-[15px] font-bold text-brand-navy">
                     {title}
-                  </h2>
+                  </p>
                   <p className="mt-1 text-[13px] leading-[1.45] text-[#52657D]">
                     {desc}
                   </p>
@@ -523,9 +523,9 @@ export function AboutPrinciples() {
         {/* Bottom Horizontal CTA Bar */}
         <Reveal delay={0.12} className="mt-10 sm:mt-12">
           <div className="flex flex-col items-start justify-between gap-6 rounded-[20px] border border-[#CFE4FF] bg-white px-7 py-7 shadow-[0_8px_24px_rgba(30,90,150,0.04)] sm:flex-row sm:items-center sm:px-10 sm:py-8">
-            <h3 className="font-display text-[22px] font-bold leading-[1.2] text-brand-navy sm:text-[26px]">
+            <p className="font-display text-[22px] font-bold leading-[1.2] text-brand-navy sm:text-[26px]">
               Explore what Maaptrix <span className="text-brand-blue">is building.</span>
-            </h3>
+            </p>
             <Link
               href="/products"
               className="group inline-flex h-12 w-full shrink-0 items-center justify-center gap-2 rounded-[12px] bg-brand-blue px-7 text-[15px] font-bold text-white shadow-[0_10px_22px_-6px_rgba(20,125,255,0.6)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-blue-dark hover:shadow-[0_12px_26px_-4px_rgba(20,125,255,0.7)] sm:h-[54px] sm:w-[215px]"

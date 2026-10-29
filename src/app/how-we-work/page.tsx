@@ -6,8 +6,9 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata(
   "/how-we-work",
-  "How We Work",
+  "How We Work: From Operational Need to Product | Maaptrix",
   "How Maaptrix turns real-world operational problems into focused, reliable software products: discover, plan, implement, connect and support.",
+  { absolute: true },
 );
 
 export default function HowWeWorkPage() {

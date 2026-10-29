@@ -22,7 +22,8 @@ export default function Logo({
     <span className={`inline-flex items-center gap-2.5 ${className}`}>
       <Image
         src="/brand/logo-original.jpeg"
-        alt="Maaptrix"
+        // With the wordmark beside it the mark is decorative; alone it names the brand.
+        alt={showWordmark ? "" : "Maaptrix"}
         width={480}
         height={480}
         priority

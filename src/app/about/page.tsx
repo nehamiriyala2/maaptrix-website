@@ -9,8 +9,9 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata(
   "/about",
-  "About Us",
-  "Maaptrix is a technology company that builds, owns and manages its own software products around real-world operational problems. Our mission, vision and principles.",
+  "About Maaptrix | Indian Software Product Company",
+  "Maaptrix is an Indian technology company building and managing its own software products for real-world operations. Our mission, vision and principles.",
+  { absolute: true },
 );
 
 export default function AboutPage() {

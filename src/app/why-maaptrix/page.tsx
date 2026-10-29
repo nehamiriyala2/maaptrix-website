@@ -9,8 +9,9 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata(
   "/why-maaptrix",
-  "Why Choose Maaptrix",
+  "Why Choose Maaptrix | Purpose-Built Software for Schools",
   "Why Maaptrix builds focused software products: product ownership, purpose-built solutions, simplicity and continuous improvement.",
+  { absolute: true },
 );
 
 export default function WhyMaaptrixPage() {

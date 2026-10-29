@@ -6,8 +6,9 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata(
   "/products/school-management",
-  "Small School Management Module",
-  "A lightweight subscription module for smaller schools and kindergartens: student onboarding, attendance, homework, academic records, announcements and events.",
+  "School Management Software for Small Schools | Maaptrix",
+  "Lightweight school management software for small schools and kindergartens: student onboarding, attendance, homework, academic records and announcements.",
+  { absolute: true },
 );
 
 export default function SchoolManagementPage() {

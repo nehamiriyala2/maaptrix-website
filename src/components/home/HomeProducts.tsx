@@ -33,12 +33,12 @@ function SafetyStrip() {
             <ShieldCheck className="h-4 w-4" aria-hidden />
             School Transportation
           </p>
-          <h2
+          <h3
             id="home-safety-heading"
             className="mt-4 text-balance font-display text-[28px] font-bold leading-[1.1] tracking-tight sm:text-[36px] lg:text-[42px]"
           >
             Student Safety at Every Step
-          </h2>
+          </h3>
         </Reveal>
 
         <Reveal delay={0.08}>

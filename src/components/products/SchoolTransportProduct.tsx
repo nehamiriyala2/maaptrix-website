@@ -43,9 +43,9 @@ export default function SchoolTransportProduct() {
             <span className="text-xs font-bold uppercase tracking-wider text-brand-blue">
               Role-Specific Experiences
             </span>
-            <h3 className="mt-2 font-display text-2xl sm:text-3xl font-bold tracking-tight text-brand-navy">
+            <h2 className="mt-2 font-display text-2xl sm:text-3xl font-bold tracking-tight text-brand-navy">
               Connecting School, Driver &amp; Parent
-            </h3>
+            </h2>
             <p className="mt-2 text-sm sm:text-base text-slate-600">
               A unified system designed around the distinct operational requirements of each stakeholder.
             </p>
@@ -100,9 +100,9 @@ export default function SchoolTransportProduct() {
                       Role 01 · School Operations
                     </span>
                   </div>
-                  <h4 className="font-display text-xl sm:text-2xl font-bold text-brand-navy">
+                  <h3 className="font-display text-xl sm:text-2xl font-bold text-brand-navy">
                     Visibility for School Operations
-                  </h4>
+                  </h3>
                   <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
                     School administrators can access visibility across multiple
                     buses and transport operations.
@@ -156,9 +156,9 @@ export default function SchoolTransportProduct() {
                       Role 02 · Route Management
                     </span>
                   </div>
-                  <h4 className="font-display text-xl sm:text-2xl font-bold text-brand-navy">
+                  <h3 className="font-display text-xl sm:text-2xl font-bold text-brand-navy">
                     Tools for Route Operations
-                  </h4>
+                  </h3>
                   <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
                     Designed for on-duty drivers to operate routes efficiently without complicated technical interfaces.
                   </p>
@@ -207,9 +207,9 @@ export default function SchoolTransportProduct() {
                       Role 03 · Family Connectivity
                     </span>
                   </div>
-                  <h4 className="font-display text-xl sm:text-2xl font-bold text-brand-navy">
+                  <h3 className="font-display text-xl sm:text-2xl font-bold text-brand-navy">
                     Better Visibility for Parents
-                  </h4>
+                  </h3>
                   <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
                     Giving parents peace of mind through real-time transit visibility and validated custody workflows.
                   </p>

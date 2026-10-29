@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   ...pageMetadata(
     "/privacy-policy",
     "Privacy Policy",
-    "Privacy Policy for Maaptrix Private Limited and its digital products.",
+    "How Maaptrix collects, uses, stores, shares and protects personal information, including student and location data, across its digital products.",
   ),
   robots: LEGAL_DRAFT_ROBOTS,
 };

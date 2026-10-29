@@ -7,7 +7,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata(
   "/products/school-transport",
   "School Transport Management System",
-  "A subscription-based school transport platform with live vehicle tracking, route visibility, pickup and drop attendance, parent visibility and safety workflows.",
+  "Subscription-based school transport management with live vehicle tracking, route visibility, pickup and drop attendance, parent updates and safety workflows.",
 );
 
 export default function SchoolTransportPage() {
