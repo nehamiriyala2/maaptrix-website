@@ -4,6 +4,8 @@ import { renderShareImage } from "@/lib/shareImage";
 export const alt = "Maaptrix Terms of Use | Maaptrix";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+// Rendered once at build time (required by the static export).
+export const dynamic = "force-static";
 
 export default function Image() {
   return renderShareImage({ path: "/terms-of-use", eyebrow: "Legal", title: "Terms of Use" });

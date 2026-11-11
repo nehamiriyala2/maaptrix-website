@@ -40,3 +40,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# contact.php rate-limit records (only created when testing PHP locally)
+.maaptrix-contact/

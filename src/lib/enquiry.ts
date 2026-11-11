@@ -1,7 +1,8 @@
 /*
- * Contact-form enquiry rules shared by the browser form and the /api/contact
- * route, so both validate identically. No framework imports: this file is also
- * run directly by the Node test runner (src/lib/enquiry.test.ts).
+ * Contact-form enquiry rules used by the browser form. The server-side copy of
+ * these rules lives in public/api/contact.php; keep the two in step. No framework
+ * imports: this file is also run directly by the Node test runner
+ * (src/lib/enquiry.test.ts).
  */
 
 export const ENQUIRY_TYPES = ["General enquiry", "Demo request"] as const;
@@ -17,12 +18,6 @@ export interface EnquiryFields {
 }
 
 export type EnquiryErrors = Partial<Record<keyof EnquiryFields, string>>;
-
-/** A validated enquiry plus the context the server adds before emailing it. */
-export interface Enquiry extends EnquiryFields {
-  pageUrl: string;
-  submittedAt: Date;
-}
 
 export const LIMITS = { fullName: 100, email: 254, organization: 150, phone: 20, message: 5000 } as const;
 
@@ -59,71 +54,6 @@ export function validateEnquiry(d: EnquiryFields): EnquiryErrors {
 }
 
 /**
- * Reads untrusted JSON into enquiry fields. Non-string values become "" so they
- * fail validation instead of throwing.
- */
-export function parseEnquiryFields(body: unknown): EnquiryFields {
-  const o = (body && typeof body === "object" ? body : {}) as Record<string, unknown>;
-  const str = (k: string) => (typeof o[k] === "string" ? (o[k] as string) : "");
-  return {
-    fullName: str("fullName"),
-    email: str("email"),
-    organization: str("organization"),
-    phone: str("phone"),
-    enquiryType: str("enquiryType") as EnquiryType,
-    message: str("message"),
-  };
-}
-
-/** Submissions faster than this after the form was first touched are treated as bots. */
-export const MIN_FILL_MS = 3000;
-
-/** Spam signals: a filled hidden honeypot field, or a form completed implausibly fast. */
-export function looksLikeSpam(honeypot: unknown, startedAt: unknown, now = Date.now()): boolean {
-  if (typeof honeypot === "string" && honeypot.trim() !== "") return true;
-  if (typeof startedAt !== "number" || !Number.isFinite(startedAt)) return true;
-  return now - startedAt < MIN_FILL_MS;
-}
-
-/**
- * Fixed-window counter per key (client IP). In memory, so it is per server
- * instance: it stops bursts from one client but is not a global limit.
- */
-export function createRateLimiter(max: number, windowMs: number) {
-  const hits = new Map<string, { count: number; resetAt: number }>();
-  return function allow(key: string, now = Date.now()): boolean {
-    const entry = hits.get(key);
-    if (!entry || now >= entry.resetAt) {
-      if (hits.size > 5000) for (const [k, v] of hits) if (now >= v.resetAt) hits.delete(k);
-      hits.set(key, { count: 1, resetAt: now + windowMs });
-      return true;
-    }
-    entry.count += 1;
-    return entry.count <= max;
-  };
-}
-
-/**
- * Remembers recently delivered enquiries so a double-click or resubmission of
- * the same message does not email the business twice. Per server instance.
- */
-export function createDuplicateGuard(windowMs: number) {
-  const seen = new Map<string, number>();
-  const keyOf = (d: EnquiryFields) =>
-    [d.email, d.message].map((s) => s.trim().toLowerCase().replace(/\s+/g, " ")).join("\u0000");
-  return {
-    isDuplicate(d: EnquiryFields, now = Date.now()) {
-      const at = seen.get(keyOf(d));
-      return at !== undefined && now - at < windowMs;
-    },
-    remember(d: EnquiryFields, now = Date.now()) {
-      if (seen.size > 5000) for (const [k, at] of seen) if (now - at >= windowMs) seen.delete(k);
-      seen.set(keyOf(d), now);
-    },
-  };
-}
-
-/**
  * A pre-filled email to the business, opened in the visitor's own email app.
  * Fallback only: used when the server can't send the enquiry itself.
  */
@@ -139,35 +69,4 @@ export function buildEnquiryMailto(d: EnquiryFields, to: string) {
     ...(d.phone.trim() ? [`Phone: ${d.phone.trim()}`] : []),
   ].join("\n");
   return `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-}
-
-const escapeHtml = (s: string) =>
-  s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
-
-/** The internal notification sent to the Maaptrix inbox for one enquiry. */
-export function formatEnquiryEmail(q: Enquiry) {
-  const when = q.submittedAt.toLocaleString("en-IN", { timeZone: "Asia/Kolkata", dateStyle: "medium", timeStyle: "short" });
-  const rows: [string, string][] = [
-    ["Enquiry type", q.enquiryType],
-    ["Name", q.fullName.trim()],
-    ["Email", q.email.trim()],
-    ["Organization", q.organization.trim()],
-    ["Phone", q.phone.trim() || "Not provided"],
-    ["Submitted", `${when} IST`],
-    ["Page", q.pageUrl],
-  ];
-  const message = q.message.trim();
-
-  const subject = `New ${q.enquiryType.toLowerCase()}: ${q.organization.trim()} (${q.fullName.trim()})`;
-  const text = [...rows.map(([k, v]) => `${k}: ${v}`), "", "Message:", message, "", "Reply to this email to respond to the sender."].join("\n");
-  const html = `<div style="font-family:Arial,sans-serif;font-size:14px;color:#10233f">
-<h2 style="margin:0 0 12px">New website ${escapeHtml(q.enquiryType.toLowerCase())}</h2>
-<table cellpadding="6" style="border-collapse:collapse">${rows
-    .map(([k, v]) => `<tr><td style="color:#64748b;vertical-align:top">${k}</td><td>${escapeHtml(v)}</td></tr>`)
-    .join("")}</table>
-<p style="margin:16px 0 4px;color:#64748b">Message</p>
-<p style="margin:0;white-space:pre-wrap">${escapeHtml(message)}</p>
-<p style="margin:20px 0 0;color:#64748b;font-size:12px">Reply to this email to respond to the sender.</p>
-</div>`;
-  return { subject, text, html };
 }

@@ -1,6 +1,9 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/seo";
 
+// Generated once at build time as out/robots.txt (static export).
+export const dynamic = "force-static";
+
 // Search engine and AI crawlers that are explicitly welcome (search, AI answers
 // and AI training). The "*" rule already covers them; listing them makes the
 // intent clear for any crawler that only honours a rule naming it.

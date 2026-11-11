@@ -111,7 +111,7 @@ function ContactForm({
     setMailto(null);
     trackEvent("form_submit", { form_name: "contact", enquiry_type: enquiry.enquiryType });
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("/api/contact.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
